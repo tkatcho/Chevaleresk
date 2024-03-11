@@ -38,3 +38,5 @@ $content = <<<HTML
 HTML;
 
 include 'views/master.php';
+
+//TEST
