@@ -26,6 +26,7 @@
         <a href ="subscribeForm.php">
         <button><i class="fa fa-sign-in" aria-hidden="true"></i>S'inscrire</i></button>
         </a>
+        <hr>
         HTML;
         
     }
