@@ -9,23 +9,21 @@ final class inventairesTable extends MySQLTable
     {
         parent::__construct(DB(), new Inventaire());
     }
-    public function insert($test)
+    public function insert($inventaire)
     {
-        parent::insert($test);
+        parent::insert($inventaire);
     }
-    public function update($test)
+    public function update($inventaire)
     {
-        $userToUpdate = $this->get($test->Id);
-        if ($test->Password == "")
-            $test->Password = $userToUpdate->Password;
-        if ($userToUpdate != null) {
-            parent::update($test);
+        $inventaireToUpdate = $this->get($inventaire->Id);
+        if ($inventaireToUpdate != null) {
+            parent::update($inventaire);
         }
     }
     public function delete($id)
     {
-        $userToRemove = $this->get($id);
-        if ($userToRemove != null) {
+        $inventaireToRemove = $this->get($id);
+        if ($inventaireToRemove != null) {
             return parent::delete($id);
         }
         return false;

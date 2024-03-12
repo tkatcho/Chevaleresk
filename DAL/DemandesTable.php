@@ -9,23 +9,21 @@ final class DemandesTable extends MySQLTable
     {
         parent::__construct(DB(), new Demande());
     }
-    public function insert($test)
+    public function insert($demande)
     {
-        parent::insert($test);
+        parent::insert($demande);
     }
-    public function update($test)
+    public function update($demande)
     {
-        $userToUpdate = $this->get($test->Id);
-        if ($test->Password == "")
-            $test->Password = $userToUpdate->Password;
-        if ($userToUpdate != null) {
-            parent::update($test);
+        $demandeToUpdate = $this->get($demande->Id);
+        if ($demandeToUpdate != null) {
+            parent::update($demande);
         }
     }
     public function delete($id)
     {
-        $userToRemove = $this->get($id);
-        if ($userToRemove != null) {
+        $demandeToRemove = $this->get($id);
+        if ($demandeToRemove != null) {
             return parent::delete($id);
         }
         return false;
