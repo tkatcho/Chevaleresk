@@ -1,5 +1,7 @@
 <?php
-
+include 'views/header.php';
+if (!isset($pageTitle))
+    $pageTitle = "";
 $stylesBundle = "";
 if (file_exists("views/stylesBundle.html"))
     $stylesBundle = file_get_contents("views/stylesBundle.html");
@@ -15,7 +17,7 @@ echo <<<HTML
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>Chevaleresk - $title</title>
+            <title>$pageTitle</title>
             $stylesBundle
             $scriptsBundle
         </head>
