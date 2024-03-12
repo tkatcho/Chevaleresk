@@ -1,6 +1,6 @@
 <?php
 
-include_once 'DAL/models/test.php';
+include_once 'DAL/models/joueur.php';
 include_once "DAL/MySQLDataBase.php";
 
 final class JoueursTable extends MySQLTable
@@ -11,33 +11,33 @@ final class JoueursTable extends MySQLTable
     }
     public function aliasExist($alias)
     {
-        $user = $this->selectWhere("alias = '$alias'");
-        return isset($user[0]);
+        $joueur = $this->selectWhere("alias = '$alias'");
+        return isset($joueur[0]);
     }
     public function findByAlias($alias)
     {
-        $user = $this->selectWhere("alias = '$alias'");
-        if (isset($user[0]))
-            return $user[0];
+        $joueur = $this->selectWhere("alias = '$alias'");
+        if (isset($joueur[0]))
+            return $joueur[0];
         return null;
     }
-    public function insert($test)
+    public function insert($joueur)
     {
-        parent::insert($test);
+        parent::insert($joueur);
     }
-    public function update($test)
+    public function update($joueur)
     {
-        $userToUpdate = $this->get($test->Id);
-        if ($test->Password == "")
-            $test->Password = $userToUpdate->Password;
-        if ($userToUpdate != null) {
-            parent::update($test);
+        $joueurToUpdate = $this->get($joueur->Id);
+        if ($joueur->Password == "")
+            $joueur->Password = $joueurToUpdate->Password;
+        if ($joueurToUpdate != null) {
+            parent::update($joueur);
         }
     }
     public function delete($id)
     {
-        $userToRemove = $this->get($id);
-        if ($userToRemove != null) {
+        $joueurToRemove = $this->get($id);
+        if ($joueurToRemove != null) {
             return parent::delete($id);
         }
         return false;
