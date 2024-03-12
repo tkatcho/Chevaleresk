@@ -3,11 +3,11 @@
 include_once 'DAL/models/test.php';
 include_once "DAL/MySQLDataBase.php";
 
-final class TestsTable extends MySQLTable
+final class JoueursTable extends MySQLTable
 {
     public function __construct()
     {
-        parent::__construct(DB(), new Test());
+        parent::__construct(DB(), new Joueur());
     }
     public function aliasExist($alias)
     {
