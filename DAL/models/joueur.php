@@ -19,7 +19,7 @@ class Joueur extends Record
         $this->Prenom = "";
         $this->MotDePasse = "";
         $this->Solde = 0;
-        $this->Niveau = "";
+        $this->Niveau = "aucun";
         $this->estAlchimiste = 0;
         $this->estAdmin = 0;
         parent::__construct($recordData);
@@ -36,6 +36,10 @@ class Joueur extends Record
     {
         $this->Nom = $nom;
     }
+    public function setMotDePasse($motDePasse)
+    {
+        $this->MotDePasse = $motDePasse;
+    }
     public function setSolde($solde)
     {
         $this->Solde = $solde;
@@ -43,6 +47,13 @@ class Joueur extends Record
     public function setNiveau($niveau)
     {
         $this->Niveau = $niveau;
+    }
+    public function setEstAlchimiste($estAlchimiste)
+    {
+        if ($estAlchimiste == 0 || $estAlchimiste == 1)
+        {
+            $this->estAdmin = (int) $estAlchimiste;
+        }
     }
     public function setEstAdmin($accessType)
     {
