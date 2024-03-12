@@ -7,7 +7,7 @@ final class JoueursTable extends MySQLTable
 {
     public function __construct()
     {
-        parent::__construct(DB(), new Joueur());
+        parent::__construct(DB(), new Joueur());//test
     }
     public function aliasExist($alias)
     {
