@@ -17,7 +17,12 @@
         
            
     }else {  //si le joueur n'est pas connecté
+        //est dans catalogue produit
         $loggedUserMenu =<<<HTML
         <a href ="loginForm.php">
-            <i class
+        <i >
+        </a>
+        
+        HTML;
+        
     }
