@@ -22,9 +22,9 @@ foreach ($results as $result) {
 HTML;
 }
 
-$title = "Test";
 
-$content = <<<HTML
+
+/*$content = <<<HTML
     <h1>Test de la BD</h1>
     <table class="table">
         <tr>
@@ -35,6 +35,14 @@ $content = <<<HTML
         </tr>
         $tableDesTests
     </table>
+HTML;*/
+
+$content= <<<HTML
+    <h2>Recherche: 
+        <span> 
+            <input type="search" class="form-control" placeholder ="Rechercher">
+        </span> 
+    </h2>
 HTML;
 
 include 'views/master.php';

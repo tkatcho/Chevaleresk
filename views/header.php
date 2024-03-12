@@ -1,4 +1,5 @@
 <?php
+
 #https://fontawesome.com/v4/icons/     -> les font awesome
     $pageTitle = "Catalogue de produits";
     if(!isset($viewTitle))
@@ -19,14 +20,29 @@
            
     }else {  //si le joueur n'est pas connecté
         //est dans catalogue produit
+        $viewTitle=$pageTitle;
         $loggedUserMenu =<<<HTML
-        <a href ="loginForm.php">
-        <button><i class="fa fa-user" aria-hidden="true">Connexion</i></button>
-        </a>
-        <a href ="subscribeForm.php">
-        <button><i class="fa fa-sign-in" aria-hidden="true"></i>S'inscrire</i></button>
-        </a>
-        <hr>
+
+        <div class="buttonOnSide">
+            <button>
+                <a href ="loginForm.php">
+                Connexion <i class="fa fa-user"></i>
+                </a>
+            </button>
+            <button>
+                <a href ="subscribeForm.php">
+                S'inscrire <i class="fa fa-sign-in"></i>
+                </a>
+            </button>
+        </div>
         HTML;
         
     }
+    $viewHead = <<<HTML
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <span class="header"> 
+        <h1>$viewTitle  <span>$loggedUserMenu </span> </h1>
+       
+    </span>
+    
+    HTML;

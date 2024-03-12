@@ -23,7 +23,7 @@ echo <<<HTML
         </head>
         <body>
             <header>
-                <h2>$pageTitle</h2>
+                $viewHead
             </header>
             <main>
                 $content
