@@ -2,7 +2,7 @@
 
 include 'DAL/ChevalereskDB.php';
 
-$results = TestsTable()->selectAll();
+$results = JoueursTable()->selectAll();
 
 $tableDesTests = "";
                 

@@ -1,25 +1,13 @@
 <?php
 
-include_once 'DAL/models/joueur.php';
+include_once 'DAL/models/inventaire.php';
 include_once "DAL/MySQLDataBase.php";
 
-final class JoueursTable extends MySQLTable
+final class inventairesTable extends MySQLTable
 {
     public function __construct()
     {
-        parent::__construct(DB(), new Joueur());
-    }
-    public function aliasExist($alias)
-    {
-        $user = $this->selectWhere("alias = '$alias'");
-        return isset($user[0]);
-    }
-    public function findByAlias($alias)
-    {
-        $user = $this->selectWhere("alias = '$alias'");
-        if (isset($user[0]))
-            return $user[0];
-        return null;
+        parent::__construct(DB(), new Inventaire());
     }
     public function insert($test)
     {

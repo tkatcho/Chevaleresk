@@ -477,7 +477,7 @@ final class MySQLDataBase
     public function __construct($dbName)
     {
         $this->host = 'localhost';
-        $this->username = '';
+        $this->username = 'root';
         $this->password = '';
         $this->dbName = $dbName;
         $this->autoCommit = true;
