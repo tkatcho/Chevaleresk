@@ -476,9 +476,9 @@ final class MySQLDataBase
     // Ici les réglages pourraient êtres stockés dans un fichier de constantes globales de l'application
     public function __construct($dbName)
     {
-        $this->host = '167.114.152.54';
-        $this->username = 'chevalier16';
-        $this->password = 'sqfi6386';
+        $this->host = 'localhost';
+        $this->username = '';
+        $this->password = '';
         $this->dbName = $dbName;
         $this->autoCommit = true;
         $this->conn = null;
