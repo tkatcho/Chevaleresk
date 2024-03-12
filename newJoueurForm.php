@@ -48,6 +48,12 @@ $content = <<<HTML
         <input type="password" placeholder="Mot de passe" name="motDePasse">
         <input type="submit">
     </form>
+    <h3>Verif de mot de passes</h3>
+    <form method="POST" action="verifJoueurMotDePasse.php">
+        <input type="text" placeholder="Alias" name="alias">
+        <input type="password" placeholder="Mot de passe" name="motDePasse">
+        <input type="submit">
+    </form>
 HTML;
 
 include 'views/master.php';
