@@ -1,4 +1,5 @@
 <?php
+#https://fontawesome.com/v4/icons/     -> les font awesome
     $pageTitle = "Catalogue de produits";
     if(!isset($viewTitle))
         $viewTitle="";
@@ -20,9 +21,11 @@
         //est dans catalogue produit
         $loggedUserMenu =<<<HTML
         <a href ="loginForm.php">
-        <i >
+        <button><i class="fa fa-user" aria-hidden="true">Connexion</i></button>
         </a>
-        
+        <a href ="subscribeForm.php">
+        <button><i class="fa fa-sign-in" aria-hidden="true"></i>S'inscrire</i></button>
+        </a>
         HTML;
         
     }

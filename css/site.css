@@ -31,6 +31,13 @@ header {
     border-bottom: 1px solid #333;
 }
 
+button{
+    border: none;
+    color:#394A6D;
+    padding:15px;
+    text-align:right;
+    margin:2px;
+}
 main {
     margin: 100px;
 }
