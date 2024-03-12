@@ -44,9 +44,12 @@ class Joueur extends Record
     {
         $this->Niveau = $niveau;
     }
-    public function setAccessType($accessType)
+    public function setEstAdmin($accessType)
     {
-        $this->estAdmin = (int) $accessType;
+        if ($accessType == 0 || $accessType == 1)
+        {
+            $this->estAdmin = (int) $accessType;
+        }
     }
     public function isAdmin()
     {

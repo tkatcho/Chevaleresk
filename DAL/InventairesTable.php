@@ -3,7 +3,7 @@
 include_once 'DAL/models/inventaire.php';
 include_once "DAL/MySQLDataBase.php";
 
-final class inventairesTable extends MySQLTable
+final class InventairesTable extends MySQLTable
 {
     public function __construct()
     {
