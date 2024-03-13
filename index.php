@@ -38,11 +38,14 @@ HTML;
 HTML;*/
 
 $content= <<<HTML
-    <h2>Recherche: 
-        <span> 
-            <input type="search" class="form-control" placeholder ="Rechercher">
-        </span> 
-    </h2>
+    <div class="searchContainer">
+        <h2>Recherche: 
+            
+                <input type="search" class="form-control" placeholder ="Rechercher">
+           
+        </h2>
+        
+    </div>
 HTML;
 
 include 'views/master.php';

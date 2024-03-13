@@ -49,12 +49,14 @@ a{
     color:white;
 }
 
+
 main {
     margin: 100px;
 }
 
 input, label, p {
     font-size: 14pt;
+    max-width:50px;
 }
 
 .form-parent {
@@ -68,12 +70,27 @@ input, label, p {
 form input {
     background-color: var(--primary-color) !important;
     color: white !important;
+   
 }
-
+.form-control input {
+    max-width:10px !important;
+}
 form label {
     color: white !important;
 }
 
 .form-floating > input + label:after {
    background: transparent !important;
+}
+
+.searchContainer{
+    max-width: 412px;
+    display: grid;
+    grid-template-columns: auto 40px;
+    align-items: top;
+}
+
+.searchContainer input {
+    margin-bottom: 0 !important;
+    width:70px !important;
 }
