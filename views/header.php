@@ -1,7 +1,9 @@
 <?php
 
 #https://fontawesome.com/v4/icons/     -> les font awesome
-    $pageTitle = "Catalogue de produits";
+    $pageTitle = "Index";
+    if(!isset($pageTitle))
+        $pageTitle="";
     if(!isset($viewTitle))
         $viewTitle="";
     if(!isset($viewHeadCustom))
@@ -20,7 +22,7 @@
            
     }else {  //si le joueur n'est pas connecté
         //est dans catalogue produit
-        $viewTitle=$pageTitle;
+       
         $loggedUserMenu =<<<HTML
 
         <div class="buttonOnSide">
