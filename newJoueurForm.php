@@ -9,7 +9,7 @@ if (isset($_GET['error'])) {
         $errorMessage = "Vos mots de passe ne correspondent pas";
 }
 
-$pageTitle = "Inscription";
+$title = "Test";
 
 $content = <<<HTML
     <h1>Inscription</h1>
