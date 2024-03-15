@@ -19,7 +19,7 @@ $content = <<<HTML
         <input type="text" placeholder="Prenom" name="prenom" required>
         <input type="password" placeholder="Mot de passe" name="motDePasse" required>
         <input type="password" placeholder="Confirmer mot de passe" name="confirmPassword" required>
-        <input type="submit">
+        <input type="submit" value="Inscription">
     </form>
     <div class="errors">
         <p class="text-danger">$errorMessage</p>
