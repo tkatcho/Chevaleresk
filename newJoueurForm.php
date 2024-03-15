@@ -1,7 +1,5 @@
 <?php
 
-// TEST DE FONCTIONNEMENT!!!!
-
 include 'DAL/ChevalereskDB.php';
 
 $errorMessage = "";
@@ -11,7 +9,7 @@ if (isset($_GET['error'])) {
         $errorMessage = "Vos mots de passe ne correspondent pas";
 }
 
-$title = "Test";
+$title = "Inscription";
 
 $content = <<<HTML
     <h1>Inscription</h1>
