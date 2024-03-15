@@ -32,14 +32,26 @@ header {
 }
 
 button{
+    background-color: var(--primary-color);
     border: none;
-    color:#394A6D;
-    padding:15px;
+    padding:12px 16px;
     text-align:right;
-    margin:2px;
+    font-size: 15px;
+}   
+.buttonOnSide{
+    float:right;
+    
 }
+
+a{
+    color:var(--primary-color);
+    text-decoration: none;
+    color:white;
+}
+
+
 main {
-    margin: 100px;
+    margin: 30px;
 }
 
 input, label, p {
@@ -57,6 +69,8 @@ input, label, p {
 form input {
     background-color: var(--primary-color) !important;
     color: white !important;
+    font-family: initial;
+   
 }
 
 form label {
@@ -65,4 +79,177 @@ form label {
 
 .form-floating > input + label:after {
    background: transparent !important;
+}
+
+/*La recherche d'item*/
+.searchContainer{
+    max-width: 412px;
+    margin-top:10px;
+    display: grid;
+    grid-template-columns: 130px auto 50px;
+    align-items: center;
+}
+
+.searchContainer input {
+    margin-bottom: 0 !important;
+    width:320px !important;
+}
+.searchContainer i {
+    font-size:40px;
+    padding:10px;
+}
+
+
+
+/*Container de tous les items*/
+.containerTousItems{
+    display:grid;
+    grid-template-columns:auto auto auto;
+    gap:30px;
+    
+}
+.containerTousItem div, p, span{
+    font-family: var(--secondary-font);
+    font-size:12px;
+}
+
+/*Un item (grid)*/
+.containerItem {
+    margin-top:30px;
+    font-family:var(--secondary-font);
+    font-size:14px;
+    max-width:350px;
+}
+.containerItem p {
+    font-size:12px;
+}
+.containerItem p>span{
+    font-size:10px;
+}
+.idItem {
+    border-radius: 55px;
+    background: var(--primary-color);
+    padding: 10px; 
+    width: 60px;
+    height: 55px; 
+    text-align:center;
+    font-family:var(--secondary-font);
+   
+}
+
+.itemImage {
+    border-radius: 25px;
+    background: var(--primary-color);
+    padding:10px;
+    height:120px;
+    background-position: center;
+}
+.itemImage div {
+   
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    border-radius: 9px;
+    margin-left:60px;
+    
+}
+.itemPrix{
+    color:var(--secondary-color);
+}
+
+/*Page de connexion/Inscription*/
+.loginForm {
+    background-color: lightgray;
+    height: 300px;
+    width:500px;
+    margin:auto;
+}
+.loginForm input{
+    border:none;
+    width:400px;
+    height:40px;
+}
+.loginForm div{
+    padding:20px;
+}
+.loginForm i {
+    font-size:40px;
+    padding-right:10px;
+    
+}
+
+.loginForm input::placeholder {
+    color:white;
+    font-size:16pt;
+    font-family: var(--primary-font);
+    padding: 10px;
+}
+.loginFormBtn{
+    font-family: var(--primary-font);
+    margin-Left: 40px;
+    margin-Top: 60px;
+}
+/*Pour que le site soit réactif*/
+@media screen and (max-width:400px) {
+    .containerTousItems{
+        grid-template-columns:auto auto ;
+        gap:20px;
+    }
+    .containerItem {
+        max-width: 150px;
+    }
+    .itemImage div{
+        margin-left:3px;
+    }
+}
+@media screen and (min-width:400px) {
+    .containerTousItems{
+        grid-template-columns:auto auto ;
+        gap:20px;
+    }
+    .containerItem {
+        width: 200px;
+    }
+    .itemImage div{
+        margin-left:30px;
+    }
+}
+@media screen and (min-width:560px) {
+    .containerTousItems{
+        grid-template-columns:auto auto ;
+        gap:20px;
+    }
+    .containerItem {
+        max-width: 300px;
+    }
+}
+@media screen and (min-width:680px) {
+    .containerTousItems{
+        grid-template-columns:auto auto auto;
+        gap:10px;
+    }
+    .containerItem {
+        max-width: 250px;
+    }
+}
+
+@media screen and (min-width:1000px) {
+    .containerTousItems{
+        grid-template-columns:auto auto auto auto ;
+        gap:20px;
+    }
+    .containerItem {
+        max-width: 200px;
+    }
+}
+@media screen and (min-width:1300px) {
+    .containerTousItems{
+        grid-template-columns:auto auto auto auto ;
+        gap:30px;
+    }
+    .containerItem {
+        max-width: 300px;
+    }
 }
