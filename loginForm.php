@@ -2,7 +2,6 @@
     
     $viewTitle = "Connexion";
    
-    
     $content= <<<HTML
     
     <form method='post' action='login.php'>
