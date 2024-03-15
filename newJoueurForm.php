@@ -14,12 +14,12 @@ $pageTitle = "Inscription";
 $content = <<<HTML
     <h1>Inscription</h1>
     <form method="POST" action="newJoueur.php">
-        <input type="text" placeholder="Alias" name="alias" required>
-        <input type="text" placeholder="Nom" name="nom" required>
-        <input type="text" placeholder="Prenom" name="prenom" required>
-        <input type="password" placeholder="Mot de passe" name="motDePasse" required>
-        <input type="password" placeholder="Confirmer mot de passe" name="confirmPassword" required>
-        <input type="submit" value="Inscription">
+        <input type="text" placeholder="Alias" name="alias">
+        <input type="text" placeholder="Nom" name="nom">
+        <input type="text" placeholder="Prenom" name="prenom">
+        <input type="number" placeholder="Solde" name="solde">
+        <input type="password" placeholder="Mot de passe" name="motDePasse">
+        <input type="submit">
     </form>
     <div class="errors">
         <p class="text-danger">$errorMessage</p>
