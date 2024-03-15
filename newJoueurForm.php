@@ -4,56 +4,28 @@
 
 include 'DAL/ChevalereskDB.php';
 
-$results = JoueursTable()->selectAll();
-
-$tableDesJoueurs = "";
-                
-foreach ($results as $result) {
-    $id = $result->Id;
-    $alias = $result->Alias;
-    $prenom = $result->Prenom;
-    $nom = $result->Nom;
-    $solde = $result->Solde;
-
-    $tableDesJoueurs .= <<<HTML
-        <tr>
-            <td>$id</td>
-            <td>$alias</td>
-            <td>$prenom</td>
-            <td>$nom</td>
-            <td>$solde</td>
-        </tr>
-HTML;
+$errorMessage = "";
+if (isset($_GET['error'])) {
+    $error = $_GET['error'];
+    if ($error == "confirmPasswordFailed")
+        $errorMessage = "Vos mots de passe ne correspondent pas";
 }
 
 $title = "Test";
 
 $content = <<<HTML
-    <h1>Test de la BD</h1>
-    <table class="table">
-        <tr>
-            <th>Id</th>
-            <th>Alias</th>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Solde</th>
-        </tr>
-        $tableDesJoueurs
-    </table>
+    <h1>Inscription</h1>
     <form method="POST" action="newJoueur.php">
-        <input type="text" placeholder="Alias" name="alias">
-        <input type="text" placeholder="Nom" name="nom">
-        <input type="text" placeholder="Prenom" name="prenom">
-        <input type="number" placeholder="Solde" name="solde">
-        <input type="password" placeholder="Mot de passe" name="motDePasse">
+        <input type="text" placeholder="Alias" name="alias" required>
+        <input type="text" placeholder="Nom" name="nom" required>
+        <input type="text" placeholder="Prenom" name="prenom" required>
+        <input type="password" placeholder="Mot de passe" name="motDePasse" required>
+        <input type="password" placeholder="Confirmer mot de passe" name="confirmPassword" required>
         <input type="submit">
     </form>
-    <h3>Verif de mot de passes</h3>
-    <form method="POST" action="verifJoueurMotDePasse.php">
-        <input type="text" placeholder="Alias" name="alias">
-        <input type="password" placeholder="Mot de passe" name="motDePasse">
-        <input type="submit">
-    </form>
+    <div class="errors">
+        <p class="text-danger">$errorMessage</p>
+    </div>
 HTML;
 
 include 'views/master.php';
