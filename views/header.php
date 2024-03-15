@@ -19,14 +19,22 @@
            
     }else {  //si le joueur n'est pas connecté
         //est dans catalogue produit
-        $loggedUserMenu =<<<HTML
-        <a href ="loginForm.php">
-        <button><i class="fa fa-user" aria-hidden="true">Connexion</i></button>
-        </a>
-        <a href ="subscribeForm.php">
-        <button><i class="fa fa-sign-in" aria-hidden="true"></i>S'inscrire</i></button>
-        </a>
-        <hr>
+        if($viewMenu=="Catalogue de produit"){
+            $loggedUserMenu =<<<HTML
+            <a href ="loginForm.php">
+            <button><i class="fa fa-user" aria-hidden="true">Connexion</i></button>
+            </a>
+            <a href ="subscribeForm.php">
+            <button><i class="fa fa-sign-in" aria-hidden="true"></i>S'inscrire</i></button>
+            </a>
+            <hr>
         HTML;
+        }else {
+            //ne pas l'enlever, sinon ça bogue
+            $loggedUserMenu =<<<HTML
+        
+        HTML;
+        }
+        
         
     }
