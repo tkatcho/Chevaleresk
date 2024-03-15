@@ -201,18 +201,18 @@ form label {
         max-width: 250px;
     }
 }
-@media screen and (min-width:900px) {
+@media screen and (min-width:1000px) {
     .containerTousItems{
-        grid-template-columns:auto auto auto auto;
+        grid-template-columns:auto auto auto ;
         gap:20px;
     }
     .containerItem {
         max-width: 200px;
     }
 }
-@media screen and (min-width:1400px) {
+@media screen and (min-width:1300px) {
     .containerTousItems{
-        grid-template-columns:auto auto auto auto auto;
+        grid-template-columns:auto auto auto auto ;
         gap:30px;
     }
     .containerItem {
