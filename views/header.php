@@ -23,6 +23,7 @@
     }else {  //si le joueur n'est pas connecté
         //est dans catalogue produit
        
+        if($viewTitle=="Catalogue de produit"){
         $loggedUserMenu =<<<HTML
 
         <div class="buttonOnSide">
@@ -38,6 +39,15 @@
             </button>
         </div>
         HTML;
+        } else{
+            //ne pas enlever, sinon ça bogue
+            $loggedUserMenu =<<<HTML
+
+            
+            HTML;
+        }
+        //si est pas dans Catalogue produit, il est dans Connexion ou Inscription, il a pas besoin de btn dans le header
+        
         
     }
     $viewHead = <<<HTML
