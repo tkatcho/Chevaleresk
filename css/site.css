@@ -162,25 +162,34 @@ form label {
 /*Page de connexion/Inscription*/
 .loginForm {
     background-color: lightgray;
-    height: 350px;
+    height:400px;
     width:500px;
     margin:auto;
 }
+
+.loginForm form {
+    padding-top: 20px;
+}
+
+.loginForm div{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    width: min-content;
+    margin: 5px auto;
+    width: min-content;
+}
+
 .loginForm input{
     border:none;
     margin:auto;
-    width:400px;
+    width:325px;
     height:40px;
 }
-.loginForm div{
-    padding:20px;
-    width: min-content;
-    margin: auto;
-}
+
 .loginForm i {
-    font-size:40px;
-    padding-right:10px;
-    
+    font-size:25px;
+    width: 40px;
+    padding: 7px;
 }
 
 .loginForm input::placeholder {
@@ -198,6 +207,8 @@ form label {
 /* Les messages d'erreurs */
 .errorMessage {
     text-align: center;
+    width: 325px;
+    margin: auto;
 }
 
 /*Pour que le site soit réactif*/

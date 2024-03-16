@@ -12,44 +12,34 @@ if (isset($_GET['error'])) {
 $pageTitle = "Inscription";
 
 $content = <<<HTML
-    <form method='post' action='signup.php'>
-        <div class="loginForm">
+    <div class="loginForm">
+        <form method='post' action='signup.php'>
             <div>
-                <input  type='text' 
-                        name='alias' 
-                        required 
-                        RequiredMessage='Veuillez entrer un alias'
-                        InvalidMessage='Alias invalide'
-                        placeholder="Alias">
-                <input  type='text' 
-                        name='nom' 
-                        required 
-                        RequiredMessage='Veuillez entrer un nom'
-                        InvalidMessage='Nom invalide'
-                        placeholder="Nom">
-                <input  type='text' 
-                        name='prenom' 
-                        required 
-                        RequiredMessage='Veuillez entrer un prénom'
-                        InvalidMessage='Prénom invalide'
-                        placeholder="Prénom">
-                <input  type='password' 
-                        name='motDePasse' 
-                        placeholder='Mot de passe'
-                        required
-                        RequireMessage = 'Veuillez entrer votre mot de passe'
-                        InvalidMessage = 'Mot de passe invalide' >
-                <input  type='password'
-                        name='confirmPassword'
-                        placeholder='Confirmer le mot de passe'
-                        required
-                        RequireMessage = 'Veuillez confirmer votre mot de passe'
-                        InvalidMessage = 'Confirmation du mot de passe invalide' >
-                <input type='submit' name='submit' value="Inscription" class="loginFormBtn" >
-                <p class="text-danger errorMessage">$errorMessage</p>
+                <i class="fa-solid fa-user"></i>
+                <input type='text' name='alias' required RequiredMessage='Veuillez entrer un alias' InvalidMessage='Alias invalide' placeholder="Alias">
             </div>
-        </div>
-    </form>
+            <div>
+                <i></i>
+                <input type='text' name='nom' required RequiredMessage='Veuillez entrer un nom' InvalidMessage='Nom invalide' placeholder="Nom">
+            </div>
+            <div>
+                <i></i>
+                <input type='text' name='prenom' required RequiredMessage='Veuillez entrer un prénom' InvalidMessage='Prénom invalide' placeholder="Prénom">
+            </div>
+            <div>
+                <i class="fa-solid fa-lock"></i>
+                <input type='password' name='motDePasse' placeholder='Mot de passe' required RequireMessage = 'Veuillez entrer votre mot de passe' InvalidMessage = 'Mot de passe invalide' >
+            </div>
+            <div>
+                <i></i>
+                <input type='password' name='confirmPassword' placeholder='Confirmer le mot de passe' required RequireMessage = 'Veuillez confirmer votre mot de passe' InvalidMessage = 'Confirmation du mot de passe invalide' >
+            </div>
+            <div>
+                <input type='submit' name='submit' value="Inscription" class="loginFormBtn" >
+            </div>
+            <p class="text-danger errorMessage">$errorMessage</p>
+        </form>
+    </div>
 HTML;
 
 include 'views/master.php';
