@@ -9,8 +9,7 @@ if ($_POST['confirmPassword'] == $_POST['motDePasse']) {
     $_POST['motDePasse'] = password_hash($_POST['motDePasse'], PASSWORD_DEFAULT);
     JoueursTable()->insert(new Joueur($_POST));
 } else {
-    redirect('newJoueurForm.php?error=confirmPasswordFailed');
+    redirect('signupForm.php?error=confirmPasswordFailed');
 }
 
-// JoueursTable()->insert(new Joueur($_POST));
-redirect('newJoueurForm.php');
+redirect('signupForm.php');

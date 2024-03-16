@@ -22,7 +22,7 @@ foreach ($results as $result) {
 HTML;
 }
 
-$title = "Test";
+$pageTitle = "Catalogue de produit";
 
 $content = <<<HTML
     <h1>Test de la BD</h1>
