@@ -12,7 +12,7 @@ if (isset($_GET['error'])) {
 $pageTitle = "Inscription";
 
 $content = <<<HTML
-    <form method='post' action='newJoueur.php'>
+    <form method='post' action='signup.php'>
         <div class="loginForm">
             <div>
                 <input  type='text' 
