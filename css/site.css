@@ -190,13 +190,13 @@ form label {
     font-size:25px;
     width: 40px;
     padding: 7px;
+    color: var(--primary-color);
 }
 
 .loginForm input::placeholder {
     color:white;
     font-size:16pt;
     font-family: var(--primary-font);
-    padding: 10px;
 }
 .loginFormBtn{
     font-family: var(--primary-font);
