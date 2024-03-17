@@ -193,18 +193,53 @@ form label {
 }
 
 /*Page Panier*/
-.panierItem{
-    width:700px;
-    border: 5px solid var(--primary-color);
-}
+
 .btnRetour{
     float:left;
     margin-right: 10px;
 }
 .btnRetour button{
     border-radius: 20px;
+    margin-top:0px;
+}
+
+.panierItem{
+    margin-top:20px;
+    width:auto;
+    display:flex;
+    border: 20px solid var(--primary-color);
+}
+.panierItem div{
+    margin:10px 25px 10px 25px;
+    line-height:120px;
+   
+}
+.panierItemImg div{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
     
 }
+.panierItem p, span, button{
+    margin-top:15px;
+    font-size:18px;
+    
+}
+.panierItem button{
+    line-height:0px;
+}
+.panierItemQt{
+    flex-grow:2;
+    text-align:center;
+}
+.panierItemSupprimer{
+    flex-grow:2;
+    text-align: right;
+}
+
+
 /*Pour que le site soit réactif*/
 @media screen and (max-width:400px) {
     .containerTousItems{
