@@ -252,6 +252,7 @@ form label {
     .itemImage div{
         margin-left:3px;
     }
+
 }
 @media screen and (min-width:400px) {
     .containerTousItems{
@@ -264,6 +265,8 @@ form label {
     .itemImage div{
         margin-left:30px;
     }
+
+   
 }
 @media screen and (min-width:560px) {
     .containerTousItems{
@@ -283,7 +286,47 @@ form label {
         max-width: 250px;
     }
 }
-
+@media screen and (max-width:1100px){
+    .panierItem{
+      
+        border: 10px solid var(--primary-color);
+    }
+    .panierItem div{
+        margin:5px 10px 5px 10px;
+        line-height:80px;
+       
+    }
+    .panierItemQt{
+        flex-grow:1;
+       
+    }
+    .panierItemSupprimer{
+        flex-grow:2;
+        text-align: right;
+    }
+}
+@media screen and (max-width:860px){
+    .panierItem{
+      
+        flex-direction: column;
+    }
+    .panierItem div{
+        margin:2px 5px 2px 5px;
+        line-height:60px;
+        text-align: center;
+    }
+    .panierItemQt{
+        flex-grow:1;
+       
+    }
+    .panierItemSupprimer{
+        flex-grow:2;
+        text-align: center;
+    }
+    .panierItemImg div{
+        margin: auto;
+    }
+}
 @media screen and (min-width:1000px) {
     .containerTousItems{
         grid-template-columns:auto auto auto auto ;

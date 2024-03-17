@@ -6,6 +6,7 @@ include 'DAL/ChevalereskDB.php';
 $viewTitle="Panier d'achat";
 $content= <<<HTML
   
+  <!------------------------------------------------------------------------->
         <!--1- Un item du panier-->
         <div class="panierItem">
             <!--L'image-->
@@ -51,6 +52,7 @@ $content= <<<HTML
                 </p>
             </div>
         </div>
+<!------------------------------------------------------------------------->
 
         <div class="panierItem">
             <div class="panierItemImg">

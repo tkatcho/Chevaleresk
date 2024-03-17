@@ -17,14 +17,35 @@
     if (isset($_SESSION["validPlayer"]) ) {
         $playerAlias = $_SESSION["playerAlias"];
         
-       // $loggedPlayerMenu = <<<HTML
-        
-           
-    }else {  //si le joueur n'est pas connecté
-        //est dans catalogue produit
+        if($viewTitle=="Catalogue de produit"){
+            $loggedPlayerMenu = <<<HTML
+            <div class="buttonOnSide">
+            <button>
+                <a href ="index.php">
+                <i class="fa fa-shopping-cart"></i>
+                </a>
+            </button>
+            </div>
+            HTML;
+        }else if($viewTitle="Panier d'achat"){
+            $loggedUserMenu =<<<HTML
+    
+            <div class="btnRetour">
+                <button>
+                    <a href ="index.php">     <!--Retourne au catalogue de produit-->
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                </button>
+                
+            </div>
+            HTML;
+        }
+      
+    }else {  //si le joueur n'est pas connecté  -> a les btn de connexion/inscription
        if($viewTitle=="Catalogue de produit"){
         $loggedUserMenu =<<<HTML
 
+        
         <div class="buttonOnSide">
             <button>
                 <a href ="loginForm.php">
@@ -39,7 +60,7 @@
         </div>
         HTML;
         
-       }else if($viewTitle="Panier d'achat"){
+       } else if($viewTitle="Panier d'achat"){  //pour voir si ça marche
         $loggedUserMenu =<<<HTML
 
         <div class="btnRetour">
