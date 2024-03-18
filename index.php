@@ -37,7 +37,7 @@ $content = <<<HTML
 HTML;*/
 $viewTitle="Catalogue de produit";
 
-/*if(!$_SESSION["validPlayer"])  { //n'est pas connecter
+if(!$_SESSION["validPlayer"])  { //n'est pas connecter
 $content= <<<HTML
     <div class="searchContainer">
         <h2>Recherche: </h2>
@@ -200,7 +200,7 @@ $content= <<<HTML
 
     </div>
 HTML;
-}else {        //si le joueur est connecter*/
+}else {        //si le joueur est connecter
     $content= <<<HTML
     <div class="searchContainer">
         <h2>Recherche: </h2>
@@ -388,7 +388,7 @@ HTML;
 
     </div>
 HTML;
-//}
+}
 
 
 include 'views/master.php';
