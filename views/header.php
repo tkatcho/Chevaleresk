@@ -1,5 +1,8 @@
 <?php
 
+require 'php/sessionManager.php';
+anonymousAccess();
+
 #https://fontawesome.com/v4/icons/     -> les font awesome
     $pageTitle = "Index";
     if(!isset($pageTitle))
@@ -11,14 +14,14 @@
     if (!isset($viewName))
         $viewName = "";
 
-$loggedPlayerMenu = "";
+    $loggedUserMenu = "";
     
     //Si le joueur est connecté
-    if (isset($_SESSION["validPlayer"]) ) {
-        $playerAlias = $_SESSION["playerAlias"];
+    if (isset($_SESSION["validUser"]) ) {
+        $playerAlias = $_SESSION["alias"];
         
         if($viewTitle=="Catalogue de produit"){
-            $loggedPlayerMenu = <<<HTML
+            $loggedUserMenu = <<<HTML
             <div class="buttonOnSide">
             <button>
                 <a href ="index.php">
@@ -42,6 +45,7 @@ $loggedPlayerMenu = "";
         }
       
     }else {  //si le joueur n'est pas connecté  -> a les btn de connexion/inscription
+        
        if($viewTitle=="Catalogue de produit"){
         $loggedUserMenu =<<<HTML
 
@@ -75,8 +79,7 @@ $loggedPlayerMenu = "";
        }
        else {
         $loggedUserMenu =<<<HTML
-
-        
+            $playerAlias;
         HTML;
        }
        
