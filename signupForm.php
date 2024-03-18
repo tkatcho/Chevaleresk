@@ -7,12 +7,14 @@ if (isset($_GET['error'])) {
     $error = $_GET['error'];
     if ($error == "confirmPasswordFailed")
         $errorMessage = "Vos mots de passe ne correspondent pas";
+    if ($error == "usernameExists")
+        $errorMessage = "Cette alias est déjà utilisé";
 }
 
 $pageTitle = "Inscription";
 
 $content = <<<HTML
-    <div class="loginForm">
+    <div class="signupForm">
         <form method='post' action='signup.php'>
             <div>
                 <i class="fa-solid fa-user"></i>
@@ -34,10 +36,8 @@ $content = <<<HTML
                 <i></i>
                 <input type='password' name='confirmPassword' placeholder='Confirmer le mot de passe' required RequireMessage = 'Veuillez confirmer votre mot de passe' InvalidMessage = 'Confirmation du mot de passe invalide' >
             </div>
-            <div>
-                <input type='submit' name='submit' value="Inscription" class="loginFormBtn" >
-            </div>
             <p class="text-danger errorMessage">$errorMessage</p>
+            <input type='submit' name='submit' value="Inscription" class="signupFormBtn" >
         </form>
     </div>
 HTML;

@@ -1,59 +1,34 @@
 <?php
-include 'php/sessionManager.php';
 
-require 'DAL/Chevaleresk.php';
+require 'DAL/ChevalereskDB.php';
+require 'php/sessionManager.php';
+anonymousAccess();
 
-$id = 0;
-$password = null;
-$avatar = "images/no-avatar.png";
-$userName = "";
-$isAdmin = 0;
-$isBlocked = 0;
-function EmailExist($email)
+if (isset($_POST['submit']))
 {
-    if (isset($email)) {
-        $user = UsersTable()->findByEmail($email);
-        if ($user == null)
-            return false;
-        $GLOBALS["id"] = $user->Id;
-        $GLOBALS["userName"] = $user->Name;
-        $GLOBALS["avatar"] = $user->Avatar;
-        $GLOBALS["password"] = $user->Password;
-        $GLOBALS["isAdmin"] = $user->isAdmin();
-        $GLOBALS["isBlocked"] = $user->isBlocked();
-        return true;
-    }
-    return false;
-}
-function passwordOk($password)
-{
-   return UsersTable()->userValid($_POST['Email'], $password);
-}
-
-if (isset($_POST['submit'])) {
     $validUser = true;
-    $_SESSION['Email'] = sanitizeString($_POST['Email']);
-    if (!EmailExist($_SESSION['Email'])) {
-        $validUser = false;
-        $_SESSION['EmailError'] = 'Ce courriel n\'existe pas';
-    }
-    if ($isBlocked) {
-        $validUser = false;
-        $_SESSION['EmailError'] = 'Votre compte a été blocké par le modérateur';
-    }
-    if (!passwordOk(sanitizeString($_POST['Password']))) {
-        $validUser = false;
-        $_SESSION['passwordError'] = 'Mot de passe incorrect';
-    }
-    if ($validUser) {
-        $_SESSION['validUser'] = true;
-        $_SESSION['isAdmin'] = $isAdmin;
-        $_SESSION['currentUserId'] = $id;
-        $_SESSION['userName'] = $userName;
-        $_SESSION['avatar'] = $avatar;
-        $_SESSION["photoSortType"] = "date";
-        redirect('photosList.php');
-    }
-}
 
-redirect('loginForm.php');
+    $username = $_POST['alias'];
+    $password = $_POST['motDePasse'];
+
+    $user = JoueursTable()->selectWhere("alias = '$username'")[0];
+
+    if (!password_verify($password, $user->MotDePasse))
+        $validUser = false;
+
+    if ($validUser)
+    {
+        $_SESSION['validUser'] = true;
+        $_SESSION['estAdmin'] = $user->estAdmin;
+        $_SESSION['id'] = $user->Id;
+        $_SESSION['alias'] = $user->Alias;
+        $_SESSION['nom'] = $user->Nom;
+        $_SESSION['prenom'] = $user->Prenom;
+        $_SESSION['solde'] = $user->Solde;
+        $_SESSION['niveau'] = $user->Niveau;
+        $_SESSION['estAlchimiste'] = $user->estAlchimiste;
+        redirect('index.php');
+    }
+
+    redirect('loginForm.php');
+}
