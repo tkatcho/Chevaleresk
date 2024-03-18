@@ -10,7 +10,7 @@
                 <i class="fa fa-user"></i>
                 <span>
                     <input  type='text' 
-                            name='Alias' 
+                            name='alias' 
                             required 
                             RequiredMessage='Veuillez entrer un alias'
                             InvalidMessage='Alias invalide'
@@ -21,7 +21,7 @@
                 <i class="fa fa-lock" ></i>
                 <span>
                     <input  type='password' 
-                            name='Password' 
+                            name='motDePasse' 
                             placeholder='Mot de passe'
                             required
                             RequireMessage = 'Veuillez entrer votre mot de passe'
