@@ -53,12 +53,12 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
             <div class="buttonOnSide">
                 <button>
                     <a href ="loginForm.php">
-                    Connexion <i class="fa fa-user"></i>
+                        <div>Connexion</div> <i class="fa fa-user"></i>
                     </a>
                 </button>
                 <button>
                     <a href ="signupForm.php">
-                        S'inscrire <i class="fa fa-sign-in"></i>
+                        <div>S'inscrire</div> <i class="fa fa-sign-in"></i>
                     </a>
                 </button>
             </div>

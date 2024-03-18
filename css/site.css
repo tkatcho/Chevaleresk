@@ -44,8 +44,14 @@ button{
     margin-top: -20px;
 }
 
-.hideButtonText {
-    display: none;
+.buttonOnSide button a div {
+    display: inline;
+}
+
+@media screen and (max-width:600px) {
+    .buttonOnSide button a div {
+        display: none;
+    }
 }
 
 a{
