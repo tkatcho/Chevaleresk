@@ -135,7 +135,7 @@ form label {
     height: 55px; 
     text-align:center;
     font-family:var(--secondary-font);
-   
+    color: white;
 }
 
 .itemImage {
