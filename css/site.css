@@ -280,6 +280,45 @@ form label {
     margin-Left: 40px;
     margin-Top: 60px;
 }
+
+.signupForm {
+    background-color: lightgray;
+    height: 400px;
+    width:500px;
+    margin:auto;
+    padding-top: 20px;
+}
+.signupForm div {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin: 0 auto 10px;
+    width: 450px;
+}
+.signupForm input{
+    border:none;
+    height:40px;
+}
+.signupForm i {
+    font-size:30px;
+}
+
+.signupForm input::placeholder {
+    color:white;
+    font-size:16pt;
+    font-family: var(--primary-font);
+    padding: 10px;
+}
+.signupFormBtn {
+    display: block;
+    font-family: var(--primary-font);
+    margin: 20px auto 0;
+    width: 250px;
+}
+.errorMessage {
+    width: 300px;
+    margin: 20px auto 0;
+}
+
 /*Pour que le site soit réactif*/
 @media screen and (max-width:400px) {
     .containerTousItems{
