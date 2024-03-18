@@ -23,7 +23,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
         $loggedUserMenu = <<<HTML
             <div class="buttonOnSide">
                 <button>
-                    <a href ="index.php">
+                    <a href ="panier.php">
                         <i class="fa fa-shopping-cart"></i>
                     </a>
                 </button>
