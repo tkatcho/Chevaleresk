@@ -70,6 +70,7 @@ form input {
     background-color: var(--primary-color) !important;
     color: white !important;
     font-family: initial;
+    font-family: initial;
    
 }
 /* 
@@ -247,6 +248,38 @@ form label {
 }
 
 
+/*Page de connexion/Inscription*/
+.loginForm {
+    background-color: lightgray;
+    height: 300px;
+    width:500px;
+    margin:auto;
+}
+.loginForm input{
+    border:none;
+    width:400px;
+    height:40px;
+}
+.loginForm div{
+    padding:20px;
+}
+.loginForm i {
+    font-size:40px;
+    padding-right:10px;
+    
+}
+
+.loginForm input::placeholder {
+    color:white;
+    font-size:16pt;
+    font-family: var(--primary-font);
+    padding: 10px;
+}
+.loginFormBtn{
+    font-family: var(--primary-font);
+    margin-Left: 40px;
+    margin-Top: 60px;
+}
 /*Pour que le site soit réactif*/
 @media screen and (max-width:400px) {
     .containerTousItems{
@@ -334,6 +367,7 @@ form label {
         margin: auto;
     }
 }
+
 @media screen and (min-width:1000px) {
     .containerTousItems{
         grid-template-columns:auto auto auto auto ;
