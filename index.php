@@ -37,7 +37,7 @@ $content = <<<HTML
 HTML;*/
 $viewTitle="Catalogue de produit";
 
-if(!$_SESSION["validPlayer"])  { //n'est pas connecter
+if(!$_SESSION["validUser"])  { //n'est pas connecter
 $content= <<<HTML
     <div class="searchContainer">
         <h2>Recherche: </h2>
