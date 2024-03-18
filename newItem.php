@@ -1,15 +1,10 @@
 <?php
 require 'DAL/ChevalereskDB.php';
 require 'php/sessionManager.php';
-
+require_once 'php/config.php';
 //adminAccess();
-$sizesArmures = ["Petit", "Moyen", "Grand"];
-$genresArmes = ["Epee","Arc","Bouclier"];
-$efficaciteArme = ["Mauvais","Bon","Excellent","Legendaire"];
-$effetPotion = ["Poison","Sante","Vitesse","Defense","Attaque"];
-$typeElem = ["Eau","Feu","Vent","Terre"];
-$rareteElem = ["Commun","Rare","Epic","Legendaire"];
-$dangerositeElem = ["Aucun","Faible","Moyen","Grand"];
+
+//file_put_contents() used to change variables in another file
 
 
 $jsonEffets = json_encode($effetPotion);
@@ -19,7 +14,6 @@ $jsonSizes = json_encode($sizesArmures);
 $jsonTypes = json_encode($typeElem);
 $jsonRarete = json_encode($rareteElem);
 $jsonDangerosite = json_encode($dangerositeElem);
-
 
 $pageTitle = "Ajout d'item";
 $viewTitle = "Ajout d'item";
