@@ -72,10 +72,10 @@ form input {
     font-family: initial;
    
 }
-
+/* 
 form label {
-    color: white !important;
-}
+    color: black !important;
+} */
 
 .form-floating > input + label:after {
    background: transparent !important;
