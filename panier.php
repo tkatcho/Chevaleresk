@@ -7,7 +7,7 @@ userAccess();
 $panier = PaniersTable()->selectWhere("idJoueur = $_SESSION[id]");
 $itemsDisplay = "";
 foreach ($panier as $itemInCart) {
-    $item = ItemsTable()->selectById($itemInCart->Id)[0];
+    $item = ItemsTable()->selectWhere("id = $itemInCart->idItem")[0];
     $itemsDisplay .= <<<HTML
         <div class="panierItem">
             <div class="panierItemImg">
@@ -23,15 +23,15 @@ foreach ($panier as $itemInCart) {
                 <p>
                     <span>
                         <button>
-                            <a href ="modifierQt.php">     <!--Va à une page de modifier la Quantité d'un item (modifier qt+1 dans BD)-->
+                            <a href ="modifierQt.php?id=$itemInCart->Id&qt=1">     <!--Va à une page de modifier la Quantité d'un item (modifier qt+1 dans BD)-->
                                 <i class="fa fa-plus-circle"></i>
                             </a>
                         </button>
                     </span>   
-                    $itemInCart->Quantite
+                    $itemInCart->Quantite / $item->QuantiteStock
                     <span> 
                         <button>
-                            <a href ="modifierQt.php">     <!--Va à une page de modifier la Quantité d'un item (modifier qt-1 dans BD)-->
+                            <a href ="modifierQt.php?id=$itemInCart->Id&qt=-1">     <!--Va à une page de modifier la Quantité d'un item (modifier qt-1 dans BD)-->
                                 <i class="fa fa-minus-circle"></i>
                             </a>
                         </button>
@@ -41,7 +41,7 @@ foreach ($panier as $itemInCart) {
             <div class="panierItemSupprimer">
                 <p>
                     <button >
-                        <a href ="modifierQt.php">     <!--Va à une page de modifier la Quantité d'un item (modifier qt=0 dans BD)-->
+                        <a href ="modifierQt.php?id=$itemInCart->Id&qt=-$item->QuantiteStock">     <!--Va à une page de modifier la Quantité d'un item (modifier qt=0 dans BD)-->
                             <i class="fa fa-trash"></i>
                         </a>
                     </button>
