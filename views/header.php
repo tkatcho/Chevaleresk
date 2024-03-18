@@ -1,59 +1,92 @@
 <?php
 
 #https://fontawesome.com/v4/icons/     -> les font awesome
-// if(!isset($viewTitle))
-//     $viewTitle="";
-// if(!isset($viewHeadCustom))
-//     $viewHeadCustom="";
-// if (!isset($viewName))
-//     $viewName = "";
-// if (!isset($viewMenu))
-//     $viewMenu = "";
+    $pageTitle = "Index";
+    if(!isset($pageTitle))
+        $pageTitle="";
+    if(!isset($viewTitle))
+        $viewTitle="";
+    if(!isset($viewHeadCustom))
+        $viewHeadCustom="";
+    if (!isset($viewName))
+        $viewName = "";
 
 $loggedPlayerMenu = "";
     
-//Si le joueur est connecté
-if (isset($_SESSION["validPlayer"])) {
-    $playerAlias = $_SESSION["playerAlias"];
-       
-    // $loggedPlayerMenu = <<<HTML
-                 
-} else {  //si le joueur n'est pas connecté
-    //est dans catalogue produit
-    // if ($viewMenu=="Catalogue de produit") {
-    //     $loggedUserMenu = <<<HTML
-    //     <a href ="loginForm.php">
-    //         <button><i class="fa fa-user" aria-hidden="true">Connexion</i></button>
-    //     </a>
-    //     <a href ="subscribeForm.php">
-    //         <button><i class="fa fa-sign-in" aria-hidden="true"></i>S'inscrire</i></button>
-    //     </a>
-    //     <hr>
-    // HTML;
-    // } else {
-    //     //ne pas l'enlever, sinon ça bogue
-    //     $loggedUserMenu = <<<HTML
+    //Si le joueur est connecté
+    if (isset($_SESSION["validPlayer"]) ) {
+        $playerAlias = $_SESSION["playerAlias"];
         
-    // HTML;
-    // }
+        if($viewTitle=="Catalogue de produit"){
+            $loggedPlayerMenu = <<<HTML
+            <div class="buttonOnSide">
+            <button>
+                <a href ="index.php">
+                <i class="fa fa-shopping-cart"></i>
+                </a>
+            </button>
+            </div>
+            HTML;
+        }else if($viewTitle="Panier d'achat"){
+            $loggedUserMenu =<<<HTML
+    
+            <div class="btnRetour">
+                <button>
+                    <a href ="index.php">     <!--Retourne au catalogue de produit-->
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                </button>
+                
+            </div>
+            HTML;
+        }
+      
+    }else {  //si le joueur n'est pas connecté  -> a les btn de connexion/inscription
+       if($viewTitle=="Catalogue de produit"){
+        $loggedUserMenu =<<<HTML
 
-
-    // Je n'ai pas compris pourquoi seulement afficher le menu sur catalogue de produit,
-    // je pense qu'il faut plustot restreinde l'access au page autre que le catalogue aux 
-    // users non inscrit.
-    $loggedUserMenu = <<<HTML
-        <div class="authentificationMenu">
-            <a href ="loginForm.php">
-                <button><i class="fa fa-user" aria-hidden="true">Connexion</i></button>
-            </a>
-            <a href ="signupForm.php">
-                <button><i class="fa fa-sign-in" aria-hidden="true"></i>S'inscrire</i></button>
-            </a>
+        
+        <div class="buttonOnSide">
+            <button>
+                <a href ="loginForm.php">
+                Connexion <i class="fa fa-user"></i>
+                </a>
+            </button>
+            <button>
+                <a href ="subscribeForm.php">
+                S'inscrire <i class="fa fa-sign-in"></i>
+                </a>
+            </button>
         </div>
-    HTML;
-}
+        HTML;
+        
+       } else if($viewTitle="Panier d'achat"){  //pour voir si ça marche
+        $loggedUserMenu =<<<HTML
 
-$header = <<<HTML
-    <h1><a style="color: black;" href="./index.php">Chevaleresk</a> - $pageTitle</h1>
-    $loggedUserMenu
-HTML;
+        <div class="btnRetour">
+            <button>
+                <a href ="index.php">     <!--Retourne au catalogue de produit-->
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+            
+        </div>
+        HTML;
+       }
+       else {
+        $loggedUserMenu =<<<HTML
+
+        
+        HTML;
+        
+       }
+       
+    }
+    $viewHead = <<<HTML
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <span class="header"> 
+        <h1>$viewTitle  <span>$loggedUserMenu </span> </h1>
+       
+    </span>
+    
+    HTML;

@@ -31,21 +31,19 @@ header {
     border-bottom: 1px solid #333;
 }
 
-button {
+button{
     background-color: var(--primary-color);
     border: none;
     padding:12px 16px;
     text-align:right;
     font-size: 15px;
-    color: white;
-}
-
-.authentificationMenu {
-    margin-top: -55px;
+}   
+.buttonOnSide{
     float:right;
+    
 }
 
-a {
+a{
     color:var(--primary-color);
     text-decoration: none;
     color:white;
@@ -136,6 +134,7 @@ form label {
     height: 55px; 
     text-align:center;
     font-family:var(--secondary-font);
+   
 }
 
 .itemImage {
@@ -146,6 +145,7 @@ form label {
     background-position: center;
 }
 .itemImage div {
+   
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -159,57 +159,93 @@ form label {
     color:var(--secondary-color);
 }
 
+/*Bouton panier (aujouter au panier)*/
+.containerItem button{
+    font-size: 20px;
+    border-radius: 10px;
+    
+}
+
 /*Page de connexion/Inscription*/
 .loginForm {
     background-color: lightgray;
-    height:400px;
+    height: 300px;
     width:500px;
     margin:auto;
 }
-
-.loginForm form {
-    padding-top: 20px;
-}
-
-.loginForm div{
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    width: min-content;
-    margin: 5px auto;
-    width: min-content;
-}
-
 .loginForm input{
     border:none;
-    margin:auto;
-    width:325px;
+    width:400px;
     height:40px;
 }
-
+.loginForm div{
+    padding:20px;
+}
 .loginForm i {
-    font-size:25px;
-    width: 40px;
-    padding: 7px;
-    color: var(--primary-color);
+    font-size:40px;
+    padding-right:10px;
+    
 }
 
 .loginForm input::placeholder {
     color:white;
     font-size:16pt;
     font-family: var(--primary-font);
+    padding: 10px;
 }
 .loginFormBtn{
     font-family: var(--primary-font);
-    margin: 20px auto !important;
+    margin-Left: 40px;
+    margin-Top: 60px;
 }
 
+/*Page Panier*/
 
-/* Les messages d'erreurs */
-.errorMessage {
-    text-align: center;
-    width: 325px;
-    margin: auto;
+.btnRetour{
+    float:left;
+    margin-right: 10px;
 }
+.btnRetour button{
+    border-radius: 20px;
+    margin-top:0px;
+}
+
+.panierItem{
+    margin-top:20px;
+    width:auto;
+    display:flex;
+    border: 20px solid var(--primary-color);
+}
+.panierItem div{
+    margin:10px 25px 10px 25px;
+    line-height:120px;
+   
+}
+.panierItemImg div{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    
+}
+.panierItem p, span, button{
+    margin-top:15px;
+    font-size:18px;
+    
+}
+.panierItem button{
+    line-height:0px;
+}
+.panierItemQt{
+    flex-grow:2;
+    text-align:center;
+}
+.panierItemSupprimer{
+    flex-grow:2;
+    text-align: right;
+}
+
 
 /*Pour que le site soit réactif*/
 @media screen and (max-width:400px) {
@@ -223,6 +259,7 @@ form label {
     .itemImage div{
         margin-left:3px;
     }
+
 }
 @media screen and (min-width:400px) {
     .containerTousItems{
@@ -230,11 +267,13 @@ form label {
         gap:20px;
     }
     .containerItem {
-        width: 200px;
+        max-width: 200px;
     }
     .itemImage div{
         margin-left:30px;
     }
+
+   
 }
 @media screen and (min-width:560px) {
     .containerTousItems{
@@ -254,7 +293,47 @@ form label {
         max-width: 250px;
     }
 }
-
+@media screen and (max-width:1100px){
+    .panierItem{
+      
+        border: 10px solid var(--primary-color);
+    }
+    .panierItem div{
+        margin:5px 10px 5px 10px;
+        line-height:80px;
+       
+    }
+    .panierItemQt{
+        flex-grow:1;
+       
+    }
+    .panierItemSupprimer{
+        flex-grow:2;
+        text-align: right;
+    }
+}
+@media screen and (max-width:860px){
+    .panierItem{
+      
+        flex-direction: column;
+    }
+    .panierItem div{
+        margin:2px 5px 2px 5px;
+        line-height:60px;
+        text-align: center;
+    }
+    .panierItemQt{
+        flex-grow:1;
+       
+    }
+    .panierItemSupprimer{
+        flex-grow:2;
+        text-align: center;
+    }
+    .panierItemImg div{
+        margin: auto;
+    }
+}
 @media screen and (min-width:1000px) {
     .containerTousItems{
         grid-template-columns:auto auto auto auto ;
@@ -266,10 +345,15 @@ form label {
 }
 @media screen and (min-width:1300px) {
     .containerTousItems{
-        grid-template-columns:auto auto auto auto ;
+        grid-template-columns:auto auto auto auto  ;
         gap:30px;
     }
     .containerItem {
-        max-width: 300px;
+        max-width: 250px;
+    }
+    .itemImage div {
+   
+        margin-left:70px;
+        
     }
 }
