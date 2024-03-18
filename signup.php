@@ -26,7 +26,7 @@ if (isset($_POST['submit']))
         JoueursTable()->insert(new Joueur($_POST));
     }
 
-    redirect('index.php');
+    redirect('login.php');
 }
 
 redirect('index.php');
