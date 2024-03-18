@@ -1,6 +1,6 @@
 <?php
 #https://fontawesome.com/v4/icons/     -> les font awesome
-    $pageTitlesss = "Catalogue de produits";
+    $pageTitles = "Catalogue de produits";
     if(!isset($viewTitle))
         $viewTitle="";
     if(!isset($viewHeadCustom))
