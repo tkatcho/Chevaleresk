@@ -4,6 +4,7 @@ include 'DAL/ChevalereskDB.php';
 include_once 'php/sessionManager.php';
 
 $results = JoueursTable()->selectAll();
+$isConnected= isset($_SESSION['validUser']) && $_SESSION['validUser'];
 //$items = ItemsTable() ->selectAll();
 //faire le DAL pour les items  
 //$tableDesTests = "";
@@ -38,7 +39,7 @@ $content = <<<HTML
 HTML;*/
 $viewTitle = "Catalogue de produit";
 
-if (isset($_SESSION['validUser']) && $_SESSION['validUser']) { //n'est pas connecter
+if (!$isConnected) { //n'est pas connecter
     $content = <<<HTML
     <div class="searchContainer">
         <h2>Recherche: </h2>
