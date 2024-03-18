@@ -78,7 +78,6 @@ $loggedPlayerMenu = "";
 
         
         HTML;
-        
        }
        
     }
