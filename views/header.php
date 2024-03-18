@@ -53,7 +53,7 @@ $loggedPlayerMenu = "";
                 </a>
             </button>
             <button>
-                <a href ="subscribeForm.php">
+                <a href ="signupForm.php">
                 S'inscrire <i class="fa fa-sign-in"></i>
                 </a>
             </button>
