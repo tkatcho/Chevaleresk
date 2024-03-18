@@ -254,22 +254,19 @@ form label {
     flex-wrap:nowrap;
 }
 .optionsJeu div{
-    margin:10px;
     line-height:75px;
 }
 .optionsBackgroundGrisProfil{
     background-color: lightgrey;
     border-radius: 10px;
-    max-width:550px;
+    max-width:650px;
     text-align: center;
-   
     padding:20px;
 
 }
 .optionsBackgroundGrisProfil strong{
     font-size: 40px;
     font-family: var(--secondary-font);
-   
 }
 .optionsBackgroundGrisProfil p, span{
     margin-top:20px;
@@ -277,29 +274,35 @@ form label {
 }
 .optionsBackgroundBleuProfilImg{
     background-color: var(--primary-color);
-   
+    border-radius: 30px;
 }
 .optionsBackgroundBleuProfilImg div {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: auto;
-    height: 300px;
-   
+    border-radius: 30px;
+    height: 300px; 
 }
 
 .optionsBtn{
     display:flex;
     flex-direction:column;
-    padding-left:10px;
+    padding-left:20px;
     border-left:1px solid gray;
+    margin-left:60px;
 }
 .optionsBtn button{
     line-height:75px;
-   
+    text-align: start;
 }
 .optionsBtn a{
     font-family: var(--secondary-font);
+  
+}
+.optionsBtnIcon i{
+    font-size: 40px;
+    float:right;
+    padding-top:20px;
 }
 /*Pour que le site soit réactif*/
 @media screen and (max-width:400px) {
