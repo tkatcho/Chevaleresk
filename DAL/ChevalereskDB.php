@@ -2,6 +2,20 @@
 
 include_once 'DAL/MySQLDataBase.php';
 include_once 'DAL/JoueursTable.php';
+include_once 'DAL/PaniersTable.php';
+include_once 'DAL/ArmesTable.php';
+include_once 'DAL/ArmuresTable.php';
+include_once 'DAL/DemandesTable.php';
+include_once 'DAL/ElementsTable.php';
+include_once 'DAL/EnigmesTable.php';
+include_once 'DAL/EvaluationsTable.php';
+include_once 'DAL/InventairesTable.php';
+include_once 'DAL/ItemsTable.php';
+include_once 'DAL/PotionsConcoctesTable.php';
+include_once 'DAL/PotionsTable.php';
+include_once 'DAL/QuetesTable.php';
+include_once 'DAL/RecettesTable.php';
+
 function DB()
 {
     return MySQLDataBase::getInstance('chevalresk');
