@@ -159,6 +159,13 @@ form label {
     color:var(--secondary-color);
 }
 
+/*Bouton panier (aujouter au panier)*/
+.containerItem button{
+    font-size: 20px;
+    border-radius: 10px;
+    
+}
+
 /*Page de connexion/Inscription*/
 .loginForm {
     background-color: lightgray;
@@ -260,7 +267,7 @@ form label {
         gap:20px;
     }
     .containerItem {
-        width: 200px;
+        max-width: 200px;
     }
     .itemImage div{
         margin-left:30px;
@@ -338,10 +345,15 @@ form label {
 }
 @media screen and (min-width:1300px) {
     .containerTousItems{
-        grid-template-columns:auto auto auto auto ;
+        grid-template-columns:auto auto auto auto  ;
         gap:30px;
     }
     .containerItem {
-        max-width: 300px;
+        max-width: 250px;
+    }
+    .itemImage div {
+   
+        margin-left:70px;
+        
     }
 }

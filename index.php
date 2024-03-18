@@ -215,6 +215,11 @@ HTML;
         <div class="containerItem">
             <span class="idItem">1</span> 
             Épée
+            <span>
+                <button>
+                    <i class="fa fa-cart-plus"></i>
+                </button>
+            </span>
             <hr>
             <div class="itemImage">
                 <div style="background-image:url('./images/épée.png')"></div>
@@ -246,6 +251,11 @@ HTML;
         <div class="containerItem">
             <span class="idItem">2</span> 
             Potion
+            <span>
+                <button>
+                    <i class="fa fa-cart-plus"></i>
+                </button>
+            </span>
             <hr>
             <div class="itemImage">
                 <div style="background-image:url('./images/potion.png')"></div>
@@ -277,6 +287,11 @@ HTML;
         <div class="containerItem">
             <span class="idItem">3</span> 
             Armure
+            <span>
+                <button>
+                    <i class="fa fa-cart-plus"></i>
+                </button>
+            </span>
             <hr>
             <div class="itemImage">
                 <div  style="background-image:url('./images/armure.png')"></div>
@@ -305,6 +320,11 @@ HTML;
         <div class="containerItem">
             <span class="idItem">4</span> 
             Armure
+            <span>
+                <button>
+                    <i class="fa fa-cart-plus"></i>
+                </button>
+            </span>
             <hr>
             <div class="itemImage">
                 <div  style="background-image:url('./images/armure.png')"></div>
@@ -333,6 +353,11 @@ HTML;
         <div class="containerItem">
             <span class="idItem">5</span> 
             Élément
+            <span>
+                <button>
+                    <i class="fa fa-cart-plus"></i>
+                </button>
+            </span>
             <hr>
             <div class="itemImage">
                 <div  style="background-image:url('./images/élément.png')"></div>
