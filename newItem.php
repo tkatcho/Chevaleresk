@@ -5,6 +5,39 @@ require_once 'php/config.php';
 //adminAccess();
 
 //file_put_contents() used to change variables in another file
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["submit"])) {
+        $formData = getFormData('POST');
+        if (!empty($formData["Avatar"])) {
+            createItem($formData);
+        } else {
+            echo "Erreur pas de photo";
+        }
+    }
+}
+
+function createItem($data)
+{
+    $item = null;
+    $sous_item = null;
+
+
+    ItemsTable()->insert(new Item($item));
+    switch ($data["typeItem"]) {
+        case "armure":
+            ArmuresTable()->insert($sous_item);
+            break;
+        case "arme":
+            ArmesTable()->insert($sous_item);
+            break;
+        case "potion":
+            PotionsTable()->insert($sous_item);
+            break;
+        case "élément":
+            ElementsTable()->insert($sous_item);
+            break;
+    }
+}
 
 
 $jsonEffets = json_encode($effetPotion);
@@ -15,8 +48,6 @@ $jsonTypes = json_encode($typeElem);
 $jsonRarete = json_encode($rareteElem);
 $jsonDangerosite = json_encode($dangerositeElem);
 
-$pageTitle = "Ajout d'item";
-$viewTitle = "Ajout d'item";
 
 $stylesBundle = "";
 if (file_exists("views/stylesBundle.html")) {
@@ -39,15 +70,33 @@ $content = <<<HTML
             <input type="radio" id="élément" name="typeItem" value="élément">
             <label for="élément">élément</label><br>
 
+            <hr>
+            <input  type="text" 
+                          name="Name" 
+                          id="Name"
+                          placeholder="Nom" 
+                          required 
+                          RequireMessage = 'Veuillez entrer le nom'
+                          InvalidMessage = 'Nom invalide'
+                          CustomErrorMessage ="Ce nom est deja utilise"/>
             <br>
-            <input type="text" placeholder="Nom" required><br>
-            <input type="number" placeholder="Quantite" min="1" max="999" required><br>
-            <input type="number" placeholder="prix" min="1" max="999" required><br>
+
+            <input type="number" name="Quantite" id="Quantite" placeholder="Quantite" min="1" max="999" required><br>
+            <input type="number" name="Prix" id="Prix" placeholder="prix" min="1" max="999" required><br>
 
 
-            <div id="formContent">
+            <div id="formContent"></div>
+
+            <legend>Avatar</legend>
+            <div class='imageUploader' 
+                newImage='true' 
+                controlId='Avatar' 
+                imageSrc='images/no_Avatar.jpg' 
+                waitingImage="images/Loading_icon.gif"
+                name="image">
             </div>
-            <input type="submit">
+
+            <input type="submit" name="submit">
             </form>
             <script>
                 var sizesArmures = JSON.parse('$jsonSizes');
@@ -133,12 +182,9 @@ $content = <<<HTML
                     });
                 });
             </script>
+            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+            <script src="js/ImageControl.js"></script>
+
 HTML;
 
-$jsonSizes = json_encode($sizesArmures); // Convert sizesArmures$sizesArmures array to JSON
-$jsonEff = json_encode($efficaciteArme);
-$jsonGenres = json_encode($genresArmes);
-$content = str_replace('$jsonSizes', $jsonSizes, $content); // Inject JSON into the script
-
 include 'views/master.php';
-?>
