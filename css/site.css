@@ -39,8 +39,13 @@ button{
     font-size: 15px;
 }   
 .buttonOnSide{
+    display: block;
     float:right;
-    
+    margin-top: -20px;
+}
+
+.hideButtonText {
+    display: none;
 }
 
 a{

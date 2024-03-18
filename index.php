@@ -1,12 +1,13 @@
 <?php
 
 include 'DAL/ChevalereskDB.php';
+include_once 'php/sessionManager.php';
 
 $results = JoueursTable()->selectAll();
 //$items = ItemsTable() ->selectAll();
 //faire le DAL pour les items  
 //$tableDesTests = "";
-                
+
 /*foreach ($results as $result) {
     $id = $result->Id;
     $alias = $result->Alias;
@@ -35,10 +36,10 @@ $content = <<<HTML
         $tableDesTests
     </table>
 HTML;*/
-$viewTitle="Catalogue de produit";
+$viewTitle = "Catalogue de produit";
 
-if(!isset($_SESSION["validUser"]))  { //n'est pas connecter
-$content= <<<HTML
+if (isset($_SESSION['validUser']) && $_SESSION['validUser']) { //n'est pas connecter
+    $content = <<<HTML
     <div class="searchContainer">
         <h2>Recherche: </h2>
         <input type="search" class="form-control" placeholder ="Rechercher">
@@ -200,8 +201,8 @@ $content= <<<HTML
 
     </div>
 HTML;
-}else {        //si le joueur est connecter
-    $content= <<<HTML
+} else {        //si le joueur est connecter
+    $content = <<<HTML
     <div class="searchContainer">
         <h2>Recherche: </h2>
         <input type="search" class="form-control" placeholder ="Rechercher">

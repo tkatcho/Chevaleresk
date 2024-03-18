@@ -1,8 +1,7 @@
 <?php
 
-require 'DAL/ChevalereskDB.php';
-require 'php/sessionManager.php';
-anonymousAccess();
+include 'DAL/ChevalereskDB.php';
+include 'php/sessionManager.php';
 
 if (isset($_POST['submit']))
 {

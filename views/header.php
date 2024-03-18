@@ -1,7 +1,6 @@
 <?php
 
-require 'php/sessionManager.php';
-anonymousAccess();
+include_once 'php/sessionManager.php';
 
 #https://fontawesome.com/v4/icons/     -> les font awesome
 $pageTitle = "Index";
@@ -17,7 +16,7 @@ if (!isset($viewName))
 $loggedUserMenu = "";
 
 //Si le joueur est connecté
-if (isset($_SESSION["validUser"])) {
+if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
     $playerAlias = $_SESSION["alias"];
 
     if ($viewTitle == "Catalogue de produit") {
