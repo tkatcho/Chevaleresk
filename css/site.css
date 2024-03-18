@@ -248,37 +248,58 @@ form label {
 }
 
 
-/*Page de connexion/Inscription*/
-.loginForm {
-    background-color: lightgray;
-    height: 300px;
-    width:500px;
-    margin:auto;
+/*Options du jeu pour joueur et admin*/
+.optionsJeu{
+    display:flex;
+    flex-wrap:nowrap;
 }
-.loginForm input{
-    border:none;
-    width:400px;
-    height:40px;
+.optionsJeu div{
+    margin:10px;
+    line-height:75px;
 }
-.loginForm div{
+.optionsBackgroundGrisProfil{
+    background-color: lightgrey;
+    border-radius: 10px;
+    max-width:550px;
+    text-align: center;
+   
     padding:20px;
+
 }
-.loginForm i {
-    font-size:40px;
-    padding-right:10px;
-    
+.optionsBackgroundGrisProfil strong{
+    font-size: 40px;
+    font-family: var(--secondary-font);
+   
+}
+.optionsBackgroundGrisProfil p, span{
+    margin-top:20px;
+    font-size: 15px;
+}
+.optionsBackgroundBleuProfilImg{
+    background-color: var(--primary-color);
+   
+}
+.optionsBackgroundBleuProfilImg div {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: auto;
+    height: 300px;
+   
 }
 
-.loginForm input::placeholder {
-    color:white;
-    font-size:16pt;
-    font-family: var(--primary-font);
-    padding: 10px;
+.optionsBtn{
+    display:flex;
+    flex-direction:column;
+    padding-left:10px;
+    border-left:1px solid gray;
 }
-.loginFormBtn{
-    font-family: var(--primary-font);
-    margin-Left: 40px;
-    margin-Top: 60px;
+.optionsBtn button{
+    line-height:75px;
+   
+}
+.optionsBtn a{
+    font-family: var(--secondary-font);
 }
 /*Pour que le site soit réactif*/
 @media screen and (max-width:400px) {
