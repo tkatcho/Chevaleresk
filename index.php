@@ -362,16 +362,13 @@ $content = "";
 // HTML;
 // }
 
-$addToCartBouton = <<<HTML
-
-HTML;
-
-if ($isConnected)
-    $addToCartBouton = <<<HTML
+function addToCartButton($idJoueur, $idItem, $qt) {
+    return <<<HTML
         <button>
-            <i class="fa fa-cart-plus" style="filter: invert();"></i>
+            <a href="addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt"><i class="fa fa-cart-plus"></i></a>
         </button>
     HTML;
+}
 
 $itemsDisplay = <<<HTML
     <div class="containerTousItems">
@@ -380,6 +377,9 @@ HTML;
 $index = 1;
 $items = ItemsTable()->selectAll();
 foreach ($items as $item) {
+
+    $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
+
     if ($item->Type == 'p') { // Potions
         $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
         $type = "Défence";

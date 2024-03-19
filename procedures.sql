@@ -25,3 +25,28 @@ BEGIN
 END//
 
 DELIMITER ;
+
+
+-- Ajouter un item au panier
+DELIMITER //
+
+CREATE PROCEDURE addPanier(IN id_joueur INT, IN id_item INT, IN qt INT)
+BEGIN
+    DECLARE qt_stock INT;
+    DECLARE item_exists INT;
+    
+    SELECT quantiteStock INTO qt_stock FROM items WHERE id = id_item;
+    SELECT COUNT(*) INTO item_exists FROM paniers WHERE idJoueur = id_joueur AND idItem = id_item;
+    
+    IF (qt > 0) THEN
+        IF (item_exists > 0) THEN
+            IF (qt_stock >= (SELECT quantite FROM paniers WHERE idItem = id_item AND idJoueur = id_joueur) + qt) THEN
+                UPDATE paniers SET quantite = quantite + qt WHERE idJoueur = id_joueur AND idItem = id_item;
+            END IF;
+        ELSE
+            INSERT INTO paniers (idJoueur, idItem, quantite) VALUES (id_joueur, id_item, qt);
+        END IF;
+    END IF;
+END//
+
+DELIMITER ;
