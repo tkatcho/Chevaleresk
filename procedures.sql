@@ -50,3 +50,34 @@ BEGIN
 END//
 
 DELIMITER ;
+
+
+-- Acheter le panier
+-- FONCTIONNE PAS!!!
+DELIMITER //
+
+CREATE PROCEDURE buyPanier(IN id_joueur INT)
+BEGIN
+    DECLARE total INT;
+    DECLARE item_id_item INT;
+    DECLARE item_quantite INT;
+    DECLARE itemCr CURSOR FOR SELECT idItem, quantite FROM paniers WHERE idJoueur = id_joueur;
+
+    SELECT SUM(quantite * prix) INTO total FROM paniers INNER JOIN items ON paniers.idItem = items.id WHERE idJoueur = id_joueur;
+    
+    OPEN itemCr;
+    FETCH itemCr INTO item_id_item, item_quantite;
+    itemLoop: LOOP
+        IF (item_quantite <= (SELECT quantiteStock FROM items WHERE id = item_id_item)) THEN
+            UPDATE items SET quantiteStock = (quantiteStock - item_quantite) WHERE id = item_id_item;
+        END IF;
+        FETCH itemCr INTO item_id_item, item_quantite;
+        IF (item_id_item IS NULL) THEN
+            LEAVE itemLoop;
+        END IF;
+        FETCH itemCr INTO item_id_item, item_quantite;
+    END LOOP itemLoop;
+    CLOSE itemCr;
+END//
+
+DELIMITER ;

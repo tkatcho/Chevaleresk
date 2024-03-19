@@ -58,9 +58,15 @@ $content = <<<HTML
     $itemsDisplay
 HTML;
 
+$solde = JoueursTable()->selectById($_SESSION['id'])[0]->Solde;
+
 $content .= <<<HTML
     <hr>
-    <h2>Total: $total</h2>
+    <h2>Total: <span class="prix">$total $</span></h2>
+    <h2>Solde: <span class="prix">$solde $</span></h2>
+    <button class="buyButton">
+        <a href="buyCart.php?idJoueur=$_SESSION[id]">Acheter <i class="fa-solid fa-cash-register"></i></a>
+    </button>
 HTML;
 
 
