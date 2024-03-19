@@ -44,8 +44,14 @@ button{
     margin-top: -20px;
 }
 
-.hideButtonText {
-    display: none;
+.buttonOnSide button a div {
+    display: inline;
+}
+
+@media screen and (max-width:600px) {
+    .buttonOnSide button a div {
+        display: none;
+    }
 }
 
 a{
@@ -172,39 +178,6 @@ form label {
     
 }
 
-/*Page de connexion/Inscription*/
-.loginForm {
-    background-color: lightgray;
-    height: 300px;
-    width:500px;
-    margin:auto;
-}
-.loginForm input{
-    border:none;
-    width:400px;
-    height:40px;
-}
-.loginForm div{
-    padding:20px;
-}
-.loginForm i {
-    font-size:40px;
-    padding-right:10px;
-    
-}
-
-.loginForm input::placeholder {
-    color:white;
-    font-size:16pt;
-    font-family: var(--primary-font);
-    padding: 10px;
-}
-.loginFormBtn{
-    font-family: var(--primary-font);
-    margin-Left: 40px;
-    margin-Top: 60px;
-}
-
 /*Page Panier*/
 
 .btnRetour{
@@ -260,10 +233,19 @@ form label {
     width:500px;
     margin:auto;
 }
+@media screen and (max-width:550px) {
+    .loginForm {
+        width: 300px;
+    }
+}
 .loginForm input{
     border:none;
-    width:400px;
+    width:80%;
     height:40px;
+    padding-left: 10px;
+}
+.loginForm input[type="submit"] {
+    padding: 0;
 }
 .loginForm div{
     padding:20px;
@@ -294,19 +276,25 @@ form label {
     padding-top: 20px;
 }
 .signupForm div {
+    padding: 0 10px;
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 9fr;
     margin: 0 auto 10px;
-    width: 450px;
+    width: 100%;
 }
 .signupForm input{
     border:none;
     height:40px;
+    width: 85%;
+    padding-left: 10px;
+}
+.signupForm input[type="submit"] {
+    padding: 0;
 }
 .signupForm i {
     font-size:30px;
+    padding-left: 12px;
 }
-
 .signupForm input::placeholder {
     color:white;
     font-size:16pt;
@@ -318,6 +306,15 @@ form label {
     font-family: var(--primary-font);
     margin: 20px auto 0;
     width: 250px;
+}
+@media screen and (max-width:550px) {
+    .signupForm {
+        width: 300px;
+    }
+    .signupForm i {
+        visibility: hidden;
+        padding: 0;
+    }
 }
 .errorMessage {
     width: 300px;
