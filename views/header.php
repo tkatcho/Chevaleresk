@@ -19,23 +19,40 @@ $loggedUserMenu = "";
 if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
     $playerAlias = $_SESSION["alias"];
 
+    $loggedUserMenu = <<<HTML
+        <div class="buttonOnSide">
+            <button>
+                <a href ="panier.php">
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
+            </button>
+            <button>
+                <a href="logout.php">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
+            </button>
+        </div>
+    HTML;
+
     if ($viewTitle == "Catalogue de produit") {
-        $loggedUserMenu = <<<HTML
-            <div class="buttonOnSide">
-                <button>
-                    <a href ="panier.php">
-                        <i class="fa fa-shopping-cart"></i>
-                    </a>
-                </button>
-                <button>
-                    <a href="logout.php">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    </a>
-                </button>
-            </div>
-            HTML;
+        // Je pense qu'on devrait toujours afficher le bouton panier et logout peut importe la page. Si pas daccord, contacter thomas
+        // 
+        // $loggedUserMenu = <<<HTML
+        //     <div class="buttonOnSide">
+        //         <button>
+        //             <a href ="panier.php">
+        //                 <i class="fa fa-shopping-cart"></i>
+        //             </a>
+        //         </button>
+        //         <button>
+        //             <a href="logout.php">
+        //                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        //             </a>
+        //         </button>
+        //     </div>
+        //     HTML;
     } else if ($viewTitle = "Panier d'achat") {
-        $loggedUserMenu = <<<HTML
+        $loggedUserMenu .= <<<HTML
             <div class="btnRetour">
                 <button>
                     <a href="index.php">     <!--Retourne au catalogue de produit-->
