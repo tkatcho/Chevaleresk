@@ -109,27 +109,27 @@ if($isConnected){
       <!--Les options à gauche-->
       <div class="optionsBtn" >
           <button>
-              <a class="optionsBtnIcon" href ="loginForm.php">
+              <a class="optionsBtnIcon" href ="index.php">
               Achat <i class="fa fa-money"></i>
               </a>
           </button>
           <button>
-              <a class="optionsBtnIcon" href ="subscribeForm.php">
+              <a class="optionsBtnIcon" href ="invenaire.php">
               Inventaire <i class="fa fa-id-card-o"></i>
               </a>
           </button>
           <button>
-              <a class="optionsBtnIcon" href ="subscribeForm.php">
+              <a class="optionsBtnIcon" href ="modifierProfil.php">
               Modifier Profil <i class="fa fa-user"></i>
               </a>
           </button>
           <button>
-              <a class="optionsBtnIcon" href ="subscribeForm.php">
+              <a class="optionsBtnIcon" href ="optionsGagnerArgent.php">
               Gagner plus d'argent <i class="fa fa-gift"></i>
               </a>
           </button>
           <button>
-              <a class="optionsBtnIcon" href ="subscribeForm.php">
+              <a class="optionsBtnIcon" href ="logout.php">
               Déconnexion <i class="fa fa-sign-out"></i>
               </a>
           </button>
