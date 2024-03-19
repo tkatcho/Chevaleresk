@@ -4,7 +4,7 @@ include_once "DAL/models/item.php";
 include_once "DAL/MySQLDataBase.php";
 include_once "php/imageFiles.php";
 
-const photosPath = "data/images/items";
+const photosPath = "images/items";
 
 final class ItemsTable extends MySQLTable
 {

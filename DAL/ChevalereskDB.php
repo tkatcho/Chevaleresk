@@ -2,6 +2,12 @@
 
 include_once 'DAL/MySQLDataBase.php';
 include_once 'DAL/JoueursTable.php';
+include_once 'DAL/ItemsTable.php';
+include_once 'DAL/ArmesTable.php';
+include_once 'DAL/ArmuresTable.php';
+include_once 'DAL/PotionsTable.php';
+include_once 'DAL/ElementsTable.php';
+
 function DB()
 {
     return MySQLDataBase::getInstance('chevalresk');

@@ -1,7 +1,8 @@
 <?php
-require 'DAL/ChevalereskDB.php';
+require_once 'DAL/ChevalereskDB.php';
 require 'php/sessionManager.php';
 require_once 'php/config.php';
+
 //adminAccess();
 
 //file_put_contents() used to change variables in another file
@@ -18,9 +19,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 function createItem($data)
 {
-    $item = null;
+    $item = [
+        'nom' => $data['Name'],
+        'type' => $data['typeItem'],
+        'quantiteStock' => $data['Quantite'],
+        'prix' => $data['Prix'],
+        'photo' => $data['Avatar']
+    ];
     $sous_item = null;
-
+    $sousItemData = $data;
+    unset($sousItemData['nom'], $sousItemData['type'], $sousItemData['quantiteStock'], $sousItemData['prix'], $sousItemData['photo']);
 
     ItemsTable()->insert(new Item($item));
     switch ($data["typeItem"]) {
