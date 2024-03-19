@@ -7,16 +7,23 @@ $isConnected= isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
 $viewTitle = "Catalogue de produit";
 
-$content = "";
+$content = <<<HTML
+    <div class="searchContainer">
+        <h2>Recherche: </h2>
+        <input type="search" class="form-control" placeholder ="Rechercher">
+        <i class="fa fa-bars"></i>
+    </div>
+    <hr>
+HTML;
 
 // if (!$isConnected) { //n'est pas connecter
-//     $content = <<<HTML
-//     <div class="searchContainer">
-//         <h2>Recherche: </h2>
-//         <input type="search" class="form-control" placeholder ="Rechercher">
-//         <i class="fa fa-bars"></i>
-//     </div>
-//     <hr>
+    // $content = <<<HTML
+    // <div class="searchContainer">
+    //     <h2>Recherche: </h2>
+    //     <input type="search" class="form-control" placeholder ="Rechercher">
+    //     <i class="fa fa-bars"></i>
+    // </div>
+    // <hr>
 
 //     <!--Exemple html pour les items-->
 //     <div class="containerTousItems">
@@ -378,7 +385,9 @@ $index = 1;
 $items = ItemsTable()->selectAll();
 foreach ($items as $item) {
 
-    $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
+    $addToCartBouton = "";
+    if ($isConnected)
+        $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
 
     if ($item->Type == 'p') { // Potions
         $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
