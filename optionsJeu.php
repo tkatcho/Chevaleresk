@@ -93,8 +93,8 @@ $viewTitle="Bienvenue à Chevaleresk";
 HTML;*/
 
 $content = <<<HTML
-<!--Le profil à droite-->
-<div class="optionsJeu">
+  <!--Le profil à droite-->
+  <div class="optionsJeu">
     <div class="optionsBackgroundGrisProfil">
         <strong>Profil</strong>
         <div class="optionsBackgroundBleuProfilImg">
@@ -133,5 +133,6 @@ $content = <<<HTML
         </button>
     </div>
 </div>
+
 HTML;
 include 'views/master.php';
