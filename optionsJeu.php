@@ -1,7 +1,7 @@
 <?php
 
 include 'DAL/ChevalereskDB.php';
-
+include 'php/sessionManager.php';
 
 $viewTitle="Bienvenue à Chevaleresk";
 $isConnected= isset($_SESSION['validUser']) && $_SESSION['validUser'];
@@ -92,7 +92,8 @@ $isConnected= isset($_SESSION['validUser']) && $_SESSION['validUser'];
     </div>
 </div>
 HTML;*/
-//if($isConnected){
+if($isConnected){
+    //Faire une condition pour savoir si admin ou si joueur (les boutons ne seront pas les mêmes)
     $content = <<<HTML
     <!--Le profil à droite-->
     <div class="optionsJeu">
@@ -136,6 +137,8 @@ HTML;*/
   </div>
   
   HTML;
-//}
+}else {
+    redirect("index.php");
+}
 
 include 'views/master.php';

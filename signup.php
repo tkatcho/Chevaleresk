@@ -28,4 +28,4 @@ if (isset($_POST['submit']))
     redirect('loginForm.php');
 }
 
-redirect('index.php');
+redirect('options.php');

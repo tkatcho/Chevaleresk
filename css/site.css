@@ -319,7 +319,7 @@ form label {
 .optionsBackgroundGrisProfil{
     background-color: lightgrey;
     border-radius: 10px;
-    max-width:650px;
+    width:450px;
     text-align: center;
     padding:20px;
 
