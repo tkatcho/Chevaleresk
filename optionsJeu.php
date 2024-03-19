@@ -94,6 +94,8 @@ $isConnected= isset($_SESSION['validUser']) && $_SESSION['validUser'];
 HTML;*/
 if($isConnected){
     //Faire une condition pour savoir si admin ou si joueur (les boutons ne seront pas les mêmes)
+    $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
+
     $content = <<<HTML
     <!--Le profil à droite-->
     <div class="optionsJeu">
@@ -102,8 +104,8 @@ if($isConnected){
           <div class="optionsBackgroundBleuProfilImg">
               <div style="background-image:url('./images/chevalier.png')"></div>
           </div>
-          <p>Alias</p>
-          <p>Nombre écus: <span>1000</span>$</p> 
+          <p>$joueur->Alias</p>
+          <p>Nombre écus: <span>$joueur->Solde</span>$</p> 
       </div>
       
       <!--Les options à gauche-->
