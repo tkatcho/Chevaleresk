@@ -10,7 +10,7 @@ class Armure extends Record
     public function __construct($recordData = null)
     {
         //print_r($recordData);
-        $this->idItem = 0;
+        $this->idItem = $recordData['idItem'] ?? 0;
         $this->Matiere = "";
         $this->Taille = "";
         parent::__construct($recordData);
