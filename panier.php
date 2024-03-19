@@ -4,10 +4,12 @@ include 'DAL/ChevalereskDB.php';
 include 'php/sessionManager.php';
 userAccess();
 
+$total = 0;
 $panier = PaniersTable()->selectWhere("idJoueur = $_SESSION[id]");
 $itemsDisplay = "";
 foreach ($panier as $itemInCart) {
     $item = ItemsTable()->selectWhere("id = $itemInCart->idItem")[0];
+    $total += ($itemInCart->Quantite * $item->Prix);
     $itemsDisplay .= <<<HTML
         <div class="panierItem">
             <div class="panierItemImg">
@@ -54,6 +56,11 @@ foreach ($panier as $itemInCart) {
 $viewTitle="Panier d'achat";
 $content = <<<HTML
     $itemsDisplay
+HTML;
+
+$content .= <<<HTML
+    <hr>
+    <h2>Total: $total</h2>
 HTML;
 
 
