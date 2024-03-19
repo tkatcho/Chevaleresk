@@ -2,41 +2,28 @@
 
 include 'DAL/ChevalereskDB.php';
 include 'php/sessionManager.php';
-
+userAccess();
 $isConnected= isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
-$viewTitle = "Catalogue de produit";
+$inventaire = InventairesTable()->selectWhere("idJoueur = $_SESSION[id]");
+
+$viewTitle = "Inventaire";
 
 $content = <<<HTML
-    <div class="searchContainer">
-        <h2>Recherche: </h2>
-        <input type="search" class="form-control" placeholder ="Rechercher">
-        <i class="fa fa-bars"></i>
-    </div>
-    <hr>
+    
 HTML;
 
+//$btnCommenterEtÉvaluer=<<<HTML
 
-function addToCartButton($idJoueur, $idItem, $qt) {
-    return <<<HTML
-        <button>
-            <a href="addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt"><i class="fa fa-cart-plus"></i></a>
-        </button>
-    HTML;
-}
-
+//HTML;
 $itemsDisplay = <<<HTML
     <div class="containerTousItems">
 HTML;
 
 $index = 1;
-$items = ItemsTable()->selectAll();
-if ($items != null) {
-    foreach ($items as $item) {
 
-        $addToCartBouton = "";
-        if ($isConnected)
-            $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
+if ($inventaire != null) {
+    foreach ($inventaire as $item) {
 
         if ($item->Type == 'p') { // Potions
             $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];

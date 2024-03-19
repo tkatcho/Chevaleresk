@@ -65,6 +65,23 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
         
         $loggedUserMenu =<<<HTML
         HTML;
+    }else if ($viewTitle=="Inventaire"){
+        $loggedUserMenu = <<<HTML
+        <div class="btnRetour">
+            <button>
+                <a href="optionsJeu.php">     <!--Retourne aux options du jeu-->
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+        </div>
+        <div class="buttonOnSide">
+                 <button>
+                     <a href ="concocterPotions.php">     <!--Va à la page de concocter des potions-->
+                         <i class="fa fa-flask"></i>
+                     </a>
+                 </button>
+        </div>
+    HTML;
     }
 
 } else {  //si le joueur n'est pas connecté  -> a les btn de connexion/inscription
