@@ -13,7 +13,7 @@ class Potion extends Record
         $this->idItem = 0;
         $this->Effet = "";
         $this->Duree = 0;
-        $this->estAttaque = 0;
+        $this->estAttaque = false;
         parent::__construct($recordData);
     }
     public function setEffet($effet)
@@ -26,9 +26,13 @@ class Potion extends Record
     }
     public function setEstAttaque($estAttaque)
     {
-        if ($estAttaque == 0 || $estAttaque == 1)
+        if ($estAttaque == 0)
         {
-            $this->estAttaque = (int) $estAttaque;
+            $this->estAttaque = false;
+        }
+        else
+        {
+            $this->estAttaque = true;
         }
     }
 }
