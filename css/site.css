@@ -377,6 +377,13 @@ form label {
     width: 300px;
     margin: 20px auto 0;
 }
+.prix {
+    color: var(--secondary-color);
+}
+.buyButton {
+    float: right;
+    margin-top: -80px;
+}
 
 /*Pour que le site soit réactif*/
 @media screen and (max-width:400px) {
