@@ -34,9 +34,15 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
         </div>
     HTML;
 
+    $logoutButton = <<<HTML
+        <button>
+            <a href="logout.php">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
+        </button>
+    HTML;
+
     if ($viewTitle == "Catalogue de produit") {
-        // Je pense qu'on devrait toujours afficher le bouton panier et logout peut importe la page. Si pas daccord, contacter thomas
-        // 
          $loggedUserMenu = <<<HTML
              <div class="buttonOnSide">
                  <button>
@@ -44,11 +50,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
                          <i class="fa fa-shopping-cart"></i>
                      </a>
                  </button>
-                 <button>
-                     <a href="logout.php">
-                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                     </a>
-                 </button>
+                 $logoutButton
              </div>
              HTML;
     } else if ($viewTitle == "Panier d'achat" ) {
@@ -60,10 +62,14 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
                     </a>
                 </button>
             </div>
+            <div class="buttonOnSide">
+                $logoutButton
+            </div>
         HTML;
     } else if($viewTitle=="Bienvenue à Chevaleresk"){
         
         $loggedUserMenu =<<<HTML
+
         HTML;
     }
 
