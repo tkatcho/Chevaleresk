@@ -4,7 +4,7 @@ include_once "DAL/models/item.php";
 include_once "DAL/MySQLDataBase.php";
 include_once "php/imageFiles.php";
 
-const photosPath = "images/items";
+const photosPath = "images/items/";
 
 final class ItemsTable extends MySQLTable
 {
@@ -15,7 +15,7 @@ final class ItemsTable extends MySQLTable
     public function insert($item)
     {
         $item->setPhoto(saveImage(photosPath, $item->Photo));
-        parent::insert($item);
+        return parent::insert($item);
     }
     public function update($item)
     {

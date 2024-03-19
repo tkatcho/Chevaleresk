@@ -98,9 +98,9 @@ abstract class MySQLTable
                 $phpType = 'primary_key';
             else
                 if (strpos($fieldName, 'Id'))
-                    $phpType = 'foreign_key';
-                else
-                    $phpType = 'INT';
+                $phpType = 'foreign_key';
+            else
+                $phpType = 'INT';
         }
         if (strpos($fieldName, 'Date')) {
             $phpType = 'date';
@@ -192,7 +192,7 @@ abstract class MySQLTable
                     $sql .= "NOT NULL";
                 else
                     if (!$type['null'])
-                        $sql .= "NOT NULL";
+                    $sql .= "NOT NULL";
                 $sql .= ', ';
             }
         }
@@ -204,6 +204,7 @@ abstract class MySQLTable
         $sql .= ');';
         return $sql;
     }
+
     public function tableName()
     {
         return lcfirst($this->className() . "s");
@@ -242,8 +243,7 @@ abstract class MySQLTable
             // Remove really unwanted tags
             $old_data = $data;
             $data = preg_replace('#</*(?:applet|b(?:ase|gsound|link)|embed|frame(?:set)?|i(?:frame|layer)|l(?:ayer|ink)|meta|object|s(?:cript|tyle)|title|xml)[^>]*+>#i', '', $data);
-        }
-        while ($old_data !== $data);
+        } while ($old_data !== $data);
 
         // we are done...
         return $data;
@@ -329,8 +329,28 @@ abstract class MySQLTable
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }
+
+    public function test()
+    {
+        $itemName = 'Plate Armor';
+        $itemId = 60;
+
+        if ($itemId !== null) {
+            $data = [
+                'idItem' => $itemId, // Now you have the id
+                'matiere' => 'Steel',
+                'taille' => 'L'
+            ];
+            $this->insert($data);
+        } else {
+            // Handle the case where the item does not exist
+        }
+    }
+
+
     public function insert($data)
     {
+        print_r($data);
         if (isset($data)) {
             $this->bind($data);
             $tableName = $this->tableName();
@@ -569,6 +589,15 @@ final class MySQLDataBase
             $this->disconnect();
         }
     }
+    public function commitTransaction()
+    {
+        $this->commit();
+    }
+    public function rollbackTransaction()
+    {
+        $this->rollBack();
+    }
+
     private function rollBack()
     {
         if ($this->conn !== null) {
@@ -635,4 +664,3 @@ final class MySQLDataBase
         return $rows;
     }
 }
-?>
