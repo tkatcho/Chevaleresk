@@ -11,7 +11,7 @@ if (isset($_GET['error'])) {
         $errorMessage = "Cette alias est déjà utilisé";
 }
 
-$pageTitle = "Inscription";
+$viewTitle = "Inscription";
 
 $content = <<<HTML
     <div class="signupForm">

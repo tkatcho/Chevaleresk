@@ -16,6 +16,13 @@ if (!isset($viewName))
 $loggedUserMenu = "";
 
 // Je pense qu'on devrait toujours afficher le bouton panier et logout peut importe la page. Si pas daccord, contacter thomas
+$logoutButton = <<<HTML
+    <button>
+        <a href="logout.php">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </a>
+    </button>
+HTML;
 $buttonOnSide = <<<HTML
     <div class="buttonOnSide">
         <button>
@@ -23,11 +30,7 @@ $buttonOnSide = <<<HTML
                 <i class="fa fa-shopping-cart"></i>
             </a>
         </button>
-        <button>
-            <a href="logout.php">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            </a>
-        </button>
+        $logoutButton
     </div>
 HTML;
 

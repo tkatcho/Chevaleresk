@@ -176,7 +176,6 @@ form label {
 .containerItem button{
     font-size: 20px;
     border-radius: 10px;
-    
 }
 
 /*Page Panier*/
@@ -212,7 +211,6 @@ form label {
 .panierItem p, span, button{
     margin-top:15px;
     font-size:18px;
-    
 }
 .panierItem button{
     line-height:0px;
@@ -432,7 +430,7 @@ form label {
         max-width: 250px;
     }
 }
-@media screen and (max-width:1100px){
+@media screen and (max-width:1250px){
     .panierItem{
       
         border: 10px solid var(--primary-color);
