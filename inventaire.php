@@ -23,8 +23,8 @@ HTML;
 $index = 1;
 
 if ($inventaire != null) {
-    foreach ($inventaire as $item) {
-
+    foreach ($inventaire as $inventaireRow) {
+        $item = ItemsTable()->selectById($inventaireRow->idItem)[0];
         if ($item->Type == 'p') { // Potions
             $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
             $type = "Défence";
@@ -34,9 +34,6 @@ if ($inventaire != null) {
                 <div class="containerItem">
                     <span class="idItem">$index</span> 
                     $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('$item->Photo')"></div>
@@ -55,13 +52,9 @@ if ($inventaire != null) {
                         <span>$type</span>
                     </p>
                     <hr>
-                    <p>Quantité en stock:
-                        <span>$item->QuantiteStock</span>
+                    <p>Quantité:
+                        <span>$inventaireRow->Quantite</span>
                     </p>
-                    <hr>
-                    <p class="itemPrix">Prix: 
-                        <span>$item->Prix</span> $
-                    <p>
                 </div>
             HTML;
         }
@@ -72,9 +65,6 @@ if ($inventaire != null) {
                 <div class="containerItem">
                     <span class="idItem">$index</span> 
                     $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('./images/épée.png')"></div>
@@ -93,13 +83,9 @@ if ($inventaire != null) {
                     <span>$arme->Description</span>
                     </p>
                     <hr>
-                    <p>Quantité en stock: 
-                        <span>$item->QuantiteStock</span>
+                    <p>Quantité:
+                        <span>$inventaireRow->Quantite</span>
                     </p>
-                    <hr>
-                    <p class="itemPrix">Prix: 
-                        <span>$item->Prix</span> $
-                    <p>
                 </div>
             HTML;
         }
@@ -110,9 +96,6 @@ if ($inventaire != null) {
                 <div class="containerItem">
                     <span class="idItem">$index</span> 
                     $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('$item->Photo')"></div>
@@ -129,13 +112,9 @@ if ($inventaire != null) {
                     </p>
                     
                     <hr>
-                    <p>Quantité en stock: 
-                        <span>$item->QuantiteStock</span>
+                    <p>Quantité:
+                        <span>$inventaireRow->Quantite</span>
                     </p>
-                    <hr>
-                    <p class="itemPrix">Prix: 
-                        <span>$item->Prix</span> $
-                    <p>
                 </div>
             HTML;
         }
@@ -144,11 +123,8 @@ if ($inventaire != null) {
             $element = ElementsTable()->selectWhere("idItem = $item->Id")[0];
             $itemsDisplay .= <<<HTML
                 <div class="containerItem">
-                    <span class="idItem">5</span> 
+                    <span class="idItem">$index</span> 
                     $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
                     <hr>
                     <div class="itemImage">
                         <div  style="background-image:url('$item->Photo')"></div>
@@ -168,17 +144,12 @@ if ($inventaire != null) {
                     </p>
                     
                     <hr>
-                    <p>Quantité en stock: 
-                        <span>$item->QuantiteStock</span>
+                    <p>Quantité:
+                        <span>$inventaireRow->Quantite</span>
                     </p>
-                    <hr>
-                    <p class="itemPrix">Prix: 
-                        <span>$item->Prix</span> $
-                    <p>
                 </div>
             HTML;
         }
-
         $index++;
     }
 }
