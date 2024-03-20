@@ -2,42 +2,29 @@
 
 include 'DAL/ChevalereskDB.php';
 include 'php/sessionManager.php';
-
+userAccess();
 $isConnected= isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
-$viewTitle = "Catalogue de produit";
+$inventaire = InventairesTable()->selectWhere("idJoueur = $_SESSION[id]");
+
+$viewTitle = "Inventaire";
 
 $content = <<<HTML
-    <div class="searchContainer">
-        <h2>Recherche: </h2>
-        <input type="search" class="form-control" placeholder ="Rechercher">
-        <i class="fa fa-bars"></i>
-    </div>
-    <hr>
+    
 HTML;
 
+//$btnCommenterEtÉvaluer=<<<HTML
 
-function addToCartButton($idJoueur, $idItem, $qt) {
-    return <<<HTML
-        <button>
-            <a href="addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt"><i class="fa fa-cart-plus"></i></a>
-        </button>
-    HTML;
-}
-
+//HTML;
 $itemsDisplay = <<<HTML
     <div class="containerTousItems">
 HTML;
 
 $index = 1;
-$items = ItemsTable()->selectAll();
-if ($items != null) {
-    foreach ($items as $item) {
 
-        $addToCartBouton = "";
-        if ($isConnected)
-            $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
-
+if ($inventaire != null) {
+    foreach ($inventaire as $inventaireRow) {
+        $item = ItemsTable()->selectById($inventaireRow->idItem)[0];
         if ($item->Type == 'p') { // Potions
             $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
             $type = "Défence";
@@ -47,9 +34,6 @@ if ($items != null) {
                 <div class="containerItem">
                     <span class="idItem">$index</span> 
                     $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('$item->Photo')"></div>
@@ -68,13 +52,9 @@ if ($items != null) {
                         <span>$type</span>
                     </p>
                     <hr>
-                    <p>Quantité en stock:
-                        <span>$item->QuantiteStock</span>
+                    <p>Quantité:
+                        <span>$inventaireRow->Quantite</span>
                     </p>
-                    <hr>
-                    <p class="itemPrix">Prix: 
-                        <span>$item->Prix</span> $
-                    <p>
                 </div>
             HTML;
         }
@@ -85,9 +65,6 @@ if ($items != null) {
                 <div class="containerItem">
                     <span class="idItem">$index</span> 
                     $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('./images/épée.png')"></div>
@@ -106,13 +83,9 @@ if ($items != null) {
                     <span>$arme->Description</span>
                     </p>
                     <hr>
-                    <p>Quantité en stock: 
-                        <span>$item->QuantiteStock</span>
+                    <p>Quantité:
+                        <span>$inventaireRow->Quantite</span>
                     </p>
-                    <hr>
-                    <p class="itemPrix">Prix: 
-                        <span>$item->Prix</span> $
-                    <p>
                 </div>
             HTML;
         }
@@ -123,9 +96,6 @@ if ($items != null) {
                 <div class="containerItem">
                     <span class="idItem">$index</span> 
                     $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('$item->Photo')"></div>
@@ -142,13 +112,9 @@ if ($items != null) {
                     </p>
                     
                     <hr>
-                    <p>Quantité en stock: 
-                        <span>$item->QuantiteStock</span>
+                    <p>Quantité:
+                        <span>$inventaireRow->Quantite</span>
                     </p>
-                    <hr>
-                    <p class="itemPrix">Prix: 
-                        <span>$item->Prix</span> $
-                    <p>
                 </div>
             HTML;
         }
@@ -157,11 +123,8 @@ if ($items != null) {
             $element = ElementsTable()->selectWhere("idItem = $item->Id")[0];
             $itemsDisplay .= <<<HTML
                 <div class="containerItem">
-                    <span class="idItem">5</span> 
+                    <span class="idItem">$index</span> 
                     $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
                     <hr>
                     <div class="itemImage">
                         <div  style="background-image:url('$item->Photo')"></div>
@@ -181,17 +144,12 @@ if ($items != null) {
                     </p>
                     
                     <hr>
-                    <p>Quantité en stock: 
-                        <span>$item->QuantiteStock</span>
+                    <p>Quantité:
+                        <span>$inventaireRow->Quantite</span>
                     </p>
-                    <hr>
-                    <p class="itemPrix">Prix: 
-                        <span>$item->Prix</span> $
-                    <p>
                 </div>
             HTML;
         }
-
         $index++;
     }
 }

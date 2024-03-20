@@ -15,44 +15,34 @@ if (!isset($viewName))
 
 $loggedUserMenu = "";
 
-//Si le joueur est connecté
-if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
-    $playerAlias = $_SESSION["alias"];
-
-    $loggedUserMenu = <<<HTML
-        <div class="buttonOnSide">
-            <button>
-                <a href ="panier.php">
-                    <i class="fa fa-shopping-cart"></i>
-                </a>
-            </button>
-            <button>
-                <a href="logout.php">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                </a>
-            </button>
-        </div>
-    HTML;
-
-    $logoutButton = <<<HTML
+// Je pense qu'on devrait toujours afficher le bouton panier et logout peut importe la page. Si pas daccord, contacter thomas
+$buttonOnSide = <<<HTML
+    <div class="buttonOnSide">
+        <button>
+            <a href ="panier.php">
+                <i class="fa fa-shopping-cart"></i>
+            </a>
+        </button>
         <button>
             <a href="logout.php">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </a>
         </button>
+    </div>
+HTML;
+
+//Si le joueur est connecté
+if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
+    $playerAlias = $_SESSION["alias"];
+
+    $loggedUserMenu = <<<HTML
+        $buttonOnSide
     HTML;
 
     if ($viewTitle == "Catalogue de produit") {
-         $loggedUserMenu = <<<HTML
-             <div class="buttonOnSide">
-                 <button>
-                     <a href ="panier.php">
-                         <i class="fa fa-shopping-cart"></i>
-                     </a>
-                 </button>
-                 $logoutButton
-             </div>
-             HTML;
+        $loggedUserMenu = <<<HTML
+            $buttonOnSide
+        HTML;
     } else if ($viewTitle == "Panier d'achat" ) {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
@@ -69,8 +59,25 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
     } else if($viewTitle=="Bienvenue à Chevaleresk"){
         
         $loggedUserMenu =<<<HTML
-
         HTML;
+    }else if ($viewTitle=="Inventaire"){
+        $loggedUserMenu = <<<HTML
+        <div class="btnRetour">
+            <button>
+                <a href="optionsJeu.php">     <!--Retourne aux options du jeu-->
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+        </div>
+        $buttonOnSide
+        <div class="buttonOnSide">
+            <button>
+                <a href ="concocterPotions.php">     <!--Va à la page de concocter des potions-->
+                    <i class="fa fa-flask"></i>
+                </a>
+            </button>
+        </div>
+    HTML;
     }
 
 } else {  //si le joueur n'est pas connecté  -> a les btn de connexion/inscription

@@ -39,6 +39,7 @@ button{
     font-size: 15px;
 }   
 .buttonOnSide{
+    margin-right: 5px;
     display: block;
     float:right;
     margin-top: -20px;

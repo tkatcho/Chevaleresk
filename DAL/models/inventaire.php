@@ -18,4 +18,12 @@ class Inventaire extends Record
     {
         $this->Quantite = $quantite;
     }
+    public function setIdJoueur($idJoueur)
+    {
+        $this->idJoueur = $idJoueur;
+    }
+    public function setIdItem($idItem)
+    {
+        $this->idItem = $idItem;
+    }
 }
