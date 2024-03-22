@@ -1,11 +1,11 @@
 @font-face {
-    font-family: Bahianita;
-    src: url('../ressources/Bahianita-Regular.ttf');
+  font-family: Bahianita;
+  src: url("../ressources/Bahianita-Regular.ttf");
 }
 
 @font-face {
-    font-family: PressStart2P;
-    src: url('../ressources/PressStart2P-Regular.ttf');
+  font-family: PressStart2P;
+  src: url("../ressources/PressStart2P-Regular.ttf");
 }
 
 /*  UTILISEZ LES VARIABLES!!!!!! 
@@ -13,50 +13,52 @@
 */
 
 :root {
-    --primary-color: #394A6D;
-    --secondary-color: #3C9D9B;
-    --notification-color: #52DE97;
-    --primary-font: Bahianita;
-    --secondary-font: PressStart2P;
+  --primary-color: #394a6d;
+  --secondary-color: #3c9d9b;
+  --notification-color: #52de97;
+  --primary-font: Bahianita;
+  --secondary-font: PressStart2P;
 }
 
 * {
-    font-family: var(--primary-font);
-    letter-spacing: 2px;
+  font-family: var(--primary-font);
+  letter-spacing: 2px;
 }
 
 header {
-    margin: 10px;
-    padding: 10px 20px;
-    border-bottom: 1px solid #333;
+  margin: 10px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #333;
 }
 
-button{
-    border: none;
-    color:#394A6D;
-    padding:15px;
-    text-align:right;
-    margin:2px;
+button {
+  border: none;
+  color: #394a6d;
+  padding: 15px;
+  text-align: right;
+  margin: 2px;
 }
 main {
-    margin: 100px;
+  margin: 100px;
 }
 
-input, label, p {
-    font-size: 14pt;
+input,
+label,
+p {
+  font-size: 14pt;
 }
 
 .form-parent {
-    margin: 0 auto;
-    width: 600px;
-    padding: 20px;
-    border: 1px solid #000;
-    border-radius: 10px;
+  margin: 0 auto;
+  width: 600px;
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 10px;
 }
 
 form input {
-    background-color: var(--primary-color) !important;
-    color: white !important;
+  background-color: var(--primary-color) !important;
+  color: white !important;
 }
 /* 
 form label {
@@ -64,5 +66,9 @@ form label {
 } */
 
 .form-floating > input + label:after {
-   background: transparent !important;
+  background: transparent !important;
+}
+.hovered-item {
+  background-color: #3498db; /* Blue hover color */
+  color: #fff; /* Text color for better visibility */
 }
