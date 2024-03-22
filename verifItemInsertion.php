@@ -3,7 +3,6 @@ require_once 'DAL/ChevalereskDB.php';
 require 'php/sessionManager.php';
 require_once 'php/config.php';
 
-session_start();
 
 // adminAccess();
 
@@ -18,8 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-
-
 function createItem($data)
 {
     $itemInsertedVerif = 0;
@@ -62,6 +59,7 @@ function createItem($data)
             }
 
             if ($itemInserted == 0) {
+                $db->rollbackTransaction();
                 $_SESSION['error'] = "Error: N'a pas pue inserer l'item, veuillez ressayer!";
                 redirect("newItem.php");
             }
@@ -69,6 +67,7 @@ function createItem($data)
             $_SESSION['success'] = "Insertion reussi! l'item est ajoute a la BD!";
             redirect("newItem.php");
         } else {
+            $db->rollbackTransaction();
             throw new Exception('Nom deja choisi, insertion impossible.');
         }
     } catch (Exception $e) {
