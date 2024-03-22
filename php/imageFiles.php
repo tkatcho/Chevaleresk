@@ -2,7 +2,7 @@
 include_once "php/guid.php";
 function saveImage($basePath, $imageData, $previousURL = "")
 {
-    if ($imageData == "" || strcmp($imageData, $previousURL) == 0) 
+    if ($imageData == "" || strcmp($imageData, $previousURL) == 0)
         // nothing is changed
         return $previousURL;
     if ($previousURL != "")

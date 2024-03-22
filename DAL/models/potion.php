@@ -35,4 +35,8 @@ class Potion extends Record
             $this->estAttaque = true;
         }
     }
+    public function setIdItem($idItem)
+    {
+        $this->idItem = $idItem;
+    }
 }

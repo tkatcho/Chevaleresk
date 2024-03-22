@@ -22,4 +22,8 @@ class Armure extends Record
     {
         $this->Taille = $taille;
     }
+    public function setIdItem($idItem)
+    {
+        $this->idItem = $idItem;
+    }
 }
