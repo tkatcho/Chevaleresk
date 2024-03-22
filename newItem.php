@@ -3,6 +3,17 @@ require 'php/sessionManager.php';
 require_once 'php/config.php';
 
 //adminAccess();
+
+$messageHtml = '';
+
+if (isset($_SESSION['success'])) {
+    $messageHtml = '<h1 style="color: green;">' . htmlspecialchars($_SESSION['success']) . '</h1>';
+    unset($_SESSION['success']);
+} elseif (isset($_SESSION['error'])) {
+    $messageHtml = '<h1 style="color: red;">' . htmlspecialchars($_SESSION['error']) . '</h1>';
+    unset($_SESSION['error']);
+}
+
 $jsonEffets = json_encode($effetPotion);
 $jsonGenres = json_encode($genresArmes);
 $jsonEff = json_encode($efficaciteArme);
@@ -58,8 +69,8 @@ $content = <<<HTML
                 waitingImage="images/Loading_icon.gif"
                 name="photo">
             </div>
-
             <input type="submit" name="submit">
+            $messageHtml
             </form>
             <script>
                 var sizesArmures = JSON.parse('$jsonSizes');
