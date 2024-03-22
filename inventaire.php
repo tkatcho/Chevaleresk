@@ -55,6 +55,11 @@ if ($inventaire != null) {
                     <p>Quantité:
                         <span>$inventaireRow->Quantite</span>
                     </p>
+                    <button>
+                        <a href="evaluationsEtCommentaires.php">
+                            Évaluer et commenter <i class="fa fa-comments"></i>
+                        </a>
+                    </button>
                 </div>
             HTML;
         }

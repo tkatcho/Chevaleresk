@@ -5,7 +5,7 @@ include 'php/sessionManager.php';
 
 $viewTitle="Bienvenue à Chevaleresk";
 $isConnected= isset($_SESSION['validUser']) && $_SESSION['validUser'];
-
+//$player = JoueursTable()->Get($_SESSION['validUser'].idJoueur)
 /*$content= <<<HTML
   
 <!---------------------------Options pour admin-------------------------------->

@@ -8,9 +8,6 @@
     src: url('../ressources/PressStart2P-Regular.ttf');
 }
 
-/*  UTILISEZ LES VARIABLES!!!!!! 
-    Example: background-color: var(--primary-color);
-*/
 
 :root {
     --primary-color: #394A6D;
