@@ -18,7 +18,7 @@ $content= <<<HTML
                 <p>Épée</p>
             </div>
             <!--Le prix-->
-            <div class="itemPrix">
+            <div class="panierItemPrix">
                 <p>25 <span>$ <span></p>
             </div>
             <!--Gérer la quantité-->
@@ -59,9 +59,9 @@ $content= <<<HTML
                 <div style="background-image:url('./images/élément.png')"></div>
             </div>
             <div>
-                <p>Élément</p>
+                <p>Élément cool</p>
             </div>
-            <div class="itemPrix">
+            <div class="panierItemPrix">
                 <p>40 <span>$ <span></p>
             </div>
             <div class="panierItemQt">

@@ -229,8 +229,8 @@ form label {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     
 }
 .panierItem p, span, button{
@@ -240,6 +240,11 @@ form label {
 }
 .panierItem button{
     line-height:0px;
+}
+.panierItemPrix{
+    color:var(--secondary-color);
+    text-align: right;
+
 }
 .panierItemQt{
     flex-grow:2;
@@ -317,19 +322,23 @@ form label {
 @media screen and (max-width:860px){
     .panierItem{
         flex-direction: column;
+        border: 15px solid var(--primary-color);
     }
     .panierItem div{
         margin:2px 5px 2px 5px;
-        line-height:60px;
-        text-align: center;
+      
+        width:auto;
     }
     .panierItemQt{
         flex-grow:1;
         text-align:center;
     }
     
+    .panierItemImg {
+        height:100px;
+    }
     .panierItemImg div{
-        margin: auto;
+        height:100px;
         width:100px;
     }
 }
