@@ -330,6 +330,13 @@ abstract class MySQLTable
         return $this->toObjectArray($data);
     }
 
+    public function selectDistinct($row)
+    {
+        $tableName = $this->tableName();
+        $sql = "SELECT DISTINCT $row FROM $tableName";
+        $data = $this->_DB->querySqlCmd($sql);
+        return $this->toObjectArray($data);
+    }
     public function insert($data)
     {
         if (isset($data)) {

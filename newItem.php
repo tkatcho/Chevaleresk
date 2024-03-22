@@ -2,8 +2,8 @@
 require 'php/sessionManager.php';
 require_once 'php/config.php';
 
+#region code
 //adminAccess();
-
 $messageHtml = '';
 
 if (isset($_SESSION['success'])) {
@@ -13,6 +13,7 @@ if (isset($_SESSION['success'])) {
     $messageHtml = '<h1 style="color: red;">' . htmlspecialchars($_SESSION['error']) . '</h1>';
     unset($_SESSION['error']);
 }
+
 
 $jsonEffets = json_encode($effetPotion);
 $jsonGenres = json_encode($genresArmes);
@@ -27,138 +28,171 @@ $stylesBundle = "";
 if (file_exists("views/stylesBundle.html")) {
     $stylesBundle = file_get_contents("views/stylesBundle.html");
 }
-
 $scriptsBundle = "";
 if (file_exists("views/scriptsBundle.html")) {
     $scriptsBundle = file_get_contents("views/scriptsBundle.html");
 }
+#endregion
 
 $content = <<<HTML
-            <form action="verifItemInsertion.php" method="POST">
-            <input type="radio" id="armure" name="typeItem" value="A" required>
-            <label for="armure">armure</label>
-            <input type="radio" id="arme" name="typeItem" value="W">
-            <label for="arme">arme</label>
-            <input type="radio" id="potion" name="typeItem" value="P">
-            <label for="potion">potion</label>
-            <input type="radio" id="élément" name="typeItem" value="E">
-            <label for="élément">élément</label><br>
 
-            <hr>
-            <input  type="text" 
-                          name="nom" 
-                          id="nom"
-                          placeholder="Nom" 
-                          required 
-                          RequireMessage = 'Veuillez entrer le nom'
-                          InvalidMessage = 'Nom invalide'
-                          CustomErrorMessage ="Ce nom est deja utilise"/>
-            <br>
+            
+           <form action="verifItemInsertion.php" method="POST" autocomplete="off">
+    <input type="radio" id="armure" name="typeItem" value="A" required>
+    <label for="armure">armure</label>
+    <input type="radio" id="arme" name="typeItem" value="W">
+    <label for="arme">arme</label>
+    <input type="radio" id="potion" name="typeItem" value="P">
+    <label for="potion">potion</label>
+    <input type="radio" id="élément" name="typeItem" value="E">
+    <label for="élément">élément</label><br>
 
-            <input type="number" name="quantiteStock" id="quantiteStock" placeholder="Quantite" min="1" max="999" required><br>
-            <input type="number" name="prix" id="prix" placeholder="prix" min="1" max="999" required><br>
+    <hr>
+    <input type="text" name="nom" id="nom" placeholder="Nom" required><br>
+    <input type="number" name="quantiteStock" id="quantiteStock" placeholder="Quantite" min="1" max="999" required><br>
+    <input type="number" name="prix" id="prix" placeholder="prix" min="1" max="999" required><br>
 
+    <div id="formContent"></div>
 
-            <div id="formContent"></div>
+    <legend>Avatar</legend>
+    <div class='imageUploader' newImage='true' controlId='photo' imageSrc='images/no_Avatar.jpg' waitingImage="images/Loading_icon.gif" name="photo"></div>
+    <input type="submit" name="submit">
+    $messageHtml
+</form>
+<script>
+    var sizesArmures = JSON.parse('$jsonSizes');
+    let efficacites = JSON.parse('$jsonEff');
+    let genresArmes = JSON.parse('$jsonGenres');
+    let effets = JSON.parse('$jsonEffets');
 
-            <legend>Avatar</legend>
-            <div class='imageUploader' 
-                newImage='true' 
-                controlId='photo' 
-                imageSrc='images/no_Avatar.jpg' 
-                waitingImage="images/Loading_icon.gif"
-                name="photo">
-            </div>
-            <input type="submit" name="submit">
-            $messageHtml
-            </form>
-            <script>
-                var sizesArmures = JSON.parse('$jsonSizes');
-                let efficacites = JSON.parse('$jsonEff');
-                let genresArmes = JSON.parse('$jsonGenres');
-                let effets = JSON.parse('$jsonEffets');
+    let type = JSON.parse('$jsonTypes');
+    let rarete = JSON.parse('$jsonRarete');
+    let dangerosite = JSON.parse('$jsonDangerosite');
+    
+    document.querySelectorAll('input[name="typeItem"]').forEach((elem) => {
+        elem.addEventListener("change", function(event) {
+            var value = event.target.value;
+            var formContent = document.getElementById('formContent');
+            var htmlContent = '';
 
-                let type = JSON.parse('$jsonTypes');
-                let rarete = JSON.parse('$jsonRarete');
-                let dangerosite = JSON.parse('$jsonDangerosite');
+            switch (value) {
+                case "A":
+                    htmlContent += '<input type="text" name="Matiere" placeholder="Matière" required><br>';
+                    htmlContent += '<input type="text" name="Taille" id="taille" placeholder="Taille" class="autocomplete" required><br>';
+                    break;
+                
+                case "W":
+                    htmlContent += '<input type="text" name="efficacite" id="efficacite" placeholder="Efficacite" class="autocomplete" required><br>';
+                    htmlContent += '<input type="text" name="genre" id="Genre" placeholder="Genre" class="autocomplete" required><br>';
+                    htmlContent += '<textarea id="description" name="description" rows="4" cols="50" placeholder="Description..."></textarea><br>';
+                    break;
 
+                case "P":
+                    htmlContent += '<input type="text" name="effet" id="effet" placeholder="Effet" class="autocomplete" required><br>';
+                    htmlContent += '<input type="checkbox" id="estAttaque" name="estAttaque" value="estAttaque><label for="estAttaque">Est Attaque</label><br>';
+                    htmlContent += '<input type="number" name="duree" placeholder="Duree"><br>';
+                    break;
 
-                document.querySelectorAll('input[name="typeItem"]').forEach((elem) => {
-                    elem.addEventListener("change", function(event) {
-                        var value = event.target.value;
-                        var formContent = document.getElementById('formContent');
-                        var htmlContent = '';
+                case "E":
+                    htmlContent += '<input type="text" name="type" id="type" placeholder="Type" class="autocomplete" required><br>';
+                    htmlContent += '<input type="text" name="rarete" id="rarete" placeholder="Rarete" class="autocomplete" required><br>';
+                    htmlContent += '<input type="text" name="dangerosite" id="dangerosite" placeholder="Dangerosite" class="autocomplete" required><br>';
+                    break;
 
-                        switch (value) {
-                            case "A":
-                                htmlContent += '<input type="text" name="Matiere" placeholder="Matière" required><br>';
+                default:
+                    break;
+            }
+            formContent.innerHTML = htmlContent;
+            applyAutocomplete();
+        });
+    });
+    function addCss(){
+     $('.ui-autocomplete').css({
+     'background-color': '#f5f5f5', 
+     'max-width': '300px', 
+     'border': '1px solid #ccc',
+     'box-shadow': '0 2px 4px rgba(0,0,0,0.1)'
+     });
 
-                                htmlContent+='<label for="taill  e">Taille:</label>';
-                                htmlContent += '<select id="taille" name="Taille" required>';
-                                sizesArmures.forEach(function(size) {
-                                    htmlContent += '<option value="' + size + '">' + size + '</option>';
-                                });
-                                htmlContent += '</select><br>';
-                                break;
-                            
-                            case "W":
-                                htmlContent+='<label for="efficacite">Efficacite:</label>';
-                                htmlContent+='<select id="efficacite" name="efficacite" required>';
-                                efficacites.forEach(function(efficaciteArme) {
-                                    htmlContent += '<option value="' + efficaciteArme + '">' + efficaciteArme + '</option>';
-                                });
-                                htmlContent += '</select><br> <label for="Genre">Genre:</label><select id = "Genre" name="genre>';
+    }
+    function applyAutocomplete() {
+    $('#taille').autocomplete({
+        source: function(request, response) {
+            addCss();
+            response(sizesArmures);
+        },
+        minLength: 0
+    }).focus(function() {
+        $(this).autocomplete("search");
+    });
 
-                                genresArmes.forEach(function(genre) {
-                                    htmlContent += '<option value="' + genre + '">' + genre + '</option>';
-                                });
-                                htmlContent += '</select><br>';
-                                htmlContent+='  <textarea id="description" name="description" rows="4" cols="50" placeholder="Description..."></textarea><br>';
-                                break;
-                            case "P":
-                                htmlContent+='<label for="effet">Effets:</label>';
-                                htmlContent+='<select id="effet" name="effet" required>';
-                                effets.forEach(function(effetPotion) {
-                                    htmlContent += '<option value="' + effetPotion + '">' + effetPotion + '</option>';
-                                });
-                                htmlContent += '</select><br>';
+    $('#efficacite').autocomplete({
+        source: function(request, response) {
+            addCss();
+            response(efficacites);
+        },
+        minLength: 0
+    }).focus(function() {
+        $(this).autocomplete("search");
+    });
 
-                                htmlContent+= '<input type="checkbox" id="estAttaque" name = "estAttaque" value="estAttaque>';
-                                htmlContent+= '<label for="estAttaque>Est Attaque</label><br>';
-                                htmlContent+='<input type="number" placeholder ="Duree">'
-                                break;
-                            case "E":
-                                htmlContent+='<label for="type">Type:</label>';
-                                htmlContent+='<select id="type" name="type" required>';
-                                type.forEach(function(type) {
-                                    htmlContent += '<option value="' + type + '">' + type + '</option>';
-                                });
-                                htmlContent += '</select><br>';
+    $('#Genre').autocomplete({
+        source: function(request, response) {
+            addCss();
+            response(genresArmes);
+        },
+        minLength: 0
+    }).focus(function() {
+        $(this).autocomplete("search");
+    });
 
-                                htmlContent+='<label for="rarete">Rarete:</label>';
-                                htmlContent+='<select id="rarete" name="rarete" required>';
-                                rarete.forEach(function(rarete) {
-                                    htmlContent += '<option value="' + rarete + '">' + rarete + '</option>';
-                                });
-                                htmlContent += '</select><br>';
-                                
-                                htmlContent+='<label for="dangerosite">Dangerosite:</label>';
-                                htmlContent+='<select id="dangerosite" name="dangerosite" required>';
-                                dangerosite.forEach(function(dangerosite) {
-                                    htmlContent += '<option value="' + dangerosite + '">' + dangerosite + '</option>';
-                                });
-                                htmlContent += '</select><br>';
-                                break;
-                            default:
-                                break;
-                        }
-                        formContent.innerHTML = htmlContent;
-                    });
-                });
-            </script>
-            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-            <script src="js/ImageControl.js"></script>
+    $('#effet').autocomplete({
+        source: function(request, response) {
+            addCss();
+            response(effets);
+        },
+        minLength: 0
+    }).focus(function() {
+        $(this).autocomplete("search");
+    });
+
+    $('#typeElement').autocomplete({
+        source: function(request, response) {
+            addCss();
+            response(type);
+        },
+        minLength: 0
+    }).focus(function() {
+        $(this).autocomplete("search");
+    });
+
+    $('#rarete').autocomplete({
+        source: function(request, response) {
+            addCss();
+            response(rarete);
+        },
+        minLength: 0
+    }).focus(function() {
+        $(this).autocomplete("search");
+    });
+
+    $('#dangerosite').autocomplete({
+        source: function(request, response) {
+            addCss();
+            response(dangerosite);
+        },
+        minLength: 0
+    }).focus(function() {
+        $(this).autocomplete("search");
+    });
+}
+
+</script>
+<script src="js/ImageControl.js"></script>
+
 
 HTML;
+
+
 
 include 'views/master.php';

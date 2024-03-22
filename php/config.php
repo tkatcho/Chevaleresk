@@ -1,9 +1,21 @@
 <?php
+require_once 'DAL/ChevalereskDB.php';
 
-$sizesArmures = ["P", "M", "L"];
-$genresArmes = ["Epee", "Arc", "Bouclier"];
-$efficaciteArme = ["Mauvais", "Bon", "Excellent", "Legendaire"];
-$effetPotion = ["Poison", "Sante", "Vitesse", "Defense", "Attaque"];
-$typeElem = ["Eau", "Feu", "Vent", "Terre"];
-$rareteElem = ["Commun", "Rare", "Epic"];
-$dangerositeElem = ["Aucun", "Faible", "Moyen", "Grand"];
+$sizesArmures = toDataArray(ArmuresTable()->selectDistinct("taille"), "Taille");
+$efficaciteArme = toDataArray(ArmesTable()->selectDistinct("efficacite"), "Efficacite");
+$effetPotion = toDataArray(PotionsTable()->selectDistinct("effet"), "Effet");
+$typeElem = toDataArray(ElementsTable()->selectDistinct("type"), "Type");
+$rareteElem = toDataArray(ElementsTable()->selectDistinct("rarete"), "Rarete");
+$dangerositeElem = toDataArray(ElementsTable()->selectDistinct("dangerosite"), "Dangerosite");
+$genresArmes = toDataArray(ArmesTable()->selectDistinct("genre"), "Genre");
+
+
+function toDataArray($array, $row)
+{
+    $arr = [];
+    foreach ($array as $armure)
+        foreach ($armure as $key => $value)
+            if ($key === $row)
+                $arr[] = $value;
+    return $arr;
+}
