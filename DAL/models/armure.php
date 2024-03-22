@@ -9,8 +9,7 @@ class Armure extends Record
     public $Taille;
     public function __construct($recordData = null)
     {
-        //print_r($recordData);
-        $this->idItem = $recordData['idItem'] ?? 0;
+        $this->idItem = 0;
         $this->Matiere = "";
         $this->Taille = "";
         parent::__construct($recordData);
@@ -22,5 +21,9 @@ class Armure extends Record
     public function setTaille($taille)
     {
         $this->Taille = $taille;
+    }
+    public function setIdItem($idItem)
+    {
+        $this->idItem = $idItem;
     }
 }

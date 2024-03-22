@@ -26,11 +26,11 @@ $content = <<<HTML
             <form action="verifItemInsertion.php" method="POST">
             <input type="radio" id="armure" name="typeItem" value="A" required>
             <label for="armure">armure</label>
-            <input type="radio" id="arme" name="typeItem" value="w">
+            <input type="radio" id="arme" name="typeItem" value="W">
             <label for="arme">arme</label>
-            <input type="radio" id="potion" name="typeItem" value="p">
+            <input type="radio" id="potion" name="typeItem" value="P">
             <label for="potion">potion</label>
-            <input type="radio" id="élément" name="typeItem" value="e">
+            <input type="radio" id="élément" name="typeItem" value="E">
             <label for="élément">élément</label><br>
 
             <hr>
@@ -82,7 +82,7 @@ $content = <<<HTML
                             case "A":
                                 htmlContent += '<input type="text" name="Matiere" placeholder="Matière" required><br>';
 
-                                htmlContent+='<label for="taille">Taille:</label>';
+                                htmlContent+='<label for="taill  e">Taille:</label>';
                                 htmlContent += '<select id="taille" name="Taille" required>';
                                 sizesArmures.forEach(function(size) {
                                     htmlContent += '<option value="' + size + '">' + size + '</option>';
@@ -90,7 +90,7 @@ $content = <<<HTML
                                 htmlContent += '</select><br>';
                                 break;
                             
-                            case "w":
+                            case "W":
                                 htmlContent+='<label for="efficacite">Efficacite:</label>';
                                 htmlContent+='<select id="efficacite" name="efficacite" required>';
                                 efficacites.forEach(function(efficaciteArme) {
@@ -104,7 +104,7 @@ $content = <<<HTML
                                 htmlContent += '</select><br>';
                                 htmlContent+='  <textarea id="description" name="description" rows="4" cols="50" placeholder="Description..."></textarea><br>';
                                 break;
-                            case "p":
+                            case "P":
                                 htmlContent+='<label for="effet">Effets:</label>';
                                 htmlContent+='<select id="effet" name="effet" required>';
                                 effets.forEach(function(effetPotion) {
@@ -116,7 +116,7 @@ $content = <<<HTML
                                 htmlContent+= '<label for="estAttaque>Est Attaque</label><br>';
                                 htmlContent+='<input type="number" placeholder ="Duree">'
                                 break;
-                            case "e":
+                            case "E":
                                 htmlContent+='<label for="type">Type:</label>';
                                 htmlContent+='<select id="type" name="type" required>';
                                 type.forEach(function(type) {

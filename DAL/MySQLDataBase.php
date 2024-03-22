@@ -330,28 +330,10 @@ abstract class MySQLTable
         return $this->toObjectArray($data);
     }
 
-    public function test()
-    {
-        $itemName = 'Plate Armor';
-        $itemId = 60;
-
-        if ($itemId !== null) {
-            $data = [
-                'idItem' => $itemId, // Now you have the id
-                'matiere' => 'Steel',
-                'taille' => 'L'
-            ];
-            $this->insert($data);
-        } else {
-            // Handle the case where the item does not exist
-        }
-    }
-
-
     public function insert($data)
     {
-        print_r($data);
         if (isset($data)) {
+
             $this->bind($data);
             $tableName = $this->tableName();
             $sql = 'INSERT INTO ' . $tableName . ' (';
@@ -362,10 +344,13 @@ abstract class MySQLTable
                     }
                 }
             }
+
+
             $sql = rtrim($sql, ', ') . ') values ( ';
             foreach ($this->recordPrototype as $key => $value) {
                 if (!$this->excludedMember($key)) {
                     if ($key !== 'Id') {
+                        //echo $value . "   ";
                         if ($key === 'Password') {
                             $value = password_hash($value, PASSWORD_DEFAULT);
                         }

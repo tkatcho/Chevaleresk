@@ -28,4 +28,8 @@ class Element extends Record
     {
         $this->Dangerosite = $dangerosite;
     }
+    public function setIdItem($idItem)
+    {
+        $this->idItem = $idItem;
+    }
 }

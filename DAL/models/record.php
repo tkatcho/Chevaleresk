@@ -15,8 +15,9 @@ abstract class Record
     {
         foreach ($formData as $fieldName => $fieldValue) {
             $method = 'set' . ucfirst($fieldName);
-            if (method_exists($this, $method))
+            if (method_exists($this, $method)) {
                 $this->$method(sanitizeString($fieldValue));
+            }
         }
     }
     public function setId($id)
