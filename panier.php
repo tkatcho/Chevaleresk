@@ -18,7 +18,7 @@ foreach ($panier as $itemInCart) {
             <div>
                 <p>$item->Nom</p>
             </div>
-            <div class="itemPrix">
+            <div class="panierItemPrix">
                 <p>$item->Prix <span>$ <span></p>
             </div>
             <div class="panierItemQt">
