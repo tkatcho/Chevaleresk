@@ -1,8 +1,8 @@
 <?php
-    
-    $viewTitle = "Connexion";
-   
-    $content= <<<HTML
+
+$viewTitle = "Connexion";
+
+$content = <<<HTML
     
     <form method='post' action='login.php'>
         <div class="loginForm">
@@ -34,6 +34,6 @@
     </form>
     HTML;
 
-    include "views/master.php";
+include "views/master.php";
 
 

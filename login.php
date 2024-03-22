@@ -3,8 +3,7 @@
 include 'DAL/ChevalereskDB.php';
 include 'php/sessionManager.php';
 
-if (isset($_POST['submit']))
-{
+if (isset ($_POST['submit'])) {
     $validUser = true;
 
     $username = $_POST['alias'];
@@ -15,8 +14,7 @@ if (isset($_POST['submit']))
     if (!password_verify($password, $user->MotDePasse))
         $validUser = false;
 
-    if ($validUser)
-    {
+    if ($validUser) {
         $_SESSION['validUser'] = true;
         $_SESSION['estAdmin'] = $user->estAdmin;
         $_SESSION['id'] = $user->Id;
