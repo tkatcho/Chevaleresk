@@ -214,19 +214,23 @@ form label {
     margin-top:20px;
     width:auto;
     display:flex;
-    border: 20px solid var(--primary-color);
+    border: 10px solid var(--primary-color);
+    align-items:center;
+    justify-content: center;
 }
 .panierItem div{
-    margin:10px 25px 10px 25px;
-    line-height:120px;
-   
+   margin:10px 25px 10px 25px;
+    /*line-height:120px;*/
+    width:100px;
+    
 }
+
 .panierItemImg div{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     
 }
 .panierItem p, span, button{
@@ -293,7 +297,8 @@ form label {
         max-width: 250px;
     }
 }
-@media screen and (max-width:1100px){
+
+/*@media screen and (max-width:1100px){
     .panierItem{
       
         border: 10px solid var(--primary-color);
@@ -303,18 +308,14 @@ form label {
         line-height:80px;
        
     }
-    .panierItemQt{
-        flex-grow:1;
-       
-    }
+    
     .panierItemSupprimer{
         flex-grow:2;
         text-align: right;
     }
-}
+}*/
 @media screen and (max-width:860px){
     .panierItem{
-      
         flex-direction: column;
     }
     .panierItem div{
@@ -324,14 +325,12 @@ form label {
     }
     .panierItemQt{
         flex-grow:1;
-       
+        text-align:center;
     }
-    .panierItemSupprimer{
-        flex-grow:2;
-        text-align: center;
-    }
+    
     .panierItemImg div{
         margin: auto;
+        width:100px;
     }
 }
 @media screen and (min-width:1000px) {
@@ -341,6 +340,12 @@ form label {
     }
     .containerItem {
         max-width: 200px;
+    }
+}
+@media screen and (min-width:1090px) {
+    .panierItemQt{
+        flex-grow:8;
+       
     }
 }
 @media screen and (min-width:1300px) {
