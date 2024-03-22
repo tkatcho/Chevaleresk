@@ -11,7 +11,7 @@ final class ArmesTable extends MySQLTable
     }
     public function insert($arme)
     {
-        parent::insert($arme);
+        return parent::insert($arme);
     }
     public function update($arme)
     {

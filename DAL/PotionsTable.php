@@ -11,7 +11,7 @@ final class PotionsTable extends MySQLTable
     }
     public function insert($potion)
     {
-        parent::insert($potion);
+        return parent::insert($potion);
     }
     public function update($potion)
     {

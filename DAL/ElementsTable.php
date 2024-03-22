@@ -11,7 +11,7 @@ final class ElementsTable extends MySQLTable
     }
     public function insert($element)
     {
-        parent::insert($element);
+        return parent::insert($element);
     }
     public function update($element)
     {

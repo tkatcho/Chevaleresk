@@ -11,7 +11,7 @@ final class ArmuresTable extends MySQLTable
     }
     public function insert($armure)
     {
-        parent::insert($armure);
+        return parent::insert($armure);
     }
     public function update($armure)
     {
