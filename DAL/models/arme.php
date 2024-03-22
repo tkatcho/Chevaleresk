@@ -28,4 +28,8 @@ class Arme extends Record
     {
         $this->Description = $description;
     }
+    public function setIdItem($idItem)
+    {
+        $this->idItem = $idItem;
+    }
 }

@@ -1,11 +1,18 @@
 <?php
-require 'DAL/ChevalereskDB.php';
 require 'php/sessionManager.php';
 require_once 'php/config.php';
+
 //adminAccess();
 
-//file_put_contents() used to change variables in another file
+$messageHtml = '';
 
+if (isset($_SESSION['success'])) {
+    $messageHtml = '<h1 style="color: green;">' . htmlspecialchars($_SESSION['success']) . '</h1>';
+    unset($_SESSION['success']);
+} elseif (isset($_SESSION['error'])) {
+    $messageHtml = '<h1 style="color: red;">' . htmlspecialchars($_SESSION['error']) . '</h1>';
+    unset($_SESSION['error']);
+}
 
 $jsonEffets = json_encode($effetPotion);
 $jsonGenres = json_encode($genresArmes);
@@ -15,8 +22,6 @@ $jsonTypes = json_encode($typeElem);
 $jsonRarete = json_encode($rareteElem);
 $jsonDangerosite = json_encode($dangerositeElem);
 
-$pageTitle = "Ajout d'item";
-$viewTitle = "Ajout d'item";
 
 $stylesBundle = "";
 if (file_exists("views/stylesBundle.html")) {
@@ -29,25 +34,43 @@ if (file_exists("views/scriptsBundle.html")) {
 }
 
 $content = <<<HTML
-            <form method="POST">
-            <input type="radio" id="armure" name="typeItem" value="armure" required>
+            <form action="verifItemInsertion.php" method="POST">
+            <input type="radio" id="armure" name="typeItem" value="A" required>
             <label for="armure">armure</label>
-            <input type="radio" id="arme" name="typeItem" value="arme">
+            <input type="radio" id="arme" name="typeItem" value="W">
             <label for="arme">arme</label>
-            <input type="radio" id="potion" name="typeItem" value="potion">
+            <input type="radio" id="potion" name="typeItem" value="P">
             <label for="potion">potion</label>
-            <input type="radio" id="élément" name="typeItem" value="élément">
+            <input type="radio" id="élément" name="typeItem" value="E">
             <label for="élément">élément</label><br>
 
+            <hr>
+            <input  type="text" 
+                          name="nom" 
+                          id="nom"
+                          placeholder="Nom" 
+                          required 
+                          RequireMessage = 'Veuillez entrer le nom'
+                          InvalidMessage = 'Nom invalide'
+                          CustomErrorMessage ="Ce nom est deja utilise"/>
             <br>
-            <input type="text" placeholder="Nom" required><br>
-            <input type="number" placeholder="Quantite" min="1" max="999" required><br>
-            <input type="number" placeholder="prix" min="1" max="999" required><br>
+
+            <input type="number" name="quantiteStock" id="quantiteStock" placeholder="Quantite" min="1" max="999" required><br>
+            <input type="number" name="prix" id="prix" placeholder="prix" min="1" max="999" required><br>
 
 
-            <div id="formContent">
+            <div id="formContent"></div>
+
+            <legend>Avatar</legend>
+            <div class='imageUploader' 
+                newImage='true' 
+                controlId='photo' 
+                imageSrc='images/no_Avatar.jpg' 
+                waitingImage="images/Loading_icon.gif"
+                name="photo">
             </div>
-            <input type="submit">
+            <input type="submit" name="submit">
+            $messageHtml
             </form>
             <script>
                 var sizesArmures = JSON.parse('$jsonSizes');
@@ -67,34 +90,34 @@ $content = <<<HTML
                         var htmlContent = '';
 
                         switch (value) {
-                            case "armure":
-                                htmlContent += '<input type="text" placeholder="Matière" required><br>';
+                            case "A":
+                                htmlContent += '<input type="text" name="Matiere" placeholder="Matière" required><br>';
 
-                                htmlContent+='<label for="taille">Taille:</label>';
-                                htmlContent += '<select id="taille" name="taille" required>';
+                                htmlContent+='<label for="taill  e">Taille:</label>';
+                                htmlContent += '<select id="taille" name="Taille" required>';
                                 sizesArmures.forEach(function(size) {
                                     htmlContent += '<option value="' + size + '">' + size + '</option>';
                                 });
                                 htmlContent += '</select><br>';
                                 break;
                             
-                            case "arme":
-                                htmlContent+='<label for="Efficacite">Efficacite:</label>';
-                                htmlContent+='<select id="Efficacite" name="Efficacite" required>';
+                            case "W":
+                                htmlContent+='<label for="efficacite">Efficacite:</label>';
+                                htmlContent+='<select id="efficacite" name="efficacite" required>';
                                 efficacites.forEach(function(efficaciteArme) {
                                     htmlContent += '<option value="' + efficaciteArme + '">' + efficaciteArme + '</option>';
                                 });
-                                htmlContent += '</select><br> <label for="Genre">Genre:</label><select id = "Genre" name="Genre>';
+                                htmlContent += '</select><br> <label for="Genre">Genre:</label><select id = "Genre" name="genre>';
 
                                 genresArmes.forEach(function(genre) {
                                     htmlContent += '<option value="' + genre + '">' + genre + '</option>';
                                 });
                                 htmlContent += '</select><br>';
-                                htmlContent+='  <textarea id="weaponDescription" name="weaponDescription" rows="4" cols="50" placeholder="Description..."></textarea><br>';
+                                htmlContent+='  <textarea id="description" name="description" rows="4" cols="50" placeholder="Description..."></textarea><br>';
                                 break;
-                            case "potion":
-                                htmlContent+='<label for="Effets">Effets:</label>';
-                                htmlContent+='<select id="Effets" name="Effets" required>';
+                            case "P":
+                                htmlContent+='<label for="effet">Effets:</label>';
+                                htmlContent+='<select id="effet" name="effet" required>';
                                 effets.forEach(function(effetPotion) {
                                     htmlContent += '<option value="' + effetPotion + '">' + effetPotion + '</option>';
                                 });
@@ -104,23 +127,23 @@ $content = <<<HTML
                                 htmlContent+= '<label for="estAttaque>Est Attaque</label><br>';
                                 htmlContent+='<input type="number" placeholder ="Duree">'
                                 break;
-                            case "élément":
-                                htmlContent+='<label for="Type">Type:</label>';
-                                htmlContent+='<select id="Type" name="Type" required>';
+                            case "E":
+                                htmlContent+='<label for="type">Type:</label>';
+                                htmlContent+='<select id="type" name="type" required>';
                                 type.forEach(function(type) {
                                     htmlContent += '<option value="' + type + '">' + type + '</option>';
                                 });
                                 htmlContent += '</select><br>';
 
-                                htmlContent+='<label for="Rarete">Rarete:</label>';
-                                htmlContent+='<select id="Rarete" name="Rarete" required>';
+                                htmlContent+='<label for="rarete">Rarete:</label>';
+                                htmlContent+='<select id="rarete" name="rarete" required>';
                                 rarete.forEach(function(rarete) {
                                     htmlContent += '<option value="' + rarete + '">' + rarete + '</option>';
                                 });
                                 htmlContent += '</select><br>';
                                 
-                                htmlContent+='<label for="Dangerosite">Dangerosite:</label>';
-                                htmlContent+='<select id="Dangerosite" name="Dangerosite" required>';
+                                htmlContent+='<label for="dangerosite">Dangerosite:</label>';
+                                htmlContent+='<select id="dangerosite" name="dangerosite" required>';
                                 dangerosite.forEach(function(dangerosite) {
                                     htmlContent += '<option value="' + dangerosite + '">' + dangerosite + '</option>';
                                 });
@@ -133,12 +156,9 @@ $content = <<<HTML
                     });
                 });
             </script>
+            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+            <script src="js/ImageControl.js"></script>
+
 HTML;
 
-$jsonSizes = json_encode($sizesArmures); // Convert sizesArmures$sizesArmures array to JSON
-$jsonEff = json_encode($efficaciteArme);
-$jsonGenres = json_encode($genresArmes);
-$content = str_replace('$jsonSizes', $jsonSizes, $content); // Inject JSON into the script
-
 include 'views/master.php';
-?>

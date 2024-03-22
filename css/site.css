@@ -39,6 +39,7 @@ button{
     font-size: 15px;
 }   
 .buttonOnSide{
+    margin-right: 5px;
     display: block;
     float:right;
     margin-top: -20px;
@@ -179,7 +180,6 @@ form label {
 .containerItem button{
     font-size: 20px;
     border-radius: 10px;
-    
 }
 
 /*Page Panier*/
@@ -197,28 +197,36 @@ form label {
     margin-top:20px;
     width:auto;
     display:flex;
-    border: 20px solid var(--primary-color);
+    border: 10px solid var(--primary-color);
+    align-items:center;
+    justify-content: center;
 }
 .panierItem div{
-    margin:10px 25px 10px 25px;
-    line-height:120px;
-   
+   margin:10px 25px 10px 25px;
+    
+    width:100px;
+    
 }
+
 .panierItemImg div{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     
 }
 .panierItem p, span, button{
     margin-top:15px;
     font-size:18px;
-    
 }
 .panierItem button{
     line-height:0px;
+}
+.panierItemPrix{
+    color:var(--secondary-color);
+    text-align: right;
+
 }
 .panierItemQt{
     flex-grow:2;
@@ -311,6 +319,63 @@ form label {
     margin: 20px auto 0;
     width: 250px;
 }
+
+/*Options du jeu pour joueur et admin*/
+.optionsJeu{
+    display:flex;
+    flex-wrap:nowrap;
+}
+.optionsJeu div{
+    line-height:75px;
+}
+.optionsBackgroundGrisProfil{
+    background-color: lightgrey;
+    border-radius: 10px;
+    width:450px;
+    text-align: center;
+    padding:20px;
+
+}
+.optionsBackgroundGrisProfil strong{
+    font-size: 40px;
+    font-family: var(--secondary-font);
+}
+.optionsBackgroundGrisProfil p, span{
+    margin-top:20px;
+    font-size: 15px;
+}
+.optionsBackgroundBleuProfilImg{
+    background-color: var(--primary-color);
+    border-radius: 30px;
+}
+.optionsBackgroundBleuProfilImg div {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    height: 300px; 
+}
+
+.optionsBtn{
+    display:flex;
+    flex-direction:column;
+    padding-left:20px;
+    border-left:1px solid gray;
+    margin-left:60px;
+}
+.optionsBtn button{
+    line-height:75px;
+    text-align: start;
+}
+.optionsBtn a{
+    font-family: var(--secondary-font);
+  
+}
+.optionsBtnIcon i{
+    font-size: 40px;
+    float:right;
+    padding-top:20px;
+}
 @media screen and (max-width:550px) {
     .signupForm {
         width: 300px;
@@ -323,6 +388,13 @@ form label {
 .errorMessage {
     width: 300px;
     margin: 20px auto 0;
+}
+.prix {
+    color: var(--secondary-color);
+}
+.buyButton {
+    float: right;
+    margin-top: -80px;
 }
 
 /*Pour que le site soit réactif*/
@@ -371,7 +443,7 @@ form label {
         max-width: 250px;
     }
 }
-@media screen and (max-width:1100px){
+/*@media screen and (max-width:1100px){
     .panierItem{
       
         border: 10px solid var(--primary-color);
@@ -381,35 +453,33 @@ form label {
         line-height:80px;
        
     }
-    .panierItemQt{
-        flex-grow:1;
-       
-    }
+    
     .panierItemSupprimer{
         flex-grow:2;
         text-align: right;
     }
-}
+}*/
 @media screen and (max-width:860px){
     .panierItem{
-      
         flex-direction: column;
+        border: 15px solid var(--primary-color);
     }
     .panierItem div{
         margin:2px 5px 2px 5px;
-        line-height:60px;
-        text-align: center;
+      
+        width:auto;
     }
     .panierItemQt{
         flex-grow:1;
-       
+        text-align:center;
     }
-    .panierItemSupprimer{
-        flex-grow:2;
-        text-align: center;
+    
+    .panierItemImg {
+        height:100px;
     }
     .panierItemImg div{
-        margin: auto;
+        height:100px;
+        width:100px;
     }
 }
 
@@ -420,6 +490,12 @@ form label {
     }
     .containerItem {
         max-width: 200px;
+    }
+}
+@media screen and (min-width:1090px) {
+    .panierItemQt{
+        flex-grow:8;
+       
     }
 }
 @media screen and (min-width:1300px) {
