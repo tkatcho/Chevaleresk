@@ -199,7 +199,7 @@ form label {
 }
 .panierItem div{
    margin:10px 25px 10px 25px;
-    /*line-height:120px;*/
+    
     width:100px;
     
 }
@@ -439,7 +439,7 @@ form label {
         max-width: 250px;
     }
 }
-@media screen and (max-width:1100px){
+/*@media screen and (max-width:1100px){
     .panierItem{
       
         border: 10px solid var(--primary-color);
