@@ -6,40 +6,53 @@ userAccess();
 
 $items = ItemsTable()->selectAll();
 $potions = PotionsTable()->selectAll();
-$itemsDisplay = "";
-foreach ($potions as $potion) {
-    $recette = RecettesTable()->selectWhere("idPotion = $potion->Id");
 
+$itemsDisplay = "";
+foreach ($items as $item) {
+//$recette = RecettesTable()->selectWhere("idPotion = $potion->Id");
+   // $itemPotion =ItemsTable()->selectWhere("id = $potion->IdItem");
+    if($item->Type == 'P'){
     $itemsDisplay .= <<<HTML
-    <div class="concocterPotionsPage ">
-        <div class="concocterPotions">
+        
+        <div class="concocterPotionsItem">
             <div class="concocterPotionsImg">
-                <div style="background-image:url($potion->Photo)"></div>
+                <div style="background-image:url($item->Photo)"></div>
             </div>
             <div>
-                <p>$potion->Nom</p>
+                <p>$item->Nom</p>
             </div>
-        </div>
-
-    </div>
+         </div>
     HTML;
+    
+    }
+    
 }
 
-$viewTitle="Panier d'achat";
+
+$viewTitle="Concocter des potions";
 $content = <<<HTML
-    $itemsDisplay
+    <div class="concocterPotionsPage">
+        <div class="concocterPotionsToutesPotions">
+        $itemsDisplay
+        </div>
+        <div class="concocterPotionsRecettes">
+            <p>Ingrédients</p>
+            <hr>
+            <p>Pour la potion, il faut:</p>
+
+            <!--La liste des ingrédients-->
+            <ul>
+                <li>Ingrédient 1</li>
+                <li>Ingrédient 2</li>
+            </ul>
+
+            <button>
+              <a class="optionsBtnIcon" href ="index.php">    <!--Changer le href-->
+              Faire la potion <i class="fa fa-flask"></i>
+              </a>
+          </button>
+        </div>
+    </div>
 HTML;
-
-$solde = JoueursTable()->selectById($_SESSION['id'])[0]->Solde;
-
-$content .= <<<HTML
-    
-    <h2>Total: <span class="prix">$total $</span></h2>
-    <h2>Solde: <span class="prix">$solde $</span></h2>
-    <button class="buyButton">
-        <a href="buyCart.php?idJoueur=$_SESSION[id]">Acheter <i class="fa-solid fa-cash-register"></i></a>
-    </button>
-HTML;
-
 
 include 'views/master.php';
