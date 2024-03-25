@@ -44,6 +44,13 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
 
     if ($viewTitle == "Catalogue de produit") {
         $loggedUserMenu = <<<HTML
+        <div class="btnRetour">
+                <button>
+                    <a href="optionsJeu.php">     <!--Retourne au catalogue de produit-->
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                </button>
+            </div>
             $buttonOnSide
         HTML;
     } else if ($viewTitle == "Panier d'achat" ) {
