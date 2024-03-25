@@ -18,7 +18,7 @@ if (isset($_POST['submit']))
     if ($validUser)
     {
         $_SESSION['validUser'] = true;
-        $_SESSION['estAdmin'] = $user->estAdmin;
+        $_SESSION['isAdmin'] = $user->estAdmin;
         $_SESSION['id'] = $user->Id;
         $_SESSION['alias'] = $user->Alias;
         $_SESSION['nom'] = $user->Nom;
