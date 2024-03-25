@@ -17,7 +17,6 @@ if (isset($_POST['filtre'])) {
 }
 $viewTitle = "Catalogue de produit";
 $viewMenu = "";
-//$sortType = isset($_SESSION["itemSortType"]) ? $_SESSION["itemSortType"] : "prix";
 
 $checkIcon = '<i class="menuIcon fa fa-check mx-2"></i>';
 $uncheckIcon = '<i class="menuIcon fa fa-fw mx-2"></i>';
@@ -33,7 +32,7 @@ if ($_POST && isset($_POST['filtre'])) {
 
 
 $viewMenu = '
-<form id="formFiltre" action="index.php" method="POST"> 
+<form id="formFiltre" action="index.php" method="POST" class="optionsRecherche"> 
     <p> <input type="checkbox" name="filtre[]" value="all" ' . (isset($checkedValues['all']) ? 'checked' : '') . '> <i class="fas fa-list"></i> Tous les éléments </p>
     <p> <input type="checkbox" name="filtre[]" value="armure" ' . (isset($checkedValues['armure']) ? 'checked' : '') . '> <i class="fas fa-vest"></i> Armures </p>
     <p> <input type="checkbox" name="filtre[]" value="arme" ' . (isset($checkedValues['arme']) ? 'checked' : '') . '> <i class="fas fa-gun"></i> Armes </p>
@@ -52,20 +51,19 @@ $viewMenu = '
 
 $content = <<<HTML
     <div class="headerMenusContainer">
-            <span>&nbsp</span> <!--filler-->
+    <span>&nbsp</span> <!--filler-->
             <div class="dropdown ms-auto dropdownLayout">
                 <div class="searchContainer">
-                    <form>
-                    <input type="text" class="autocomplete" name="nom" id="nom">
-                    </form>
+                    <p class="textFilter"> Recherche par Filtre</p>
+                    <input type="search" class="autocomplete" name="nom" id="nom">
+                    <div data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <div class="dropdown-menu noselect">
+                        $viewMenu
+                    </div>
                 </div>
-                <span class="textFilter"> Recherche par Filtre</span>
-                <div data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-bars"></i>
-                </div>
-                <div class="dropdown-menu noselect">
-                    $viewMenu
-                </div>
+                
             </div>
             <script>
             let noms = JSON.parse('$jsonNom');

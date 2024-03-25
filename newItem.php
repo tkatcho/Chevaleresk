@@ -56,7 +56,7 @@ $content = <<<HTML
     <hr>
     <input type="text" name="nom" id="nom" placeholder="Nom" required><br>
     <input type="number" name="quantiteStock" id="quantiteStock" placeholder="Quantite" min="1" max="999" required><br>
-    <input type="number" name="prix" id="prix" placeholder="prix" min="1" max="999" required><br>
+    <input type="number" name="prix" id="prix" placeholder="prix" min="1" max="200" required><br>
 
     <div id="formContent"></div>
 
