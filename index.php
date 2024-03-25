@@ -55,7 +55,7 @@ $content = <<<HTML
             <div class="dropdown ms-auto dropdownLayout">
                 <div class="searchContainer">
                     <p class="textFilter"> Recherche par Filtre</p>
-                    <form>
+                    <form method="post">
                     <input type="text" class="autocomplete" name="nom" id="nom">
                     </form>                    
                     <div data-bs-toggle="dropdown" aria-expanded="false">
@@ -90,9 +90,10 @@ $itemsDisplay = <<<HTML
 HTML;
 
 
-$recherche = trim($_GET['nom'] ?? '');
+$recherche = trim($_POST['nom'] ?? '');
 $index = 1;
 $items = [];
+echo $recherche;
 
 if ($recherche !== '') {
     $items = ItemsTable()->selectWhere("nom like '%$recherche%'");
