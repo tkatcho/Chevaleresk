@@ -29,6 +29,7 @@ if ($_POST && isset($_POST['filtre'])) {
         $checkedValues[$value] = 'checked';
     }
 }
+$recherche = trim($_POST['nom'] ?? '');
 
 
 $viewMenu = '
@@ -38,6 +39,7 @@ $viewMenu = '
     <p> <input type="checkbox" name="filtre[]" value="arme" ' . (isset($checkedValues['arme']) ? 'checked' : '') . '> <i class="fas fa-gun"></i> Armes </p>
     <p> <input type="checkbox" name="filtre[]" value="potion" ' . (isset($checkedValues['potion']) ? 'checked' : '') . '> <i class="fas fa-flask"></i> Potions </p>
     <p> <input type="checkbox" name="filtre[]" value="element" ' . (isset($checkedValues['element']) ? 'checked' : '') . '> <i class="fas fa-magic"></i> Éléments </p>
+    <input type="hidden" name="nom" value="' . htmlspecialchars($recherche) . '"> <!-- Hidden field for search term -->
 </form>
 
 <script> 
@@ -90,10 +92,8 @@ $itemsDisplay = <<<HTML
 HTML;
 
 
-$recherche = trim($_POST['nom'] ?? '');
 $index = 1;
 $items = [];
-echo $recherche;
 
 if ($recherche !== '') {
     $items = ItemsTable()->selectWhere("nom like '%$recherche%'");
