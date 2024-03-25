@@ -25,7 +25,7 @@ $index = 1;
 if ($inventaire != null) {
     foreach ($inventaire as $inventaireRow) {
         $item = ItemsTable()->selectById($inventaireRow->idItem)[0];
-        if ($item->Type == 'p') { // Potions
+        if ($item->Type == 'P') { // Potions
             $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
             $type = "Défence";
             if ($potion->estAttaque)
@@ -59,7 +59,7 @@ if ($inventaire != null) {
             HTML;
         }
         
-        if ($item->Type == 'w') { // Armes
+        if ($item->Type == 'W') { // Armes
             $arme = ArmesTable()->selectWhere("idItem = $item->Id")[0];
             $itemsDisplay .= <<<HTML
                 <div class="containerItem">
@@ -90,7 +90,7 @@ if ($inventaire != null) {
             HTML;
         }
 
-        if ($item->Type == 'a') { // Armures
+        if ($item->Type == 'A') { // Armures
             $armure = ArmuresTable()->selectWhere("idItem = $item->Id")[0];
             $itemsDisplay .= <<<HTML
                 <div class="containerItem">
@@ -119,7 +119,7 @@ if ($inventaire != null) {
             HTML;
         }
 
-        if ($item->Type == 'e') { // Éléments
+        if ($item->Type == 'E') { // Éléments
             $element = ElementsTable()->selectWhere("idItem = $item->Id")[0];
             $itemsDisplay .= <<<HTML
                 <div class="containerItem">
