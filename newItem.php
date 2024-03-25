@@ -28,6 +28,8 @@ $jsonDangerosite = json_encode($dangerositeElem);
 $jsonMatiere = json_encode($matiere);
 $jsonNom = json_encode($noms);
 
+print_r($jsonEffets);
+
 $stylesBundle = "";
 if (file_exists("views/stylesBundle.html")) {
     $stylesBundle = file_get_contents("views/stylesBundle.html");
