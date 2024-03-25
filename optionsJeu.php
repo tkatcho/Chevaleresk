@@ -4,7 +4,9 @@ include 'DAL/ChevalereskDB.php';
 
 
 $viewTitle="Bienvenue à Chevaleresk";
-/*$content= <<<HTML
+
+
+$content= <<<HTML
   
   <!---------------------------Options pour joueur-------------------------------->
   <!--Le profil à droite-->
