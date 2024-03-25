@@ -513,3 +513,32 @@ span {
     margin-left: 70px;
   }
 }
+
+
+/*Concoter les potions*/
+.concocterPotionsPage {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.concocterPotions{
+  margin-top: 20px;
+  width: auto;
+  display: flex;
+  border: 2px solid var(--primary-color);
+  align-items: center;
+  justify-content: center;
+  line-height: 75px;
+}
+.concocterPotions div {
+  margin: 10px 25px 10px 25px;
+  width: 60px;
+}
+
+.concocterPotionsImg div {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+}
