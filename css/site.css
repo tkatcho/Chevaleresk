@@ -457,14 +457,13 @@ span {
         text-align: right;
     }
 }*/
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 1200px) {
   .panierItem {
     flex-direction: column;
     border: 15px solid var(--primary-color);
   }
   .panierItem div {
     margin: 2px 5px 2px 5px;
-
     width: auto;
   }
   .panierItemQt {
