@@ -14,7 +14,7 @@ if($isConnected){
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     if($isAdmin){
         $content = <<<HTML
-    <!---------------------------Options pour joueur-------------------------------->
+    <!---------------------------Options pour admin-------------------------------->
     <!--Le profil à droite-->
     <div class="optionsJeu">
       <div class="optionsBackgroundGrisProfil">
