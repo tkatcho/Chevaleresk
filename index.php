@@ -2,19 +2,18 @@
 
 require_once 'DAL/ChevalereskDB.php';
 require 'php/sessionManager.php';
-require_once 'php/config.php';
+require 'php/config.php';
 
 
-$isConnected = isset ($_SESSION['validUser']) && $_SESSION['validUser'];
+$isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
-if (isset ($_POST['filtre'])) {
+if (isset($_POST['filtre'])) {
     $filtres = $_POST['filtre'];
-    foreach($filtres as $filtre){
+    foreach ($filtres as $filtre) {
         $sortType[] = $filtre;
     }
 } else {
     $sortType[] = "all";
-
 }
 $viewTitle = "Catalogue de produit";
 $viewMenu = "";
@@ -23,39 +22,9 @@ $viewMenu = "";
 $checkIcon = '<i class="menuIcon fa fa-check mx-2"></i>';
 $uncheckIcon = '<i class="menuIcon fa fa-fw mx-2"></i>';
 
-// Fonction pour vérifier si un filtre est sélectionné dans l'URL
-// function isFilterSelected($filter) {
-//     if (isset($_GET['sort'])) {
-//         $selectedFilters = explode(',', $_GET['sort']);
-//         return in_array($filter, $selectedFilters);
-//     }
-//     return false;
-// }
+$jsonNom = json_encode($noms);
 
-// // Générer les icônes de sélection pour chaque filtre
-// $sortByType = isFilterSelected('all') ? $checkIcon : $uncheckIcon;
-// $sortByArmure = isFilterSelected('armure') ? $checkIcon : $uncheckIcon;
-// $sortByPotion = isFilterSelected('potion') ? $checkIcon : $uncheckIcon;
-// $sortByArme = isFilterSelected('arme') ? $checkIcon : $uncheckIcon;
-// $sortByElement = isFilterSelected('element') ? $checkIcon : $uncheckIcon;
-
-
-// <!-- <a href="index.php?sort=all" class="dropdown-item">
-//             $sortByType <i class="menuIcon fa fa-calendar mx-2"></i> Pour tous les items
-//          </a>
-//          <a href="index.php?sort=armure" class="dropdown-item">
-//             $sortByArmure <i class="menuIcon fa fa-heart mx-2"></i> Armures
-//          </a>
-//          <a href="index?sort=potion" class="dropdown-item">
-//            $sortByPotion <i class="menuIcon fa fa-search mx-2"></i> Potions
-//          </a> 
-//          <a href="index.php?sort=arme" class="dropdown-item">
-//             $sortByArme <i class="menuIcon fa fa-users mx-2"></i> Armes
-//          </a>
-//          <a href="index.php?sort=element" class="dropdown-item">
-//             $sortByElement <i class="menuIcon fa fa-user mx-2"></i> Éléments
-//          </a> -->
-
+print_r($jsonNom);
 $checkedValues = [];
 if ($_POST && isset($_POST['filtre'])) {
     foreach ($_POST['filtre'] as $value) {
@@ -86,12 +55,9 @@ $content = <<<HTML
     <div class="headerMenusContainer">
             <span>&nbsp</span> <!--filler-->
             <div class="dropdown ms-auto dropdownLayout">
-                <!-- <form action="photosList.php" method="POST">
-                    <span class="searchContainer">
-                        <input type="search" class="form-control" name="keyword" placeholder="Recherche par mots-clés" id="keywords" />
-                        <button class="cmdIcon fa fa-search" type="submit" id="setSearchKeywordsCmd"></button>
-                    </span>
-                </form> -->
+                <div class="searchContainer">
+                    <input type="text" class="autocomplete" name="nom" id="nom">
+                </div>
                 <span class="textFilter"> Recherche par Filtre</span>
                 <div data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-bars"></i>
@@ -100,6 +66,12 @@ $content = <<<HTML
                     $viewMenu
                 </div>
             </div>
+            <script>
+            let noms = JSON.parse('$jsonNom');
+            $('#nom').autocomplete({
+                source:noms
+            });
+            </script>
     <hr>
 HTML;
 
@@ -124,7 +96,7 @@ $items = ItemsTable()->selectAll();
 
 if ($items != null) {
 
-    if (!in_array("all",$sortType)) {
+    if (!in_array("all", $sortType)) {
         usort($items, function ($a, $b) {
             return $a->Prix - $b->Prix;
         });
@@ -136,7 +108,7 @@ if ($items != null) {
         if ($isConnected)
             $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
         if ($item->Type == 'P') { // Potions
-            if (in_array("potion",$sortType) || in_array("all",$sortType)) {
+            if (in_array("potion", $sortType) || in_array("all", $sortType)) {
                 $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
                 $type = "Défence";
                 if ($potion->estAttaque)
@@ -176,13 +148,12 @@ if ($items != null) {
                 </div>
             HTML;
             }
-
         }
 
         if ($item->Type == 'W') { // Armes
-            if(in_array("arme",$sortType) || in_array("all",$sortType)){
+            if (in_array("arme", $sortType) || in_array("all", $sortType)) {
                 $arme = ArmesTable()->selectWhere("idItem = $item->Id")[0];
-            $itemsDisplay .= <<<HTML
+                $itemsDisplay .= <<<HTML
                 <div class="containerItem">
                     <div class="containerFlexIdNom">
                         <span class="idItem">$index</span> 
@@ -217,13 +188,12 @@ if ($items != null) {
                 </div>
             HTML;
             }
-            
         }
 
         if ($item->Type == 'A') { // Armures
-            if(in_array("armure",$sortType) || in_array("all",$sortType)){
+            if (in_array("armure", $sortType) || in_array("all", $sortType)) {
                 $armure = ArmuresTable()->selectWhere("idItem = $item->Id")[0];
-            $itemsDisplay .= <<<HTML
+                $itemsDisplay .= <<<HTML
                 <div class="containerItem">
                 <div class="containerFlexIdNom">
                         <span class="idItem">$index</span> 
@@ -259,9 +229,9 @@ if ($items != null) {
         }
 
         if ($item->Type == 'E') { // Éléments
-            if(in_array("element",$sortType) || in_array("all",$sortType)){
+            if (in_array("element", $sortType) || in_array("all", $sortType)) {
                 $element = ElementsTable()->selectWhere("idItem = $item->Id")[0];
-            $itemsDisplay .= <<<HTML
+                $itemsDisplay .= <<<HTML
                 <div class="containerItem">
                     <div class="containerFlexIdNom">
                         <span class="idItem">$index</span> 
@@ -297,7 +267,6 @@ if ($items != null) {
                 </div>
             HTML;
             }
-            
         }
 
         $index++;
