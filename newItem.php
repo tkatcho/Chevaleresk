@@ -7,6 +7,7 @@ require 'php/config.php';
 //TODO, UNCOOMMENT ADMINACCESS() LINE
 
 //adminAccess();
+
 $messageHtml = '';
 
 if (isset($_SESSION['success'])) {
@@ -28,7 +29,6 @@ $jsonDangerosite = json_encode($dangerositeElem);
 $jsonMatiere = json_encode($matiere);
 $jsonNom = json_encode($noms);
 
-print_r($jsonEffets);
 
 $stylesBundle = "";
 if (file_exists("views/stylesBundle.html")) {
