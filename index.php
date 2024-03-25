@@ -56,11 +56,13 @@ $content = <<<HTML
             <span>&nbsp</span> <!--filler-->
             <div class="dropdown ms-auto dropdownLayout">
                 <div class="searchContainer">
-                    <input type="text" class="autocomplete" name="nom" id="nom">
-                </div>
-                <span class="textFilter"> Recherche par Filtre</span>
+                <p class="textFilter"> Recherche par Filtre</p>
+               <input type="search" class="autocomplete" name="nom" id="nom">
+                
+                
                 <div data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-bars"></i>
+                </div>
                 </div>
                 <div class="dropdown-menu noselect">
                     $viewMenu
