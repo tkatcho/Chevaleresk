@@ -5,13 +5,14 @@ include 'php/sessionManager.php';
 
 $viewTitle="Bienvenue à Chevaleresk";
 $isConnected= isset($_SESSION['validUser']) && $_SESSION['validUser'];
-$isAdmin = isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'];
+/*$isAdmin = isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'];*/
 
 
 if($isConnected){
 
     //Faire une condition pour savoir si admin ou si joueur (les boutons ne seront pas les mêmes)
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
+    $isAdmin = $joueur -> estAdmin;
     if($isAdmin){
         $content = <<<HTML
     <!---------------------------Options pour admin-------------------------------->
@@ -28,6 +29,17 @@ if($isConnected){
       
       <!--Les options à gauche-->
       <div class="optionsBtn" >
+         
+          <button>
+              <a class="optionsBtnIcon" href ="index.php">
+              Achat <i class="fa fa-money"></i>
+              </a>
+          </button>
+          <button>
+              <a class="optionsBtnIcon" href ="inventaire.php">
+              Inventaire <i class="fa fa-id-card-o"></i>
+              </a>
+          </button>
           <button>
               <a class="optionsBtnIcon" href ="newItem.php">
               Nouveau item <i class="fa fa-money"></i>
