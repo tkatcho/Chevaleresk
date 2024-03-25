@@ -103,7 +103,7 @@ form label {
   max-width: 412px;
   margin-top: 10px;
   display: grid;
-  grid-template-columns: 130px auto 50px;
+  grid-template-columns: 180px auto 50px;
   align-items: center;
 }
 
