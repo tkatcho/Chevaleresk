@@ -55,7 +55,9 @@ $content = <<<HTML
             <div class="dropdown ms-auto dropdownLayout">
                 <div class="searchContainer">
                     <p class="textFilter"> Recherche par Filtre</p>
-                    <input type="search" class="autocomplete" name="nom" id="nom">
+                    <form>
+                    <input type="text" class="autocomplete" name="nom" id="nom">
+                    </form>                    
                     <div data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-bars"></i>
                     </div>
