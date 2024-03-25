@@ -1,12 +1,12 @@
 -- Inserts for the Items table
-INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Sword of Might', 'W', 5, 150, 'images/items/épée.jpg');
-INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Axe of Fury', 'W', 7, 120, 'images/items/épée.jpg');
-INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Plate Armor', 'A', 3, 200, 'images/items/armure.jpg');
-INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Chainmail', 'A', 4, 100, 'images/items/armure.jpg');
-INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Potion of Healing', 'P', 20, 50, 'images/items/potion.jpg');
-INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Potion of Strength', 'P', 15, 70, 'images/items/potion2.jpg');
-INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Fire Essence', 'E', 10, 80, 'images/items/élément.jpg');
-INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Ice Shard', 'E', 10, 90, 'images/items/élément.jpg');
+INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Sword of Might', 'W', 5, 150, 'images/items/épée.png');
+INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Axe of Fury', 'W', 7, 120, 'images/items/épée.png');
+INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Plate Armor', 'A', 3, 200, 'images/items/armure.png');
+INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Chainmail', 'A', 4, 100, 'images/items/armure.png');
+INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Potion of Healing', 'P', 20, 50, 'images/items/potion.png');
+INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Potion of Strength', 'P', 15, 70, 'images/items/potion2.png');
+INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Fire Essence', 'E', 10, 80, 'images/items/élément.png');
+INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Ice Shard', 'E', 10, 90, 'images/items/élément.png');
 
 -- Corresponding inserts for the Armes (Weapons) table, assuming Items.id = 1 for the first weapon, and so on
 INSERT INTO Armes (idItem, efficacite, genre, description) VALUES ((SELECT id FROM Items WHERE nom = 'Sword of Might'), 'High', 'Sword', 'A mighty sword that can split mountains.');
