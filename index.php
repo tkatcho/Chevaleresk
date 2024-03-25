@@ -23,8 +23,6 @@ $uncheckIcon = '<i class="menuIcon fa fa-fw mx-2"></i>';
 
 $jsonNom = json_encode($noms);
 
-print_r($jsonNom);
-
 $checkedValues = [];
 if ($_POST && isset($_POST['filtre'])) {
     foreach ($_POST['filtre'] as $value) {
@@ -57,7 +55,9 @@ $content = <<<HTML
             <div class="dropdown ms-auto dropdownLayout">
                 <div class="searchContainer">
                     <p class="textFilter"> Recherche par Filtre</p>
-                    <input type="search" class="autocomplete" name="nom" id="nom">
+                    <form>
+                    <input type="text" class="autocomplete" name="nom" id="nom">
+                    </form>                    
                     <div data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-bars"></i>
                     </div>
@@ -76,7 +76,6 @@ $content = <<<HTML
     <hr>
 HTML;
 
-
 function addToCartButton($idJoueur, $idItem, $qt)
 {
     return <<<HTML
@@ -90,10 +89,16 @@ $itemsDisplay = <<<HTML
     <div class="containerTousItems">
 HTML;
 
+
+$recherche = trim($_GET['nom'] ?? '');
 $index = 1;
-$items = ItemsTable()->selectAll();
+$items = [];
 
-
+if ($recherche !== '') {
+    $items = ItemsTable()->selectWhere("nom like '%$recherche%'");
+} else {
+    $items = ItemsTable()->selectAll();
+}
 
 if ($items != null) {
 
