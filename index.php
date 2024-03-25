@@ -150,7 +150,7 @@ if ($items != null) {
                     </span>
                     <hr>
                     <div class="itemImage">
-                        <div style="background-image:url('./images/potion.png')"></div>
+                        <div style="background-image:url('$item->Photo')"></div>
                     </div>
                     <hr>
                     <p>Type item: 
@@ -191,7 +191,7 @@ if ($items != null) {
                     </span>
                     <hr>
                     <div class="itemImage">
-                        <div style="background-image:url('./images/épée.png')"></div>
+                        <div style="background-image:url('$item->Photo')"></div>
                     </div>
                     <hr>
                     <p>Type item: 
@@ -232,7 +232,7 @@ if ($items != null) {
                     </span>
                     <hr>
                     <div class="itemImage">
-                        <div style="background-image:url('./images/armure.png')"></div>
+                        <div style="background-image:url('$item->Photo')"></div>
                     </div>
                     <hr>
                     <p>Type item: 
@@ -270,7 +270,7 @@ if ($items != null) {
                     </span>
                     <hr>
                     <div class="itemImage">
-                        <div  style="background-image:url('./images/élément.png')"></div>
+                        <div  style="background-image:url('$item->Photo')"></div>
                     </div>
                     <hr>
                     <p>Type item: 
