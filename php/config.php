@@ -8,7 +8,8 @@ $typeElem = toDataArray(ElementsTable()->selectDistinct("type"), "Type");
 $rareteElem = toDataArray(ElementsTable()->selectDistinct("rarete"), "Rarete");
 $dangerositeElem = toDataArray(ElementsTable()->selectDistinct("dangerosite"), "Dangerosite");
 $genresArmes = toDataArray(ArmesTable()->selectDistinct("genre"), "Genre");
-
+$matiere = toDataArray(ArmuresTable()->selectDistinct("Matiere"), "Matiere");
+$noms = toDataArray(ItemsTable()->selectDistinct("nom"), "Nom");
 
 function toDataArray($array, $row)
 {

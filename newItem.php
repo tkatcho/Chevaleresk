@@ -1,8 +1,11 @@
 <?php
 require 'php/sessionManager.php';
-require_once 'php/config.php';
+require 'php/config.php';
 
 #region code
+
+//TODO, UNCOOMMENT ADMINACCESS() LINE
+
 //adminAccess();
 $messageHtml = '';
 
@@ -22,7 +25,8 @@ $jsonSizes = json_encode($sizesArmures);
 $jsonTypes = json_encode($typeElem);
 $jsonRarete = json_encode($rareteElem);
 $jsonDangerosite = json_encode($dangerositeElem);
-
+$jsonMatiere = json_encode($matiere);
+$jsonNom = json_encode($noms);
 
 $stylesBundle = "";
 if (file_exists("views/stylesBundle.html")) {
@@ -37,7 +41,7 @@ if (file_exists("views/scriptsBundle.html")) {
 $content = <<<HTML
 
             
-           <form action="verifItemInsertion.php" method="POST" autocomplete="off">
+    <form action="verifItemInsertion.php" method="POST" autocomplete="off">
     <input type="radio" id="armure" name="typeItem" value="A" required>
     <label for="armure">armure</label>
     <input type="radio" id="arme" name="typeItem" value="W">
@@ -65,10 +69,12 @@ $content = <<<HTML
     let genresArmes = JSON.parse('$jsonGenres');
     let effets = JSON.parse('$jsonEffets');
 
+    let matiere = JSON.parse('$jsonMatiere')
     let type = JSON.parse('$jsonTypes');
     let rarete = JSON.parse('$jsonRarete');
     let dangerosite = JSON.parse('$jsonDangerosite');
-    
+    let noms = JSON.parse('$jsonNom')
+
     document.querySelectorAll('input[name="typeItem"]').forEach((elem) => {
         elem.addEventListener("change", function(event) {
             var value = event.target.value;
@@ -77,7 +83,7 @@ $content = <<<HTML
 
             switch (value) {
                 case "A":
-                    htmlContent += '<input type="text" name="Matiere" placeholder="Matière" required><br>';
+                    htmlContent += '<input type="text" id="Matiere" name="Matiere" placeholder="Matière" required><br>';
                     htmlContent += '<input type="text" name="Taille" id="taille" placeholder="Taille" class="autocomplete" required><br>';
                     break;
                 
@@ -90,7 +96,7 @@ $content = <<<HTML
                 case "P":
                     htmlContent += '<input type="text" name="effet" id="effet" placeholder="Effet" class="autocomplete" required><br>';
                     htmlContent += '<input type="checkbox" id="estAttaque" name="estAttaque" value="estAttaque><label for="estAttaque">Est Attaque</label><br>';
-                    htmlContent += '<input type="number" name="duree" placeholder="Duree"><br>';
+                    htmlContent += '<input type="number" name="duree" min="1" placeholder="Duree"><br>';
                     break;
 
                 case "E":
@@ -110,80 +116,45 @@ $content = <<<HTML
      $('.ui-autocomplete').css({
      'background-color': '#f5f5f5', 
      'max-width': '300px', 
+     'max-heigth': '50px',
      'border': '1px solid #ccc',
      'box-shadow': '0 2px 4px rgba(0,0,0,0.1)'
      });
 
     }
     function applyAutocomplete() {
-    $('#taille').autocomplete({
-        source: function(request, response) {
-            addCss();
-            response(sizesArmures);
-        },
-        minLength: 0
-    }).focus(function() {
-        $(this).autocomplete("search");
+     $('#taille').autocomplete({
+        source:sizesArmures
+    });
+    $('#Matiere').autocomplete({
+        source:matiere
     });
 
     $('#efficacite').autocomplete({
-        source: function(request, response) {
-            addCss();
-            response(efficacites);
-        },
-        minLength: 0
-    }).focus(function() {
-        $(this).autocomplete("search");
+       source:efficacites
     });
 
     $('#Genre').autocomplete({
-        source: function(request, response) {
-            addCss();
-            response(genresArmes);
-        },
-        minLength: 0
-    }).focus(function() {
-        $(this).autocomplete("search");
+        source:genresArmes
     });
 
     $('#effet').autocomplete({
-        source: function(request, response) {
-            addCss();
-            response(effets);
-        },
-        minLength: 0
-    }).focus(function() {
-        $(this).autocomplete("search");
+        source:effets
     });
 
     $('#typeElement').autocomplete({
-        source: function(request, response) {
-            addCss();
-            response(type);
-        },
-        minLength: 0
-    }).focus(function() {
-        $(this).autocomplete("search");
+        source:type
     });
 
     $('#rarete').autocomplete({
-        source: function(request, response) {
-            addCss();
-            response(rarete);
-        },
-        minLength: 0
-    }).focus(function() {
-        $(this).autocomplete("search");
+        source:rarete
     });
 
+    $('#type').autocomplete({
+        source:type
+    });
     $('#dangerosite').autocomplete({
-        source: function(request, response) {
-            addCss();
-            response(dangerosite);
-        },
-        minLength: 0
-    }).focus(function() {
-        $(this).autocomplete("search");
+        source: dangerosite,
     });
 }
 
