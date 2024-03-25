@@ -140,4 +140,3 @@ $viewHead = <<<HTML
         <h1>$viewTitle<span>$loggedUserMenu</span></h1>
     </span>
 HTML;
-HTML;
