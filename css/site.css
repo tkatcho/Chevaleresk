@@ -108,8 +108,13 @@ form label {
 }
 
 .searchContainer input {
-  margin-bottom: 0 !important;
-  width: 320px !important;
+  width: 320px 
+}
+.optionsRecherche input{
+  width:30px;
+}
+.optionsRecherche i{
+  font-size:15px;
 }
 .searchContainer i {
   font-size: 40px;
