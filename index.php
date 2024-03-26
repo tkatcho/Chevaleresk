@@ -2,18 +2,19 @@
 
 require_once 'DAL/ChevalereskDB.php';
 require 'php/sessionManager.php';
-require 'php/config.php';
+require_once 'php/config.php';
 
 
-$isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
+$isConnected = isset ($_SESSION['validUser']) && $_SESSION['validUser'];
 
-if (isset($_POST['filtre'])) {
+if (isset ($_POST['filtre'])) {
     $filtres = $_POST['filtre'];
     foreach ($filtres as $filtre) {
         $sortType[] = $filtre;
     }
 } else {
     $sortType[] = "all";
+
 }
 $viewTitle = "Catalogue de produit";
 $viewMenu = "";
@@ -21,10 +22,9 @@ $viewMenu = "";
 $checkIcon = '<i class="menuIcon fa fa-check mx-2"></i>';
 $uncheckIcon = '<i class="menuIcon fa fa-fw mx-2"></i>';
 
-$jsonNom = json_encode($noms);
 
 $checkedValues = [];
-if ($_POST && isset($_POST['filtre'])) {
+if ($_POST && isset ($_POST['filtre'])) {
     foreach ($_POST['filtre'] as $value) {
         $checkedValues[$value] = 'checked';
     }
@@ -69,12 +69,6 @@ $content = <<<HTML
                 </div>
                 
             </div>
-            <script>
-            let noms = JSON.parse('$jsonNom');
-            $('#nom').autocomplete({
-                source:noms
-            });
-            </script>
     <hr>
 HTML;
 
@@ -114,6 +108,7 @@ if ($items != null) {
         $addToCartBouton = "";
         if ($isConnected)
             $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
+        
         if ($item->Type == 'P') { // Potions
             if (in_array("potion", $sortType) || in_array("all", $sortType)) {
                 $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
@@ -121,7 +116,7 @@ if ($items != null) {
                 if ($potion->estAttaque)
                     $type = "Attaque";
                 $itemsDisplay .= <<<HTML
-                <div class="containerItem">
+                <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
                         <span class="idItem">$index</span> 
                         <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
@@ -129,20 +124,11 @@ if ($items != null) {
                     </div>
                     <hr>
                     <div class="itemImage">
-                        <div style="background-image:url('$item->Photo')"></div>
+                        <div style="background-image:url('./images/potion.png')"></div>
                     </div>
                     <hr>
                     <p>Type item: 
                         <span>Potion</span>
-                    </p>
-                    <p>Effet: 
-                        <span>$potion->Effet</span>
-                    </p>
-                    <p>Durée: 
-                        <span>$potion->Duree</span>
-                    </p>
-                    <p>Type: 
-                        <span>$type</span>
                     </p>
                     <hr>
                     <p>Quantité en stock:
@@ -155,13 +141,14 @@ if ($items != null) {
                 </div>
             HTML;
             }
+
         }
 
         if ($item->Type == 'W') { // Armes
             if (in_array("arme", $sortType) || in_array("all", $sortType)) {
                 $arme = ArmesTable()->selectWhere("idItem = $item->Id")[0];
                 $itemsDisplay .= <<<HTML
-                <div class="containerItem">
+                <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
                         <span class="idItem">$index</span> 
                         <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
@@ -169,20 +156,11 @@ if ($items != null) {
                     </div>
                     <hr>
                     <div class="itemImage">
-                        <div style="background-image:url('$item->Photo')"></div>
+                        <div style="background-image:url('./images/épée.png')"></div>
                     </div>
                     <hr>
                     <p>Type item: 
                         <span>Arme</span>
-                    </p>
-                    <p>Efficacité: 
-                        <span>$arme->Efficacite</span>
-                    </p>
-                    <p>Genre: 
-                        <span>$arme->Genre</span>
-                    </p>
-                    <p>Description:
-                    <span>$arme->Description</span>
                     </p>
                     <hr>
                     <p>Quantité en stock: 
@@ -195,33 +173,27 @@ if ($items != null) {
                 </div>
             HTML;
             }
+
         }
 
         if ($item->Type == 'A') { // Armures
             if (in_array("armure", $sortType) || in_array("all", $sortType)) {
                 $armure = ArmuresTable()->selectWhere("idItem = $item->Id")[0];
                 $itemsDisplay .= <<<HTML
-                <div class="containerItem">
-                <div class="containerFlexIdNom">
+                <div class="containerItem" onclick="linked($item->Id)">
+                    <div class="containerFlexIdNom">
                         <span class="idItem">$index</span> 
                         <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                         <span>$addToCartBouton</span>
                     </div>
                     <hr>
                     <div class="itemImage">
-                        <div style="background-image:url('$item->Photo')"></div>
+                        <div style="background-image:url('./images/armure.png')"></div>
                     </div>
                     <hr>
                     <p>Type item: 
                         <span>Armure</span>
                     </p>
-                    <p>Matière: 
-                        <span>$armure->Matiere</span>
-                    </p>
-                    <p>Taille: 
-                        <span>$armure->Taille</span>
-                    </p>
-                    
                     <hr>
                     <p>Quantité en stock: 
                         <span>$item->QuantiteStock</span>
@@ -239,41 +211,32 @@ if ($items != null) {
             if (in_array("element", $sortType) || in_array("all", $sortType)) {
                 $element = ElementsTable()->selectWhere("idItem = $item->Id")[0];
                 $itemsDisplay .= <<<HTML
-                <div class="containerItem">
+                    <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
                         <span class="idItem">$index</span> 
                         <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                         <span>$addToCartBouton</span>
                     </div>
-                    <hr>
-                    <div class="itemImage">
-                        <div  style="background-image:url('$item->Photo')"></div>
+                        <hr>
+                        <div class="itemImage">
+                            <div  style="background-image:url('./images/élément.png')"></div>
+                        </div>
+                        <hr>
+                        <p>Type item: 
+                            <span>Élément</span>
+                        </p>
+                        <hr>
+                        <p>Quantité en stock: 
+                            <span>$item->QuantiteStock</span>
+                        </p>
+                        <hr>
+                        <p class="itemPrix">Prix: 
+                            <span>$item->Prix</span> $
+                        <p>
                     </div>
-                    <hr>
-                    <p>Type item: 
-                        <span>Élément</span>
-                    </p>
-                    <p>Type: 
-                        <span>$element->Type</span>
-                    </p>
-                    <p>Rareté: 
-                        <span>$element->Rarete</span>
-                    </p>
-                    <p>Dangerosité: 
-                        <span>$element->Dangerosite</span>
-                    </p>
-                    
-                    <hr>
-                    <p>Quantité en stock: 
-                        <span>$item->QuantiteStock</span>
-                    </p>
-                    <hr>
-                    <p class="itemPrix">Prix: 
-                        <span>$item->Prix</span> $
-                    <p>
-                </div>
             HTML;
             }
+
         }
 
         $index++;
@@ -282,6 +245,14 @@ if ($items != null) {
 
 $itemsDisplay .= <<<HTML
     </div>
+HTML;
+
+$itemsDisplay .= <<<HTML
+    <script>
+        function linked(id){
+            window.location.href = "details.php?idItem=" + id;
+        }
+    </script>
 HTML;
 
 

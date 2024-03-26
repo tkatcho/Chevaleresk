@@ -53,7 +53,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
             </div>
             $buttonOnSide
         HTML;
-    } else if ($viewTitle == "Panier d'achat") {
+    } else if ($viewTitle == "Panier d'achat" || $viewTitle == "Concocter des potions") {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
                 <button onclick="location.href='index.php'">
