@@ -24,7 +24,7 @@ foreach ($panier as $itemInCart) {
             <div class="panierItemQt">
                 <p>
                     <span>
-                        <button>
+                        <button onclick="location.href='modifierQt.php?id=$itemInCart->Id&qt=1'">
                             <a href ="modifierQt.php?id=$itemInCart->Id&qt=1">     <!--Va à une page de modifier la Quantité d'un item (modifier qt+1 dans BD)-->
                                 <i class="fa fa-plus-circle"></i>
                             </a>
@@ -32,7 +32,7 @@ foreach ($panier as $itemInCart) {
                     </span>   
                     $itemInCart->Quantite / $item->QuantiteStock
                     <span> 
-                        <button>
+                        <button onclick="location.href='modifierQt.php?id=$itemInCart->Id&qt=-1'">
                             <a href ="modifierQt.php?id=$itemInCart->Id&qt=-1">     <!--Va à une page de modifier la Quantité d'un item (modifier qt-1 dans BD)-->
                                 <i class="fa fa-minus-circle"></i>
                             </a>
@@ -42,7 +42,7 @@ foreach ($panier as $itemInCart) {
             </div>
             <div class="panierItemSupprimer">
                 <p>
-                    <button >
+                    <button onclick="location.href='modifierQt.php?id=$itemInCart->Id&qt=-$item->QuantiteStock'">
                         <a href ="modifierQt.php?id=$itemInCart->Id&qt=-$item->QuantiteStock">     <!--Va à une page de modifier la Quantité d'un item (modifier qt=0 dans BD)-->
                             <i class="fa fa-trash"></i>
                         </a>
@@ -53,7 +53,7 @@ foreach ($panier as $itemInCart) {
     HTML;
 }
 
-$viewTitle="Panier d'achat";
+$viewTitle = "Panier d'achat";
 $content = <<<HTML
     $itemsDisplay
 HTML;
@@ -64,7 +64,7 @@ $content .= <<<HTML
     
     <h2>Total: <span class="prix">$total $</span></h2>
     <h2>Solde: <span class="prix">$solde $</span></h2>
-    <button class="buyButton">
+    <button class="buyButton"  onclick="location.href='buyCart.php?idJoueur=$_SESSION[id]'">
         <a href="buyCart.php?idJoueur=$_SESSION[id]">Acheter <i class="fa-solid fa-cash-register"></i></a>
     </button>
 HTML;

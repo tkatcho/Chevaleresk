@@ -81,7 +81,7 @@ HTML;
 function addToCartButton($idJoueur, $idItem, $qt)
 {
     return <<<HTML
-        <button>
+        <button onclick="location.href='addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt'">
             <a href="addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt"><i class="fa fa-cart-plus"></i></a>
         </button>
     HTML;
