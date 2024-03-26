@@ -116,11 +116,11 @@ if ($items != null) {
                     $type = "Attaque";
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
-                    <span class="idItem">$index</span> 
-                    $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
+                    <div class="containerFlexIdNom">
+                        <span class="idItem">$index</span> 
+                        <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                        <span>$addToCartBouton</span>
+                    </div>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('./images/potion.png')"></div>
@@ -148,11 +148,11 @@ if ($items != null) {
                 $arme = ArmesTable()->selectWhere("idItem = $item->Id")[0];
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
-                    <span class="idItem">$index</span> 
-                    $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
+                    <div class="containerFlexIdNom">
+                        <span class="idItem">$index</span> 
+                        <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                        <span>$addToCartBouton</span>
+                    </div>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('./images/épée.png')"></div>
@@ -180,11 +180,11 @@ if ($items != null) {
                 $armure = ArmuresTable()->selectWhere("idItem = $item->Id")[0];
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
-                    <span class="idItem">$index</span> 
-                    $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
+                    <div class="containerFlexIdNom">
+                        <span class="idItem">$index</span> 
+                        <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                        <span>$addToCartBouton</span>
+                    </div>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('./images/armure.png')"></div>
@@ -211,11 +211,11 @@ if ($items != null) {
                 $element = ElementsTable()->selectWhere("idItem = $item->Id")[0];
                 $itemsDisplay .= <<<HTML
                     <div class="containerItem" onclick="linked($item->Id)">
+                    <div class="containerFlexIdNom">
                         <span class="idItem">$index</span> 
-                        $item->Nom
-                        <span>
-                        $addToCartBouton
-                        </span>
+                        <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                        <span>$addToCartBouton</span>
+                    </div>
                         <hr>
                         <div class="itemImage">
                             <div  style="background-image:url('./images/élément.png')"></div>
