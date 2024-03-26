@@ -6,6 +6,12 @@ require_once 'php/config.php';
 if (isset($_GET["idItem"])) {
     $id = $_GET["idItem"];
     $item = ItemsTable()->get($id);
+    if ($item == null)
+        redirect('index.php');
+}
+else
+{
+    redirect('index.php');
 }
 $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
