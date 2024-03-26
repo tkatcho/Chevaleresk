@@ -49,7 +49,9 @@ HTML;
     if ($itemDetails != null)
     {
         $addToCartBouton = "";
-        if ($isConnected) $addToCartBouton = addToCartButton($_SESSION['id'], $id, 1);
+        if ($isConnected) 
+            $addToCartBouton = addToCartButton($_SESSION['id'], $id, 1);
+
         if ($item->Type == 'P')
         { // Potions
             $potion = PotionsTable()->selectWhere("idItem = $id")[0];
@@ -57,6 +59,7 @@ HTML;
             if ($potion->estAttaque)
             {
                 $type = "Attaque";
+            }
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem">
                     <span class="idItem">$index</span> 
@@ -92,7 +95,7 @@ HTML;
                 </div>
             HTML;
         }
-    }
+    
         if ($item->Type == 'W') { // Armes
                 $arme = ArmesTable()->selectWhere("idItem = $id")[0];
                 $itemsDisplay .= <<<HTML
