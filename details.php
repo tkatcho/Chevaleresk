@@ -186,9 +186,9 @@ if ($item != null) {
                     <p>
                 </div>
             HTML;
-    }
-}
-
+        }
+    }    
+ 
 
 
 $itemsDisplay .= <<<HTML
