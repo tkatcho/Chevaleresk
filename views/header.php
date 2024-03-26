@@ -88,6 +88,20 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
             </button>
         </div>
     HTML;
+    }else if ($viewTitle=="Nouveau item"){
+        $loggedUserMenu = <<<HTML
+        <div class="btnRetour">
+            <button>
+                <a href="optionsJeu.php">     <!--Retourne aux options du jeu-->
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+        </div>
+        <div class="buttonOnSide">
+            $logoutButton
+        </div>
+        HTML;
+      
     }
 
 } else {  //si le joueur n'est pas connecté  -> a les btn de connexion/inscription

@@ -405,6 +405,34 @@ span {
   margin-top: -80px;
 }
 
+.newItem label{
+  font-family: var(--secondary-font);
+  font-size:12px;
+  padding:10px;
+}
+
+.newItemCaractéristiques{
+  margin:auto;
+  border: 2px var(--primary-color);
+  border-radius: 55px;
+}
+.newItemCaractéristiques input[type="text"], input[type="number"], textarea{
+  margin-bottom:15px;
+  font-family: var(--secondary-font);
+  width:300px;
+  font-size:15px;
+
+}
+.newItemCaractéristiques input[type="checkbox"], label{
+  margin-bottom:15px;
+  
+  font-family: var(--secondary-font);
+  
+  font-size:15px;
+}
+.newItemLabel{
+  font-family: var(--secondary-font);
+}
 /*Pour que le site soit réactif*/
 @media screen and (max-width: 400px) {
   .containerTousItems {
