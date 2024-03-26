@@ -5,16 +5,15 @@ require 'php/sessionManager.php';
 require_once 'php/config.php';
 
 
-$isConnected = isset ($_SESSION['validUser']) && $_SESSION['validUser'];
+$isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
-if (isset ($_POST['filtre'])) {
+if (isset($_POST['filtre'])) {
     $filtres = $_POST['filtre'];
     foreach ($filtres as $filtre) {
         $sortType[] = $filtre;
     }
 } else {
     $sortType[] = "all";
-
 }
 $viewTitle = "Catalogue de produit";
 $viewMenu = "";
@@ -22,9 +21,10 @@ $viewMenu = "";
 $checkIcon = '<i class="menuIcon fa fa-check mx-2"></i>';
 $uncheckIcon = '<i class="menuIcon fa fa-fw mx-2"></i>';
 
+$jsonNom = json_encode($noms);
 
 $checkedValues = [];
-if ($_POST && isset ($_POST['filtre'])) {
+if ($_POST && isset($_POST['filtre'])) {
     foreach ($_POST['filtre'] as $value) {
         $checkedValues[$value] = 'checked';
     }
@@ -59,6 +59,13 @@ $content = <<<HTML
                     <p class="textFilter"> Recherche par Filtre</p>
                     <form method="post">
                     <input type="text" class="autocomplete" name="nom" id="nom">
+                    <script>
+                    let noms = JSON.parse('$jsonNom');
+
+                    $('#nom').autocomplete({
+                        source: noms
+                    });
+                    </script>
                     </form>                    
                     <div data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-bars"></i>
@@ -108,7 +115,7 @@ if ($items != null) {
         $addToCartBouton = "";
         if ($isConnected)
             $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
-        
+
         if ($item->Type == 'P') { // Potions
             if (in_array("potion", $sortType) || in_array("all", $sortType)) {
                 $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
@@ -141,7 +148,6 @@ if ($items != null) {
                 </div>
             HTML;
             }
-
         }
 
         if ($item->Type == 'W') { // Armes
@@ -173,7 +179,6 @@ if ($items != null) {
                 </div>
             HTML;
             }
-
         }
 
         if ($item->Type == 'A') { // Armures
@@ -236,7 +241,6 @@ if ($items != null) {
                     </div>
             HTML;
             }
-
         }
 
         $index++;
