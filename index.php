@@ -125,7 +125,7 @@ if ($items != null) {
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
-                        <span class="idItem">$index</span> 
+                        <span style="flex-grow:2;"class="idItem">$index</span> 
                         <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                         <span>$addToCartBouton</span>
                     </div>
@@ -156,7 +156,7 @@ if ($items != null) {
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
-                        <span class="idItem">$index</span> 
+                        <span style="flex-grow:2;"class="idItem">$index</span> 
                         <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                         <span>$addToCartBouton</span>
                     </div>
@@ -187,7 +187,7 @@ if ($items != null) {
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
-                        <span class="idItem">$index</span> 
+                        <span style="flex-grow:2;"class="idItem">$index</span> 
                         <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                         <span>$addToCartBouton</span>
                     </div>
@@ -218,7 +218,7 @@ if ($items != null) {
                 $itemsDisplay .= <<<HTML
                     <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
-                        <span class="idItem">$index</span> 
+                        <span style="flex-grow:2;"class="idItem">$index</span> 
                         <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                         <span>$addToCartBouton</span>
                     </div>
