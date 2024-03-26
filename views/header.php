@@ -17,7 +17,7 @@ $loggedUserMenu = "";
 
 // Je pense qu'on devrait toujours afficher le bouton panier et logout peut importe la page. Si pas daccord, contacter thomas
 $logoutButton = <<<HTML
-    <button>
+    <button onclick="location.href='logout.php'">
         <a href="logout.php">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </a>
@@ -25,7 +25,7 @@ $logoutButton = <<<HTML
 HTML;
 $buttonOnSide = <<<HTML
     <div class="buttonOnSide">
-        <button>
+        <button onclick="location.href='panier.php'">
             <a href ="panier.php">
                 <i class="fa fa-shopping-cart"></i>
             </a>
@@ -45,7 +45,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
     if ($viewTitle == "Catalogue de produit") {
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">
-                <button>
+                <button onclick="location.href='optionsJeu.php'">
                     <a href="optionsJeu.php">     <!--Retourne au catalogue de produit-->
                         <i class="fa fa-angle-left"></i>
                     </a>
@@ -53,10 +53,10 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
             </div>
             $buttonOnSide
         HTML;
-    } else if ($viewTitle == "Panier d'achat" ) {
+    } else if ($viewTitle == "Panier d'achat") {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
-                <button>
+                <button onclick="location.href='index.php'">
                     <a href="index.php">     <!--Retourne au catalogue de produit-->
                         <i class="fa fa-angle-left"></i>
                     </a>
@@ -66,11 +66,29 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
                 $logoutButton
             </div>
         HTML;
-    } else if($viewTitle=="Bienvenue à Chevaleresk"){
-        
-        $loggedUserMenu =<<<HTML
+    } else if ($viewTitle == "Bienvenue à Chevaleresk") {
+
+        $loggedUserMenu = <<<HTML
         HTML;
     }else if ($viewTitle=="Inventaire"){
+        $loggedUserMenu = <<<HTML
+        <div class="btnRetour">
+            <button onclick="location.href='optionsJeu.php'">
+                <a href="optionsJeu.php">     <!--Retourne aux options du jeu-->
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+        </div>
+        $buttonOnSide
+        <div class="buttonOnSide">
+            <button onclick="location.href='concocterPotions.php'">
+                <a href ="concocterPotions.php">     <!--Va à la page de concocter des potions-->
+                    <i class="fa fa-flask"></i>
+                </a>
+            </button>
+        </div>
+    HTML;
+    }else if ($viewTitle=="Nouveau item"){
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">
             <button>
@@ -79,38 +97,33 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
                 </a>
             </button>
         </div>
-        $buttonOnSide
         <div class="buttonOnSide">
-            <button>
-                <a href ="concocterPotions.php">     <!--Va à la page de concocter des potions-->
-                    <i class="fa fa-flask"></i>
-                </a>
-            </button>
+            $logoutButton
         </div>
-    HTML;
+        HTML;
+      
     }
-
 } else {  //si le joueur n'est pas connecté  -> a les btn de connexion/inscription
 
     if ($viewTitle == "Catalogue de produit") {
         $loggedUserMenu = <<<HTML
             <div class="buttonOnSide">
-                <button>
+                <button onclick="location.href='loginForm.php'">
                     <a href ="loginForm.php">
                         <div>Connexion</div> <i class="fa fa-user"></i>
                     </a>
                 </button>
-                <button>
+                <button onclick="location.href='signupForm.php'">
                     <a href ="signupForm.php">
                         <div>S'inscrire</div> <i class="fa fa-sign-in"></i>
                     </a>
                 </button>
             </div>
         HTML;
-    } else if ($viewTitle == "Connexion" || $viewTitle == "Inscription") {  
+    } else if ($viewTitle == "Connexion" || $viewTitle == "Inscription") {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
-                <button>
+                <button onclick="location.href='index.php'">
                     <a href="index.php">     <!--Retourne au catalogue de produit-->
                         <i class="fa fa-angle-left"></i>
                     </a>
