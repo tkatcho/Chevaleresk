@@ -197,6 +197,12 @@ span, ul, li {
   border-radius: 10px;
 }
 
+/*Bouton panier (aujouter au panier)*/
+.containerItem button {
+  font-size: 20px;
+  border-radius: 10px;
+}
+
 /*Page Panier*/
 
 .btnRetour {
