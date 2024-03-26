@@ -42,7 +42,6 @@ function createItem($data)
         if (isset($itemInserted) && $itemInsertedVerif != 0) {
             $sousItemData = ["idItem" => $itemInserted] + $sousItemData;
 
-            print_r($sousItemData);
             switch ($data["typeItem"]) {
                 case "A":
                     $itemInsertedVerif = ArmuresTable()->insert(new Armure($sousItemData));
@@ -60,8 +59,7 @@ function createItem($data)
 
             if ($itemInserted == 0) {
                 $db->rollbackTransaction();
-                $_SESSION['error'] = "Error: N'a pas pue inserer l'item, veuillez ressayer!";
-                redirect("newItem.php");
+                throw new Exception("Error: N'a pas pue inserer l'item, veuillez ressayer!");
             }
             $db->commitTransaction();
             $_SESSION['success'] = "Insertion reussi! l'item est ajoute a la BD!";
@@ -72,7 +70,7 @@ function createItem($data)
         }
     } catch (Exception $e) {
 
-        $db->rollbackTransaction(); // Roll back the transaction on error.
+        $db->rollbackTransaction();
         $_SESSION['error'] = "Error: " . $e->getMessage();;
         redirect("newItem.php");
     }
