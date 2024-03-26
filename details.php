@@ -3,10 +3,15 @@ require_once 'DAL/ChevalereskDB.php';
 require 'php/sessionManager.php';
 require_once 'php/config.php';
 
-if (isset($_GET["idItem"]))
-{
+if (isset($_GET["idItem"])) {
     $id = $_GET["idItem"];
     $item = ItemsTable()->get($id);
+    if ($item == null)
+        redirect('index.php');
+}
+else
+{
+    redirect('index.php');
 }
 $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
@@ -33,7 +38,7 @@ function évaluerEtCommenter($idJoueur, $idItem)
 $itemsDisplay = <<<HTML
     <div class="détailsContainer">
 HTML;
-    
+
 
     $index = $item->Id;
 
@@ -135,7 +140,7 @@ HTML;
                     </div>
 
             HTML;
-        }
+    }
 
         if ($item->Type == 'A') { // Armures
                 $armure = ArmuresTable()->selectWhere("idItem = $id")[0];
@@ -226,9 +231,8 @@ HTML;
 $itemsDisplay .= <<<HTML
     </div>
 HTML;
-                
+
 
 $content = $itemsDisplay;
 
 include 'views/master.php';
-                
