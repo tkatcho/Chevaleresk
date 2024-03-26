@@ -117,3 +117,14 @@ BEGIN
     	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cout élément trop haut';
     END IF;
 END |;
+
+DELIMITER //
+CREATE PROCEDURE GetRecord(IN recordID INT)
+BEGIN
+    IF recordID IS NOT NULL THEN
+        SELECT * FROM YourTableName WHERE Id = recordID;
+    ELSE
+        SELECT * FROM YourTableName;
+    END IF;
+END //
+DELIMITER ;
