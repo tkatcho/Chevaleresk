@@ -12,8 +12,16 @@ if (isset($_POST['submit']))
 
     $user = JoueursTable()->selectWhere("alias = '$username'")[0];
 
-    if (!password_verify($password, $user->MotDePasse))
+    if (!JoueursTable()->aliasExist($username))
+    {
         $validUser = false;
+        redirect('loginForm.php?error=usernameNotExists');
+    }
+    if (!password_verify($password, $user->MotDePasse)){
+        $validUser = false;
+        redirect('loginForm.php?error=passwordFailed');
+    }
+    
 
     if ($validUser)
     {
@@ -29,5 +37,7 @@ if (isset($_POST['submit']))
         redirect('optionsJeu.php');
     }
 
-    redirect('index.php');
+   // redirect('index.php');
+  
+       
 }
