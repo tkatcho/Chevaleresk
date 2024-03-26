@@ -108,6 +108,7 @@ if ($items != null) {
         $addToCartBouton = "";
         if ($isConnected)
             $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
+        
         if ($item->Type == 'P') { // Potions
             if (in_array("potion", $sortType) || in_array("all", $sortType)) {
                 $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
