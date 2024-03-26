@@ -21,37 +21,53 @@ function addToCartButton($idJoueur, $idItem, $qt)
         </button>
     HTML;
 }
+function évaluerEtCommenter($idJoueur, $idItem)
+{
+    return <<<HTML
+        <button class="btnÉvaluerCommenter">
+            <a href="evaluationsEtCommentaires.php?idJoueur=$idJoueur&idItem=$idItem">Évaluer et commenter <i class="fa fa-comments"></i></a>
+        </button>
+    HTML;
+}
 
 $itemsDisplay = <<<HTML
-    <div class="containerTousItems">
+    <div class="détailsContainer">
 HTML;
     
 
-    $index = 1;
+    $index = $item->Id;
 
     if ($item != null)
     {
         $addToCartBouton = "";
-        if ($isConnected) 
+        $buttonÉvaluerCommentaire="";
+        if ($isConnected) {
             $addToCartBouton = addToCartButton($_SESSION['id'], $id, 1);
-
+            $buttonÉvaluerCommentaire = évaluerEtCommenter($_SESSION['id'], $id);
+        }
+           
+          
         if ($item->Type == 'P')
         { // Potions
             $potion = PotionsTable()->selectWhere("idItem = $id")[0];
             $type = "Défence";
             if ($potion->estAttaque)
                 $type = "Attaque";
+           
             $itemsDisplay .= <<<HTML
-                <div class="containerItem">
+            <div class="détailsContainerItem">
+                <div class="détailsImg">
+                    <div style="background-image:url('./images/potion.png')"></div>
+                </div>
+                $buttonÉvaluerCommentaire
+            </div>
+
+            <div class="détailsContainerItem">
+                <div class="containerFlexIdNom">
                     <span class="idItem">$index</span> 
-                    $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
-                    <hr>
-                    <div class="itemImage">
-                        <div style="background-image:url('./images/potion.png')"></div>
-                    </div>
+                    <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                    <span>$addToCartBouton</span>
+                </div>
                     <hr>
                     <p>Type item: 
                         <span>Potion</span>
@@ -73,98 +89,111 @@ HTML;
                     <p class="itemPrix">Prix: 
                         <span>$item->Prix</span> $
                     <p>
-                </div>
-            HTML;
+            </div>
+
+        HTML;
         }
     
         if ($item->Type == 'W') { // Armes
                 $arme = ArmesTable()->selectWhere("idItem = $id")[0];
                 $itemsDisplay .= <<<HTML
-                <div class="containerItem">
-                    <span class="idItem">$index</span> 
-                    $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
-                    <hr>
-                    <div class="itemImage">
-                        <div style="background-image:url('./images/épée.png')"></div>
+                    <div class="détailsContainerItem">
+                        <div class="détailsImg">
+                            <div style="background-image:url('./images/épée.png')"></div>
+                        </div>
+                        $buttonÉvaluerCommentaire
                     </div>
-                    <hr>
-                    <p>Type item: 
-                        <span>Arme</span>
-                    </p>
-                    <p>Efficacité: 
-                        <span>$arme->Efficacite</span>
-                    </p>
-                    <p>Genre: 
-                        <span>$arme->Genre</span>
-                    </p>
-                    <p>Description:
-                    <span>$arme->Description</span>
-                    </p>
-                    <hr>
-                    <p>Quantité en stock: 
-                        <span>$item->QuantiteStock</span>
-                    </p>
-                    <hr>
-                    <p class="itemPrix">Prix: 
-                        <span>$item->Prix</span> $
-                    <p>
-                </div>
+
+                    <div class="détailsContainerItem">
+                        <div class="containerFlexIdNom">
+                            <span class="idItem">$index</span> 
+                            <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                            <span>$addToCartBouton</span>
+                        </div>
+                            <hr>
+                            <p>Type item: 
+                            <span>Arme</span>
+                            </p>
+                            <p>Efficacité: 
+                                <span>$arme->Efficacite</span>
+                            </p>
+                            <p>Genre: 
+                                <span>$arme->Genre</span>
+                            </p>
+                            <p>Description:
+                                <span>$arme->Description</span>
+                            </p>
+                            <hr>
+                            <p>Quantité en stock: 
+                                <span>$item->QuantiteStock</span>
+                            </p>
+                            <hr>
+                            <p class="itemPrix">Prix: 
+                                <span>$item->Prix</span> $
+                            <p>
+                        
+                    </div>
+
             HTML;
         }
 
         if ($item->Type == 'A') { // Armures
                 $armure = ArmuresTable()->selectWhere("idItem = $id")[0];
                 $itemsDisplay .= <<<HTML
-                <div class="containerItem">
-                    <span class="idItem">$index</span> 
-                    $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
-                    <hr>
-                    <div class="itemImage">
-                        <div style="background-image:url('./images/armure.png')"></div>
+                    <div class="détailsContainerItem">
+                        <div class="détailsImg">
+                            <div style="background-image:url('./images/armure.png')"></div>
+                        </div>
+                        $buttonÉvaluerCommentaire
                     </div>
-                    <hr>
-                    <p>Type item: 
-                        <span>Armure</span>
-                    </p>
-                    <p>Matière: 
-                        <span>$armure->Matiere</span>
-                    </p>
-                    <p>Taille: 
-                        <span>$armure->Taille</span>
-                    </p>
-                    
-                    <hr>
-                    <p>Quantité en stock: 
-                        <span>$item->QuantiteStock</span>
-                    </p>
-                    <hr>
-                    <p class="itemPrix">Prix: 
-                        <span>$item->Prix</span> $
-                    <p>
-                </div>
+
+                    <div class="détailsContainerItem">
+                        <div class="containerFlexIdNom">
+                            <span class="idItem">$index</span> 
+                            <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                            <span>$addToCartBouton</span>
+                        </div>
+                            <hr>
+                            <p>Type item: 
+                            <span>Armure</span>
+                            </p>
+                            <p>Matière: 
+                                <span>$armure->Matiere</span>
+                            </p>
+                            <p>Taille: 
+                                <span>$armure->Taille</span>
+                            </p>
+                            
+                            <hr>
+                            <p>Quantité en stock: 
+                                <span>$item->QuantiteStock</span>
+                            </p>
+                            <hr>
+                            <p class="itemPrix">Prix: 
+                                <span>$item->Prix</span> $
+                            <p>
+                    </div>
             HTML;
+            
         }
         
         //ok
         if ($item->Type == 'E') { // Éléments
-                $element = ElementsTable()->selectWhere("idItem = $id")[0];
-                $itemsDisplay .= <<<HTML
-                <div class="containerItem">
+            $element = ElementsTable()->selectWhere("idItem = $id")[0];
+            $itemsDisplay .= <<<HTML
+            <div class="détailsContainerItem">
+                <div class="détailsImg">
+                    <div style="background-image:url('./images/élément.png')"></div>
+                </div>
+                $buttonÉvaluerCommentaire
+            </div>
+
+            <div class="détailsContainerItem">
+                <div class="containerFlexIdNom">
                     <span class="idItem">$index</span> 
-                    $item->Nom
-                    <span>
-                        $addToCartBouton
-                    </span>
-                    <hr>
-                    <div class="itemImage">
-                        <div  style="background-image:url('./images/élément.png')"></div>
-                    </div>
+                    <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                    <span>$addToCartBouton</span>
+                </div>
                     <hr>
                     <p>Type item: 
                         <span>Élément</span>
@@ -187,8 +216,8 @@ HTML;
                     <p class="itemPrix">Prix: 
                         <span>$item->Prix</span> $
                     <p>
-                </div>
-            HTML;
+            </div>
+    HTML;
         }
     }    
  

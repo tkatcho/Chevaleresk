@@ -53,7 +53,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
             </div>
             $buttonOnSide
         HTML;
-    } else if ($viewTitle == "Panier d'achat" || $viewTitle == "Concocter des potions") {
+    } else if ($viewTitle == "Panier d'achat" || $viewTitle == "Concocter des potions" || $viewTitle == "Détails de l'item") {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
                 <button onclick="location.href='index.php'">
@@ -120,7 +120,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
                 </button>
             </div>
         HTML;
-    } else if ($viewTitle == "Connexion" || $viewTitle == "Inscription") {
+    } else if ($viewTitle == "Connexion" || $viewTitle == "Inscription" || $viewTitle == "Détails de l'item") {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
                 <button onclick="location.href='index.php'">
