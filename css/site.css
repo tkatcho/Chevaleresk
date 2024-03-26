@@ -554,3 +554,18 @@ span {
   padding-left:20px;
   border-left: 1px solid gray;
 }
+
+.concocterPotionBtn{
+  width:380px;
+  text-align:center;
+  padding:10px;
+}
+.concocterPotionBtn a{
+ 
+  font-family: var(--secondary-font);
+}
+.concocterPotionBtn i{
+  float: inline-end;
+  margin-left:10px;
+  margin-bottom:10px;
+}

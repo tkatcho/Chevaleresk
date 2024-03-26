@@ -46,7 +46,7 @@ $content = <<<HTML
                 <li>Ingrédient 2</li>
             </ul>
 
-            <button>
+            <button class="concocterPotionBtn">
               <a class="optionsBtnIcon" href ="index.php">    <!--Changer le href-->
               Faire la potion <i class="fa fa-flask"></i>
               </a>
