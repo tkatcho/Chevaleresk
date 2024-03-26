@@ -7,23 +7,6 @@ if (isset($_GET["idItem"]))
 {
     $id = $_GET["idItem"];
     $item = ItemsTable()->get($id);
-
-    if ($item->Type == "A")
-    {
-        $itemDetails = ArmuresTable()->selectWhere("idItem = $id") [0];
-    }
-    else if ($item->Type == "P")
-    {
-        $itemDetails = PotionsTable()->selectWhere("idItem = $id") [0];
-    }
-    else if ($item->Type == "W")
-    {
-        $itemDetails = ArmesTable()->selectWhere("idItem = $id") [0];
-    }
-    else if ($item->Type == "E")
-    {
-        $itemDetails = ElementsTable()->selectWhere("idItem = $id") [0];
-    }
 }
 $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
@@ -46,7 +29,7 @@ HTML;
 
     $index = 1;
 
-    if ($itemDetails != null)
+    if ($item != null)
     {
         $addToCartBouton = "";
         if ($isConnected) $addToCartBouton = addToCartButton($_SESSION['id'], $id, 1);
@@ -55,9 +38,8 @@ HTML;
             $potion = PotionsTable()->selectWhere("idItem = $id")[0];
             $type = "Défence";
             if ($potion->estAttaque)
-            {
                 $type = "Attaque";
-                $itemsDisplay .= <<<HTML
+            $itemsDisplay .= <<<HTML
                 <div class="containerItem">
                     <span class="idItem">$index</span> 
                     $item->Nom
@@ -206,7 +188,7 @@ HTML;
                 </div>
             HTML;
         }
-}            
+           
  
 
 
