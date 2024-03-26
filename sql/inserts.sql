@@ -3,8 +3,8 @@ INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Sword of Migh
 INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Axe of Fury', 'W', 7, 120, 'images/items/épée.png');
 INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Plate Armor', 'A', 3, 200, 'images/items/armure.png');
 INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Chainmail', 'A', 4, 100, 'images/items/armure.png');
-INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Potion of Healing', 'P', 20, 50, 'images/items/potion.png');
-INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Potion of Strength', 'P', 15, 70, 'images/items/potion2.png');
+INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Potion of Healing', 'P', 20, 120, 'images/items/potion.png');
+INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Potion of Strength', 'P', 15, 100, 'images/items/potion2.png');
 INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Fire Essence', 'E', 10, 80, 'images/items/élément.png');
 INSERT INTO Items (nom, type, quantiteStock, prix, photo) VALUES ('Ice Shard', 'E', 10, 90, 'images/items/élément.png');
 
