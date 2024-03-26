@@ -7,6 +7,7 @@ require 'php/config.php';
 //TODO, UNCOOMMENT ADMINACCESS() LINE
 
 //adminAccess();
+$viewTitle="Nouveau item";
 $messageHtml = '';
 
 if (isset($_SESSION['success'])) {
@@ -28,7 +29,6 @@ $jsonDangerosite = json_encode($dangerositeElem);
 $jsonMatiere = json_encode($matiere);
 $jsonNom = json_encode($noms);
 
-print_r($jsonEffets);
 
 $stylesBundle = "";
 if (file_exists("views/stylesBundle.html")) {
@@ -42,21 +42,24 @@ if (file_exists("views/scriptsBundle.html")) {
 
 $content = <<<HTML
 
-            
-    <form action="verifItemInsertion.php" method="POST" autocomplete="off">
-    <input type="radio" id="armure" name="typeItem" value="A" required>
-    <label for="armure">armure</label>
-    <input type="radio" id="arme" name="typeItem" value="W">
-    <label for="arme">arme</label>
-    <input type="radio" id="potion" name="typeItem" value="P">
-    <label for="potion">potion</label>
-    <input type="radio" id="élément" name="typeItem" value="E">
-    <label for="élément">élément</label><br>
-
+    <div class="newItem">       
+        <form action="verifItemInsertion.php" method="POST" autocomplete="off">
+        <input type="radio" id="armure" name="typeItem" value="A" required>
+        <label for="armure">armure</label>
+        <input type="radio" id="arme" name="typeItem" value="W">
+        <label for="arme">arme</label>
+        <input type="radio" id="potion" name="typeItem" value="P">
+        <label for="potion">potion</label>
+        <input type="radio" id="élément" name="typeItem" value="E">
+        <label for="élément">élément</label><br>
+    </div>
     <hr>
+    
+    <div class="newItemCaractéristiques">
     <input type="text" name="nom" id="nom" placeholder="Nom" required><br>
     <input type="number" name="quantiteStock" id="quantiteStock" placeholder="Quantite" min="1" max="999" required><br>
     <input type="number" name="prix" id="prix" placeholder="prix" min="1" max="200" required><br>
+    
 
     <div id="formContent"></div>
 
@@ -97,7 +100,7 @@ $content = <<<HTML
 
                 case "P":
                     htmlContent += '<input type="text" name="effet" id="effet" placeholder="Effet" class="autocomplete" required><br>';
-                    htmlContent += '<input type="checkbox" id="estAttaque" name="estAttaque" value="estAttaque><label for="estAttaque">Est Attaque</label><br>';
+                    htmlContent += '<input type="checkbox" id="estAttaque" name="estAttaque" value="estAttaque><label for="estAttaque" class="newItemLabel">Est Attaque</label><br>';
                     htmlContent += '<input type="number" name="duree" min="1" placeholder="Duree"><br>';
                     break;
 
@@ -110,6 +113,7 @@ $content = <<<HTML
                 default:
                     break;
             }
+            htmlContent+= '</div> '
             formContent.innerHTML = htmlContent;
             applyAutocomplete();
         });

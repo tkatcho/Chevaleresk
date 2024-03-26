@@ -3,16 +3,17 @@
 include 'DAL/ChevalereskDB.php';
 include 'php/sessionManager.php';
 
-$viewTitle="Bienvenue à Chevaleresk";
-$isConnected= isset($_SESSION['validUser']) && $_SESSION['validUser'];
-$isAdmin = isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'];
+$viewTitle = "Bienvenue à Chevaleresk";
+$isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
+/*$isAdmin = isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'];*/
 
 
-if($isConnected){
+if ($isConnected) {
 
     //Faire une condition pour savoir si admin ou si joueur (les boutons ne seront pas les mêmes)
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
-    if($isAdmin){
+    $isAdmin = $joueur->estAdmin;
+    if ($isAdmin) {
         $content = <<<HTML
     <!---------------------------Options pour admin-------------------------------->
     <!--Le profil à droite-->
@@ -28,22 +29,33 @@ if($isConnected){
       
       <!--Les options à gauche-->
       <div class="optionsBtn" >
-          <button>
+          <button onclick="location.href='index.php'">
+              <a class="optionsBtnIcon" href ="index.php">
+              Achat <i class="fa fa-money"></i>
+            </a>
+          </button>            
+
+          <button onclick="location.href='inventaire.php'">
+              <a class="optionsBtnIcon" href ="inventaire.php">
+              Inventaire <i class="fa fa-id-card-o"></i>
+              </a>
+          </button>
+          <button onclick="location.href='newItem.php'">
               <a class="optionsBtnIcon" href ="newItem.php">
               Nouveau item <i class="fa fa-money"></i>
               </a>
           </button>
-          <button>
+          <button onclick="location.href='modifierProfil.php'">
               <a class="optionsBtnIcon" href ="modifierProfil.php">
               Modifier Profil <i class="fa fa-user"></i>
               </a>
           </button>
-          <button>
+          <button onclick="location.href='optionsGagnerArgent.php'">
               <a class="optionsBtnIcon" href ="optionsGagnerArgent.php">
               Argent <i class="fa fa-gift"></i>
               </a>
           </button>
-          <button>
+          <button onclick="location.href='logout.php'">
               <a class="optionsBtnIcon" href ="logout.php">
               Déconnexion <i class="fa fa-sign-out"></i>
               </a>
@@ -52,10 +64,10 @@ if($isConnected){
   </div>
   
   HTML;
-    }else{
+    } else {
 
-    
-    $content = <<<HTML
+
+        $content = <<<HTML
     <!---------------------------Options pour joueur-------------------------------->
     <!--Le profil à droite-->
     <div class="optionsJeu">
@@ -70,27 +82,28 @@ if($isConnected){
       
       <!--Les options à gauche-->
       <div class="optionsBtn" >
-          <button>
+          <button onclick="location.href='index.php'">
               <a class="optionsBtnIcon" href ="index.php">
               Achat <i class="fa fa-money"></i>
-              </a>
-          </button>
-          <button>
+            </a>
+          </button>            
+
+          <button onclick="location.href='inventaire.php'">
               <a class="optionsBtnIcon" href ="inventaire.php">
               Inventaire <i class="fa fa-id-card-o"></i>
               </a>
           </button>
-          <button>
+          <button onclick="location.href='modifierProfil.php'">
               <a class="optionsBtnIcon" href ="modifierProfil.php">
               Modifier Profil <i class="fa fa-user"></i>
               </a>
           </button>
-          <button>
+          <button onclick="location.href='optionsGagnerArgent.php'">
               <a class="optionsBtnIcon" href ="optionsGagnerArgent.php">
-              Gagner plus d'argent <i class="fa fa-gift"></i>
+              Argent <i class="fa fa-gift"></i>
               </a>
           </button>
-          <button>
+          <button onclick="location.href='logout.php'">
               <a class="optionsBtnIcon" href ="logout.php">
               Déconnexion <i class="fa fa-sign-out"></i>
               </a>
@@ -99,8 +112,8 @@ if($isConnected){
   </div>
   
   HTML;
-}
-}else {
+    }
+} else {
     redirect("index.php");
 }
 

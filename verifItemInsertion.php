@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
 function createItem($data)
 {
     $itemInsertedVerif = 0;
@@ -31,10 +32,16 @@ function createItem($data)
     $sousItemData = $data;
     unset($sousItemData['nom'], $sousItemData['typeItem'], $sousItemData['quantiteStock'], $sousItemData['prix'], $sousItemData['photo'], $sousItemData['submit']);
 
+    $cost = ItemsTable()->getMax('Prix', "Type = 'P';");
+
     $db = DB(); // Get the database connection.
     try {
+        if (isset($cost) && $item['prix'] > $cost && $item['type'] == 'E') {
+            throw new Exception("Prix trop elever!");
+        }
         $db->beginTransaction();
         $x = $item['nom'];
+
 
         $itemInsertedVerif = ItemsTable()->insert(new Item($item));
         $itemInserted = ItemsTable()->selectWhere("nom = '$x'")[0]->Id;
@@ -42,7 +49,6 @@ function createItem($data)
         if (isset($itemInserted) && $itemInsertedVerif != 0) {
             $sousItemData = ["idItem" => $itemInserted] + $sousItemData;
 
-            print_r($sousItemData);
             switch ($data["typeItem"]) {
                 case "A":
                     $itemInsertedVerif = ArmuresTable()->insert(new Armure($sousItemData));
@@ -60,8 +66,7 @@ function createItem($data)
 
             if ($itemInserted == 0) {
                 $db->rollbackTransaction();
-                $_SESSION['error'] = "Error: N'a pas pue inserer l'item, veuillez ressayer!";
-                redirect("newItem.php");
+                throw new Exception("Error: N'a pas pue inserer l'item, veuillez ressayer!");
             }
             $db->commitTransaction();
             $_SESSION['success'] = "Insertion reussi! l'item est ajoute a la BD!";
@@ -72,7 +77,7 @@ function createItem($data)
         }
     } catch (Exception $e) {
 
-        $db->rollbackTransaction(); // Roll back the transaction on error.
+        $db->rollbackTransaction();
         $_SESSION['error'] = "Error: " . $e->getMessage();;
         redirect("newItem.php");
     }

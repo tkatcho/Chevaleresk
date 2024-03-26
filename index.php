@@ -29,15 +29,17 @@ if ($_POST && isset ($_POST['filtre'])) {
         $checkedValues[$value] = 'checked';
     }
 }
+$recherche = trim($_POST['nom'] ?? '');
 
 
 $viewMenu = '
-<form id="formFiltre" action="index.php" method="POST"> 
-    <p> <input type="checkbox" name="filtre[]" value="all" ' . (isset ($checkedValues['all']) ? 'checked' : '') . '> <i class="fas fa-list"></i> Tous les éléments </p>
-    <p> <input type="checkbox" name="filtre[]" value="armure" ' . (isset ($checkedValues['armure']) ? 'checked' : '') . '> <i class="fas fa-vest"></i> Armures </p>
-    <p> <input type="checkbox" name="filtre[]" value="arme" ' . (isset ($checkedValues['arme']) ? 'checked' : '') . '> <i class="fas fa-gun"></i> Armes </p>
-    <p> <input type="checkbox" name="filtre[]" value="potion" ' . (isset ($checkedValues['potion']) ? 'checked' : '') . '> <i class="fas fa-flask"></i> Potions </p>
-    <p> <input type="checkbox" name="filtre[]" value="element" ' . (isset ($checkedValues['element']) ? 'checked' : '') . '> <i class="fas fa-magic"></i> Éléments </p>
+<form id="formFiltre" action="index.php" method="POST" class="optionsRecherche"> 
+    <p> <input type="checkbox" name="filtre[]" value="all" ' . (isset($checkedValues['all']) ? 'checked' : '') . '> <i class="fas fa-list"></i> Tous les éléments </p>
+    <p> <input type="checkbox" name="filtre[]" value="armure" ' . (isset($checkedValues['armure']) ? 'checked' : '') . '> <i class="fas fa-vest"></i> Armures </p>
+    <p> <input type="checkbox" name="filtre[]" value="arme" ' . (isset($checkedValues['arme']) ? 'checked' : '') . '> <i class="fas fa-gun"></i> Armes </p>
+    <p> <input type="checkbox" name="filtre[]" value="potion" ' . (isset($checkedValues['potion']) ? 'checked' : '') . '> <i class="fas fa-flask"></i> Potions </p>
+    <p> <input type="checkbox" name="filtre[]" value="element" ' . (isset($checkedValues['element']) ? 'checked' : '') . '> <i class="fas fa-magic"></i> Éléments </p>
+    <input type="hidden" name="nom" value="' . htmlspecialchars($recherche) . '"> <!-- Hidden field for search term -->
 </form>
 
 <script> 
@@ -51,30 +53,29 @@ $viewMenu = '
 
 $content = <<<HTML
     <div class="headerMenusContainer">
-            <span>&nbsp</span> <!--filler-->
+    <span>&nbsp</span> <!--filler-->
             <div class="dropdown ms-auto dropdownLayout">
-                <!-- <form action="photosList.php" method="POST">
-                    <span class="searchContainer">
-                        <input type="search" class="form-control" name="keyword" placeholder="Recherche par mots-clés" id="keywords" />
-                        <button class="cmdIcon fa fa-search" type="submit" id="setSearchKeywordsCmd"></button>
-                    </span>
-                </form> -->
-                <span class="textFilter"> Recherche par Filtre</span>
-                <div data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-bars"></i>
+                <div class="searchContainer">
+                    <p class="textFilter"> Recherche par Filtre</p>
+                    <form method="post">
+                    <input type="text" class="autocomplete" name="nom" id="nom">
+                    </form>                    
+                    <div data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <div class="dropdown-menu noselect">
+                        $viewMenu
+                    </div>
                 </div>
-                <div class="dropdown-menu noselect">
-                    $viewMenu
-                </div>
+                
             </div>
     <hr>
 HTML;
 
-
 function addToCartButton($idJoueur, $idItem, $qt)
 {
     return <<<HTML
-        <button>
+        <button onclick="location.href='addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt'">
             <a href="addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt"><i class="fa fa-cart-plus"></i></a>
         </button>
     HTML;
@@ -84,10 +85,15 @@ $itemsDisplay = <<<HTML
     <div class="containerTousItems">
 HTML;
 
+
 $index = 1;
-$items = ItemsTable()->selectAll();
+$items = [];
 
-
+if ($recherche !== '') {
+    $items = ItemsTable()->selectWhere("nom like '%$recherche%'");
+} else {
+    $items = ItemsTable()->selectAll();
+}
 
 if ($items != null) {
 
