@@ -3,8 +3,7 @@ require_once 'DAL/ChevalereskDB.php';
 require 'php/sessionManager.php';
 require_once 'php/config.php';
 
-if (isset($_GET["idItem"]))
-{
+if (isset($_GET["idItem"])) {
     $id = $_GET["idItem"];
     $item = ItemsTable()->get($id);
 }
@@ -25,23 +24,21 @@ function addToCartButton($idJoueur, $idItem, $qt)
 $itemsDisplay = <<<HTML
     <div class="containerTousItems">
 HTML;
-    
 
-    $index = 1;
 
-    if ($item != null)
-    {
-        $addToCartBouton = "";
-        if ($isConnected) 
-            $addToCartBouton = addToCartButton($_SESSION['id'], $id, 1);
+$index = 1;
 
-        if ($item->Type == 'P')
-        { // Potions
-            $potion = PotionsTable()->selectWhere("idItem = $id")[0];
-            $type = "Défence";
-            if ($potion->estAttaque)
-                $type = "Attaque";
-            $itemsDisplay .= <<<HTML
+if ($item != null) {
+    $addToCartBouton = "";
+    if ($isConnected)
+        $addToCartBouton = addToCartButton($_SESSION['id'], $id, 1);
+
+    if ($item->Type == 'P') { // Potions
+        $potion = PotionsTable()->selectWhere("idItem = $id")[0];
+        $type = "Défence";
+        if ($potion->estAttaque)
+            $type = "Attaque";
+        $itemsDisplay .= <<<HTML
                 <div class="containerItem">
                     <span class="idItem">$index</span> 
                     $item->Nom
@@ -75,11 +72,11 @@ HTML;
                     <p>
                 </div>
             HTML;
-        }
-    
-        if ($item->Type == 'W') { // Armes
-                $arme = ArmesTable()->selectWhere("idItem = $id")[0];
-                $itemsDisplay .= <<<HTML
+    }
+
+    if ($item->Type == 'W') { // Armes
+        $arme = ArmesTable()->selectWhere("idItem = $id")[0];
+        $itemsDisplay .= <<<HTML
                 <div class="containerItem">
                     <span class="idItem">$index</span> 
                     $item->Nom
@@ -113,11 +110,11 @@ HTML;
                     <p>
                 </div>
             HTML;
-        }
+    }
 
-        if ($item->Type == 'A') { // Armures
-                $armure = ArmuresTable()->selectWhere("idItem = $id")[0];
-                $itemsDisplay .= <<<HTML
+    if ($item->Type == 'A') { // Armures
+        $armure = ArmuresTable()->selectWhere("idItem = $id")[0];
+        $itemsDisplay .= <<<HTML
                 <div class="containerItem">
                     <span class="idItem">$index</span> 
                     $item->Nom
@@ -149,12 +146,12 @@ HTML;
                     <p>
                 </div>
             HTML;
-        }
-        
-        //ok
-        if ($item->Type == 'E') { // Éléments
-                $element = ElementsTable()->selectWhere("idItem = $id")[0];
-                $itemsDisplay .= <<<HTML
+    }
+
+    //ok
+    if ($item->Type == 'E') { // Éléments
+        $element = ElementsTable()->selectWhere("idItem = $id")[0];
+        $itemsDisplay .= <<<HTML
                 <div class="containerItem">
                     <span class="idItem">$index</span> 
                     $item->Nom
@@ -189,17 +186,16 @@ HTML;
                     <p>
                 </div>
             HTML;
-        }
-           
- 
+    }
+}
+
 
 
 $itemsDisplay .= <<<HTML
     </div>
 HTML;
-                
+
 
 $content = $itemsDisplay;
 
 include 'views/master.php';
-                
