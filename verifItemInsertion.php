@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
 function createItem($data)
 {
     $itemInsertedVerif = 0;
@@ -31,10 +32,16 @@ function createItem($data)
     $sousItemData = $data;
     unset($sousItemData['nom'], $sousItemData['typeItem'], $sousItemData['quantiteStock'], $sousItemData['prix'], $sousItemData['photo'], $sousItemData['submit']);
 
+    $cost = ItemsTable()->getMax('Prix', "Type = 'P';");
+
     $db = DB(); // Get the database connection.
     try {
+        if (isset($cost) && $item['prix'] > $cost && $item['type'] == 'E') {
+            throw new Exception("Prix trop elever!");
+        }
         $db->beginTransaction();
         $x = $item['nom'];
+
 
         $itemInsertedVerif = ItemsTable()->insert(new Item($item));
         $itemInserted = ItemsTable()->selectWhere("nom = '$x'")[0]->Id;

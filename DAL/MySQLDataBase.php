@@ -288,6 +288,13 @@ abstract class MySQLTable
             return $data;
         }
     }
+    public function getMax($row, $criteria)
+    {
+        $tableName = $this->tableName();
+        $sql = "SELECT MAX($row) FROM $tableName WHERE $criteria";
+        $data = $this->_DB->querySqlCmd($sql);
+        return $data[0][0];
+    }
     public function exist($id)
     {
         return ($this->get($id) !== null);
