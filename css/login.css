@@ -1,0 +1,46 @@
+/*CONNEXION*/
+.loginForm {
+    background-color: lightgray;
+    height: 300px;
+    width: 500px;
+    margin: auto;
+}
+
+@media screen and (max-width: 550px) {
+    .loginForm {
+        width: 300px;
+    }
+}
+
+.loginForm input {
+    border: none;
+    width: 80%;
+    height: 40px;
+    padding-left: 10px;
+}
+
+.loginForm input[type="submit"] {
+    padding: 0;
+}
+
+.loginForm div {
+    padding: 20px;
+}
+
+.loginForm i {
+    font-size: 40px;
+    padding-right: 10px;
+}
+
+.loginForm input::placeholder {
+    color: white;
+    font-size: 16pt;
+    font-family: var(--primary-font);
+    padding: 10px;
+}
+
+.loginFormBtn {
+    font-family: var(--primary-font);
+    margin-left: 40px;
+    margin-top: 60px;
+}

@@ -1,0 +1,65 @@
+/*OPTIONS JEU*/
+.optionsJeu {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.optionsJeu div {
+    line-height: 75px;
+}
+
+.optionsBackgroundGrisProfil {
+    background-color: lightgrey;
+    border-radius: 10px;
+    width: 450px;
+    text-align: center;
+    padding: 20px;
+}
+
+.optionsBackgroundGrisProfil strong {
+    font-size: 40px;
+    font-family: var(--secondary-font);
+}
+
+.optionsBackgroundGrisProfil p,
+span {
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.optionsBackgroundBleuProfilImg {
+    background-color: var(--primary-color);
+    border-radius: 30px;
+}
+
+.optionsBackgroundBleuProfilImg div {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    height: 300px;
+}
+
+.optionsBtn {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    border-left: 1px solid gray;
+    margin-left: 60px;
+}
+
+.optionsBtn button {
+    line-height: 75px;
+    text-align: start;
+    margin-bottom: 10px;
+}
+
+.optionsBtn a {
+    font-family: var(--secondary-font);
+}
+
+.optionsBtnIcon i {
+    font-size: 40px;
+    float: right;
+    padding-top: 20px;
+}

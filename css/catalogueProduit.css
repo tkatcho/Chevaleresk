@@ -1,0 +1,152 @@
+/*CATALOGUE PRODUIT*/
+/*Container de tous les items*/
+.containerTousItems {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 30px;
+}
+
+.containerFlexIdNom {
+    display: flex;
+    align-items: baseline;
+}
+
+.containerFlexIdNom span {
+    line-height: 30px;
+}
+
+.containerTousItem div,
+p,
+span,
+ul,
+li {
+    font-family: var(--secondary-font);
+    font-size: 12px;
+}
+
+/*Un item (grid)*/
+.containerItem {
+    margin-top: 30px;
+    font-family: var(--secondary-font);
+    font-size: 14px;
+    max-width: 350px;
+}
+
+.containerItem p {
+    font-size: 12px;
+}
+
+.containerItem p>span {
+    font-size: 10px;
+}
+
+.idItem {
+    border-radius: 55px;
+    background: var(--primary-color);
+    padding: 15px;
+    width: 70px;
+    height: 60px;
+    text-align: center;
+    font-family: var(--secondary-font);
+    color: white;
+}
+
+.itemImage {
+    border-radius: 25px;
+    background: var(--primary-color);
+    padding: 10px;
+    height: 120px;
+    background-position: center;
+}
+
+.itemImage div {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    border-radius: 9px;
+    margin-left: 60px;
+}
+
+.itemPrix {
+    color: var(--secondary-color);
+}
+
+@media screen and (max-width: 400px) {
+    .containerTousItems {
+        grid-template-columns: auto auto;
+        gap: 20px;
+    }
+
+    .containerItem {
+        max-width: 150px;
+    }
+
+    .itemImage div {
+        margin-left: 3px;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .containerTousItems {
+        grid-template-columns: auto auto;
+        gap: 20px;
+    }
+
+    .containerItem {
+        max-width: 200px;
+    }
+
+    .itemImage div {
+        margin-left: 30px;
+    }
+}
+
+@media screen and (min-width: 560px) {
+    .containerTousItems {
+        grid-template-columns: auto auto;
+        gap: 20px;
+    }
+
+    .containerItem {
+        max-width: 300px;
+    }
+}
+
+@media screen and (min-width: 680px) {
+    .containerTousItems {
+        grid-template-columns: auto auto auto;
+        gap: 10px;
+    }
+
+    .containerItem {
+        max-width: 250px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .containerTousItems {
+        grid-template-columns: auto auto auto auto;
+        gap: 20px;
+    }
+
+    .containerItem {
+        max-width: 200px;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .containerTousItems {
+        grid-template-columns: auto auto auto auto;
+        gap: 30px;
+    }
+
+    .containerItem {
+        max-width: 250px;
+    }
+
+    .itemImage div {
+        margin-left: 70px;
+    }
+}

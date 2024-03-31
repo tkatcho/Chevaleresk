@@ -1,0 +1,55 @@
+/*CONCOCTER POTIONS*/
+.concocterPotionsPage {
+    display: flex;
+    flex-wrap: nowrap;
+    border: 1px #000;
+}
+
+.concocterPotionsToutesPotions {
+    display: flex;
+    flex-direction: column;
+}
+
+.concocterPotionsItem {
+    margin-top: 20px;
+    width: 500px;
+    display: flex;
+    border: 4px solid var(--primary-color);
+    border-radius: 5px;
+    align-items: center;
+
+}
+
+
+.concocterPotionsImg div {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+}
+
+.concocterPotionsRecettes {
+    line-height: 40px;
+    margin-left: 60px;
+    padding-left: 20px;
+    border-left: 1px solid gray;
+}
+
+.concocterPotionBtn {
+    width: 380px;
+    text-align: center;
+    padding: 10px;
+}
+
+.concocterPotionBtn a {
+
+    font-family: var(--secondary-font);
+}
+
+.concocterPotionBtn i {
+    float: inline-end;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}

@@ -15,26 +15,59 @@ if (!isset($viewName))
 
 $loggedUserMenu = "";
 
-// Je pense qu'on devrait toujours afficher le bouton panier et logout peut importe la page. Si pas daccord, contacter thomas
-$logoutButton = <<<HTML
-    <button onclick="location.href='logout.php'">
-        <a href="logout.php">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+//Les boutons par défaut
+//logout
+$logoutButton=<<<HTML
+    <div class="buttonOnSide">                              
+        <button onclick="location.href='logout.php'">
+            <a href="logout.php">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
+        </button>
+    </div>
+HTML;
+
+//panier
+$panierButton =<<<HTML
+    <button onclick="location.href='panier.php'">
+        <a href ="panier.php">
+            <i class="fa fa-shopping-cart"></i>
         </a>
     </button>
 HTML;
-$buttonOnSide = <<<HTML
+
+//Panier et logout
+$buttonOnSide =<<<HTML
     <div class="buttonOnSide">
-        <button onclick="location.href='panier.php'">
-            <a href ="panier.php">
-                <i class="fa fa-shopping-cart"></i>
-            </a>
-        </button>
+        $panierButton
         $logoutButton
     </div>
 HTML;
 
-//Si le joueur est connecté
+//retour Options Jeu
+$buttonRetourOptionsJeu=<<<HTML
+    <div class="btnRetour">
+        <button onclick="location.href='optionsJeu.php'">
+            <a href="optionsJeu.php">     
+                <i class="fa fa-angle-left"></i>
+            </a>
+        </button>
+    </div>
+HTML;
+
+//retour Catalogue Produit
+$buttonRetourCatalogueProduit =<<<HTML
+    <div class="btnRetour">
+        <button onclick="location.href='index.php'">
+            <a href="index.php">     <!--Retourne au catalogue de produit-->
+                <i class="fa fa-angle-left"></i>
+            </a>
+        </button>
+    </div>
+HTML;
+
+
+//JOUEUR CONNECTÉ
 if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
     $playerAlias = $_SESSION["alias"];
 
@@ -42,29 +75,16 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
         $buttonOnSide
     HTML;
 
+    
     if ($viewTitle == "Catalogue de produit") {
         $loggedUserMenu = <<<HTML
-        <div class="btnRetour">
-                <button onclick="location.href='optionsJeu.php'">
-                    <a href="optionsJeu.php">     <!--Retourne au catalogue de produit-->
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                </button>
-            </div>
+            $buttonRetourOptionsJeu
             $buttonOnSide
         HTML;
     } else if ($viewTitle == "Panier d'achat" || $viewTitle == "Concocter des potions" || $viewTitle == "Détails de l'item") {
         $loggedUserMenu = <<<HTML
-            <div class="btnRetour">
-                <button onclick="location.href='index.php'">
-                    <a href="index.php">     <!--Retourne au catalogue de produit-->
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                </button>
-            </div>
-            <div class="buttonOnSide">
-                $logoutButton
-            </div>
+           $buttonRetourCatalogueProduit
+            $logoutButton
         HTML;
     } else if ($viewTitle == "Bienvenue à Chevaleresk") {
 
@@ -72,13 +92,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
         HTML;
     }else if ($viewTitle=="Inventaire"){
         $loggedUserMenu = <<<HTML
-        <div class="btnRetour">
-            <button onclick="location.href='optionsJeu.php'">
-                <a href="optionsJeu.php">     <!--Retourne aux options du jeu-->
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            </button>
-        </div>
+        $buttonRetourOptionsJeu
         $buttonOnSide
         <div class="buttonOnSide">
             <button onclick="location.href='concocterPotions.php'">
@@ -90,16 +104,8 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
     HTML;
     }else if ($viewTitle=="Nouveau item"){
         $loggedUserMenu = <<<HTML
-        <div class="btnRetour">
-            <button>
-                <a href="optionsJeu.php">     <!--Retourne aux options du jeu-->
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            </button>
-        </div>
-        <div class="buttonOnSide">
+            $buttonRetourOptionsJeu
             $logoutButton
-        </div>
         HTML;
       
     }
@@ -122,13 +128,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
         HTML;
     } else if ($viewTitle == "Connexion" || $viewTitle == "Inscription" || $viewTitle == "Détails de l'item") {
         $loggedUserMenu = <<<HTML
-            <div class="btnRetour">
-                <button onclick="location.href='index.php'">
-                    <a href="index.php">     <!--Retourne au catalogue de produit-->
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                </button>
-            </div>
+            $buttonRetourCatalogueProduit
         HTML;
     } else {
         $loggedUserMenu = "";
@@ -136,8 +136,5 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
 }
 
 $viewHead = <<<HTML
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <span class="header"> 
         <h1>$viewTitle<span>$loggedUserMenu</span></h1>
-    </span>
 HTML;

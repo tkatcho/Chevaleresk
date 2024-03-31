@@ -1,0 +1,96 @@
+/*Bouton panier (ajouter au panier)*/
+.containerItem button {
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.panierItem {
+    margin-top: 20px;
+    width: auto;
+    display: flex;
+    border: 10px solid var(--primary-color);
+    align-items: center;
+    justify-content: center;
+}
+
+.panierItem div {
+    margin: 10px 25px 10px 25px;
+
+    width: 100px;
+}
+
+.panierItemImg div {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 80px;
+}
+
+.panierItem p,
+span,
+button {
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+.panierItem button {
+    line-height: 0px;
+}
+
+.panierItemPrix {
+    color: var(--secondary-color);
+    text-align: right;
+}
+
+.panierItemQt {
+    flex-grow: 2;
+    text-align: center;
+}
+
+.panierItemSupprimer {
+    flex-grow: 2;
+    text-align: right;
+}
+
+.prix {
+    color: var(--secondary-color);
+}
+
+.buyButton {
+    float: right;
+    margin-top: -80px;
+}
+
+@media screen and (max-width: 1200px) {
+    .panierItem {
+        flex-direction: column;
+        border: 15px solid var(--primary-color);
+    }
+
+    .panierItem div {
+        margin: 2px 5px 2px 5px;
+        width: auto;
+    }
+
+    .panierItemQt {
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .panierItemImg {
+        height: 100px;
+    }
+
+    .panierItemImg div {
+        height: 100px;
+        width: 100px;
+    }
+}
+
+
+@media screen and (min-width: 1090px) {
+    .panierItemQt {
+        flex-grow: 8;
+    }
+}
