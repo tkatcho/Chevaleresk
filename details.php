@@ -51,7 +51,7 @@ HTML;
                         <div style="background-image:url('./images/potion.png')"></div>
                     </div>
                     <hr>
-                    <p>Type item: 
+                    <p>Type item:           
                         <span>Potion</span>
                     </p>
                     <p>Effet: 
