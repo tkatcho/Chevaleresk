@@ -125,13 +125,13 @@ if ($items != null) {
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
-                        <span class="idItem">$index</span> 
+                        <span style="flex-grow:2;"class="idItem">$index</span> 
                         <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                         <span>$addToCartBouton</span>
                     </div>
                     <hr>
                     <div class="itemImage">
-                        <div style="background-image:url('./images/potion.png')"></div>
+                        <div style="background-image:url('$item->Photo')"></div>
                     </div>
                     <hr>
                     <p>Type item: 
@@ -156,13 +156,13 @@ if ($items != null) {
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
-                        <span class="idItem">$index</span> 
+                        <span style="flex-grow:2;"class="idItem">$index</span> 
                         <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                         <span>$addToCartBouton</span>
                     </div>
                     <hr>
                     <div class="itemImage">
-                        <div style="background-image:url('./images/épée.png')"></div>
+                        <div style="background-image:url('$item->Photo')"></div>
                     </div>
                     <hr>
                     <p>Type item: 
@@ -187,13 +187,13 @@ if ($items != null) {
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
-                        <span class="idItem">$index</span> 
+                        <span style="flex-grow:2;"class="idItem">$index</span> 
                         <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                         <span>$addToCartBouton</span>
                     </div>
                     <hr>
                     <div class="itemImage">
-                        <div style="background-image:url('./images/armure.png')"></div>
+                        <div style="background-image:url('$item->Photo')"></div>
                     </div>
                     <hr>
                     <p>Type item: 
@@ -218,13 +218,13 @@ if ($items != null) {
                 $itemsDisplay .= <<<HTML
                     <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
-                        <span class="idItem">$index</span> 
+                        <span style="flex-grow:2;"class="idItem">$index</span> 
                         <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                         <span>$addToCartBouton</span>
                     </div>
                         <hr>
                         <div class="itemImage">
-                            <div  style="background-image:url('./images/élément.png')"></div>
+                            <div  style="background-image:url('$item->Photo')"></div>
                         </div>
                         <hr>
                         <p>Type item: 
