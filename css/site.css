@@ -1,3 +1,4 @@
+/*CSS du site*/
 @font-face {
   font-family: Bahianita;
   src: url("../ressources/Bahianita-Regular.ttf");
@@ -7,10 +8,6 @@
   font-family: PressStart2P;
   src: url("../ressources/PressStart2P-Regular.ttf");
 }
-
-/*  UTILISEZ LES VARIABLES!!!!!! 
-    Example: background-color: var(--primary-color);
-*/
 
 :root {
   --primary-color: #394a6d;
@@ -25,6 +22,8 @@
   letter-spacing: 2px;
 }
 
+
+/*HEADER*/
 header {
   margin: 10px;
   padding: 10px 20px;
@@ -92,10 +91,6 @@ form input {
   font-family: initial;
   font-family: initial;
 }
-/* 
-form label {
-    color: black !important;
-} */
 
 .form-floating > input + label:after {
   background: transparent !important;
@@ -126,6 +121,7 @@ form label {
   padding: 10px;
 }
 
+/*CATALOGUE PRODUIT*/
 /*Container de tous les items*/
 .containerTousItems {
   display: grid;
@@ -191,6 +187,7 @@ span, ul, li {
   color: var(--secondary-color);
 }
 
+/*PANIER*/
 /*Bouton panier (aujouter au panier)*/
 .containerItem button {
   font-size: 20px;
@@ -203,8 +200,7 @@ span, ul, li {
   border-radius: 10px;
 }
 
-/*Page Panier*/
-
+/*PANIER*/
 .btnRetour {
   float: left;
   margin-right: 10px;
@@ -257,7 +253,7 @@ button {
   text-align: right;
 }
 
-/*Page de connexion/Inscription*/
+/*CONNEXION*/
 .loginForm {
   background-color: lightgray;
   height: 300px;
@@ -298,6 +294,7 @@ button {
   margin-top: 60px;
 }
 
+/*INSCRIPTION*/
 .signupForm {
   background-color: lightgray;
   height: 400px;
@@ -338,7 +335,7 @@ button {
   width: 250px;
 }
 
-/*Options du jeu pour joueur et admin*/
+/*OPTIONS JEU*/
 .optionsJeu {
   display: flex;
   flex-wrap: nowrap;
@@ -414,6 +411,7 @@ span {
   margin-top: -80px;
 }
 
+/*NOUVEAU ITEM*/
 .newItem label{
   font-family: var(--secondary-font);
   font-size:12px;
@@ -485,22 +483,7 @@ span {
     max-width: 250px;
   }
 }
-/*@media screen and (max-width:1100px){
-    .panierItem{
-      
-        border: 10px solid var(--primary-color);
-    }
-    .panierItem div{
-        margin:5px 10px 5px 10px;
-        line-height:80px;
-       
-    }
-    
-    .panierItemSupprimer{
-        flex-grow:2;
-        text-align: right;
-    }
-}*/
+
 @media screen and (max-width: 1200px) {
   .panierItem {
     flex-direction: column;
@@ -552,7 +535,7 @@ span {
 }
 
 
-/*Concoter les potions*/
+/*CONCOCTER POTIONS*/
 .concocterPotionsPage {
   display: flex;
   flex-wrap: nowrap;
@@ -602,4 +585,48 @@ span {
   float: inline-end;
   margin-left:10px;
   margin-bottom:10px;
+}
+
+/*DÉTAILS*/
+.détailsContainer{
+  display:flex;
+}
+
+.détailsContainerItem{
+  margin:10px;
+  padding:10px;
+}
+.détailsImg{
+  border-radius:25px;
+  background: var(--primary-color);
+  padding:10px;
+  height:300px;
+  width:300px;
+  background-position: center;
+}
+.détailsImg div{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width:240px;
+  height:230px;
+  border-radius: 9px;
+  margin: auto;
+}
+
+.btnÉvaluerCommenter{
+  border-radius:5px;
+  padding:10px;
+  width:300px;
+  margin-top:40px;
+  text-align: center;
+  font-family: var(--secondary-font);
+}
+
+.btnÉvaluerCommenter a{
+  font-family: var(--secondary-font);
+  font-size: 10px;
+}
+.btnÉvaluerCommenter i{
+  font-size: 15px;
 }
