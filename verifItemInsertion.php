@@ -32,12 +32,20 @@ function createItem($data)
     $sousItemData = $data;
     unset($sousItemData['nom'], $sousItemData['typeItem'], $sousItemData['quantiteStock'], $sousItemData['prix'], $sousItemData['photo'], $sousItemData['submit']);
 
-    $cost = ItemsTable()->getMax('Prix', "Type = 'P';");
+    $cost = null;
+
+    if ($item['type'] == 'E') {
+        $cost = ItemsTable()->getMax('Prix', "Type = 'P';");
+    } elseif ($item['type'] == 'P') {
+        $cost = ItemsTable()->getMin('Prix', "Type = 'E';");
+    }
 
     $db = DB(); // Get the database connection.
     try {
         if (isset($cost) && $item['prix'] > $cost && $item['type'] == 'E') {
             throw new Exception("Prix trop elever!");
+        } elseif (isset($cost) && $item['prix'] < $cost && $item['type'] == 'P') {
+            throw new Exception("Prix trop petit!");
         }
         $db->beginTransaction();
         $x = $item['nom'];

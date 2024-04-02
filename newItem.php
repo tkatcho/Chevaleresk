@@ -5,9 +5,8 @@ require 'php/config.php';
 #region code
 
 //TODO, UNCOOMMENT ADMINACCESS() LINE
-
 //adminAccess();
-$viewTitle="Nouveau item";
+$viewTitle = "Nouveau item";
 $messageHtml = '';
 
 if (isset($_SESSION['success'])) {
@@ -41,8 +40,7 @@ if (file_exists("views/scriptsBundle.html")) {
 #endregion
 
 $content = <<<HTML
-
-    <div class="newItem">       
+    <div class="newItem">      
         <form action="verifItemInsertion.php" method="POST" autocomplete="off">
         <input type="radio" id="armure" name="typeItem" value="A" required>
         <label for="armure">armure</label>
@@ -52,7 +50,6 @@ $content = <<<HTML
         <label for="potion">potion</label>
         <input type="radio" id="élément" name="typeItem" value="E">
         <label for="élément">élément</label><br>
-    </div>
     <hr>
     
     <div class="newItemCaractéristiques">
