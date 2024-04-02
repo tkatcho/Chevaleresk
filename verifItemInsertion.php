@@ -4,7 +4,7 @@ require 'php/sessionManager.php';
 require_once 'php/config.php';
 
 
-// adminAccess();
+adminAccess();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["submit"])) {
@@ -34,9 +34,9 @@ function createItem($data)
 
     $cost = null;
 
-    if ($item['type'] == 'E') {
+    if ($item['type'] == 'E') { //cant be higher than most expensive potion
         $cost = ItemsTable()->getMax('Prix', "Type = 'P';");
-    } elseif ($item['type'] == 'P') {
+    } elseif ($item['type'] == 'P') { //cant be cheaper than cheapest element
         $cost = ItemsTable()->getMin('Prix', "Type = 'E';");
     }
 

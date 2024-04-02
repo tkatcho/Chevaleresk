@@ -5,6 +5,7 @@ require 'php/config.php';
 #region code
 
 //TODO, UNCOOMMENT ADMINACCESS() LINE
+
 //adminAccess();
 $viewTitle = "Nouveau item";
 $messageHtml = '';
