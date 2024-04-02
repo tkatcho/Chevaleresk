@@ -62,7 +62,7 @@ HTML;
             $itemsDisplay .= <<<HTML
             <div class="détailsContainerItem">
                 <div class="détailsImg">
-                    <div style="background-image:url('./images/potion.png')"></div>
+                    <div style="background-image:url('$item->Photo')"></div>
                 </div>
                 $buttonÉvaluerCommentaire
             </div>
@@ -104,7 +104,7 @@ HTML;
                 $itemsDisplay .= <<<HTML
                     <div class="détailsContainerItem">
                         <div class="détailsImg">
-                            <div style="background-image:url('./images/épée.png')"></div>
+                            <div style="background-image:url('$item->Photo')"></div>
                         </div>
                         $buttonÉvaluerCommentaire
                     </div>
@@ -147,7 +147,7 @@ HTML;
                 $itemsDisplay .= <<<HTML
                     <div class="détailsContainerItem">
                         <div class="détailsImg">
-                            <div style="background-image:url('./images/armure.png')"></div>
+                            <div style="background-image:url('$item->Photo')"></div>
                         </div>
                         $buttonÉvaluerCommentaire
                     </div>
@@ -188,7 +188,7 @@ HTML;
             $itemsDisplay .= <<<HTML
             <div class="détailsContainerItem">
                 <div class="détailsImg">
-                    <div style="background-image:url('./images/élément.png')"></div>
+                    <div style="background-image:url('$item->Photo')"></div>
                 </div>
                 $buttonÉvaluerCommentaire
             </div>
