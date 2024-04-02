@@ -295,6 +295,13 @@ abstract class MySQLTable
         $data = $this->_DB->querySqlCmd($sql);
         return $data[0][0];
     }
+    public function getMin($row, $criteria)
+    {
+        $tableName = $this->tableName();
+        $sql = "SELECT MIN($row) FROM $tableName WHERE $criteria";
+        $data = $this->_DB->querySqlCmd($sql);
+        return $data[0][0];
+    }
     public function exist($id)
     {
         return ($this->get($id) !== null);
