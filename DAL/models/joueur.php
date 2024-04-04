@@ -52,7 +52,7 @@ class Joueur extends Record
     {
         if ($estAlchimiste == 0 || $estAlchimiste == 1)
         {
-            $this->estAdmin = (int) $estAlchimiste;
+            $this->estAlchimiste = (int) $estAlchimiste;
         }
     }
     public function setEstAdmin($accessType)
