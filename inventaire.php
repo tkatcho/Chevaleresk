@@ -31,10 +31,11 @@ if ($inventaire != null) {
             if ($potion->estAttaque)
                 $type = "Attaque";
             $itemsDisplay .= <<<HTML
-                <div class="containerItem">
-                    <span class="idItem">$index</span> 
-                    $item->Nom
-                    <hr>
+                <div class="containerItem" onclick="linked($item->Id)">
+                    <div class="containerFlexIdNom">
+                        <span style="flex-grow:2;"class="idItem">$index</span> 
+                        <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                    </div>
                     <div class="itemImage">
                         <div style="background-image:url('$item->Photo')"></div>
                     </div>
@@ -62,9 +63,11 @@ if ($inventaire != null) {
         if ($item->Type == 'W') { // Armes
             $arme = ArmesTable()->selectWhere("idItem = $item->Id")[0];
             $itemsDisplay .= <<<HTML
-                <div class="containerItem">
-                    <span class="idItem">$index</span> 
-                    $item->Nom
+                <div class="containerItem" onclick="linked($item->Id)">
+                    <div class="containerFlexIdNom">
+                        <span style="flex-grow:2;"class="idItem">$index</span> 
+                        <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                    </div>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('$item->Photo')"></div>
@@ -93,9 +96,11 @@ if ($inventaire != null) {
         if ($item->Type == 'A') { // Armures
             $armure = ArmuresTable()->selectWhere("idItem = $item->Id")[0];
             $itemsDisplay .= <<<HTML
-                <div class="containerItem">
-                    <span class="idItem">$index</span> 
-                    $item->Nom
+                 <div class="containerItem" onclick="linked($item->Id)">
+                    <div class="containerFlexIdNom">
+                        <span style="flex-grow:2;"class="idItem">$index</span> 
+                        <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                    </div>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('$item->Photo')"></div>
@@ -122,9 +127,11 @@ if ($inventaire != null) {
         if ($item->Type == 'E') { // Éléments
             $element = ElementsTable()->selectWhere("idItem = $item->Id")[0];
             $itemsDisplay .= <<<HTML
-                <div class="containerItem">
-                    <span class="idItem">$index</span> 
-                    $item->Nom
+                 <div class="containerItem" onclick="linked($item->Id)">
+                    <div class="containerFlexIdNom">
+                        <span style="flex-grow:2;"class="idItem">$index</span> 
+                        <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                    </div>
                     <hr>
                     <div class="itemImage">
                         <div  style="background-image:url('$item->Photo')"></div>
@@ -157,7 +164,13 @@ if ($inventaire != null) {
 $itemsDisplay .= <<<HTML
     </div>
 HTML;
-
+$itemsDisplay .= <<<HTML
+    <script>
+        function linked(id){
+            window.location.href = "details.php?idItem=" + id;
+        }
+    </script>
+HTML;
 
 $content .= $itemsDisplay;
 
