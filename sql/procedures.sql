@@ -126,9 +126,10 @@ DELIMITER //
 CREATE PROCEDURE GetRecord(IN recordID INT)
 BEGIN
     IF recordID IS NOT NULL THEN
-        SELECT * FROM YourTableName WHERE Id = recordID;
+        SELECT * FROM items WHERE Id = recordID;
     ELSE
-        SELECT * FROM YourTableName;
+        SELECT * FROM items;
     END IF;
 END //
 DELIMITER ;
+
