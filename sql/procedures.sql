@@ -20,7 +20,7 @@ BEGIN
     ELSEIF qt_panier <= 0 THEN
         DELETE FROM paniers WHERE id = id_panier;
     ELSE
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid quantity';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Quantité invalide';
     END IF;
 END//
 
@@ -38,6 +38,10 @@ BEGIN
     SELECT quantiteStock INTO qt_stock FROM items WHERE id = id_item;
     SELECT COUNT(*) INTO item_exists FROM paniers WHERE idJoueur = id_joueur AND idItem = id_item;
     
+    IF (((SELECT estAlchimiste FROM joueurs WHERE id = id_joueur) = 0) AND ((SELECT type FROM items WHERE id = id_item) = 'E')) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Seulement les alchimistes peuvent ajouter des éléments à leur panier';
+    END IF;
+
     IF (qt_stock > 0) THEN
         IF (qt > 0) THEN
             IF (item_exists > 0) THEN
