@@ -20,15 +20,13 @@ $viewMenu = "";
 
 function addToCartButton($idJoueur, $idItem, $qt)
 {
-    if(InventairesTable()->selectWhere("idJoueur = $idJoueur AND idItem = $idItem")){
-        return "";
-    }else {
-        return <<<HTML
+    
+    return <<<HTML
         <button>
             <a href="addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt"><i class="fa fa-cart-plus"></i></a>
         </button>
     HTML;
-    }
+    
 }
 
 function évaluerEtCommenter($idJoueur, $idItem)
