@@ -18,7 +18,7 @@ class Joueur extends Record
         $this->Nom = "";
         $this->Prenom = "";
         $this->MotDePasse = "";
-        $this->Solde = 0;
+        $this->Solde = 1000;
         $this->Niveau = "aucun";
         $this->estAlchimiste = 0;
         $this->estAdmin = 0;
