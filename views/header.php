@@ -40,7 +40,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
 
     $loggedUserMenu = <<<HTML
         $buttonOnSide
-    HTML;
+HTML;
 
     if ($viewTitle == "Catalogue de produit") {
         $loggedUserMenu = <<<HTML
@@ -52,7 +52,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
                 </button>
             </div>
             $buttonOnSide
-        HTML;
+HTML;
     } else if ($viewTitle == "Panier d'achat" || $viewTitle == "Concocter des potions" || $viewTitle == "Détails de l'item") {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
@@ -65,11 +65,11 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
             <div class="buttonOnSide">
                 $logoutButton
             </div>
-        HTML;
+HTML;
     } else if ($viewTitle == "Bienvenue à Chevaleresk") {
 
         $loggedUserMenu = <<<HTML
-        HTML;
+HTML;
     }else if ($viewTitle=="Inventaire"){
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">
@@ -87,8 +87,8 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
                 </a>
             </button>
         </div>
-    HTML;
-    }else if ($viewTitle=="Nouveau item"){
+HTML;
+    } else if ($viewTitle == "Nouveau item") {
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">
             <button>
@@ -100,8 +100,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
         <div class="buttonOnSide">
             $logoutButton
         </div>
-        HTML;
-      
+HTML;
     }
 } else {  //si le joueur n'est pas connecté  -> a les btn de connexion/inscription
 
@@ -119,7 +118,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
                     </a>
                 </button>
             </div>
-        HTML;
+HTML;
     } else if ($viewTitle == "Connexion" || $viewTitle == "Inscription" || $viewTitle == "Détails de l'item") {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
@@ -129,7 +128,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
                     </a>
                 </button>
             </div>
-        HTML;
+HTML;
     } else {
         $loggedUserMenu = "";
     }

@@ -63,7 +63,7 @@ if ($isConnected) {
       </div>
   </div>
   
-  HTML;
+HTML;
     } else {
 
 
@@ -111,7 +111,7 @@ if ($isConnected) {
       </div>
   </div>
   
-  HTML;
+HTML;
     }
 } else {
     redirect("index.php");

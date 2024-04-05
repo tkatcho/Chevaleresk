@@ -85,7 +85,7 @@ function addToCartButton($idJoueur, $idItem, $qt)
         <button onclick="location.href='addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt'">
             <a href="addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt"><i class="fa fa-cart-plus"></i></a>
         </button>
-    HTML;
+HTML;
 }
 
 $itemsDisplay = <<<HTML
@@ -146,7 +146,7 @@ if ($items != null) {
                         <span>$item->Prix</span> $
                     <p>
                 </div>
-            HTML;
+HTML;
             }
         }
 
@@ -177,7 +177,7 @@ if ($items != null) {
                         <span>$item->Prix</span> $
                     <p>
                 </div>
-            HTML;
+HTML;
             }
         }
 
@@ -208,7 +208,7 @@ if ($items != null) {
                         <span>$item->Prix</span> $
                     <p>
                 </div>
-            HTML;
+HTML;
             }
         }
 
@@ -241,7 +241,7 @@ if ($items != null) {
                                     <span>$item->Prix</span> $
                                 <p>
                             </div>
-                        HTML;
+HTML;
                     }
                 }
             }
