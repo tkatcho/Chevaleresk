@@ -22,7 +22,7 @@ foreach ($items as $item) {
                 <p>$item->Nom</p>
             </div>
          </div>
-    HTML;
+HTML;
     
     }
     
