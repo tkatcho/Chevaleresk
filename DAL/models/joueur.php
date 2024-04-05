@@ -8,7 +8,7 @@ class Joueur extends Record
     public $Nom;
     public $Prenom;
     public $MotDePasse;
-    public $Solde;
+    public $Solde ;
     public $Niveau;
     public $estAlchimiste;
     public $estAdmin = 0; // user => 0 , admin => 1
@@ -18,7 +18,7 @@ class Joueur extends Record
         $this->Nom = "";
         $this->Prenom = "";
         $this->MotDePasse = "";
-        $this->Solde = 1000;
+        $this->Solde = 0;
         $this->Niveau = "aucun";
         $this->estAlchimiste = 0;
         $this->estAdmin = 0;
