@@ -216,7 +216,7 @@ HTML;
             if ($isConnected) {
                 if (JoueursTable()->selectById($_SESSION['id'])[0]->estAlchimiste == 1) {
                     if (in_array("element", $sortType) || in_array("all", $sortType)) {
-                        $element = ElementsTable()->selectWhere("idItem = $item->Id")[0];
+                        $element = ElementsTable()->selectWhere("idItem = $item->Id");
                         $itemsDisplay .= <<<HTML
                             <div class="containerItem" onclick="linked($item->Id)">
                             <div class="containerFlexIdNom">
