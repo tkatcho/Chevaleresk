@@ -165,6 +165,7 @@ span, ul, li {
   text-align: center;
   font-family: var(--secondary-font);
   color: white;
+  max-width:60px;
 }
 
 .itemImage {
