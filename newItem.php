@@ -6,7 +6,7 @@ require 'php/config.php';
 
 //TODO, UNCOOMMENT ADMINACCESS() LINE
 
-//adminAccess();
+adminAccess();
 $viewTitle = "Nouveau item";
 $messageHtml = '';
 

@@ -8,8 +8,12 @@
 </head>
 
 <body>
-    <h3>Oops you did something wrong!</h3>
-    <h4>A completer</h4>
+    <h3>Oops vous n'avez pas les permissions pour ceci!</h3>
+    <div class="btnRetour">
+        <button onclick="location.href='optionsJeu.php'">
+            <i class="fa fa-angle-left">Retour au magasin</i>
+        </button>
+    </div>
 </body>
 
 </html>
