@@ -242,11 +242,12 @@ button {
   line-height: 0px;
 }
 .panierItemPrix {
+  flex-grow: 2;
   color: var(--secondary-color);
-  text-align: right;
+  text-align: center;
 }
 .panierItemQt {
-  flex-grow: 2;
+  flex-grow: 1;
   text-align: center;
 }
 .panierItemSupprimer {
