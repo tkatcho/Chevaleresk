@@ -122,24 +122,25 @@ BEGIN
     END IF;
 END |;
 */
-CREATE TRIGGER checkprixItem
-before insert ON Items
+DELIMITER |;
+CREATE TRIGGER checkPrixItem
+before insert ON items
 for each row
 begin
 declare minPrix int;
 declare maxPrix int;
-set maxPrix=100;
-set minPrix=100;
+SELECT MAX(prix) INTO minPrix FROM items WHERE type = 'E';
+SELECT MIN(prix) INTO maxPrix FROM items WHERE type = 'P';
 -- on garantit le prix potion>=100
-if(new.TypeItem='P') Then
+if(new.type='P') Then
     if(new.prix < minPrix) then
-    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Le prix est trop bas';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Le prix est trop bas';
     end if; 
 end if;
 -- on garantit que le prix element <100
-if(new.TypeItem='E') Then
+if(new.type='E') Then
     if(new.prix >= maxPrix) then
-    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Le prix est trop élevé';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Le prix est trop élevé';
     end if; 
 end if;
 END |;
