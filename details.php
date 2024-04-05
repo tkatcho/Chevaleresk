@@ -20,19 +20,26 @@ $viewMenu = "";
 
 function addToCartButton($idJoueur, $idItem, $qt)
 {
+    
     return <<<HTML
         <button>
             <a href="addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt"><i class="fa fa-cart-plus"></i></a>
         </button>
     HTML;
+    
 }
+
 function évaluerEtCommenter($idJoueur, $idItem)
 {
-    return <<<HTML
+    if(InventairesTable()->selectWhere("idJoueur = $idJoueur AND idItem = $idItem")){
+        return <<<HTML
         <button class="btnÉvaluerCommenter">
-            <a href="evaluationsEtCommentaires.php?idJoueur=$idJoueur&idItem=$idItem">Évaluer et commenter <i class="fa fa-comments"></i></a>
+            <a href="evaluerCommenter.php?idJoueur=$idJoueur&idItem=$idItem">Évaluer et commenter <i class="fa fa-comments"></i></a>
         </button>
     HTML;
+    }
+    return "";
+   
 }
 
 $itemsDisplay = <<<HTML
@@ -62,7 +69,7 @@ HTML;
             $itemsDisplay .= <<<HTML
             <div class="détailsContainerItem">
                 <div class="détailsImg">
-                    <div style="background-image:url('./images/potion.png')"></div>
+                    <div style="background-image:url('$item->Photo')"></div>
                 </div>
                 $buttonÉvaluerCommentaire
             </div>
@@ -104,7 +111,7 @@ HTML;
                 $itemsDisplay .= <<<HTML
                     <div class="détailsContainerItem">
                         <div class="détailsImg">
-                            <div style="background-image:url('./images/épée.png')"></div>
+                            <div style="background-image:url('$item->Photo')"></div>
                         </div>
                         $buttonÉvaluerCommentaire
                     </div>
@@ -147,7 +154,7 @@ HTML;
                 $itemsDisplay .= <<<HTML
                     <div class="détailsContainerItem">
                         <div class="détailsImg">
-                            <div style="background-image:url('./images/armure.png')"></div>
+                            <div style="background-image:url('$item->Photo')"></div>
                         </div>
                         $buttonÉvaluerCommentaire
                     </div>
@@ -188,7 +195,7 @@ HTML;
             $itemsDisplay .= <<<HTML
             <div class="détailsContainerItem">
                 <div class="détailsImg">
-                    <div style="background-image:url('./images/élément.png')"></div>
+                    <div style="background-image:url('$item->Photo')"></div>
                 </div>
                 $buttonÉvaluerCommentaire
             </div>

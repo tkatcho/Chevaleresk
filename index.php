@@ -213,36 +213,39 @@ if ($items != null) {
         }
 
         if ($item->Type == 'E') { // Éléments
-            if (in_array("element", $sortType) || in_array("all", $sortType)) {
-                $element = ElementsTable()->selectWhere("idItem = $item->Id")[0];
-                $itemsDisplay .= <<<HTML
-                    <div class="containerItem" onclick="linked($item->Id)">
-                    <div class="containerFlexIdNom">
-                        <span style="flex-grow:2;"class="idItem">$index</span> 
-                        <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
-                        <span>$addToCartBouton</span>
-                    </div>
-                        <hr>
-                        <div class="itemImage">
-                            <div  style="background-image:url('$item->Photo')"></div>
-                        </div>
-                        <hr>
-                        <p>Type item: 
-                            <span>Élément</span>
-                        </p>
-                        <hr>
-                        <p>Quantité en stock: 
-                            <span>$item->QuantiteStock</span>
-                        </p>
-                        <hr>
-                        <p class="itemPrix">Prix: 
-                            <span>$item->Prix</span> $
-                        <p>
-                    </div>
-            HTML;
+            if ($isConnected) {
+                if (JoueursTable()->selectById($_SESSION['id'])[0]->estAlchimiste == 1) {
+                    if (in_array("element", $sortType) || in_array("all", $sortType)) {
+                        $element = ElementsTable()->selectWhere("idItem = $item->Id")[0];
+                        $itemsDisplay .= <<<HTML
+                            <div class="containerItem" onclick="linked($item->Id)">
+                            <div class="containerFlexIdNom">
+                                <span style="flex-grow:2;"class="idItem">$index</span> 
+                                <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                                <span>$addToCartBouton</span>
+                            </div>
+                                <hr>
+                                <div class="itemImage">
+                                    <div  style="background-image:url('$item->Photo')"></div>
+                                </div>
+                                <hr>
+                                <p>Type item: 
+                                    <span>Élément</span>
+                                </p>
+                                <hr>
+                                <p>Quantité en stock: 
+                                    <span>$item->QuantiteStock</span>
+                                </p>
+                                <hr>
+                                <p class="itemPrix">Prix: 
+                                    <span>$item->Prix</span> $
+                                <p>
+                            </div>
+                        HTML;
+                    }
+                }
             }
         }
-
         $index++;
     }
 }
