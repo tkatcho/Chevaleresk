@@ -57,7 +57,7 @@ if ($inventaire != null) {
                         <span>$inventaireRow->Quantite</span>
                     </p>
                 </div>
-            HTML;
+HTML;
         }
         
         if ($item->Type == 'W') { // Armes
@@ -90,7 +90,7 @@ if ($inventaire != null) {
                         <span>$inventaireRow->Quantite</span>
                     </p>
                 </div>
-            HTML;
+HTML;
         }
 
         if ($item->Type == 'A') { // Armures
@@ -121,7 +121,7 @@ if ($inventaire != null) {
                         <span>$inventaireRow->Quantite</span>
                     </p>
                 </div>
-            HTML;
+HTML;
         }
 
         if ($item->Type == 'E') { // Éléments
@@ -155,7 +155,7 @@ if ($inventaire != null) {
                         <span>$inventaireRow->Quantite</span>
                     </p>
                 </div>
-            HTML;
+HTML;
         }
         $index++;
     }
