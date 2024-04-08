@@ -18,50 +18,50 @@ if ($isConnected) {
     <!---------------------------Options pour admin-------------------------------->
     <!--Le profil à droite-->
     <div class="optionsJeu">
-      <div class="optionsBackgroundGrisProfil">
-          <strong>Profil</strong>
-          <div class="optionsBackgroundBleuProfilImg">
-              <div style="background-image:url('./images/chevalier.png')"></div>
-          </div>
-          <p>$joueur->Alias</p>
-         
-      </div>
-      
-      <!--Les options à gauche-->
-      <div class="optionsBtn" >
-          <button onclick="location.href='index.php'">
-              <a class="optionsBtnIcon" href ="index.php">
-              Achat <i class="fa fa-money"></i>
-            </a>
-          </button>            
+        <div class="optionsBackgroundGrisProfil">
+            <strong>Profil</strong>
+            <div class="optionsBackgroundBleuProfilImg">
+                <div style="background-image:url('./images/chevalier.png')"></div>
+            </div>
+            <p>$joueur->Alias</p>
+            
+        </div>
+        
+        <!--Les options à gauche-->
+        <div class="optionsBtn" >
+            <button onclick="location.href='index.php'">
+                <a class="optionsBtnIcon" href ="index.php">
+                Achat <i class="fa fa-money"></i>
+                </a>
+            </button>            
 
-          <button onclick="location.href='inventaire.php'">
-              <a class="optionsBtnIcon" href ="inventaire.php">
-              Inventaire <i class="fa fa-id-card-o"></i>
-              </a>
-          </button>
-          <button onclick="location.href='newItem.php'">
-              <a class="optionsBtnIcon" href ="newItem.php">
-              Nouveau item <i class="fa fa-money"></i>
-              </a>
-          </button>
-          <button onclick="location.href='modifierProfil.php'">
-              <a class="optionsBtnIcon" href ="modifierProfil.php">
-              Modifier Profil <i class="fa fa-user"></i>
-              </a>
-          </button>
-          <button onclick="location.href='optionsGagnerArgent.php'">
-              <a class="optionsBtnIcon" href ="optionsGagnerArgent.php">
-              Argent <i class="fa fa-gift"></i>
-              </a>
-          </button>
-          <button onclick="location.href='logout.php'">
-              <a class="optionsBtnIcon" href ="logout.php">
-              Déconnexion <i class="fa fa-sign-out"></i>
-              </a>
-          </button>
-      </div>
-  </div>
+            <button onclick="location.href='inventaire.php'">
+                <a class="optionsBtnIcon" href ="inventaire.php">
+                Inventaire <i class="fa fa-id-card-o"></i>
+                </a>
+            </button>
+            <button onclick="location.href='newItem.php'">
+                <a class="optionsBtnIcon" href ="newItem.php">
+                Nouveau item <i class="fa fa-money"></i>
+                </a>
+            </button>
+            <button onclick="location.href='modifierProfil.php'">
+                <a class="optionsBtnIcon" href ="modifierProfil.php">
+                Modifier Profil <i class="fa fa-user"></i>
+                </a>
+            </button>
+            <button onclick="location.href='optionsGagnerArgent.php'">
+                <a class="optionsBtnIcon" href ="optionsGagnerArgent.php">
+                Argent <i class="fa fa-gift"></i>
+                </a>
+            </button>
+            <button onclick="location.href='logout.php'">
+                <a class="optionsBtnIcon" href ="logout.php">
+                Déconnexion <i class="fa fa-sign-out"></i>
+                </a>
+            </button>
+        </div>
+    </div>
   
 HTML;
     } else {
@@ -71,45 +71,45 @@ HTML;
     <!---------------------------Options pour joueur-------------------------------->
     <!--Le profil à droite-->
     <div class="optionsJeu">
-      <div class="optionsBackgroundGrisProfil">
-          <strong>Profil</strong>
-          <div class="optionsBackgroundBleuProfilImg">
-              <div style="background-image:url('./images/chevalier.png')"></div>
-          </div>
-          <p>$joueur->Alias</p>
-          <p>Nombre écus: <span>$joueur->Solde</span>$</p> 
-      </div>
-      
-      <!--Les options à gauche-->
-      <div class="optionsBtn" >
-          <button onclick="location.href='index.php'">
-              <a class="optionsBtnIcon" href ="index.php">
-              Achat <i class="fa fa-money"></i>
-            </a>
-          </button>            
+        <div class="optionsBackgroundGrisProfil">
+            <strong>Profil</strong>
+            <div class="optionsBackgroundBleuProfilImg">
+                <div style="background-image:url('./images/chevalier.png')"></div>
+            </div>
+            <p>$joueur->Alias</p>
+            <p>Nombre écus: <span>$joueur->Solde</span>$</p> 
+        </div>
+        
+        <!--Les options à gauche-->
+        <div class="optionsBtn" >
+            <button onclick="location.href='index.php'">
+                <a class="optionsBtnIcon" href ="index.php">
+                Achat <i class="fa fa-money"></i>
+                </a>
+            </button>            
 
-          <button onclick="location.href='inventaire.php'">
-              <a class="optionsBtnIcon" href ="inventaire.php">
-              Inventaire <i class="fa fa-id-card-o"></i>
-              </a>
-          </button>
-          <button onclick="location.href='modifierProfil.php'">
-              <a class="optionsBtnIcon" href ="modifierProfil.php">
-              Modifier Profil <i class="fa fa-user"></i>
-              </a>
-          </button>
-          <button onclick="location.href='optionsGagnerArgent.php'">
-              <a class="optionsBtnIcon" href ="optionsGagnerArgent.php">
-              Argent <i class="fa fa-gift"></i>
-              </a>
-          </button>
-          <button onclick="location.href='logout.php'">
-              <a class="optionsBtnIcon" href ="logout.php">
-              Déconnexion <i class="fa fa-sign-out"></i>
-              </a>
-          </button>
-      </div>
-  </div>
+            <button onclick="location.href='inventaire.php'">
+                <a class="optionsBtnIcon" href ="inventaire.php">
+                Inventaire <i class="fa fa-id-card-o"></i>
+                </a>
+            </button>
+            <button onclick="location.href='modifierProfil.php'">
+                <a class="optionsBtnIcon" href ="modifierProfil.php">
+                Modifier Profil <i class="fa fa-user"></i>
+                </a>
+            </button>
+            <button onclick="location.href='optionsGagnerArgent.php'">
+                <a class="optionsBtnIcon" href ="optionsGagnerArgent.php">
+                Argent <i class="fa fa-gift"></i>
+                </a>
+            </button>
+            <button onclick="location.href='logout.php'">
+                <a class="optionsBtnIcon" href ="logout.php">
+                Déconnexion <i class="fa fa-sign-out"></i>
+                </a>
+            </button>
+        </div>
+    </div>
   
 HTML;
     }

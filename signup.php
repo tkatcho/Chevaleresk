@@ -22,6 +22,7 @@ if (isset($_POST['submit']))
     {
         // Hashing du mot de passe
         $_POST['motDePasse'] = password_hash($_POST['motDePasse'], PASSWORD_DEFAULT);
+        $_POST['solde'] = 1000;
         JoueursTable()->insert(new Joueur($_POST));
     }
 

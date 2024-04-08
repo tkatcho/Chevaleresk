@@ -50,7 +50,7 @@ foreach ($panier as $itemInCart) {
                 </p>
             </div>
         </div>
-    HTML;
+HTML;
 }
 
 $viewTitle = "Panier d'achat";

@@ -8,7 +8,7 @@ class Joueur extends Record
     public $Nom;
     public $Prenom;
     public $MotDePasse;
-    public $Solde;
+    public $Solde ;
     public $Niveau;
     public $estAlchimiste;
     public $estAdmin = 0; // user => 0 , admin => 1

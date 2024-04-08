@@ -100,7 +100,7 @@ DELIMITER ;
 
 
 -- Triggers pour les prix des potions et des éléments
-DELIMITER |;
+/*DELIMITER |;
 CREATE TRIGGER tr_potions_prix BEFORE INSERT ON items
 FOR EACH ROW
 BEGIN
@@ -120,6 +120,29 @@ BEGIN
     IF (new.prix >= prix_pot AND new.type = 'E') THEN
     	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cout élément trop haut';
     END IF;
+END |;
+*/
+DELIMITER |;
+CREATE TRIGGER checkPrixItem
+before insert ON items
+for each row
+begin
+declare minPrix int;
+declare maxPrix int;
+SELECT MAX(prix) INTO minPrix FROM items WHERE type = 'E';
+SELECT MIN(prix) INTO maxPrix FROM items WHERE type = 'P';
+-- on garantit le prix potion>=100
+if(new.type='P') Then
+    if(new.prix < minPrix) then
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Le prix est trop bas';
+    end if; 
+end if;
+-- on garantit que le prix element <100
+if(new.type='E') Then
+    if(new.prix >= maxPrix) then
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Le prix est trop élevé';
+    end if; 
+end if;
 END |;
 
 DELIMITER //
