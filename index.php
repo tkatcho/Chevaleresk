@@ -5,6 +5,8 @@ require 'php/sessionManager.php';
 require_once 'php/config.php';
 
 
+error_reporting(0);
+
 $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
 if (isset($_POST['filtre'])) {

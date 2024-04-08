@@ -4,8 +4,6 @@ require 'php/config.php';
 
 #region code
 
-//TODO, UNCOOMMENT ADMINACCESS() LINE
-
 adminAccess();
 $viewTitle = "Nouveau item";
 $messageHtml = '';
@@ -116,16 +114,6 @@ $content = <<<HTML
             applyAutocomplete();
         });
     });
-    function addCss(){
-     $('.ui-autocomplete').css({
-     'background-color': '#f5f5f5', 
-     'max-width': '300px', 
-     'max-heigth': '50px',
-     'border': '1px solid #ccc',
-     'box-shadow': '0 2px 4px rgba(0,0,0,0.1)'
-     });
-
-    }
     function applyAutocomplete() {
      $('#taille').autocomplete({
         source:sizesArmures
