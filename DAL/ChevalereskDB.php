@@ -18,7 +18,7 @@ include_once 'DAL/RecettesTable.php';
 
 function DB()
 {
-    return MySQLDataBase::getInstance('dbchevalersk16');
+    return MySQLDataBase::getInstance('chevaleresk');
 }
 function JoueursTable()
 {
