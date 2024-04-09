@@ -7,10 +7,15 @@ $viewTitle = "Enigma";
 $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
 if ($isConnected){
-
-    $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
-    $content = <<<HTML
+    $toutesEnigmes = EnigmesTable()->selectAll();
+    $nbÉnigmesTotal = count($toutesEnigmes);
+    $idDeEnigme = rand(1,$nbÉnigmesTotal);
     
+    $enigme = EnigmesTable()->selectById($idDeEnigme)[0];
+    $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
+    
+    $content = <<<HTML
+  
     <div class="enigma">
         <div class="enigmaBackgroundVertRappel">
             <strong>Rappel du jeu</strong>
@@ -37,11 +42,11 @@ if ($isConnected){
     </div>
     <hr>
     <div class="enigmaEnigmeBackground">
-        <!--TODO: Mettre l'énigme -->
-        <p>Question...</p>
+        <p> $enigme->Enigme</p>
         <form method='post' action='login.php'>
             <!--TODO: Afficher options de réponse -->
-            <input type="radio"><label>Option 1</label>
+            <!--URGENT: Il faudrait avoir une table pour avoir différente réponse-->
+            <input type="radio"><label>$enigme->Reponse</label>
             <br>
             <input type="radio"><label>Option 2</label>
             <br>

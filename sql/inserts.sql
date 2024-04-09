@@ -48,3 +48,7 @@ INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM
 INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM items WHERE nom = 'Leaf'), 'Earth', 'Common', 'Low');
 INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM items WHERE nom = 'Fangs'), 'Earth', 'Uncommon', 'Medium');
 INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM items WHERE nom = 'Leaf'), 'Earth', 'Common', 'Low');
+
+
+--Enigmes
+INSERT INTO `enigmes` (`id`, `enigme`, `difficulte`, `reponse`) VALUES ('1', 'Quelle est la couleur du cheval blanc de Napoléon?', 'Facile', 'Blanc');
