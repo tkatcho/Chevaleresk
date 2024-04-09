@@ -8,10 +8,14 @@ $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
 if ($isConnected){
     $toutesEnigmes = EnigmesTable()->selectAll();
+
     $nbÉnigmesTotal = count($toutesEnigmes);
     $idDeEnigme = rand(1,$nbÉnigmesTotal);
     
     $enigme = EnigmesTable()->selectById($idDeEnigme)[0];
+
+    $reponses = ReponsesTable()->selectWhere("idEnigme = $idDeEnigme");
+    
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     
     $content = <<<HTML
