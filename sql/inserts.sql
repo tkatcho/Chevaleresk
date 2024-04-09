@@ -51,8 +51,8 @@ INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM
 
 
 --Enigmes
-INSERT INTO `enigmes` (`id`, `enigme`, `difficulte`) VALUES ('1', 'Quelle est la couleur du cheval blanc de Napoléon?', 'Facile');
-INSERT INTO `reponses` (`id`, `idEnigme`, `reponse`, `estBonne`) VALUES ('1', '1', 'Blanc', b'1');
-INSERT INTO `reponses` (`id`, `idEnigme`, `reponse`, `estBonne`) VALUES ('2', '1', 'Bleu', b'0');
-INSERT INTO `reponses` (`id`, `idEnigme`, `reponse`, `estBonne`) VALUES ('3', '1', 'Jaune', b'0');
-INSERT INTO `reponses` (`id`, `idEnigme`, `reponse`, `estBonne`) VALUES ('4', '1', 'Rouge', b'0');
+INSERT INTO enigmes (id, enigme, difficulte) VALUES ('1', 'Quelle est la couleur du cheval blanc de Napoléon?', 'Facile');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('1', '1', 'Blanc', b'1');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('2', '1', 'Bleu', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('3', '1', 'Jaune', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('4', '1', 'Rouge', b'0');

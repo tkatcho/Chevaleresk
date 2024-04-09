@@ -16,20 +16,5 @@ class Reponse extends Record
         $this->Reponse="";
         parent::__construct($recordData);
     }
-    public function setId($id)
-    {
-        $this->Id = $id;
-    }
-    public function setIdEnigme($idEnigme)
-    {
-        $this->IdEnigme = $idEnigme;
-    }
-    public function setReponse($reponse)
-    {
-        $this->reponse = $reponse;
-    }
-    public function setEstBonne($estBonne)
-    {
-        $this->EstBonne = $estBonne;
-    }
+    
 }

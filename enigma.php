@@ -1,7 +1,8 @@
 <?php
 
-include 'DAL/ChevalereskDB.php';
-include 'php/sessionManager.php';
+require_once 'DAL/ChevalereskDB.php';
+require 'php/sessionManager.php';
+require_once 'php/config.php';
 
 $viewTitle = "Enigma";
 $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
@@ -15,7 +16,7 @@ if ($isConnected){
     $enigme = EnigmesTable()->selectById($idDeEnigme)[0];
 
     $reponses = ReponsesTable()->selectWhere("idEnigme = $idDeEnigme");
-    
+
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     
     $content = <<<HTML
