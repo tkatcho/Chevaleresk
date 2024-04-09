@@ -705,11 +705,15 @@ span {
   padding: 20px;
   margin:auto;
 }
-.enigmaEnigmeBackground p {
-  font-size:25px;
+.enigmaEnigmeBackground strong{
+  font-size: 20px;
+  font-family: var(--secondary-font);
 }
 .enigmaEnigmeBackground input[type=radio]{
   margin-right:10px;
+}
+.enigmaEnigmeBackground form{
+  margin:25px;
 }
 .enigmaEnigmeBackgroundBtn{
   background-color: black;
@@ -718,6 +722,7 @@ span {
   width:300px;
   font-family: var(--primary-font);
   font-size:20px;
+  margin-top:25px;
 }
 @media screen and (max-width: 900px) {
   .enigmaEnigmeBackground{

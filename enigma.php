@@ -42,17 +42,17 @@ if ($isConnected){
     </div>
     <hr>
     <div class="enigmaEnigmeBackground">
-        <p> $enigme->Enigme</p>
-        <form method='post' action='login.php'>
+        <strong> $enigme->Enigme</strong>
+        <form method='post' action='enigmaVerif.php'>
             <!--TODO: Afficher options de réponse -->
             <!--URGENT: Il faudrait avoir une table pour avoir différente réponse-->
-            <input type="radio"><label>$enigme->Reponse</label>
+            <input type="radio" name='reponse'><label>$enigme->Reponse</label>
             <br>
-            <input type="radio"><label>Option 2</label>
+            <input type="radio" name='reponse'><label>Option 2</label>
             <br>
-            <input type="radio"><label>Option 3</label>
+            <input type="radio" name='reponse'><label>Option 3</label>
             <br>
-            <input type="radio"><label>Option 4</label>
+            <input type="radio" name='reponse'><label>Option 4</label>
             <br>
             <!--TODO: Vérifier si bien répondu -->
             <input type='submit' name='submit' value="Répondre" class="enigmaEnigmeBackgroundBtn" >
