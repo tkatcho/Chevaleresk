@@ -8,15 +8,24 @@ $viewTitle = "Enigma";
 $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
 if ($isConnected){
+    //l'énigme
     $toutesEnigmes = EnigmesTable()->selectAll();
 
     $nbÉnigmesTotal = count($toutesEnigmes);
     $idDeEnigme = rand(1,$nbÉnigmesTotal);
-    
     $enigme = EnigmesTable()->selectById($idDeEnigme)[0];
 
-    $reponses = ReponsesTable()->selectWhere("idEnigme = $idDeEnigme");
+    //les réponses
+    $reponses = ReponsesTable()->selectWhere("IdEnigme = $idDeEnigme");
 
+    //pour chaque réponses possibles pour l'énigme, on doit mettre un input
+    $réponsesAffichées ="";
+    foreach($reponses as $reponse){
+        $réponsesAffichées.=<<<HTML
+        <input type="radio" id='reponse' name='reponse' value='$reponse->Reponse'><label for="reponse">$reponse->Reponse</label>
+        <br>
+HTML;
+    }
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     
     $content = <<<HTML
@@ -49,16 +58,8 @@ if ($isConnected){
     <div class="enigmaEnigmeBackground">
         <strong> $enigme->Enigme</strong>
         <form method='post' action='enigmaVerif.php'>
-            <!--TODO: Afficher options de réponse -->
-            <!--URGENT: Il faudrait avoir une table pour avoir différente réponse-->
-            <input type="radio" name='reponse'><label>$enigme->Reponse</label>
-            <br>
-            <input type="radio" name='reponse'><label>Option 2</label>
-            <br>
-            <input type="radio" name='reponse'><label>Option 3</label>
-            <br>
-            <input type="radio" name='reponse'><label>Option 4</label>
-            <br>
+            
+            $réponsesAffichées
             <!--TODO: Vérifier si bien répondu -->
             <input type='submit' name='submit' value="Répondre" class="enigmaEnigmeBackgroundBtn" >
         </form>
