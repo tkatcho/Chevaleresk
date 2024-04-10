@@ -7,19 +7,28 @@ if (isset($_POST['submit']))
 {
     
     $choixJoueur= $_POST['reponse'];  //ce que le joueur a répondu à l'énigme
+
+    //Le selectWhere ne marchait pas
+    $reponseJoueur = ReponsesTable()->selectAll();
+    $reponse="";
+    foreach($reponseJoueur as $rep){
+        if($rep->Reponse == $choixJoueur){
+            $reponse = $rep;
+        }
+    }
     
-    $reponseJoueur = ReponsesTable()->selectWhere("reponse= $choixJoueur")[0];
-    /*
-    $enigme = EnigmesTable()->selectWhere("id= $reponseJoueur->IdEnigme")[0];
-    $user = JoueursTable()->selectWhere("alias = '$username'")[0];
+    //TODO: faire une procédure pour modifier le solde du joueur lorsqu'il a répondu à une bonne énigme
+    
+    $enigme = EnigmesTable()->selectWhere("id= $reponse->IdEnigme")[0];
+    $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
 
     
-    if($reponseJoueur->EstBonne == '1' ){
+    if($reponse->EstBonne == 1 ){
         if($enigme->Difficulte == 'Facile'){
-            $user->Solde = ($user->Solde) + 50;
+            $_SESSION['solde'] = ($joueur->Solde) +50;
         }
         
-    }*/
-    redirect("index.php?id=$reponseJoueur");
+    }
+    redirect("index.php?id=$joueur->Solde");
        
 }

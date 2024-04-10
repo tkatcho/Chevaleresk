@@ -22,7 +22,7 @@ if ($isConnected){
     $réponsesAffichées ="";
     foreach($reponses as $reponse){
         $réponsesAffichées.=<<<HTML
-        <input type="radio" id='reponse' name='reponse' value='$reponse->Reponse'><label for="reponse">$reponse->Reponse</label>
+        <input type="radio" id='reponse' name='reponse' value='$reponse->Reponse' ><label for="reponse">$reponse->Reponse</label>
         <br>
 HTML;
     }

@@ -13,8 +13,19 @@ class Reponse extends Record
       
         $this->IdEnigme = 0;
         $this->EstBonne=0;
-        $this->Reponse="";
+        $this->Reponse=" ";
         parent::__construct($recordData);
     }
-   
+    public function setIdEnigme($idEnigme)
+    {
+        $this->IdEnigme = $idEnigme;
+    }
+    public function setEstBonne($estBonne)
+    {
+        $this->EstBonne = $estBonne;
+    }
+    public function setReponse($reponse)
+    {
+        $this->Reponse = $reponse;
+    }
 }
