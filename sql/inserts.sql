@@ -51,18 +51,28 @@ INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM
 
 
 --Enigmes
-INSERT INTO enigmes (id, enigme, difficulte) VALUES ('1', 'Quelle est la couleur du cheval blanc de Napoléon?', 'Facile');
-INSERT INTO enigmes (id, enigme, difficulte) VALUES ('2', 'Quel matériau est traditionnellement utilisé pour fabriquer des armures ?', 'Moyen');
-INSERT INTO enigmes (id, enigme, difficulte) VALUES ('3', 'Quel est l élément chimique le plus abondant?', 'Difficile');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('1', '1', 'Blanc', b'1');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('2', '1', 'Bleu', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('3', '1', 'Jaune', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('4', '1', 'Rouge', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('5', '2', 'Mont Kilimandjaro', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('6', '2', 'Mont Everest', b'1');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('7', '2', 'Mont Fudji', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('8', '2', 'Mont McKinley', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('9', '3', 'Fer', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('10', '3', 'Carbone', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('11', '3', 'Hydrogène', b'1');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('12', '3', 'Oxygène', b'0');
+INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('1', 'Quel matériau est traditionnellement utilisé pour fabriquer des armures ?', 'Facile', 'Z');
+INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('2', 'Quel type d armure était porté par les chevaliers médiévaux pour protéger leur corps ?', 'Moyen', 'Z');
+INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('3', 'Quel ingrédient est souvent utilisé dans les potions de guérison magique ?', 'Difficile', 'E');
+INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('4', 'Quel effet a la potion Amortentia dans l univers de Harry Potter ?', 'Moyen', 'P');
+INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('5', 'Quelle est l utilité principale de la potion d Invisibilité ?', 'Facile', 'P');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('1', '1', 'Acier', b'1');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('2', '1', 'Cuir', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('3', '1', 'Argent', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('4', '1', 'Plastique', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('5', '2', 'Armure en plaques', b'1');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('6', '2', 'Armure en mailles', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('7', '2', 'Gambison', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('8', '2', 'Cotte de mailles', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('9', '3', 'Plume', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('10', '3', 'Fleur', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('11', '3', 'Mandragore', b'1');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('12', '3', 'Eau', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('13', '4', 'Elle rend invisible', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('14', '4', 'Elle rend amoureux', b'1');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('15', '4', 'Elle rend immortel', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('16', '4', 'Elle rend invincible', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('17', '5', 'Se téléporter', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('18', '5', 'Guérir les blessures', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('19', '5', 'Voler', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('20', '5', 'Devenir invisible', b'1');

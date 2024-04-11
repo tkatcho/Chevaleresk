@@ -17,21 +17,16 @@ if (isset($_POST['submit']))
         }
     }
     
-    //TODO: faire une procédure pour modifier le solde du joueur lorsqu'il a répondu à une bonne énigme
-    
     $enigme = EnigmesTable()->selectWhere("id= $reponse->IdEnigme")[0];
   
     $joueurId = $_SESSION['id'];
-    /*
-    if($reponse->EstBonne == 1 ){
-        if($enigme->Difficulte == 'Facile'){
-            $_SESSION['solde'] = ($joueur->Solde) +50;
-        }
-        
-    }*/
+    
+    if($reponse->EstBonne == 1 ){ 
+        //TODO: Faire marcher la procédure qui augmente le solde du joueur
+        DB()->nonQuerySqlCmd("CALL soldeEnigma($enigme->Difficulte,$joueurId);"); 
+    }
 
-    DB()->nonQuerySqlCmd("CALL soldeEnigma($enigme->Difficulte,$joueurId);");
-    redirect("optionsJeu.php?difficulte=$enigme->Difficulte");
+    redirect("optionsJeu.php");
    
        
 }
