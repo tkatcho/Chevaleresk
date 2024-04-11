@@ -52,7 +52,17 @@ INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM
 
 --Enigmes
 INSERT INTO enigmes (id, enigme, difficulte) VALUES ('1', 'Quelle est la couleur du cheval blanc de Napoléon?', 'Facile');
+INSERT INTO enigmes (id, enigme, difficulte) VALUES ('2', 'Quel matériau est traditionnellement utilisé pour fabriquer des armures ?', 'Moyen');
+INSERT INTO enigmes (id, enigme, difficulte) VALUES ('3', 'Quel est l élément chimique le plus abondant?', 'Difficile');
 INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('1', '1', 'Blanc', b'1');
 INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('2', '1', 'Bleu', b'0');
 INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('3', '1', 'Jaune', b'0');
 INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('4', '1', 'Rouge', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('5', '2', 'Mont Kilimandjaro', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('6', '2', 'Mont Everest', b'1');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('7', '2', 'Mont Fudji', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('8', '2', 'Mont McKinley', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('9', '3', 'Fer', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('10', '3', 'Carbone', b'0');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('11', '3', 'Hydrogène', b'1');
+INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('12', '3', 'Oxygène', b'0');
