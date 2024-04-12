@@ -10,24 +10,55 @@ $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 if ($isConnected){
 
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
+    $joueurId = $joueur->Id;
     //l'énigme
     $toutesEnigmes = EnigmesTable()->selectAll();
     
     //Les énigmes non pigées
-    $idDeEnigme = $toutesEnigmes[rand(0,count($toutesEnigmes))]->Id;
-    $enigme = EnigmesTable()->selectById($idDeEnigme)[0];
+    $estRepondu=1;
+    //$idDeEnigme = $toutesEnigmes[rand(0,count($toutesEnigmes))]->Id;
+   // $estRepondu = DB()->querySqlCmd("select verifierEnigmeRepondu($idDeEnigme,$joueurId);");
 
-    //les réponses
-    $reponses = ReponsesTable()->selectWhere("IdEnigme = $idDeEnigme");
-
-    //pour chaque réponses possibles pour l'énigme, on doit mettre un input
-    $réponsesAffichées ="";
-    foreach($reponses as $reponse){
-        $réponsesAffichées.=<<<HTML
-        <input type="radio" id='reponse' name='reponse' value='$reponse->Reponse' ><label for="reponse">$reponse->Reponse</label>
-        <br>
-HTML;
+    while( $estRepondu == 1 ){
+        $idDeEnigme = $toutesEnigmes[rand(0,count($toutesEnigmes))]->Id;
+        $estRepondu = DB()->querySqlCmd("select verifierEnigmeRepondu($idDeEnigme,$joueurId);");
     }
+
+    $enigme="";
+    $reponses ="";
+    if($estRepondu==2){   //Si toutes les énigmes sont répondu
+        $enigme = <<<HTML
+        <div class="enigmaEnigmeBackground">
+            <strong> Vous avez répondu à toutes les énigmes</strong>
+        </div>  
+HTML;
+    }else{
+        $enigmeObj = EnigmesTable()->selectById($idDeEnigme)[0];
+
+        //les réponses
+        $reponses = ReponsesTable()->selectWhere("IdEnigme = $idDeEnigme");
+
+        //pour chaque réponses possibles pour l'énigme, on doit mettre un input
+        $réponsesAffichées ="";
+        foreach($reponses as $reponse){
+            $réponsesAffichées.=<<<HTML
+            <input type="radio" id='reponse' name='reponse' value='$reponse->Reponse' ><label for="reponse">$reponse->Reponse</label>
+            <br>
+HTML;
+        }
+
+        $enigme = <<<HTML
+        <div class="enigmaEnigmeBackground">
+            <strong> $enigmeObj->Enigme</strong>
+            <form method='post' action='enigmaVerif.php'>
+                
+                $réponsesAffichées
+                <!--TODO: Vérifier si bien répondu -->
+                <input type='submit' name='submit' value="Répondre" class="enigmaEnigmeBackgroundBtn" >
+            </form>
+        </div>  
+HTML;
+}
    
     $content = <<<HTML
   
@@ -56,15 +87,7 @@ HTML;
         </div>
     </div>
     <hr>
-    <div class="enigmaEnigmeBackground">
-        <strong> $enigme->Enigme</strong>
-        <form method='post' action='enigmaVerif.php'>
-            
-            $réponsesAffichées
-            <!--TODO: Vérifier si bien répondu -->
-            <input type='submit' name='submit' value="Répondre" class="enigmaEnigmeBackgroundBtn" >
-        </form>
-    </div>  
+    $enigme
   
 HTML;
 }
