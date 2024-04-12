@@ -165,7 +165,7 @@ BEGIN
     DECLARE est_bonne BIT;
     SELECT difficulte INTO difficulte_enigme FROM enigmes WHERE id = id_enigme;
     SELECT estBonne INTO est_bonne FROM reponses WHERE id = id_reponse;
-
+    
     IF est_bonne = 1 THEN
         IF difficulte_enigme = 'Facile' THEN
             UPDATE joueurs SET solde = solde + 50 WHERE id = id_joueur;
@@ -177,14 +177,29 @@ BEGIN
             UPDATE joueurs SET solde = solde + 200 WHERE id = id_joueur;
         END IF;
         INSERT INTO quetes (idJoueur, idEnigme, reussi) VALUES (id_joueur, id_enigme, 1);
-    ELSE
+    ELSE 
         INSERT INTO quetes (idJoueur, idEnigme, reussi) VALUES (id_joueur, id_enigme, 0);
     END IF;
+
 END//
 
 DELIMITER ;
 
+/*
+DELIMITER |;
+CREATE TRIGGER checkInsertionsQuetes
+before insert ON quetes
+for each row
+begin
+DECLARE exist INT;
 
+SELECT exists(SELECT idEnigme FROM quetes) INTO exist ;
+
+IF (exist=1) THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Enigme déjà répondu';
+END IF;
+
+END |;*/
 --Si l'énigme a été répondu
 DELIMITER //
 
@@ -201,16 +216,12 @@ BEGIN
 
     IF nb_quetes_joueur = nb_total_enigme THEN
         SET estRepondu=2;
-    END IF;
-    IF quetes_repondu =1 THEN
-        SET estRepondu=1;
-    END IF;
-    IF quetes_repondu =0 THEN
-        SET estRepondu=0;
-    END IF;
-    
+    ELSE 
+    	SET estRepondu= nb_quetes_joueur;
+   END IF;
+  
     RETURN estRepondu;
-END//
+END
 
 DELIMITER ;
 
