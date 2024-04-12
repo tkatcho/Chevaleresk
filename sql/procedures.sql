@@ -173,3 +173,29 @@ BEGIN
 END//
 
 DELIMITER ;
+
+
+DELIMITER //
+
+CREATE PROCEDURE repondreEnigme(IN idEnigme INT, IN idJoueur INT, IN idReponse INT)
+BEGIN
+    DECLARE difficulteEnigme VARCHAR(12),
+    DECLARE estBonne BIT;
+    SELECT difficulte INTO difficulteEnigme FROM enigmes WHERE id = idEnigme;
+    SELECT estBonne INTO estBonne FROM reponses WHERE id = idReponse;
+
+    if estBonne = 1 THEN
+        IF difficulteEnigme = 'Facile' THEN
+            UPDATE joueurs SET solde = solde + 50 WHERE id = idJoueur;
+        END IF;
+        IF difficulteEnigme = 'Moyen' THEN
+            UPDATE joueurs SET solde = solde + 100 WHERE id = idJoueur;
+        END IF;
+        IF difficulteEnigme = 'Difficile' THEN
+            UPDATE joueurs SET solde = solde + 200 WHERE id = idJoueur;
+        END IF;
+        INSERT 
+    END IF;
+END//
+
+DELIMITER ;
