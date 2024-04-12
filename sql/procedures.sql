@@ -156,10 +156,8 @@ BEGIN
 END //
 DELIMITER ;
 
---TODO:Modifier solde du joueur lorsqu'il a répondu à une bonne énigme et l'inscrire dans la table quetes
-DELIMITER //
 
-/*DELIMITER //
+DELIMITER //
 
 CREATE PROCEDURE repondreEnigme(IN id_enigme INT, IN id_joueur INT, IN id_reponse INT)
 BEGIN
