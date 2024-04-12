@@ -156,7 +156,7 @@ BEGIN
 END //
 DELIMITER ;
 
---TODO:Modifier solde du joueur lorsqu'il a répondu à une bonne énigme
+
 DELIMITER //
 
 CREATE PROCEDURE soldeEnigma(IN difficulteEnigme VARCHAR(12), IN idJoueur INT)
@@ -170,6 +170,19 @@ BEGIN
     IF difficulteEnigme = 'Difficile' THEN
         UPDATE joueurs SET solde = solde + 200 WHERE id = idJoueur;
     END IF;
+END//
+
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE PROCEDURE enigmeRepondu(IN idEnigme INT, IN idJoueur INT)
+BEGIN
+    DECLARE id_quete INT;
+    
+     SELECT id INTO id_quete FROM quetes INNER JOIN Enigmes ON paniers.idItem = items.id WHERE idJoueur = id_joueur;
+
 END//
 
 DELIMITER ;

@@ -8,12 +8,16 @@ $viewTitle = "Enigma";
 $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
 if ($isConnected){
+
+    $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     //l'énigme
-    
     $toutesEnigmes = EnigmesTable()->selectAll();
     
-    //Les énigmes non pigées
-   // foreach()
+    //Les énigmes aléatoire non répondus
+    
+    $nbÉnigmesTotal = count($toutesEnigmes);
+    
+    
     $nbÉnigmesTotal = count($toutesEnigmes);
     $idDeEnigme = rand(1,$nbÉnigmesTotal);
     $enigme = EnigmesTable()->selectById($idDeEnigme)[0];
@@ -29,8 +33,7 @@ if ($isConnected){
         <br>
 HTML;
     }
-    $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
-    
+   
     $content = <<<HTML
   
     <div class="enigma">

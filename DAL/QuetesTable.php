@@ -7,7 +7,7 @@ final class QuetesTable extends MySQLTable
 {
     public function __construct()
     {
-        parent::__construct(DB(), new Inventaire());
+        parent::__construct(DB(), new Quete());
     }
     public function insert($quete)
     {
