@@ -183,3 +183,16 @@ BEGIN
 END//
 
 DELIMITER ;
+
+
+DELIMITER //
+
+CREATE PROCEDURE enigmeRepondu(IN idEnigme INT, IN idJoueur INT)
+BEGIN
+    DECLARE id_quete INT;
+    
+     SELECT id INTO id_quete FROM quetes INNER JOIN Enigmes ON paniers.idItem = items.id WHERE idJoueur = id_joueur;
+
+END//
+
+DELIMITER ;

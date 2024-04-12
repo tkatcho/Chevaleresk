@@ -8,8 +8,9 @@ $viewTitle = "Enigma";
 $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
 if ($isConnected){
+
+    $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     //l'énigme
-    
     $toutesEnigmes = EnigmesTable()->selectAll();
     
     //Les énigmes non pigées
@@ -27,8 +28,7 @@ if ($isConnected){
         <br>
 HTML;
     }
-    $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
-    
+   
     $content = <<<HTML
   
     <div class="enigma">
