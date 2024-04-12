@@ -13,13 +13,8 @@ if ($isConnected){
     //l'énigme
     $toutesEnigmes = EnigmesTable()->selectAll();
     
-    //Les énigmes aléatoire non répondus
-    
-    $nbÉnigmesTotal = count($toutesEnigmes);
-    
-    
-    $nbÉnigmesTotal = count($toutesEnigmes);
-    $idDeEnigme = rand(1,$nbÉnigmesTotal);
+    //Les énigmes non pigées
+    $idDeEnigme = $toutesEnigmes[rand(0,count($toutesEnigmes))]->Id;
     $enigme = EnigmesTable()->selectById($idDeEnigme)[0];
 
     //les réponses
