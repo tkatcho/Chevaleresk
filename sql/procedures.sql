@@ -163,10 +163,11 @@ CREATE PROCEDURE soldeEnigma(IN difficulteEnigme VARCHAR(12), IN idJoueur INT)
 BEGIN
     IF difficulteEnigme = 'Facile' THEN
         UPDATE joueurs SET solde = solde + 50 WHERE id = idJoueur;
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Enigme facile';
-    ELSEIF difficulteEnigme = 'Moyen' THEN
+    END IF;
+    IF difficulteEnigme = 'Moyen' THEN
         UPDATE joueurs SET solde = solde + 100 WHERE id = idJoueur;
-    ELSE
+        END IF;
+    IF difficulteEnigme = 'Difficile' THEN
         UPDATE joueurs SET solde = solde + 200 WHERE id = idJoueur;
     END IF;
 END//

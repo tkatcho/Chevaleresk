@@ -51,30 +51,30 @@ INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM
 
 
 --Enigmes
-INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('1', 'Quel matériau est traditionnellement utilisé pour fabriquer des armures ?', 'Facile', 'Z', 'n');
-INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('2', 'Quel type d armure était porté par les chevaliers médiévaux pour protéger leur corps ?', 'Moyen', 'Z', 'n');
-INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('3', 'Quel ingrédient est souvent utilisé dans les potions de guérison magique ?', 'Difficile', 'E', 'n');
-INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('4', 'Quel effet a la potion Amortentia dans l univers de Harry Potter ?', 'Moyen', 'P', 'n');
-INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('5', 'Quelle est l utilité principale de la potion d Invisibilité ?', 'Facile', 'P', 'n');
+INSERT INTO enigmes (enigme, difficulte, type, estPigee) VALUES ('Quel matériau est traditionnellement utilisé pour fabriquer des armures ?', 'Facile', 'Z', 'n');
+INSERT INTO enigmes (enigme, difficulte, type, estPigee) VALUES ('Quel type d armure était porté par les chevaliers médiévaux pour protéger leur corps ?', 'Moyen', 'Z', 'n');
+INSERT INTO enigmes (enigme, difficulte, type, estPigee) VALUES ('Quel ingrédient est souvent utilisé dans les potions de guérison magique ?', 'Difficile', 'E', 'n');
+INSERT INTO enigmes (enigme, difficulte, type, estPigee) VALUES ('Quel effet a la potion Amortentia dans l univers de Harry Potter ?', 'Moyen', 'P', 'n');
+INSERT INTO enigmes (enigme, difficulte, type, estPigee) VALUES ('Quelle est l utilité principale de la potion d Invisibilité ?', 'Facile', 'P', 'n');
 
 --Réponses
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('1', '1', 'Acier', b'1');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('2', '1', 'Cuir', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('3', '1', 'Argent', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('4', '1', 'Plastique', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('5', '2', 'Armure en plaques', b'1');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('6', '2', 'Armure en mailles', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('7', '2', 'Gambison', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('8', '2', 'Cotte de mailles', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('9', '3', 'Plume', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('10', '3', 'Fleur', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('11', '3', 'Mandragore', b'1');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('12', '3', 'Eau', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('13', '4', 'Elle rend invisible', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('14', '4', 'Elle rend amoureux', b'1');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('15', '4', 'Elle rend immortel', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('16', '4', 'Elle rend invincible', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('17', '5', 'Se téléporter', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('18', '5', 'Guérir les blessures', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('19', '5', 'Voler', b'0');
-INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('20', '5', 'Devenir invisible', b'1');
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Acier', 1);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Cuir', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Argent', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Plastique', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('2', 'Armure en plaques', 1);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('2', 'Armure en mailles', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('2', 'Gambison', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('2', 'Cotte de mailles', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('3', 'Plume', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('3', 'Fleur', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('3', 'Mandragore', 1);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('3', 'Eau', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('4', 'Elle rend invisible', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('4', 'Elle rend amoureux', 1);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('4', 'Elle rend immortel', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('4', 'Elle rend invincible', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Se téléporter', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Guérir les blessures', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Voler', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Devenir invisible', 1);

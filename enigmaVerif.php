@@ -19,11 +19,11 @@ if (isset($_POST['submit']))
     
     $enigme = EnigmesTable()->selectWhere("id= $reponse->IdEnigme")[0];
   
-    $joueurId = $_SESSION['id'];
+    $joueurId = (int)$_SESSION['id'];
     
     if($reponse->EstBonne == 1 ){ 
         //TODO: Faire marcher la procédure qui augmente le solde du joueur
-        DB()->nonQuerySqlCmd("CALL soldeEnigma($enigme->Difficulte,$joueurId);"); 
+        DB()->nonQuerySqlCmd("CALL soldeEnigma('$enigme->Difficulte',$joueurId);"); 
     }
 
     redirect("optionsJeu.php");
