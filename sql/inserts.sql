@@ -51,11 +51,13 @@ INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM
 
 
 --Enigmes
-INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('1', 'Quel matériau est traditionnellement utilisé pour fabriquer des armures ?', 'Facile', 'Z');
-INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('2', 'Quel type d armure était porté par les chevaliers médiévaux pour protéger leur corps ?', 'Moyen', 'Z');
-INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('3', 'Quel ingrédient est souvent utilisé dans les potions de guérison magique ?', 'Difficile', 'E');
-INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('4', 'Quel effet a la potion Amortentia dans l univers de Harry Potter ?', 'Moyen', 'P');
-INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('5', 'Quelle est l utilité principale de la potion d Invisibilité ?', 'Facile', 'P');
+INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('1', 'Quel matériau est traditionnellement utilisé pour fabriquer des armures ?', 'Facile', 'Z', 'n');
+INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('2', 'Quel type d armure était porté par les chevaliers médiévaux pour protéger leur corps ?', 'Moyen', 'Z', 'n');
+INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('3', 'Quel ingrédient est souvent utilisé dans les potions de guérison magique ?', 'Difficile', 'E', 'n');
+INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('4', 'Quel effet a la potion Amortentia dans l univers de Harry Potter ?', 'Moyen', 'P', 'n');
+INSERT INTO enigmes (id, enigme, difficulte, type) VALUES ('5', 'Quelle est l utilité principale de la potion d Invisibilité ?', 'Facile', 'P', 'n');
+
+--Réponses
 INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('1', '1', 'Acier', b'1');
 INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('2', '1', 'Cuir', b'0');
 INSERT INTO reponses (id, idEnigme, reponse, estBonne) VALUES ('3', '1', 'Argent', b'0');

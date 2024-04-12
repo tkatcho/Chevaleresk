@@ -9,9 +9,11 @@ $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
 if ($isConnected){
     //l'énigme
-    //TODO: mettre seulement des questions que le joueur n'a pas répondu
+    
     $toutesEnigmes = EnigmesTable()->selectAll();
-
+    
+    //Les énigmes non pigées
+   // foreach()
     $nbÉnigmesTotal = count($toutesEnigmes);
     $idDeEnigme = rand(1,$nbÉnigmesTotal);
     $enigme = EnigmesTable()->selectById($idDeEnigme)[0];
