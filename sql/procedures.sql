@@ -156,45 +156,31 @@ BEGIN
 END //
 DELIMITER ;
 
+--TODO:Modifier solde du joueur lorsqu'il a répondu à une bonne énigme et l'inscrire dans la table quetes
+DELIMITER //
 
 /*DELIMITER //
 
-CREATE PROCEDURE soldeEnigma(IN difficulteEnigme VARCHAR(12), IN idJoueur INT)
+CREATE PROCEDURE repondreEnigme(IN id_enigme INT, IN id_joueur INT, IN id_reponse INT)
 BEGIN
-    IF difficulteEnigme = 'Facile' THEN
-        UPDATE joueurs SET solde = solde + 50 WHERE id = idJoueur;
-    END IF;
-    IF difficulteEnigme = 'Moyen' THEN
-        UPDATE joueurs SET solde = solde + 100 WHERE id = idJoueur;
+    DECLARE difficulte_enigme VARCHAR(12);
+    DECLARE est_bonne BIT;
+    SELECT difficulte INTO difficulte_enigme FROM enigmes WHERE id = id_enigme;
+    SELECT estBonne INTO est_bonne FROM reponses WHERE id = id_reponse;
+
+    IF est_bonne = 1 THEN
+        IF difficulte_enigme = 'Facile' THEN
+            UPDATE joueurs SET solde = solde + 50 WHERE id = id_joueur;
         END IF;
-    IF difficulteEnigme = 'Difficile' THEN
-        UPDATE joueurs SET solde = solde + 200 WHERE id = idJoueur;
-    END IF;
-END//
-
-DELIMITER ;*/
-
-
-DELIMITER //
-
-CREATE PROCEDURE repondreEnigme(IN idEnigme INT, IN idJoueur INT, IN idReponse INT)
-BEGIN
-    DECLARE difficulteEnigme VARCHAR(12),
-    DECLARE estBonne BIT;
-    SELECT difficulte INTO difficulteEnigme FROM enigmes WHERE id = idEnigme;
-    SELECT estBonne INTO estBonne FROM reponses WHERE id = idReponse;
-
-    if estBonne = 1 THEN
-        IF difficulteEnigme = 'Facile' THEN
-            UPDATE joueurs SET solde = solde + 50 WHERE id = idJoueur;
+        IF difficulte_enigme = 'Moyen' THEN
+            UPDATE joueurs SET solde = solde + 100 WHERE id = id_joueur;
         END IF;
-        IF difficulteEnigme = 'Moyen' THEN
-            UPDATE joueurs SET solde = solde + 100 WHERE id = idJoueur;
+        IF difficulte_enigme = 'Difficile' THEN
+            UPDATE joueurs SET solde = solde + 200 WHERE id = id_joueur;
         END IF;
-        IF difficulteEnigme = 'Difficile' THEN
-            UPDATE joueurs SET solde = solde + 200 WHERE id = idJoueur;
-        END IF;
-        INSERT 
+        INSERT INTO quetes (idJoueur, idEnigme, reussi) VALUES (id_joueur, id_enigme, 1);
+    ELSE
+        INSERT INTO quetes (idJoueur, idEnigme, reussi) VALUES (id_joueur, id_enigme, 0);
     END IF;
 END//
 

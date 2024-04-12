@@ -38,12 +38,12 @@ HTML;
         //les réponses
         $reponses = ReponsesTable()->selectWhere("IdEnigme = $idDeEnigme");
 
-        //pour chaque réponses possibles pour l'énigme, on doit mettre un input
-        $réponsesAffichées ="";
-        foreach($reponses as $reponse){
-            $réponsesAffichées.=<<<HTML
-            <input type="radio" id='reponse' name='reponse' value='$reponse->Reponse' ><label for="reponse">$reponse->Reponse</label>
-            <br>
+    //pour chaque réponses possibles pour l'énigme, on doit mettre un input
+    $réponsesAffichées ="";
+    foreach($reponses as $reponse){
+        $réponsesAffichées.=<<<HTML
+        <input type="radio" id='reponse_$reponse->Id' name='reponse' value='$reponse->Id' ><label for="reponse_$reponse->Id">$reponse->Reponse</label>
+        <br>
 HTML;
         }
 

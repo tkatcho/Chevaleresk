@@ -8,25 +8,13 @@ if (isset($_POST['submit']))
     
     $choixJoueur= $_POST['reponse'];  //ce que le joueur a répondu à l'énigme
 
-    //Le selectWhere ne marchait pas
-    $reponseJoueur = ReponsesTable()->selectAll();
-    $reponse="";
-    foreach($reponseJoueur as $rep){
-        if($rep->Reponse == $choixJoueur){
-            $reponse = $rep;
-        }
-    }
+    $reponseJoueur = ReponsesTable()->selectById($choixJoueur)[0];
     
-    $enigme = EnigmesTable()->selectWhere("id= $reponse->IdEnigme")[0];
+    $enigme = EnigmesTable()->selectById($reponseJoueur->IdEnigme)[0];
   
-    $joueurId = (int)$_SESSION['id'];
+    $joueurId = $_SESSION['id'];
     
-    if($reponse->EstBonne == 1 ){ 
-        //TODO: Faire marcher la procédure qui augmente le solde du joueur
-        DB()->nonQuerySqlCmd("CALL soldeEnigma('$enigme->Difficulte',$joueurId);"); 
-    }
+    DB()->nonQuerySqlCmd("CALL repondreEnigme($enigme->Id, $joueurId, $choixJoueur);"); 
 
-    redirect("optionsJeu.php");
-   
-       
+    redirect("optionsJeu.php?choix=$choixJoueur&jou=$joueurId&eni=$enigme->Id");
 }
