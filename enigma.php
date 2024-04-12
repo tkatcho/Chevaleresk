@@ -14,7 +14,7 @@ if ($isConnected){
     $toutesEnigmes = EnigmesTable()->selectAll();
     
     //Les énigmes non pigées
-    $idDeEnigme = $toutesEnigmes[rand(0,count($toutesEnigmes))]->Id;
+    $idDeEnigme = $toutesEnigmes[rand(0, count($toutesEnigmes) - 1)]->Id;
     $enigme = EnigmesTable()->selectById($idDeEnigme)[0];
 
     //les réponses
@@ -24,7 +24,7 @@ if ($isConnected){
     $réponsesAffichées ="";
     foreach($reponses as $reponse){
         $réponsesAffichées.=<<<HTML
-        <input type="radio" id='reponse' name='reponse' value='$reponse->Reponse' ><label for="reponse">$reponse->Reponse</label>
+        <input type="radio" id='reponse_$reponse->Id' name='reponse' value='$reponse->Id' ><label for="reponse_$reponse->Id">$reponse->Reponse</label>
         <br>
 HTML;
     }
