@@ -362,6 +362,9 @@ span {
   margin-top: 20px;
   font-size: 15px;
 }
+.optionsJeuNiveauIcone{
+  font-size: 35px;
+}
 .optionsBackgroundBleuProfilImg {
   background-color: var(--primary-color);
   border-radius: 30px;
