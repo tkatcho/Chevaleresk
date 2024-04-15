@@ -13,13 +13,18 @@ $potions = PotionsTable()->selectAll();
 $elem1 = "Unavailable";
 $elem2 = "Unavailable";
 
-$qt0 = "0";
 $qt1 = "0";
+$qt2 = "0";
+
+$qtRequis1 = 1;
+$qtRequis2 = 1;
 
 $textColor0 = 'color: red;';
 $textColor1 = 'color: red;';
 
 $recette = RecettesTable()->selectWhere("idPotion = $chosen_item");
+
+$canCraft = true;
 
 $itemsDisplay = "";
 foreach ($items as $item) {
@@ -47,17 +52,16 @@ if (isset($recette[1]) && isset($recette[0])) {
     $temp = ElementsTable()->selectById($recette[0]->idElement);
     $temp = ItemsTable()->selectById($temp[0]->idItem);
     $elem1 = $temp[0]->Nom;
-    $qt0 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$temp[0]->Id}")[0]->Quantite ?? '0';
+    $qt1 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$temp[0]->Id}")[0]->Quantite ?? '0';
 
 
     $temp = ElementsTable()->selectById($recette[1]->idElement);
     $temp = ItemsTable()->selectById($temp[0]->idItem);
     $elem2 = $temp[0]->Nom;
-    $qt1 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$temp[0]->Id}")[0]->Quantite ?? '0';
+    $qt2 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$temp[0]->Id}")[0]->Quantite ?? '0';
 
-
-    $textColor0 = $qt0 == 0 ? 'color: red;' : '';
-    $textColor1 = $qt1 == 0 ? 'color: red;' : '';
+    $textColor0 = $qt1 == 0 ? 'color: red;' : '';
+    $textColor1 = $qt2 == 0 ? 'color: red;' : '';
 }
 
 $viewTitle = "Concocter des potions";
@@ -73,18 +77,20 @@ $content = <<<HTML
 
             <!--La liste des ingrédients-->
             <ul>
-                <li style="{$textColor0}">$elem1 $qt0/1</li>
-                <li style="{$textColor1}">$elem2 $qt1/1</li>
+                <li style="{$textColor0}">$elem1 $qt1/1</li>
+                <li style="{$textColor1}">$elem2 $qt2/1</li>
             </ul>
 
-            <form action="">
+            <form action="fairePotionConfirm.php" method="post">
 
+            <input type="hidden" name="elem1" value="{$elem1}">
+            <input type="hidden" name="elem2" value="{$elem2}">
+            <input type="hidden" name="qtRequis1" value="{$qtRequis1}">
+            <input type="hidden" name="qtRequis2" value="{$qtRequis2}">
+            <input type="hidden" name="potionId" value="{$chosen_item}">
+
+            <input type="submit" value="Faire la potion"> 
             </form>
-            <button class="concocterPotionBtn">
-              <a class="optionsBtnIcon" href ="index.php">    <!--Changer le href-->
-              Faire la potion <i class="fa fa-flask"></i>
-              </a>
-          </button>
         </div>
     </div>
     <script>
