@@ -17,7 +17,12 @@ if ($isConnected) {
     $niveau ="";
     if($isAlchimiste ==1){
         $niveau = <<<HTML
-        <p>Vous êtes alchimiste</p>
+        <span class="optionsJeuNiveauIcone"><i class="fa-solid fa-hat-wizard"></i>
+HTML;
+    }
+    if($isAlchimiste ==0 && $isAdmin ==0){
+        $niveau = <<<HTML
+        <span class="optionsJeuNiveauIcone"><i class='fas fa-user-shield'></i>
 HTML;
     }
     if ($isAdmin) {
@@ -30,8 +35,8 @@ HTML;
             <div class="optionsBackgroundBleuProfilImg">
                 <div style="background-image:url('./images/chevalier.png')"></div>
             </div>
-            <p>$joueur->Alias</p>
-            <p>Vous êtes administrateur</p>
+            <p>$joueur->Alias <span class="optionsJeuNiveauIcone"><i class="fas fa-user-tie"></i></p>
+            
             
         </div>
         
@@ -84,8 +89,7 @@ HTML;
             <div class="optionsBackgroundBleuProfilImg">
                 <div style="background-image:url('./images/chevalier.png')"></div>
             </div>
-            <p>$joueur->Alias</p>
-            $niveau
+            <p>$joueur->Alias $niveau</p>
             <p>Nombre écus: <span>$joueur->Solde</span>$</p>
         </div>
         

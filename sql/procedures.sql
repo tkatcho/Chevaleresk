@@ -1,4 +1,3 @@
--- Entrez vos procédures ici
 
 -- Changer la quantité d'item dans un panier
 DELIMITER //
@@ -98,30 +97,7 @@ END//
 
 DELIMITER ;
 
-
--- Triggers pour les prix des potions et des éléments
-/*DELIMITER |;
-CREATE TRIGGER tr_potions_prix BEFORE INSERT ON items
-FOR EACH ROW
-BEGIN
-	DECLARE prix_elem INT;
-    SELECT MAX(prix) INTO prix_elem FROM items WHERE type = 'E';
-    IF (new.prix <= prix_elem AND new.type = 'P') THEN
-    	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cout potion trop bas';
-    END IF;
-END |;
-
-DELIMITER |;
-CREATE TRIGGER tr_elements_prix BEFORE INSERT ON items
-FOR EACH ROW
-BEGIN
-	DECLARE prix_pot INT;
-    SELECT MIN(prix) INTO prix_pot FROM items WHERE type = 'P';
-    IF (new.prix >= prix_pot AND new.type = 'E') THEN
-    	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cout élément trop haut';
-    END IF;
-END |;
-*/
+--S'assurer du prix des potions et éléments
 DELIMITER |;
 CREATE TRIGGER checkPrixItem
 before insert ON items
@@ -157,6 +133,7 @@ END //
 DELIMITER ;
 
 
+--Changer le solde du joueur lorsqu'il résout une énigme dépendamment de la difficulté de l'énigme
 DELIMITER //
 
 CREATE PROCEDURE repondreEnigme(IN id_enigme INT, IN id_joueur INT, IN id_reponse INT)
@@ -187,46 +164,7 @@ END//
 
 DELIMITER ;
 
-/*
-DELIMITER |;
-CREATE TRIGGER checkInsertionsQuetes
-before insert ON quetes
-for each row
-begin
-DECLARE exist INT;
-
-SELECT exists(SELECT idEnigme FROM quetes) INTO exist ;
-
-IF (exist=1) THEN
-    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Enigme déjà répondu';
-END IF;
-
-END |;*/
---Si l'énigme a été répondu
-/*DELIMITER //
-
--- CREATE FUNCTION verifierEnigmeRepondu(idEnigme INT, idJoueur INT) RETURNS INTEGER
--- BEGIN
---     DECLARE quetes_repondu INT;
---     DECLARE nb_quetes_joueur INT;
---     DECLARE nb_total_enigme INT;
---     DECLARE estRepondu INT;
-
---     SELECT count(*) INTO quetes_repondu FROM quetes WHERE idEnigme= idEnigme AND idJoueur = idJoueur ;
---     SELECT count(*) INTO nb_quetes_joueur FROM quetes WHERE idJoueur = idJoueur ;
---     SELECT count(*) INTO nb_total_enigme FROM enigmes ;
-
---     IF nb_quetes_joueur = nb_total_enigme THEN
---         SET estRepondu=2;
---     ELSE 
---     	SET estRepondu= 1;
---    END IF;
-  
---     RETURN estRepondu;
--- END
-
-DELIMITER ;*/
-
+--Le joueur devient alchimiste s'il résout 3 énigmes de potions ou éléments
 DELIMITER //
 CREATE PROCEDURE checkEnigmesRésoluEnigmaAlchimiste(IN id_joueur INT)
 begin

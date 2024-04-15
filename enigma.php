@@ -85,6 +85,17 @@ HTML;
             <input type="checkbox"><label>Moyen</label>
             <br>
             <input type="checkbox"><label>Facile</label>
+            </div>
+            <div class="enigmaChoisirDifficulté">
+            
+            <p>Choisir le type d'énigme</p>
+            <hr>
+            <!--TODO: Modifier la difficulté de la question -->
+            <input type="checkbox"><label>Potion</label>
+            <br>
+            <input type="checkbox"><label>Élément</label>
+            <br>
+            <input type="checkbox"><label>Facile</label>
         </div>
     </div>
     <hr>
