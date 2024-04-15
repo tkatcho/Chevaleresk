@@ -62,12 +62,12 @@ if (isset($recette[1]) && isset($recette[0])) {
     $elem2 = $temp[0]->Nom;
     $qt2 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$temp[0]->Id}")[0]->Quantite ?? '0';
 
-    $textColor0 = $qt1 == 0 ? 'color: red;' : '';
-    $textColor1 = $qt2 == 0 ? 'color: red;' : '';
 
-    $qtRequis1 = $recette;
-    $qtRequis2 = $recette;
-    print_r($recette);
+    $qtRequis1 = $recette[0]->qtElements;
+    $qtRequis2 = $recette[1]->qtElements;
+
+    $textColor0 = $qt1 < $qtRequis1 ? 'color: red;' : '';
+    $textColor1 = $qt2 < $qtRequis2 ? 'color: red;' : '';
 }
 
 $viewTitle = "Concocter des potions";
