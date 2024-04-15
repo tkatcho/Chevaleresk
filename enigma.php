@@ -17,6 +17,7 @@ if ($isConnected){
     $checkedDifficile = "";
     $checkedMoyen = "";
     $checkedFacile = "";
+    $hidden = "";
 
     if(isset($_GET['d'])) {
         if (str_contains($_GET['d'], "difficile"))
