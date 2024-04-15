@@ -217,7 +217,7 @@ BEGIN
     IF nb_quetes_joueur = nb_total_enigme THEN
         SET estRepondu=2;
     ELSE 
-    	SET estRepondu= nb_quetes_joueur;
+    	SET estRepondu= 1;
    END IF;
   
     RETURN estRepondu;
