@@ -5,7 +5,7 @@ include 'php/sessionManager.php';
 include_once 'php/utils.php';
 userAccess();
 
-
+#region variables
 $chosen_item = $_GET['chosenItem'] ?? '';
 $items = ItemsTable()->selectAll();
 $potions = PotionsTable()->selectAll();
@@ -16,17 +16,14 @@ $elem2 = "Unavailable";
 $qt1 = "0";
 $qt2 = "0";
 
-
+$qtRequis1 = 1;
+$qtRequis2 = 1;
 
 $textColor0 = 'color: red;';
 $textColor1 = 'color: red;';
 
 $recette = RecettesTable()->selectWhere("idPotion = $chosen_item");
-
-$qtRequis1 = 1;
-$qtRequis2 = 1;
-
-$canCraft = true;
+#endregion
 
 $itemsDisplay = "";
 foreach ($items as $item) {
@@ -89,6 +86,7 @@ $content = <<<HTML
 
             <form action="fairePotionConfirm.php" method="post">
 
+            <!-- Liste elements envoyer au form -->
             <input type="hidden" name="elem1" value="{$elem1}">
             <input type="hidden" name="elem2" value="{$elem2}">
             <input type="hidden" name="qtRequis1" value="{$qtRequis1}">
