@@ -16,13 +16,15 @@ $elem2 = "Unavailable";
 $qt1 = "0";
 $qt2 = "0";
 
-$qtRequis1 = 1;
-$qtRequis2 = 1;
+
 
 $textColor0 = 'color: red;';
 $textColor1 = 'color: red;';
 
 $recette = RecettesTable()->selectWhere("idPotion = $chosen_item");
+
+$qtRequis1 = 1;
+$qtRequis2 = 1;
 
 $canCraft = true;
 
@@ -62,6 +64,10 @@ if (isset($recette[1]) && isset($recette[0])) {
 
     $textColor0 = $qt1 == 0 ? 'color: red;' : '';
     $textColor1 = $qt2 == 0 ? 'color: red;' : '';
+
+    $qtRequis1 = $recette;
+    $qtRequis2 = $recette;
+    print_r($recette);
 }
 
 $viewTitle = "Concocter des potions";
@@ -77,8 +83,8 @@ $content = <<<HTML
 
             <!--La liste des ingrédients-->
             <ul>
-                <li style="{$textColor0}">$elem1 $qt1/1</li>
-                <li style="{$textColor1}">$elem2 $qt2/1</li>
+                <li style="{$textColor0}">$elem1 $qt1/$qtRequis1</li>
+                <li style="{$textColor1}">$elem2 $qt2/$qtRequis2</li>
             </ul>
 
             <form action="fairePotionConfirm.php" method="post">
