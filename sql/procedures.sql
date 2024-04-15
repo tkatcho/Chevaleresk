@@ -201,28 +201,28 @@ END IF;
 
 END |;*/
 --Si l'énigme a été répondu
-DELIMITER //
+-- DELIMITER //
 
-CREATE FUNCTION verifierEnigmeRepondu(idEnigme INT, idJoueur INT) RETURNS INTEGER
-BEGIN
-    DECLARE quetes_repondu INT;
-    DECLARE nb_quetes_joueur INT;
-    DECLARE nb_total_enigme INT;
-    DECLARE estRepondu INT;
+-- CREATE FUNCTION verifierEnigmeRepondu(idEnigme INT, idJoueur INT) RETURNS INTEGER
+-- BEGIN
+--     DECLARE quetes_repondu INT;
+--     DECLARE nb_quetes_joueur INT;
+--     DECLARE nb_total_enigme INT;
+--     DECLARE estRepondu INT;
 
-    SELECT count(*) INTO quetes_repondu FROM quetes WHERE idEnigme= idEnigme AND idJoueur = idJoueur ;
-    SELECT count(*) INTO nb_quetes_joueur FROM quetes WHERE idJoueur = idJoueur ;
-    SELECT count(*) INTO nb_total_enigme FROM enigmes ;
+--     SELECT count(*) INTO quetes_repondu FROM quetes WHERE idEnigme= idEnigme AND idJoueur = idJoueur ;
+--     SELECT count(*) INTO nb_quetes_joueur FROM quetes WHERE idJoueur = idJoueur ;
+--     SELECT count(*) INTO nb_total_enigme FROM enigmes ;
 
-    IF nb_quetes_joueur = nb_total_enigme THEN
-        SET estRepondu=2;
-    ELSE 
-    	SET estRepondu= 1;
-   END IF;
+--     IF nb_quetes_joueur = nb_total_enigme THEN
+--         SET estRepondu=2;
+--     ELSE 
+--     	SET estRepondu= 1;
+--    END IF;
   
-    RETURN estRepondu;
-END
+--     RETURN estRepondu;
+-- END
 
-DELIMITER ;
+-- DELIMITER ;
 
 
