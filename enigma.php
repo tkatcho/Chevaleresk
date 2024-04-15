@@ -8,50 +8,94 @@ $viewTitle = "Enigma";
 $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 userAccess();
 
+//-------Choisir Difficulté et Type énigmes------------//
 $scripts = <<<HTML
     <script src="js/enigma.js"></script>
 HTML;
 
 if ($isConnected){
 
+    $hidden="";
     $checkedDifficile = "";
     $checkedMoyen = "";
     $checkedFacile = "";
 
-    if(isset($_GET['d'])) {
+    $checkedPotions = "";
+    $checkedElements = "";
+    $checkedAutres = "";
+
+    if(isset($_GET['d'])) {   //difficulté
         if (str_contains($_GET['d'], "difficile"))
             $checkedDifficile = "checked";
         if (str_contains($_GET['d'], "moyen"))
             $checkedMoyen = "checked";
         if (str_contains($_GET['d'], "facile"))
             $checkedFacile = "checked";
-        $hidden = <<<HTML
-            <input type="hidden" name="filtres" value="$_GET[d]">
+        $hidden .= <<<HTML
+            <input type="hidden" name="filtresDif" value="$_GET[d]">
         HTML;
     }
 
-    $where = "";
+    if(isset($_GET['t'])) {  //type
+        if (str_contains($_GET['t'], "P"))
+            $checkedPotions = "checked";
+        if (str_contains($_GET['t'], "E"))
+            $checkedElements = "checked";
+        if (str_contains($_GET['t'], "Z"))
+            $checkedAutres = "checked";
+        $hidden .= <<<HTML
+            <input type="hidden" name="filtresType" value="$_GET[t]">
+        HTML;
+    }
+
+    //Where difficulté
+    $whereDif = "";
     if ($checkedDifficile != "") {
-        $where .= " difficulte = 'Difficile'";
+        $whereDif .= " difficulte = 'Difficile'";
     }
     if ($checkedMoyen != "") {
-        if ($where != "")
-            $where .= " OR difficulte = 'Moyen'";
+        if ($whereDif != "")
+            $whereDif .= " OR difficulte = 'Moyen'";
         else
-            $where .= " difficulte = 'Moyen'";
+            $whereDif .= " difficulte = 'Moyen'";
     }
     if ($checkedFacile != "") {
-        if ($where != "")
-            $where .= " OR difficulte = 'Facile'";
+        if ($whereDif != "")
+            $whereDif .= " OR difficulte = 'Facile'";
         else
-            $where .= " difficulte = 'Facile'";
+            $whereDif .= " difficulte = 'Facile'";
     }
-    if ($where == "")
-        $where = "1 = 1";
+    if ($whereDif == "")
+        $whereDif = "1 = 1";
 
+    //Where type
+    $whereType ="";
+    if ($checkedPotions != "") {
+        $whereType .= " type = 'P'";
+    }
+    if($checkedElements !=""){
+        if($whereType !="")
+            $whereType .= "OR type = 'E'";
+        else
+            $whereType .= " type = 'E'";
+    }
+    if($checkedAutres !=""){
+        if($whereType !="")
+            $whereType .= "OR type = 'Z'";
+        else
+            $whereType .= " type = 'Z'";
+    }
+    if($whereType=="")
+        $whereType= "1 = 1";
+    
+
+
+//---------------------------------------------------------//
+
+    //Choisir énigme    
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     $joueurId = $joueur->Id;
-    $toutesEnigmes = EnigmesTable()->selectWhere($where);
+    $toutesEnigmes = EnigmesTable()->selectWhere("$whereDif AND $whereType");
     $enigmesNonRepondu = [];
 
     foreach ($toutesEnigmes as $enigme) {
@@ -103,7 +147,7 @@ HTML;
     }
 
 
-
+ //----------------------------------------------------------------------------------------------------------------//
     $content = <<<HTML
   
     <div class="enigma">
@@ -120,14 +164,22 @@ HTML;
             </ul>
         </div>
         <div class="enigmaChoisirDifficulté">
-            <p>Choisir la difficulté de l'énigme</p>
+            <p>Choisir la difficulté </p>
             <hr>
-            <!--TODO: Modifier la difficulté de la question -->
             <span class="ckDif" d="difficile"><input type="checkbox" $checkedDifficile><label>Difficile</label></span>
             <br>
             <span class="ckDif" d="moyen"><input type="checkbox" $checkedMoyen><label>Moyen</label></span>
             <br>
             <span class="ckDif" d="facile"><input type="checkbox" $checkedFacile><label>Facile</label></span>
+        </div>
+        <div class="enigmaChoisirDifficulté">
+            <p>Choisir le type</p>
+            <hr>
+            <span class="ckType" t="P"><input type="checkbox" $checkedPotions><label>Potions</label></span>
+            <br>
+            <span class="ckType" t="E"><input type="checkbox" $checkedElements><label>Élements</label></span>
+            <br>
+            <span class="ckType" t="Z"><input type="checkbox" $checkedAutres><label>Autres</label></span>
         </div>
     </div>
     <hr>
