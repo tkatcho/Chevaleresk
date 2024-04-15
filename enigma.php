@@ -19,6 +19,7 @@ if ($isConnected){
     $checkedDifficile = "";
     $checkedMoyen = "";
     $checkedFacile = "";
+    $hidden = "";
 
     $checkedPotions = "";
     $checkedElements = "";
