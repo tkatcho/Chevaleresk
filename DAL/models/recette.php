@@ -12,4 +12,12 @@ class Recette extends Record
         $this->idElement = 0;
         parent::__construct($recordData);
     }
+    public function setIdPotion($idPotion)
+    {
+        $this->idPotion = $idPotion;
+    }
+    public function setIdElement($idElement)
+    {
+        $this->idElement = $idElement;
+    }
 }
