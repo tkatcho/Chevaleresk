@@ -6,12 +6,49 @@ require_once 'php/config.php';
 
 $viewTitle = "Enigma";
 $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
+userAccess();
+
+$scripts = <<<HTML
+    <script src="js/enigma.js"></script>
+HTML;
 
 if ($isConnected){
 
+    $checkedDifficile = "";
+    $checkedMoyen = "";
+    $checkedFacile = "";
+
+    if(isset($_GET['d'])) {
+        if (str_contains($_GET['d'], "difficile"))
+            $checkedDifficile = "checked";
+        if (str_contains($_GET['d'], "moyen"))
+            $checkedMoyen = "checked";
+        if (str_contains($_GET['d'], "facile"))
+            $checkedFacile = "checked";
+    }
+
+    $where = "";
+    if ($checkedDifficile != "") {
+        $where .= " difficulte = 'Difficile'";
+    }
+    if ($checkedMoyen != "") {
+        if ($where != "")
+            $where .= " OR difficulte = 'Moyen'";
+        else
+            $where .= " difficulte = 'Moyen'";
+    }
+    if ($checkedFacile != "") {
+        if ($where != "")
+            $where .= " OR difficulte = 'Facile'";
+        else
+            $where .= " difficulte = 'Facile'";
+    }
+    if ($where == "")
+        $where = "1 = 1";
+
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     $joueurId = $joueur->Id;
-    $toutesEnigmes = EnigmesTable()->selectAll();
+    $toutesEnigmes = EnigmesTable()->selectWhere($where);
     $enigmesNonRepondu = [];
 
     foreach ($toutesEnigmes as $enigme) {
@@ -61,6 +98,8 @@ HTML;
 HTML;
     }
 
+
+
     $content = <<<HTML
   
     <div class="enigma">
@@ -80,11 +119,11 @@ HTML;
             <p>Choisir la difficulté de l'énigme</p>
             <hr>
             <!--TODO: Modifier la difficulté de la question -->
-            <input type="checkbox"><label>Difficile</label>
+            <span class="ckDif" d="difficile"><input type="checkbox" $checkedDifficile><label>Difficile</label></span>
             <br>
-            <input type="checkbox"><label>Moyen</label>
+            <span class="ckDif" d="moyen"><input type="checkbox" $checkedMoyen><label>Moyen</label></span>
             <br>
-            <input type="checkbox"><label>Facile</label>
+            <span class="ckDif" d="facile"><input type="checkbox" $checkedFacile><label>Facile</label></span>
         </div>
     </div>
     <hr>

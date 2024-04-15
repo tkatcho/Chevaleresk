@@ -9,6 +9,9 @@ if (file_exists("views/stylesBundle.html"))
 $scriptsBundle = "";
 if (file_exists("views/scriptsBundle.html"))
     $scriptsBundle = file_get_contents("views/scriptsBundle.html");
+if (!isset($scripts))
+    $scripts = "";
+    
 
 
 echo <<<HTML
@@ -38,6 +41,7 @@ echo <<<HTML
                     <p class="text-white">&copy; 2024 Chevaleresk</p>
                 </div>
             </footer>
+            $scripts
         </body>
     </html>
 HTML;
