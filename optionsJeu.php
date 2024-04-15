@@ -77,7 +77,7 @@ HTML;
                 <div style="background-image:url('./images/chevalier.png')"></div>
             </div>
             <p>$joueur->Alias</p>
-            <p>Nombre écus: <span>$joueur->Solde</span>$</p> 
+            <p>Nombre écus: <span>$joueur->Solde</span>$</p>
         </div>
         
         <!--Les options à gauche-->
@@ -86,7 +86,7 @@ HTML;
                 <a class="optionsBtnIcon" href ="index.php">
                 Achat <i class="fa fa-money"></i>
                 </a>
-            </button>            
+            </button>
 
             <button onclick="location.href='inventaire.php'">
                 <a class="optionsBtnIcon" href ="inventaire.php">
