@@ -12,22 +12,27 @@ if ($isConnected){
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     $joueurId = $joueur->Id;
     $toutesEnigmes = EnigmesTable()->selectAll();
+    $enigmesNonRepondu = [];
+
+    foreach ($toutesEnigmes as $enigme) {
+        if (QuetesTable()->selectWhere("idEnigme = $enigme->Id")) {
+            continue;
+        } else {
+            $enigmesNonRepondu[] = $enigme;
+        }
+    }
     
     //Les énigmes non pigées
     $idDeEnigme=0;
-    $estRepondu =DB()->querySqlCmd("select verifierEnigmeRepondu($idDeEnigme,$joueurId);"); // 1 = déjà répondu  | 2 = toutes les énigmes répondues
 
     $enigmeHTML="";
     $reponses ="";
 
     //----------------------------------------------------------------------------------------------------------------//
     //Si joueur n'a pas répondu à toutes les énigmes
-    if($estRepondu != 2 ){
+    if(count($enigmesNonRepondu) > 0) {
          
-        while($estRepondu ==1){  //Tant que l'énigme a déjà été répondu, choisir une autre
-            $idDeEnigme = $toutesEnigmes[rand(0,count($toutesEnigmes)-1)]->Id;
-            $estRepondu = DB()->querySqlCmd("select verifierEnigmeRepondu($idDeEnigme,$joueurId);"); // 1 = déjà répondu  | 2 = toutes les énigmes répondues
-        }
+        $idDeEnigme = $enigmesNonRepondu[rand(0,count($enigmesNonRepondu)-1)]->Id;
         $enigmeObj = EnigmesTable()->selectById($idDeEnigme)[0];
         $reponses = ReponsesTable()->selectWhere("IdEnigme = $idDeEnigme");
 
