@@ -52,7 +52,7 @@ if ($isConnected){
     $enigmesNonRepondu = [];
 
     foreach ($toutesEnigmes as $enigme) {
-        if (QuetesTable()->selectWhere("idEnigme = $enigme->Id")) {
+        if (QuetesTable()->selectWhere("idEnigme = $enigme->Id and idJoueur = $joueurId")) {
             continue;
         } else {
             $enigmesNonRepondu[] = $enigme;
