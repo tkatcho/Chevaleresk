@@ -163,9 +163,10 @@ CREATE PROCEDURE repondreEnigme(IN id_enigme INT, IN id_joueur INT, IN id_repons
 BEGIN
     DECLARE difficulte_enigme VARCHAR(12);
     DECLARE est_bonne BIT;
+  
     SELECT difficulte INTO difficulte_enigme FROM enigmes WHERE id = id_enigme;
     SELECT estBonne INTO est_bonne FROM reponses WHERE id = id_reponse;
-    
+   
     IF est_bonne = 1 THEN
         IF difficulte_enigme = 'Facile' THEN
             UPDATE joueurs SET solde = solde + 50 WHERE id = id_joueur;
@@ -176,6 +177,7 @@ BEGIN
         IF difficulte_enigme = 'Difficile' THEN
             UPDATE joueurs SET solde = solde + 200 WHERE id = id_joueur;
         END IF;
+        
         INSERT INTO quetes (idJoueur, idEnigme, reussi) VALUES (id_joueur, id_enigme, 1);
     ELSE 
         INSERT INTO quetes (idJoueur, idEnigme, reussi) VALUES (id_joueur, id_enigme, 0);
@@ -201,7 +203,7 @@ END IF;
 
 END |;*/
 --Si l'énigme a été répondu
-DELIMITER //
+/*DELIMITER //
 
 CREATE FUNCTION verifierEnigmeRepondu(idEnigme INT, idJoueur INT) RETURNS INTEGER
 BEGIN
@@ -223,6 +225,18 @@ BEGIN
     RETURN estRepondu;
 END
 
+DELIMITER ;*/
+
+DELIMITER //
+CREATE PROCEDURE checkEnigmesRésoluEnigmaAlchimiste(IN id_joueur INT)
+begin
+declare nb_quetes_reussi_joueur_potions_elements int;
+
+SELECT count(*) INTO  nb_quetes_reussi_joueur_potions_elements FROM quetes INNER JOIN enigmes ON quetes.idEnigme = enigmes.id WHERE (enigmes.type = 'E' OR enigmes.type='P') AND quetes.reussi=1;
+
+if( nb_quetes_reussi_joueur_potions_elements >=3) Then
+    UPDATE joueurs SET estAlchimiste = 1 WHERE id = id_joueur;
+end if;
+
+END// 
 DELIMITER ;
-
-

@@ -13,6 +13,13 @@ if ($isConnected) {
     //Faire une condition pour savoir si admin ou si joueur (les boutons ne seront pas les mêmes)
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     $isAdmin = $joueur->estAdmin;
+    $isAlchimiste = $joueur ->estAlchimiste;
+    $niveau ="";
+    if($isAlchimiste ==1){
+        $niveau = <<<HTML
+        <p>Vous êtes alchimiste</p>
+HTML;
+    }
     if ($isAdmin) {
         $content = <<<HTML
     <!---------------------------Options pour admin-------------------------------->
@@ -24,6 +31,7 @@ if ($isConnected) {
                 <div style="background-image:url('./images/chevalier.png')"></div>
             </div>
             <p>$joueur->Alias</p>
+            <p>Vous êtes administrateur</p>
             
         </div>
         
@@ -77,6 +85,7 @@ HTML;
                 <div style="background-image:url('./images/chevalier.png')"></div>
             </div>
             <p>$joueur->Alias</p>
+            $niveau
             <p>Nombre écus: <span>$joueur->Solde</span>$</p>
         </div>
         

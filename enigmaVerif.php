@@ -14,7 +14,10 @@ if (isset($_POST['submit']))
   
     $joueurId = $_SESSION['id'];
     
+   
     DB()->nonQuerySqlCmd("CALL repondreEnigme($enigme->Id, $joueurId, $choixJoueur);"); 
+    DB()->nonQuerySqlCmd("CALL checkEnigmesRésoluEnigmaAlchimiste($joueurId);"); 
 
-    redirect("optionsJeu.php?choix=$choixJoueur&jou=$joueurId&eni=$enigme->Id");
+   // redirect("enigma.php?choix=$choixJoueur&jou=$joueurId&eni=$enigme->Id");
+    redirect("enigma.php");
 }
