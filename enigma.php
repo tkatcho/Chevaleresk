@@ -25,6 +25,9 @@ if ($isConnected){
             $checkedMoyen = "checked";
         if (str_contains($_GET['d'], "facile"))
             $checkedFacile = "checked";
+        $hidden = <<<HTML
+            <input type="hidden" name="filtres" value="$_GET[d]">
+        HTML;
     }
 
     $where = "";
@@ -86,6 +89,7 @@ HTML;
             <strong> $enigmeObj->Enigme</strong>
             <form method='post' action='enigmaVerif.php'>
                 $réponsesAffichées
+                $hidden
                 <input type='submit' name='submit' value="Répondre" class="enigmaEnigmeBackgroundBtn" >
             </form>
         </div>  
