@@ -6,12 +6,52 @@ require_once 'php/config.php';
 
 $viewTitle = "Enigma";
 $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
+userAccess();
+
+$scripts = <<<HTML
+    <script src="js/enigma.js"></script>
+HTML;
 
 if ($isConnected){
 
+    $checkedDifficile = "";
+    $checkedMoyen = "";
+    $checkedFacile = "";
+
+    if(isset($_GET['d'])) {
+        if (str_contains($_GET['d'], "difficile"))
+            $checkedDifficile = "checked";
+        if (str_contains($_GET['d'], "moyen"))
+            $checkedMoyen = "checked";
+        if (str_contains($_GET['d'], "facile"))
+            $checkedFacile = "checked";
+        $hidden = <<<HTML
+            <input type="hidden" name="filtres" value="$_GET[d]">
+        HTML;
+    }
+
+    $where = "";
+    if ($checkedDifficile != "") {
+        $where .= " difficulte = 'Difficile'";
+    }
+    if ($checkedMoyen != "") {
+        if ($where != "")
+            $where .= " OR difficulte = 'Moyen'";
+        else
+            $where .= " difficulte = 'Moyen'";
+    }
+    if ($checkedFacile != "") {
+        if ($where != "")
+            $where .= " OR difficulte = 'Facile'";
+        else
+            $where .= " difficulte = 'Facile'";
+    }
+    if ($where == "")
+        $where = "1 = 1";
+
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     $joueurId = $joueur->Id;
-    $toutesEnigmes = EnigmesTable()->selectAll();
+    $toutesEnigmes = EnigmesTable()->selectWhere($where);
     $enigmesNonRepondu = [];
 
     foreach ($toutesEnigmes as $enigme) {
@@ -49,6 +89,7 @@ HTML;
             <strong> $enigmeObj->Enigme</strong>
             <form method='post' action='enigmaVerif.php'>
                 $réponsesAffichées
+                $hidden
                 <input type='submit' name='submit' value="Répondre" class="enigmaEnigmeBackgroundBtn" >
             </form>
         </div>  
@@ -60,6 +101,8 @@ HTML;
         </div>  
 HTML;
     }
+
+
 
     $content = <<<HTML
   
@@ -80,22 +123,11 @@ HTML;
             <p>Choisir la difficulté de l'énigme</p>
             <hr>
             <!--TODO: Modifier la difficulté de la question -->
-            <input type="checkbox"><label>Difficile</label>
+            <span class="ckDif" d="difficile"><input type="checkbox" $checkedDifficile><label>Difficile</label></span>
             <br>
-            <input type="checkbox"><label>Moyen</label>
+            <span class="ckDif" d="moyen"><input type="checkbox" $checkedMoyen><label>Moyen</label></span>
             <br>
-            <input type="checkbox"><label>Facile</label>
-            </div>
-            <div class="enigmaChoisirDifficulté">
-            
-            <p>Choisir le type d'énigme</p>
-            <hr>
-            <!--TODO: Modifier la difficulté de la question -->
-            <input type="checkbox"><label>Potion</label>
-            <br>
-            <input type="checkbox"><label>Élément</label>
-            <br>
-            <input type="checkbox"><label>Facile</label>
+            <span class="ckDif" d="facile"><input type="checkbox" $checkedFacile><label>Facile</label></span>
         </div>
     </div>
     <hr>
