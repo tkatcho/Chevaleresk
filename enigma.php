@@ -10,25 +10,52 @@ $isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 if ($isConnected){
 
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
-    //l'énigme
+    $joueurId = $joueur->Id;
     $toutesEnigmes = EnigmesTable()->selectAll();
     
     //Les énigmes non pigées
-    $idDeEnigme = $toutesEnigmes[rand(0, count($toutesEnigmes) - 1)]->Id;
-    $enigme = EnigmesTable()->selectById($idDeEnigme)[0];
+    $idDeEnigme=0;
+    $estRepondu =DB()->querySqlCmd("select verifierEnigmeRepondu($idDeEnigme,$joueurId);"); // 1 = déjà répondu  | 2 = toutes les énigmes répondues
 
-    //les réponses
-    $reponses = ReponsesTable()->selectWhere("IdEnigme = $idDeEnigme");
+    $enigmeHTML="";
+    $reponses ="";
 
-    //pour chaque réponses possibles pour l'énigme, on doit mettre un input
-    $réponsesAffichées ="";
-    foreach($reponses as $reponse){
-        $réponsesAffichées.=<<<HTML
-        <input type="radio" id='reponse_$reponse->Id' name='reponse' value='$reponse->Id' ><label for="reponse_$reponse->Id">$reponse->Reponse</label>
-        <br>
+    //----------------------------------------------------------------------------------------------------------------//
+    //Si joueur n'a pas répondu à toutes les énigmes
+    if($estRepondu != 2 ){
+         
+        while($estRepondu ==1){  //Tant que l'énigme a déjà été répondu, choisir une autre
+            $idDeEnigme = $toutesEnigmes[rand(0,count($toutesEnigmes)-1)]->Id;
+            $estRepondu = DB()->querySqlCmd("select verifierEnigmeRepondu($idDeEnigme,$joueurId);"); // 1 = déjà répondu  | 2 = toutes les énigmes répondues
+        }
+        $enigmeObj = EnigmesTable()->selectById($idDeEnigme)[0];
+        $reponses = ReponsesTable()->selectWhere("IdEnigme = $idDeEnigme");
+
+        //pour chaque réponses possibles pour l'énigme, on doit mettre un input
+        $réponsesAffichées ="";
+        foreach($reponses as $reponse){
+            $réponsesAffichées.=<<<HTML
+            <input type="radio" id='reponse_$reponse->Id' name='reponse' value='$reponse->Id' ><label for="reponse_$reponse->Id">$reponse->Reponse</label>
+            <br>
+HTML;
+        }
+        $enigmeHTML = <<<HTML
+        <div class="enigmaEnigmeBackground">
+            <strong> $enigmeObj->Enigme</strong>
+            <form method='post' action='enigmaVerif.php'>
+                $réponsesAffichées
+                <input type='submit' name='submit' value="Répondre" class="enigmaEnigmeBackgroundBtn" >
+            </form>
+        </div>  
+HTML;
+    }else {    //Joueur a répondu a toutes les énigmes
+        $enigmeHTML = <<<HTML
+        <div class="enigmaEnigmeBackground">
+            <strong> Vous avez répondu à toutes les énigmes</strong>
+        </div>  
 HTML;
     }
-   
+
     $content = <<<HTML
   
     <div class="enigma">
@@ -56,15 +83,7 @@ HTML;
         </div>
     </div>
     <hr>
-    <div class="enigmaEnigmeBackground">
-        <strong> $enigme->Enigme</strong>
-        <form method='post' action='enigmaVerif.php'>
-            
-            $réponsesAffichées
-            <!--TODO: Vérifier si bien répondu -->
-            <input type='submit' name='submit' value="Répondre" class="enigmaEnigmeBackgroundBtn" >
-        </form>
-    </div>  
+    $enigmeHTML
   
 HTML;
 }

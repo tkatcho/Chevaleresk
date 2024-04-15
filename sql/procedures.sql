@@ -156,7 +156,7 @@ BEGIN
 END //
 DELIMITER ;
 
---TODO:Modifier solde du joueur lorsqu'il a répondu à une bonne énigme et l'inscrire dans la table quetes
+
 DELIMITER //
 
 CREATE PROCEDURE repondreEnigme(IN id_enigme INT, IN id_joueur INT, IN id_reponse INT)
@@ -165,7 +165,7 @@ BEGIN
     DECLARE est_bonne BIT;
     SELECT difficulte INTO difficulte_enigme FROM enigmes WHERE id = id_enigme;
     SELECT estBonne INTO est_bonne FROM reponses WHERE id = id_reponse;
-
+    
     IF est_bonne = 1 THEN
         IF difficulte_enigme = 'Facile' THEN
             UPDATE joueurs SET solde = solde + 50 WHERE id = id_joueur;
@@ -177,9 +177,52 @@ BEGIN
             UPDATE joueurs SET solde = solde + 200 WHERE id = id_joueur;
         END IF;
         INSERT INTO quetes (idJoueur, idEnigme, reussi) VALUES (id_joueur, id_enigme, 1);
-    ELSE
+    ELSE 
         INSERT INTO quetes (idJoueur, idEnigme, reussi) VALUES (id_joueur, id_enigme, 0);
     END IF;
+
 END//
 
 DELIMITER ;
+
+/*
+DELIMITER |;
+CREATE TRIGGER checkInsertionsQuetes
+before insert ON quetes
+for each row
+begin
+DECLARE exist INT;
+
+SELECT exists(SELECT idEnigme FROM quetes) INTO exist ;
+
+IF (exist=1) THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Enigme déjà répondu';
+END IF;
+
+END |;*/
+--Si l'énigme a été répondu
+DELIMITER //
+
+CREATE FUNCTION verifierEnigmeRepondu(idEnigme INT, idJoueur INT) RETURNS INTEGER
+BEGIN
+    DECLARE quetes_repondu INT;
+    DECLARE nb_quetes_joueur INT;
+    DECLARE nb_total_enigme INT;
+    DECLARE estRepondu INT;
+
+    SELECT count(*) INTO quetes_repondu FROM quetes WHERE idEnigme= idEnigme AND idJoueur = idJoueur ;
+    SELECT count(*) INTO nb_quetes_joueur FROM quetes WHERE idJoueur = idJoueur ;
+    SELECT count(*) INTO nb_total_enigme FROM enigmes ;
+
+    IF nb_quetes_joueur = nb_total_enigme THEN
+        SET estRepondu=2;
+    ELSE 
+    	SET estRepondu= 1;
+   END IF;
+  
+    RETURN estRepondu;
+END
+
+DELIMITER ;
+
+
