@@ -7,7 +7,8 @@ if (isset($_POST['submit']))
 {
     
     $choixJoueur= $_POST['reponse'];  //ce que le joueur a répondu à l'énigme
-    $filtres = $_POST['filtres'];
+    $filtresDif = $_POST['filtresDif'];
+    $filtresType = $_POST['filtresType'];
 
     $reponseJoueur = ReponsesTable()->selectById($choixJoueur)[0];
     
@@ -19,6 +20,5 @@ if (isset($_POST['submit']))
     DB()->nonQuerySqlCmd("CALL repondreEnigme($enigme->Id, $joueurId, $choixJoueur);"); 
     DB()->nonQuerySqlCmd("CALL checkEnigmesRésoluEnigmaAlchimiste($joueurId);"); 
 
-   // redirect("enigma.php?choix=$choixJoueur&jou=$joueurId&eni=$enigme->Id");
-    redirect("enigma.php?d=" . $filtres);
+    redirect("enigma.php?d=" . $filtresDif. "&t=".$filtresType);
 }
