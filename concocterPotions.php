@@ -29,8 +29,6 @@ $recette = RecettesTable()->selectWhere("idPotion = $chosen_item");
 
 $itemsDisplay = "";
 foreach ($items as $item) {
-    //$recette = RecettesTable()->selectWhere("idPotion = $potion->Id");
-    //$itemPotion =ItemsTable()->selectWhere("id = $potion->IdItem");
     if ($item->Type == 'P') {
         $potion = PotionsTable()->selectWhere("idItem = $item->Id");
         $itemsDisplay .= <<<HTML
@@ -119,7 +117,8 @@ $content = <<<HTML
         if (chosenItemId) {
             var item = document.querySelector('[data-id="' + chosenItemId + '"]');
             if (item) {
-               item.classList.add("chosen_item");
+                item.scrollIntoView();
+                item.classList.add("chosen_item");
             }
         }
     });

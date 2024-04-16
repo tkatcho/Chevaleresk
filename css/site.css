@@ -551,7 +551,7 @@ label {
 .concocterPotionsToutesPotions {
   display: flex;
   flex-direction: column;
-  max-height: 450px;
+  max-height: 400px;
   overflow-y: scroll;
 }
 .concocterPotionsItem {
