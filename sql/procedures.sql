@@ -178,3 +178,26 @@ end if;
 
 END// 
 DELIMITER ;
+
+-- Augmente le niveau d'un joueur lorsqu'il concocte des potions
+DELIMITER //
+
+CREATE TRIGGER augmenteNiveau
+AFTER INSERT ON potionsconcoctes
+FOR EACH ROW
+BEGIN
+
+	DECLARE nb_potions INT;
+    SELECT COUNT(*) INTO nb_potions FROM potionsconcoctes WHERE idJoueur = new.idJoueur;
+    
+    IF (nb_potions >= 3 AND nb_potions < 6) THEN
+    	UPDATE joueurs SET niveau = 'débutant' WHERE id = new.idJoueur;
+    ELSEIF (nb_potions >= 6 AND nb_potions < 9) THEN
+    	UPDATE joueurs SET niveau = 'intermédiaire' WHERE id = new.idJoueur;
+    ELSEIF (nb_potions >= 9) THEN
+    	UPDATE joueurs SET niveau = 'expert' WHERE id = new.idJoueur;
+    END IF;
+
+END //
+
+DELIMITER ;
