@@ -5,10 +5,12 @@ include 'php/sessionManager.php';
 include_once 'php/utils.php';
 userAccess();
 
-
+#region variables
 $chosen_item = $_GET['chosenItem'] ?? '';
 $items = ItemsTable()->selectAll();
+
 $potions = PotionsTable()->selectAll();
+$potion = '';
 
 $elem1 = "Unavailable";
 $elem2 = "Unavailable";
@@ -23,17 +25,16 @@ $textColor0 = 'color: red;';
 $textColor1 = 'color: red;';
 
 $recette = RecettesTable()->selectWhere("idPotion = $chosen_item");
-
-$canCraft = true;
+#endregion
 
 $itemsDisplay = "";
 foreach ($items as $item) {
     //$recette = RecettesTable()->selectWhere("idPotion = $potion->Id");
     //$itemPotion =ItemsTable()->selectWhere("id = $potion->IdItem");
     if ($item->Type == 'P') {
+        $potion = PotionsTable()->selectWhere("idItem = $item->Id");
         $itemsDisplay .= <<<HTML
-        
-        <div class="concocterPotionsItem"data-id="{$item->Id}">
+        <div class="concocterPotionsItem"data-id="{$potion[0]->Id}">
             <div class="concocterPotionsImg">
                 <div style="background-image:url($item->Photo)"></div>
             </div>
@@ -87,6 +88,7 @@ $content = <<<HTML
 
             <form action="fairePotionConfirm.php" method="post">
 
+            <!-- Liste elements envoyer au form -->
             <input type="hidden" name="elem1" value="{$elem1}">
             <input type="hidden" name="elem2" value="{$elem2}">
             <input type="hidden" name="qtRequis1" value="{$qtRequis1}">
