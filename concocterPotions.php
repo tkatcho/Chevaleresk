@@ -8,7 +8,9 @@ userAccess();
 #region variables
 $chosen_item = $_GET['chosenItem'] ?? '';
 $items = ItemsTable()->selectAll();
+
 $potions = PotionsTable()->selectAll();
+$potion = '';
 
 $elem1 = "Unavailable";
 $elem2 = "Unavailable";
@@ -30,9 +32,9 @@ foreach ($items as $item) {
     //$recette = RecettesTable()->selectWhere("idPotion = $potion->Id");
     //$itemPotion =ItemsTable()->selectWhere("id = $potion->IdItem");
     if ($item->Type == 'P') {
+        $potion = PotionsTable()->selectWhere("idItem = $item->Id");
         $itemsDisplay .= <<<HTML
-        
-        <div class="concocterPotionsItem"data-id="{$item->Id}">
+        <div class="concocterPotionsItem"data-id="{$potion[0]->Id}">
             <div class="concocterPotionsImg">
                 <div style="background-image:url($item->Photo)"></div>
             </div>
