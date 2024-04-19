@@ -12,6 +12,7 @@ th {
     font-size: 24pt;
     background-color: var(--primary-color);
     color: white;
+    -webkit-user-select: none;
     user-select: none;
 }
 
