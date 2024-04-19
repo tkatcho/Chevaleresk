@@ -23,3 +23,6 @@ INSERT INTO Potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM I
 -- Corresponding inserts for the Elements table, assuming Items.id = 7 for the first element, and so on
 INSERT INTO Elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM Items WHERE nom = 'Fire Essence'), 'Fire', 'Common', 'Low');
 INSERT INTO Elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM Items WHERE nom = 'Ice Shard'), 'Ice', 'Uncommon', 'Medium');
+
+--Corresponding inserts for the Recettes table, for the potion with id of 1 and element with id of 1;
+INSERT INTO Recettes (idPotion,idElement) VALUES (1,1);
