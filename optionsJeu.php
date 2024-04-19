@@ -30,23 +30,25 @@ HTML;
     <!---------------------------Options pour admin-------------------------------->
     <!--Le profil à droite-->
     <div class="optionsJeu">
-        <div class="optionsBackgroundGrisProfil">
-            <strong>Profil</strong>
-            <div class="optionsBackgroundBleuProfilImg">
-                <div style="background-image:url('./images/chevalier.png')"></div>
-            </div>
-            <p>$joueur->Alias <span class="optionsJeuNiveauIcone"><i class="fas fa-user-tie"></i></p>
-            
-            
-        </div>
+      <div class="optionsBackgroundGrisProfil">
+          <strong>Profil</strong>
+          <div class="optionsBackgroundBleuProfilImg">
+              <div style="background-image:url('./images/chevalier.png')"></div>
+          </div>
+          <p>$joueur->Alias</p>
+          <i class= "fa fa-hammer"></i> 
+          <i class= "fa fa-flask"></i> 
+
         
-        <!--Les options à gauche-->
-        <div class="optionsBtn" >
-            <button onclick="location.href='index.php'">
-                <a class="optionsBtnIcon" href ="index.php">
-                Achat <i class="fa fa-money"></i>
-                </a>
-            </button>            
+      </div>
+      
+      <!--Les options à gauche-->
+      <div class="optionsBtn" >
+          <button onclick="location.href='index.php'">
+              <a class="optionsBtnIcon" href ="index.php">
+              Achat <i class="fa fa-money"></i>
+            </a>
+          </button>            
 
             <button onclick="location.href='inventaire.php'">
                 <a class="optionsBtnIcon" href ="inventaire.php">

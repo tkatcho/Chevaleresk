@@ -10,7 +10,7 @@ class Joueur extends Record
     public $MotDePasse;
     public $Solde ;
     public $Niveau;
-    public $estAlchimiste;
+    public $estAlchimiste = 0;
     public $estAdmin = 0; // user => 0 , admin => 1
     public function __construct($recordData = null)
     {
@@ -52,7 +52,7 @@ class Joueur extends Record
     {
         if ($estAlchimiste == 0 || $estAlchimiste == 1)
         {
-            $this->estAlchimiste = (int) $estAlchimiste;
+            $this->estAlchimiste= (int) $estAlchimiste;
         }
     }
     public function setEstAdmin($accessType)
@@ -65,5 +65,8 @@ class Joueur extends Record
     public function isAdmin()
     {
         return $this->estAdmin == 1;
+    }
+    public function isAlchimiste(){
+        return $this-> estAlchimiste == 1;
     }
 }
