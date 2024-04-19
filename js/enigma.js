@@ -1,53 +1,38 @@
 $(document).ready(function() {
 
-    //La difficulté
     $('.ckDif').on('click', function () {
         let premierArg = "?d=";
-        let estPremierArgChecked= (document.URL.indexOf("?d=" +$(this).attr('d')) > - 1) ;
-        let estPasPremierArgChecked= (document.URL.indexOf("&d=" +$(this).attr('d')) > - 1);
-        let typeDansURL = (document.URL.indexOf("&t=") > - 1);
-
-        if (document.URL.indexOf('?t=') > - 1 || document.URL.indexOf('?d=') > - 1)     //Il y a déjà une condition dans l'URL
-            premierArg = "&d=";
-
-        if (estPremierArgChecked ) {               //Il y a un ?d=
-            if(typeDansURL) {      //Il y a un &t=
-                window.location.href = document.URL.replace("?d="+$(this).attr('d') + "&t=", '?t=');
+        if (document.URL.indexOf('?') > - 1)
+            premierArg="&d=";
+        if (document.URL.indexOf('?d') > - 1 || document.URL.indexOf('&d') > - 1)
+            premierArg = "";
+        if (document.URL.indexOf($(this).attr('d')) > - 1) {
+            window.location.href = document.URL.replace($(this).attr('d'), '');
+        } else {
+            if (premierArg != "") {
+                window.location.href = document.URL + premierArg + $(this).attr('d');
+            } else {
+                url = document.URL.split("d=");
+                window.location.href = url[0] + "d=" + premierArg + $(this).attr('d') + url[1];
             }
-            else {
-                window.location.href = document.URL.replace("?d="+$(this).attr('d'), '');
-            }     
-        } 
-        if(estPasPremierArgChecked) {                  //Il y a un &d=
-            window.location.href = document.URL.replace("&d="+$(this).attr('d'), '');
-        }
-        if(!estPremierArgChecked  && !estPasPremierArgChecked) {                   //URL vide
-            window.location.href = document.URL + premierArg + $(this).attr('d');
         }
     });
 
-
-    //Le type
     $('.ckType').on('click', function () {
-       let premierArg = "?t=";
-        let estPremierArgChecked= (document.URL.indexOf("?t=" +$(this).attr('t')) > - 1) ;
-        let estPasPremierArgChecked= (document.URL.indexOf("&t=" +$(this).attr('t')) > - 1);
-        let difDansURL = (document.URL.indexOf("&d=") > - 1);
-
-        if (document.URL.indexOf('?t=') > - 1 || document.URL.indexOf('?d=') > - 1)    //Il y a déjà une condition dans l'URL
-            premierArg = "&t=";
-        
-        if (estPremierArgChecked ) {               //Il y a un ?t=
-            if(difDansURL)       //Il y a un &d=
-                window.location.href = document.URL.replace("?t="+$(this).attr('t') + "&d=", '?d=');
-            else 
-                window.location.href = document.URL.replace("?t="+$(this).attr('t'), '');
-        } 
-        if(estPasPremierArgChecked) {                  //Il y a un &t=
-            window.location.href = document.URL.replace("&t="+$(this).attr('t'), ''); 
-        }
-        if(!estPremierArgChecked  && !estPasPremierArgChecked) {           //URL vide
-            window.location.href = document.URL + premierArg + $(this).attr('t');
+        let premierArg = "?t=";
+        if (document.URL.indexOf('?') > - 1)
+            premierArg="&t=";
+        if (document.URL.indexOf('?t') > - 1 || document.URL.indexOf('&t') > - 1)
+            premierArg = "";
+        if (document.URL.indexOf($(this).attr('t')) > - 1) {
+            window.location.href = document.URL.replace($(this).attr('t'), '');
+        } else {
+            if (premierArg != "") {
+                window.location.href = document.URL + premierArg + $(this).attr('t');
+            } else {
+                url = document.URL.split("t=");
+                window.location.href = url[0] + "t=" + premierArg + $(this).attr('t') + url[1];
+            }
         }
     });
 
