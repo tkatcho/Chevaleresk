@@ -12,8 +12,9 @@ if($isConnected){
 
     //Faire une condition pour savoir si admin ou si joueur (les boutons ne seront pas les mêmes)
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
-    $isAdmin = $joueur -> estAdmin;
-    if($isAdmin){
+    $isAdmin = $joueur -> isAdmin();
+    $isAlchimiste = $joueur -> isAlchimiste();
+    if($isAdmin && $isAlchimiste){
         $content = <<<HTML
     <!---------------------------Options pour admin-------------------------------->
     <!--Le profil à droite-->
@@ -24,7 +25,10 @@ if($isConnected){
               <div style="background-image:url('./images/chevalier.png')"></div>
           </div>
           <p>$joueur->Alias</p>
-         
+          <i class= "fa fa-hammer"></i> 
+          <i class= "fa fa-flask"></i> 
+
+        
       </div>
       
       <!--Les options à gauche-->
@@ -64,9 +68,109 @@ if($isConnected){
   </div>
   
   HTML;
-    }else{
-
+    }
+    else if($isAdmin){
+        $content = <<<HTML
+    <!---------------------------Options pour admin-------------------------------->
+    <!--Le profil à droite-->
+    <div class="optionsJeu">
+      <div class="optionsBackgroundGrisProfil">
+          <strong>Profil</strong>
+          <div class="optionsBackgroundBleuProfilImg">
+              <div style="background-image:url('./images/chevalier.png')"></div>
+          </div>
+          <p>$joueur->Alias</p>
+          <p class= "fa fa-hammer"></p> 
+      </div>
+      
+      <!--Les options à gauche-->
+      <div class="optionsBtn" >
+         
+          <button>
+              <a class="optionsBtnIcon" href ="index.php">
+              Achat <i class="fa fa-money"></i>
+              </a>
+          </button>
+          <button>
+              <a class="optionsBtnIcon" href ="inventaire.php">
+              Inventaire <i class="fa fa-id-card-o"></i>
+              </a>
+          </button>
+          <button>
+              <a class="optionsBtnIcon" href ="newItem.php">
+              Nouveau item <i class="fa fa-money"></i>
+              </a>
+          </button>
+          <button>
+              <a class="optionsBtnIcon" href ="modifierProfil.php">
+              Modifier Profil <i class="fa fa-user"></i>
+              </a>
+          </button>
+          <button>
+              <a class="optionsBtnIcon" href ="optionsGagnerArgent.php">
+              Argent <i class="fa fa-gift"></i>
+              </a>
+          </button>
+          <button>
+              <a class="optionsBtnIcon" href ="logout.php">
+              Déconnexion <i class="fa fa-sign-out"></i>
+              </a>
+          </button>
+      </div>
+  </div>
+  
+  HTML;
     
+    }
+    else if($isAlchimiste){
+    
+    $content = <<<HTML
+    <!---------------------------Options pour joueur-------------------------------->
+    <!--Le profil à droite-->
+    <div class="optionsJeu">
+      <div class="optionsBackgroundGrisProfil">
+          <strong>Profil</strong>
+          <div class="optionsBackgroundBleuProfilImg">
+              <div style="background-image:url('./images/chevalier.png')"></div>
+          </div>
+          <p>$joueur->Alias</p>
+          <p class= " fa fa-flask"></p> 
+          <p>Nombre écus: <span>$joueur->Solde</span>$</p> 
+      </div>
+      
+      <!--Les options à gauche-->
+      <div class="optionsBtn" >
+          <button>
+              <a class="optionsBtnIcon" href ="index.php">
+              Achat <i class="fa fa-money"></i>
+              </a>
+          </button>
+          <button>
+              <a class="optionsBtnIcon" href ="inventaire.php">
+              Inventaire <i class="fa fa-id-card-o"></i>
+              </a>
+          </button>
+          <button>
+              <a class="optionsBtnIcon" href ="modifierProfil.php">
+              Modifier Profil <i class="fa fa-user"></i>
+              </a>
+          </button>
+          <button>
+              <a class="optionsBtnIcon" href ="optionsGagnerArgent.php">
+              Gagner plus d'argent <i class="fa fa-gift"></i>
+              </a>
+          </button>
+          <button>
+              <a class="optionsBtnIcon" href ="logout.php">
+              Déconnexion <i class="fa fa-sign-out"></i>
+              </a>
+          </button>
+      </div>
+  </div>
+  
+  HTML;
+}
+else{
     $content = <<<HTML
     <!---------------------------Options pour joueur-------------------------------->
     <!--Le profil à droite-->
