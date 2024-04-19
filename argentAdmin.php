@@ -13,24 +13,29 @@ $styles = <<<HTML
 HTML;
 
 $content = <<<HTML
-    <table>
-        <tr>
-            <th>Montant demandé</th>
-            <th>Statue</th>
-        </tr>
-        <tr>
-            <td>200</td>
-            <td>Accepté</td>
-        </tr>
-        <tr>
-            <td>200</td>
-            <td class="refuse">Refusé</td>
-        </tr>
-        <tr>
-            <td>200</td>
-            <td>En attente...</td>
-        </tr>
-    </table>
+    <div class="demandesContainer">
+        <table>
+            <tr>
+                <th>Montant demandé</th>
+                <th>Statue</th>
+            </tr>
+            <tr>
+                <td>200</td>
+                <td>Accepté</td>
+            </tr>
+            <tr>
+                <td>200</td>
+                <td class="refuse">Refusé</td>
+            </tr>
+            <tr>
+                <td>200</td>
+                <td>En attente...</td>
+            </tr>
+        </table>
+        <form action="">
+            <input type="submit" value="Demander 200 écus">
+        <form>
+    </div>
 HTML;
 
 require 'views/master.php';
