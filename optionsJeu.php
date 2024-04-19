@@ -24,7 +24,10 @@ if ($isConnected) {
               <div style="background-image:url('./images/chevalier.png')"></div>
           </div>
           <p>$joueur->Alias</p>
-         
+          <i class= "fa fa-hammer"></i> 
+          <i class= "fa fa-flask"></i> 
+
+        
       </div>
       
       <!--Les options à gauche-->
