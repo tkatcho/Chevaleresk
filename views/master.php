@@ -11,7 +11,8 @@ if (file_exists("views/scriptsBundle.html"))
     $scriptsBundle = file_get_contents("views/scriptsBundle.html");
 if (!isset($scripts))
     $scripts = "";
-    
+if (!isset($styles))
+    $styles = "";
 
 
 echo <<<HTML
@@ -22,12 +23,13 @@ echo <<<HTML
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="./css/site.css">
-            <title>$pageTitle</title>
+            <title>$viewTitle</title>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
             <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
             <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
             $stylesBundle
             $scriptsBundle
+            $styles
         </head>
         <body>
             <header>

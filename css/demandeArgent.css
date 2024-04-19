@@ -1,0 +1,28 @@
+td, th {
+    padding: 10px 50px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+th {
+    font-size: 24pt;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+tr {
+    font-size: 18pt;
+}
+
+tr:nth-child(odd) {
+    background-color: aliceblue;
+}
+
+td:hover {
+    box-shadow: 0px 0px 0px 3px inset var(--secondary-color);
+    cursor: crosshair;
+}
+
+.refuse {
+    color: red;
+}
