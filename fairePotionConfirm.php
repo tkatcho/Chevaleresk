@@ -25,4 +25,4 @@ if ($inventaire != null) {
 
 
     
-    }
+}
