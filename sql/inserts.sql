@@ -78,3 +78,15 @@ INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Se téléporter
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Guérir les blessures', 0);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Voler', 0);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Devenir invisible', 1);
+
+--recettes
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('1', '1', '1', '1');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('2', '1', '2', '2');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('3', '2', '3', '3');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('4', '2', '2', '1');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('5', '3', '5', '3');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('6', '3', '1', '2');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('7', '4', '4', '3');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('8', '4', '5', '2');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('9', '5', '1', '3');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('10', '5', '3', '1');
