@@ -13,6 +13,18 @@ if ($isConnected) {
     //Faire une condition pour savoir si admin ou si joueur (les boutons ne seront pas les mêmes)
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     $isAdmin = $joueur->estAdmin;
+    $isAlchimiste = $joueur ->estAlchimiste;
+    $niveau ="";
+    if($isAlchimiste ==1){
+        $niveau = <<<HTML
+        <span class="optionsJeuNiveauIcone"><i class="fa-solid fa-hat-wizard"></i>
+HTML;
+    }
+    if($isAlchimiste ==0 && $isAdmin ==0){
+        $niveau = <<<HTML
+        <span class="optionsJeuNiveauIcone"><i class='fas fa-user-shield'></i>
+HTML;
+    }
     if ($isAdmin) {
         $content = <<<HTML
     <!---------------------------Options pour admin-------------------------------->
@@ -23,7 +35,8 @@ if ($isConnected) {
             <div class="optionsBackgroundBleuProfilImg">
                 <div style="background-image:url('./images/chevalier.png')"></div>
             </div>
-            <p>$joueur->Alias</p>
+            <p>$joueur->Alias <span class="optionsJeuNiveauIcone"><i class="fas fa-user-tie"></i></p>
+            
             
         </div>
         
@@ -76,8 +89,8 @@ HTML;
             <div class="optionsBackgroundBleuProfilImg">
                 <div style="background-image:url('./images/chevalier.png')"></div>
             </div>
-            <p>$joueur->Alias</p>
-            <p>Nombre écus: <span>$joueur->Solde</span>$</p> 
+            <p>$joueur->Alias $niveau</p>
+            <p>Nombre écus: <span>$joueur->Solde</span>$</p>
         </div>
         
         <!--Les options à gauche-->
@@ -86,7 +99,7 @@ HTML;
                 <a class="optionsBtnIcon" href ="index.php">
                 Achat <i class="fa fa-money"></i>
                 </a>
-            </button>            
+            </button>
 
             <button onclick="location.href='inventaire.php'">
                 <a class="optionsBtnIcon" href ="inventaire.php">
