@@ -15,10 +15,11 @@ include_once 'DAL/PotionsConcoctesTable.php';
 include_once 'DAL/PotionsTable.php';
 include_once 'DAL/QuetesTable.php';
 include_once 'DAL/RecettesTable.php';
+include_once 'DAL/ReponsesTable.php';
 
 function DB()
 {
-    return MySQLDataBase::getInstance('chevaleresk');
+    return MySQLDataBase::getInstance('dbchevalersk16');     //TODO: Changer database si pas la bonne
 }
 function JoueursTable()
 {
@@ -75,4 +76,8 @@ function ArmesTable()
 function ArmuresTable()
 {
     return new ArmuresTable();
+}
+function ReponsesTable()
+{ 
+    return new ReponsesTable();
 }

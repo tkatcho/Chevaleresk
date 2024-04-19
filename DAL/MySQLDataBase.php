@@ -519,18 +519,18 @@ final class MySQLDataBase
 
     ////////////////////////// Database management /////////////////////////////////////
     //
-    public function create()
-    {
-        $success = true;
-        try {
-            $this->hostConnect();
-            if ($this->conn)
-                $this->conn->exec("CREATE DATABASE $this->dbName");
-        } catch (PDOException $e) {
-            $success = false;
-        }
-        return $success;
-    }
+    // public function create()
+    // {
+    //     $success = true;
+    //     try {
+    //         $this->hostConnect();
+    //         if ($this->conn)
+    //             $this->conn->exec("CREATE DATABASE $this->dbName");
+    //     } catch (PDOException $e) {
+    //         $success = false;
+    //     }
+    //     return $success;
+    // }
     public function Delete()
     {
         $success = true;
@@ -560,10 +560,10 @@ final class MySQLDataBase
     {
         if ($this->conn === null) {
             try {
-                if (!$this->exist()) {
-                    $this->create();
-                    $this->conn = null;
-                }
+                // if (!$this->exist()) {
+                //     $this->create();
+                //     $this->conn = null;
+                // }
                 $this->conn = new PDO(
                     "mysql:host=$this->host;dbname=$this->dbName;charset=utf8",
                     $this->username,

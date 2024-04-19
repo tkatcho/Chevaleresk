@@ -40,20 +40,20 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
 
     $loggedUserMenu = <<<HTML
         $buttonOnSide
-    HTML;
+HTML;
 
-    if ($viewTitle == "Catalogue de produit") {
+    if ($viewTitle == "Catalogue de produit"  ) {
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">
                 <button onclick="location.href='optionsJeu.php'">
-                    <a href="optionsJeu.php">     <!--Retourne au catalogue de produit-->
+                    <a href="optionsJeu.php">     <!--Retourne au options de jeu-->
                         <i class="fa fa-angle-left"></i>
                     </a>
                 </button>
             </div>
             $buttonOnSide
-        HTML;
-    } else if ($viewTitle == "Panier d'achat" || $viewTitle == "Concocter des potions" || $viewTitle == "Détails de l'item") {
+HTML;
+    } else if ($viewTitle == "Panier d'achat"  || $viewTitle == "Détails de l'item") {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
                 <button onclick="location.href='index.php'">
@@ -65,11 +65,11 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
             <div class="buttonOnSide">
                 $logoutButton
             </div>
-        HTML;
+HTML;
     } else if ($viewTitle == "Bienvenue à Chevaleresk") {
 
         $loggedUserMenu = <<<HTML
-        HTML;
+HTML;
     }else if ($viewTitle=="Inventaire"){
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">
@@ -87,8 +87,8 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
                 </a>
             </button>
         </div>
-    HTML;
-    }else if ($viewTitle=="Nouveau item"){
+HTML;
+    } else if ($viewTitle == "Nouveau item" || $viewTitle == "Gagner plus d'argent" ) {
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">
             <button>
@@ -100,8 +100,39 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
         <div class="buttonOnSide">
             $logoutButton
         </div>
-        HTML;
-      
+HTML;
+    }else if($viewTitle=="Enigma"){
+        $loggedUserMenu = <<<HTML
+        <div class="btnRetour">
+            <button class="enigmaColor">
+                <a href="optionsGagnerArgent.php">     <!--Retourne aux options de gagner plus d'argent-->
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+        </div>
+        <div class="buttonOnSide">
+            <button onclick="location.href='statistiques.php'">
+                <a href="statistiques.php">
+                    <i class="fa fa-bar-chart"></i>
+                </a>
+            </button>
+            $logoutButton
+            
+        </div>
+HTML;
+    }else if(  $viewTitle == "Concocter des potions"){
+        $loggedUserMenu = <<<HTML
+        <div class="btnRetour">
+            <button>
+                <a href="inventaire.php">     <!--Retourne aux options du jeu-->
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+        </div>
+        <div class="buttonOnSide">
+            $logoutButton
+        </div>
+HTML;
     }
 } else {  //si le joueur n'est pas connecté  -> a les btn de connexion/inscription
 
@@ -119,7 +150,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
                     </a>
                 </button>
             </div>
-        HTML;
+HTML;
     } else if ($viewTitle == "Connexion" || $viewTitle == "Inscription" || $viewTitle == "Détails de l'item") {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
@@ -129,7 +160,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
                     </a>
                 </button>
             </div>
-        HTML;
+HTML;
     } else {
         $loggedUserMenu = "";
     }

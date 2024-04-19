@@ -20,19 +20,26 @@ $viewMenu = "";
 
 function addToCartButton($idJoueur, $idItem, $qt)
 {
+    
     return <<<HTML
         <button>
             <a href="addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt"><i class="fa fa-cart-plus"></i></a>
         </button>
-    HTML;
+HTML;
+    
 }
+
 function évaluerEtCommenter($idJoueur, $idItem)
 {
-    return <<<HTML
+    if(InventairesTable()->selectWhere("idJoueur = $idJoueur AND idItem = $idItem")){
+        return <<<HTML
         <button class="btnÉvaluerCommenter">
-            <a href="evaluationsEtCommentaires.php?idJoueur=$idJoueur&idItem=$idItem">Évaluer et commenter <i class="fa fa-comments"></i></a>
+            <a href="evaluerCommenter.php?idJoueur=$idJoueur&idItem=$idItem">Évaluer et commenter <i class="fa fa-comments"></i></a>
         </button>
-    HTML;
+HTML;
+    }
+    return "";
+   
 }
 
 $itemsDisplay = <<<HTML
@@ -96,7 +103,7 @@ HTML;
                     <p>
             </div>
 
-        HTML;
+HTML;
         }
     
         if ($item->Type == 'W') { // Armes
@@ -139,7 +146,7 @@ HTML;
                         
                     </div>
 
-            HTML;
+HTML;
     }
 
         if ($item->Type == 'A') { // Armures
@@ -178,7 +185,7 @@ HTML;
                                 <span>$item->Prix</span> $
                             <p>
                     </div>
-            HTML;
+HTML;
             
         }
         
@@ -222,7 +229,7 @@ HTML;
                         <span>$item->Prix</span> $
                     <p>
             </div>
-    HTML;
+HTML;
         }
     }    
  

@@ -40,8 +40,6 @@
             </div>
         </div>
     </form>
-    HTML;
+HTML;
 
     include "views/master.php";
-
-

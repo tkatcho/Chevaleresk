@@ -6,12 +6,12 @@ class Enigme extends Record
 {
     public $Enigme;
     public $Difficulte;
-    public $Reponse;
+    public $Type;
     public function __construct($recordData = null)
     {
         $this->Enigme = "";
         $this->Difficulte = "";
-        $this->Reponse = "";
+       
         parent::__construct($recordData);
     }
     public function setEnigme($enigme)
@@ -22,8 +22,8 @@ class Enigme extends Record
     {
         $this->Difficulte = $difficulte;
     }
-    public function setReponse($reponse)
+    public function setType($type)
     {
-        $this->Reponse = $reponse;
+        $this->Type = $type;
     }
 }
