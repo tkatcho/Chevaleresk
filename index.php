@@ -37,10 +37,10 @@ $recherche = trim($_POST['nom'] ?? '');
 $viewMenu = '
 <form id="formFiltre" action="index.php" method="POST" class="optionsRecherche"> 
     <p> <input type="checkbox" name="filtre[]" value="all" ' . (isset($checkedValues['all']) ? 'checked' : '') . '> <i class="fas fa-list"></i> Tous les éléments </p>
-    <p> <input type="checkbox" name="filtre[]" value="armure" ' . (isset($checkedValues['armure']) ? 'checked' : '') . '> <i class="fas fa-vest"></i> Armures </p>
-    <p> <input type="checkbox" name="filtre[]" value="arme" ' . (isset($checkedValues['arme']) ? 'checked' : '') . '> <i class="fas fa-gun"></i> Armes </p>
-    <p> <input type="checkbox" name="filtre[]" value="potion" ' . (isset($checkedValues['potion']) ? 'checked' : '') . '> <i class="fas fa-flask"></i> Potions </p>
-    <p> <input type="checkbox" name="filtre[]" value="element" ' . (isset($checkedValues['element']) ? 'checked' : '') . '> <i class="fas fa-magic"></i> Éléments </p>
+    <p> <input type="checkbox" name="filtre[]" value="armure" ' . (isset($checkedValues['armure']) ? 'checked' : '') . '> <i class="fa-solid fa-shield"></i></i></i> Armures </p>
+    <p> <input type="checkbox" name="filtre[]" value="arme" ' . (isset($checkedValues['arme']) ? 'checked' : '') . '> <i class="fa-solid fa-staff-snake"></i></i> Armes </p>
+    <p> <input type="checkbox" name="filtre[]" value="potion" ' . (isset($checkedValues['potion']) ? 'checked' : '') . '> <i class="fa-solid fa-flask-vial"></i></i> Potions </p>
+    <p> <input type="checkbox" name="filtre[]" value="element" ' . (isset($checkedValues['element']) ? 'checked' : '') . '> <i class="fa-solid fa-wand-sparkles"></i></i> Éléments </p>
     <input type="hidden" name="nom" value="' . htmlspecialchars($recherche) . '"> <!-- Hidden field for search term -->
 </form>
 
@@ -58,7 +58,7 @@ $content = <<<HTML
     <span>&nbsp</span> <!--filler-->
             <div class="dropdown ms-auto dropdownLayout">
                 <div class="searchContainer">
-                    <p class="textFilter"> Recherche par Filtre</p>
+                    <p class="textFilter"> Recherche </p>
                     <form method="post">
                     <input type="text" class="autocomplete" name="nom" id="nom">
                     <script>
@@ -69,7 +69,7 @@ $content = <<<HTML
                     });
                     </script>
                     </form>                    
-                    <div data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="searchContainerIcone" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-bars"></i>
                     </div>
                     <div class="dropdown-menu noselect">
@@ -128,15 +128,15 @@ if ($items != null) {
                 <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
                         <span style="flex-grow:2;"class="idItem">$index</span> 
-                        <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
-                        <span>$addToCartBouton</span>
+                        <span style="flex-grow:2;  margin-left:4px; font-size:14px;">$item->Nom</span> 
+                        
                     </div>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('$item->Photo')"></div>
                     </div>
                     <hr>
-                    <p>Type item: 
+                    <p>Type: 
                         <span>Potion</span>
                     </p>
                     <hr>
@@ -144,8 +144,10 @@ if ($items != null) {
                         <span>$item->QuantiteStock</span>
                     </p>
                     <hr>
-                    <p class="itemPrix">Prix: 
-                        <span>$item->Prix</span> $
+                    <p class="itemPrix"> Prix:
+                        <span>$item->Prix $</span>
+                        $addToCartBouton
+                        
                     <p>
                 </div>
 HTML;
@@ -159,15 +161,15 @@ HTML;
                 <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
                         <span style="flex-grow:2;"class="idItem">$index</span> 
-                        <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
-                        <span>$addToCartBouton</span>
+                        <span style="flex-grow:2;  margin-left:4px; font-size:14px;">$item->Nom</span> 
+                       
                     </div>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('$item->Photo')"></div>
                     </div>
                     <hr>
-                    <p>Type item: 
+                    <p>Type: 
                         <span>Arme</span>
                     </p>
                     <hr>
@@ -175,8 +177,9 @@ HTML;
                         <span>$item->QuantiteStock</span>
                     </p>
                     <hr>
-                    <p class="itemPrix">Prix: 
+                    <p class="itemPrix"> Prix:
                         <span>$item->Prix</span> $
+                        $addToCartBouton
                     <p>
                 </div>
 HTML;
@@ -190,15 +193,15 @@ HTML;
                 <div class="containerItem" onclick="linked($item->Id)">
                     <div class="containerFlexIdNom">
                         <span style="flex-grow:2;"class="idItem">$index</span> 
-                        <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
-                        <span>$addToCartBouton</span>
+                        <span style="flex-grow:2;  margin-left:4px; font-size:14px;">$item->Nom</span> 
+                       
                     </div>
                     <hr>
                     <div class="itemImage">
                         <div style="background-image:url('$item->Photo')"></div>
                     </div>
                     <hr>
-                    <p>Type item: 
+                    <p>Type: 
                         <span>Armure</span>
                     </p>
                     <hr>
@@ -206,8 +209,9 @@ HTML;
                         <span>$item->QuantiteStock</span>
                     </p>
                     <hr>
-                    <p class="itemPrix">Prix: 
+                    <p class="itemPrix"> Prix:
                         <span>$item->Prix</span> $
+                        $addToCartBouton
                     <p>
                 </div>
 HTML;
@@ -223,15 +227,15 @@ HTML;
                             <div class="containerItem" onclick="linked($item->Id)">
                             <div class="containerFlexIdNom">
                                 <span style="flex-grow:2;"class="idItem">$index</span> 
-                                <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
-                                <span>$addToCartBouton</span>
+                                <span style="flex-grow:2;  margin-left:4px; font-size:14px;">$item->Nom</span> 
+                                
                             </div>
                                 <hr>
                                 <div class="itemImage">
                                     <div  style="background-image:url('$item->Photo')"></div>
                                 </div>
                                 <hr>
-                                <p>Type item: 
+                                <p>Type: 
                                     <span>Élément</span>
                                 </p>
                                 <hr>
@@ -239,8 +243,9 @@ HTML;
                                     <span>$item->QuantiteStock</span>
                                 </p>
                                 <hr>
-                                <p class="itemPrix">Prix: 
+                                <p class="itemPrix"> Prix:
                                     <span>$item->Prix</span> $
+                                    $addToCartBouton
                                 <p>
                             </div>
 HTML;

@@ -7,6 +7,15 @@ userAccess();
 
 #region variables
 $chosen_item = $_GET['chosenItem'] ?? '';
+$messageHtml = '';
+
+if (isset($_SESSION['success'])) {
+    $messageHtml = '<h1 style="color: green;">' . htmlspecialchars($_SESSION['success']) . '</h1>';
+    unset($_SESSION['success']);
+} elseif (isset($_SESSION['error'])) {
+    $messageHtml = '<h1 style="color: red;">' . htmlspecialchars($_SESSION['error']) . '</h1>';
+    unset($_SESSION['error']);
+}
 $items = ItemsTable()->selectAll();
 
 $potions = PotionsTable()->selectAll();
@@ -15,8 +24,8 @@ $potion = '';
 $elem1 = "Unavailable";
 $elem2 = "Unavailable";
 
-$qt1 = "0";
-$qt2 = "0";
+$qt1 = 0;
+$qt2 = 0;
 
 $qtRequis1 = 1;
 $qtRequis2 = 1;
@@ -25,6 +34,8 @@ $textColor0 = 'color: red;';
 $textColor1 = 'color: red;';
 
 $recette = RecettesTable()->selectWhere("idPotion = $chosen_item");
+
+$disabled = "Disabled";
 #endregion
 
 $itemsDisplay = "";
@@ -37,7 +48,7 @@ foreach ($items as $item) {
                 <div style="background-image:url($item->Photo)"></div>
             </div>
             <div>
-                <p>$item->Nom</p>
+                <p class="concocterPotionNom">$item->Nom</p>
             </div>
          </div>
     
@@ -65,16 +76,20 @@ if (isset($recette[1]) && isset($recette[0])) {
 
     $textColor0 = $qt1 < $qtRequis1 ? 'color: red;' : '';
     $textColor1 = $qt2 < $qtRequis2 ? 'color: red;' : '';
+
+    $disabled = $qt2 < $qtRequis2 || $qt1 < $qtRequis1 ? 'Disabled' : '';
 }
 
 $viewTitle = "Concocter des potions";
 $content = <<<HTML
     <div class="concocterPotionsPage">
+        <hr>
         <div class="concocterPotionsToutesPotions">
         $itemsDisplay
         </div>
+        <hr>
         <div class="concocterPotionsRecettes">
-            <p>Ingrédients</p>
+            <strong class="concocterPotionsIngredient">Ingrédients</strong>
             <hr>
             <p>Pour la potion, il faut:</p>
 
@@ -93,7 +108,8 @@ $content = <<<HTML
             <input type="hidden" name="qtRequis2" value="{$qtRequis2}">
             <input type="hidden" name="potionId" value="{$chosen_item}">
 
-            <input type="submit" value="Faire la potion"> 
+            <input class= "concocterPotionBtn" type="submit" value="Faire la potion" $disabled> 
+            <h1>$messageHtml</h1>
             </form>
         </div>
     </div>
