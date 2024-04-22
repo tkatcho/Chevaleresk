@@ -11,7 +11,8 @@ if (file_exists("views/scriptsBundle.html"))
     $scriptsBundle = file_get_contents("views/scriptsBundle.html");
 if (!isset($scripts))
     $scripts = "";
-    
+if (!isset($styles))
+    $styles = "";
 
 
 echo <<<HTML
@@ -28,6 +29,7 @@ echo <<<HTML
             <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
             $stylesBundle
             $scriptsBundle
+            $styles
         </head>
         <body>
             <header>

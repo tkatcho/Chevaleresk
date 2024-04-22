@@ -120,6 +120,25 @@ HTML;
             
         </div>
 HTML;
+    }else if($viewTitle=="Demande d'argent"){
+        $loggedUserMenu = <<<HTML
+        <div class="btnRetour">
+            <button>
+                <a href="optionsGagnerArgent.php">     <!--Retourne aux options de gagner plus d'argent-->
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+        </div>
+        <div class="buttonOnSide">
+            <button onclick="location.href='statistiques.php'">
+                <a href="statistiques.php">
+                    <i class="fa fa-bar-chart"></i>
+                </a>
+            </button>
+            $logoutButton
+            
+        </div>
+    HTML;
     }else if(  $viewTitle == "Concocter des potions"){
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">

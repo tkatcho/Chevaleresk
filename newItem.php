@@ -59,9 +59,9 @@ $content = <<<HTML
 
     <div id="formContent"></div>
 
-    <legend>Avatar</legend>
-    <div class='imageUploader' newImage='true' controlId='photo' imageSrc='images/no_Avatar.jpg' waitingImage="images/Loading_icon.gif" name="photo"></div>
-    <input type="submit" name="submit">
+    <legend>Image</legend>
+    <div class='imageUploader' newImage='true' controlId='photo' imageSrc='images/no_image.png' waitingImage="images/Loading_icon.gif" name="photo"></div>
+    <input type="submit" name="submit" value="Ajouter l'item">
     $messageHtml
 </form>
 <script>

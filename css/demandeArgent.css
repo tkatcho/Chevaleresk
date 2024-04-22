@@ -1,0 +1,52 @@
+table {
+    margin: 0 auto;
+    width: 70%;
+}
+
+@media (max-width: 750px) {
+    table {
+        width: 100%;
+    }
+}
+
+td, th {
+    border: 1px solid black;
+    text-align: center;
+}
+
+th {
+    font-size: 24pt;
+    background-color: var(--primary-color);
+    color: white;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+tr {
+    font-size: 18pt;
+}
+
+tr:nth-child(odd) {
+    background-color: aliceblue;
+}
+
+td:hover {
+    box-shadow: 0px 0px 0px 3px inset var(--secondary-color);
+    cursor: crosshair;
+}
+
+.refuse {
+    color: red;
+}
+
+input {
+    display: block;
+    padding: 1vw;
+    border: none;
+    margin: 30px auto;
+    width: min-content;
+}
+
+.demandesContainer {
+    margin: 0 auto;
+}
