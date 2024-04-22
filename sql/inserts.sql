@@ -36,11 +36,11 @@ INSERT INTO armures (idItem, matiere, taille) VALUES ((SELECT id FROM items WHER
 
 
 -- Corresponding inserts for the Potions table, assuming Items.id = 5 for the first potion, and so on
-INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of Healing'), 'Restore Health', '00:00:30', 0);
-INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of Strength'), 'Increase Strength', '00:00:20', 0);
-INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of Poison'), 'Hurt Ennemies', '00:00:10', 1);
-INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of High vision'), 'Increase Vision', '00:00:60', 0);
-INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of Gold'), 'Increase Strength', '00:00:20', 0);
+INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of Healing'), 'Restore Health', '30', 0);
+INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of Strength'), 'Increase Strength', '20', 0);
+INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of Poison'), 'Hurt Ennemies', '10', 1);
+INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of High vision'), 'Increase Vision', '60', 0);
+INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of Gold'), 'Increase Strength', '20', 0);
 
 -- Corresponding inserts for the Elements table, assuming Items.id = 7 for the first element, and so on
 INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM items WHERE nom = 'Fire Essence'), 'Fire', 'Common', 'Low');
@@ -48,3 +48,45 @@ INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM
 INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM items WHERE nom = 'Leaf'), 'Earth', 'Common', 'Low');
 INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM items WHERE nom = 'Fangs'), 'Earth', 'Uncommon', 'Medium');
 INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM items WHERE nom = 'Leaf'), 'Earth', 'Common', 'Low');
+
+
+--Enigmes
+INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel matériau est traditionnellement utilisé pour fabriquer des armures ?', 'Facile', 'Z');
+INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel type d armure était porté par les chevaliers médiévaux pour protéger leur corps ?', 'Moyen', 'Z');
+INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel ingrédient est souvent utilisé dans les potions de guérison magique ?', 'Difficile', 'E');
+INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel effet a la potion Amortentia dans l univers de Harry Potter ?', 'Moyen', 'P');
+INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quelle est l utilité principale de la potion d Invisibilité ?', 'Facile', 'P');
+
+--Réponses
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Acier', 1);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Cuir', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Argent', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Plastique', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('2', 'Armure en plaques', 1);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('2', 'Armure en mailles', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('2', 'Gambison', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('2', 'Cotte de mailles', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('3', 'Plume', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('3', 'Fleur', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('3', 'Mandragore', 1);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('3', 'Eau', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('4', 'Elle rend invisible', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('4', 'Elle rend amoureux', 1);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('4', 'Elle rend immortel', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('4', 'Elle rend invincible', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Se téléporter', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Guérir les blessures', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Voler', 0);
+INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Devenir invisible', 1);
+
+--recettes
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('1', '1', '1', '1');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('2', '1', '2', '2');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('3', '2', '3', '3');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('4', '2', '2', '1');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('5', '3', '5', '3');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('6', '3', '1', '2');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('7', '4', '4', '3');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('8', '4', '5', '2');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('9', '5', '1', '3');
+INSERT INTO `recettes` (`id`, `idPotion`, `idElement`, `qtElements`) VALUES ('10', '5', '3', '1');

@@ -42,18 +42,18 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
         $buttonOnSide
 HTML;
 
-    if ($viewTitle == "Catalogue de produit") {
+    if ($viewTitle == "Catalogue de produit"  ) {
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">
                 <button onclick="location.href='optionsJeu.php'">
-                    <a href="optionsJeu.php">     <!--Retourne au catalogue de produit-->
+                    <a href="optionsJeu.php">     <!--Retourne au options de jeu-->
                         <i class="fa fa-angle-left"></i>
                     </a>
                 </button>
             </div>
             $buttonOnSide
 HTML;
-    } else if ($viewTitle == "Panier d'achat" || $viewTitle == "Concocter des potions" || $viewTitle == "Détails de l'item") {
+    } else if ($viewTitle == "Panier d'achat"  || $viewTitle == "Détails de l'item") {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
                 <button onclick="location.href='index.php'">
@@ -88,11 +88,43 @@ HTML;
             </button>
         </div>
 HTML;
-    } else if ($viewTitle == "Nouveau item") {
+    } else if ($viewTitle == "Nouveau item" || $viewTitle == "Gagner plus d'argent" ) {
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">
             <button>
                 <a href="optionsJeu.php">     <!--Retourne aux options du jeu-->
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+        </div>
+        <div class="buttonOnSide">
+            $logoutButton
+        </div>
+HTML;
+    }else if($viewTitle=="Enigma"){
+        $loggedUserMenu = <<<HTML
+        <div class="btnRetour">
+            <button class="enigmaColor">
+                <a href="optionsGagnerArgent.php">     <!--Retourne aux options de gagner plus d'argent-->
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+        </div>
+        <div class="buttonOnSide">
+            <button onclick="location.href='statistiques.php'">
+                <a href="statistiques.php">
+                    <i class="fa fa-bar-chart"></i>
+                </a>
+            </button>
+            $logoutButton
+            
+        </div>
+HTML;
+    }else if(  $viewTitle == "Concocter des potions"){
+        $loggedUserMenu = <<<HTML
+        <div class="btnRetour">
+            <button>
+                <a href="inventaire.php">     <!--Retourne aux options du jeu-->
                     <i class="fa fa-angle-left"></i>
                 </a>
             </button>

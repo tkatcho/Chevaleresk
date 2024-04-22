@@ -48,7 +48,7 @@ foreach ($items as $item) {
                 <div style="background-image:url($item->Photo)"></div>
             </div>
             <div>
-                <p>$item->Nom</p>
+                <p class="concocterPotionNom">$item->Nom</p>
             </div>
          </div>
     
@@ -83,11 +83,13 @@ if (isset($recette[1]) && isset($recette[0])) {
 $viewTitle = "Concocter des potions";
 $content = <<<HTML
     <div class="concocterPotionsPage">
+        <hr>
         <div class="concocterPotionsToutesPotions">
         $itemsDisplay
         </div>
+        <hr>
         <div class="concocterPotionsRecettes">
-            <p>Ingrédients</p>
+            <strong class="concocterPotionsIngredient">Ingrédients</strong>
             <hr>
             <p>Pour la potion, il faut:</p>
 
@@ -106,7 +108,7 @@ $content = <<<HTML
             <input type="hidden" name="qtRequis2" value="{$qtRequis2}">
             <input type="hidden" name="potionId" value="{$chosen_item}">
 
-            <input type="submit" value="Faire la potion" $disabled> 
+            <input class= "concocterPotionBtn" type="submit" value="Faire la potion" $disabled> 
             <h1>$messageHtml</h1>
             </form>
         </div>
