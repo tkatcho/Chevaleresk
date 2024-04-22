@@ -20,7 +20,7 @@ if ($isConnected) {
         <span class="optionsJeuNiveauIcone"><i class="fa-solid fa-hat-wizard"></i>
 HTML;
     }
-    if($isAlchimiste ==0 && $isAdmin ==0){
+    if($isAlchimiste ==0 && !$isAdmin){
         $niveau = <<<HTML
         <span class="optionsJeuNiveauIcone"><i class='fas fa-user-shield'></i>
 HTML;

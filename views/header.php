@@ -15,7 +15,6 @@ if (!isset($viewName))
 
 $loggedUserMenu = "";
 
-// Je pense qu'on devrait toujours afficher le bouton panier et logout peut importe la page. Si pas daccord, contacter thomas
 $logoutButton = <<<HTML
     <button onclick="location.href='logout.php'">
         <a href="logout.php">
@@ -23,6 +22,7 @@ $logoutButton = <<<HTML
         </a>
     </button>
 HTML;
+
 $buttonOnSide = <<<HTML
     <div class="buttonOnSide">
         <button onclick="location.href='panier.php'">
@@ -143,7 +143,7 @@ HTML;
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">
             <button>
-                <a href="inventaire.php">     <!--Retourne aux options du jeu-->
+                <a href="inventaire.php">     <!--Retourne à l'inventaire-->
                     <i class="fa fa-angle-left"></i>
                 </a>
             </button>
