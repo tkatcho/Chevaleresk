@@ -21,10 +21,9 @@
     font-family: var(--secondary-font);
 }
 
-.optionsBackgroundGrisProfil p,
-span {
+.optionsBackgroundGrisProfil p, .optionsBackgroundGrisProfil span {
     margin-top: 20px;
-    font-size: 15px;
+    font-size: 30px;
 }
 
 .optionsJeuNiveauIcone {

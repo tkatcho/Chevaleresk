@@ -24,8 +24,8 @@
 }
 
 .panierItem p,
-span,
-button {
+.panierItem span,
+.panierItem button {
     
     font-size: 18px;
 }

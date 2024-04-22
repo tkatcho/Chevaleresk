@@ -56,11 +56,10 @@
   line-height: 30px;
 }
 
-.containerTousItem div,
-p,
-span,
-ul,
-li {
+.containerItem p,
+.containerItem span,
+.containerItem ul,
+.containerItem li {
   font-family: var(--secondary-font);
   font-size: 12px;
 }

@@ -54,6 +54,14 @@ $viewMenu = '
 
 
 $content = <<<HTML
+    <script>
+        // Swal.fire({
+        //     position: "top-end",
+        //     icon: "success",
+        //     title: "L'item a été ajouter au panier",
+        //     showConfirmButton: true
+        // });
+    </script>
     <div class="headerMenusContainer">
     <span>&nbsp</span> <!--filler-->
             <div class="dropdown ms-auto dropdownLayout">
@@ -85,7 +93,7 @@ function addToCartButton($idJoueur, $idItem, $qt)
 {
     return <<<HTML
         <button onclick="location.href='addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt'">
-            <a href="addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt"><i class="fa fa-cart-plus"></i></a>
+            <a title="Ajouter au panier" href="addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt"><i class="fa fa-cart-plus"></i></a>
         </button>
 HTML;
 }
