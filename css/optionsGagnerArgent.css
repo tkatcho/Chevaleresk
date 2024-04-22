@@ -1,0 +1,29 @@
+/*OptionsGagnerPlusArgent*/
+.optionsGagnerPlusArgent {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.optionsGagnerPlusArgent div {
+    line-height: 75px;
+    margin: auto;
+}
+
+.optionsGagnerPlusArgentImg {
+    height: 350px;
+}
+
+.optionsGagnerPlusArgentImg div {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    height: 350px;
+}
+
+.optionsGagnerPlusArgent button {
+    width: 400px;
+    text-align: left;
+    font-size: 35px;
+    border-radius: 5px;
+}
