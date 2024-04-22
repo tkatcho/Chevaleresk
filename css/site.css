@@ -160,7 +160,7 @@ li {
   font-family: var(--secondary-font);
   font-size: 14px;
   max-width: 350px;
-  margin:auto;
+ 
 }
 .containerItem p {
   font-size: 12px;
@@ -753,13 +753,115 @@ label {
   font-size:20px;
   margin-top:25px;
 }
+
 @media screen and (max-width: 900px) {
   .enigmaEnigmeBackground{
-    width: 500px;
+    width: 600px;
   }
 }
+
 @media screen and (max-width: 700px) {
+  
+  .enigmaEnigmeBackground{
+    width: 500px;
+    margin-left:0px;
+  }
+  .enigmaEnigmeBackground strong{
+    font-size:13px;
+  }
+  .enigmaEnigmeBackground input[type="checkbox"]{
+    font-size:10px;
+  }
+  .enigmaEnigmeBackgroundBtn{
+    font-size:10px;
+    width:500px;
+  }
+  .enigmaBackgroundVertRappel{
+    width:400px;
+  }
+  .enigmaBackgroundVertRappel p, strong, li{
+    font-size:12px;
+    margin:0px;
+  }
+  
+  .enigmaChoisirDifficulté p{
+    font-size:13px;
+  }
+  .newItemCaractéristiques input[type="checkbox"], label{
+    font-size:13px;
+  }
+  .enigma{
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 550px) {
+  
   .enigmaEnigmeBackground{
     width: 400px;
+    margin-left:0px;
   }
+  .enigmaEnigmeBackground strong{
+    font-size:13px;
+  }
+  .enigmaEnigmeBackground input[type="checkbox"]{
+    font-size:10px;
+  }
+  .enigmaEnigmeBackgroundBtn{
+    font-size:10px;
+    width:100px;
+  }
+  .enigmaBackgroundVertRappel{
+    width:400px;
+  }
+  .enigmaBackgroundVertRappel p, strong, li{
+    font-size:12px;
+    margin:0px;
+  }
+  
+  .enigmaChoisirDifficulté p{
+    font-size:13px;
+  }
+  .newItemCaractéristiques input[type="checkbox"], label{
+    font-size:13px;
+  }
+  .enigma{
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 430px) {
+  main{
+    margin-left:15px;
+  }
+  .enigmaEnigmeBackground{
+    width: 350px;
+    margin-left:0px;
+  }
+  .enigmaEnigmeBackground strong{
+    font-size:13px;
+  }
+  .enigmaEnigmeBackground input[type="checkbox"]{
+    font-size:10px;
+  }
+  .enigmaEnigmeBackgroundBtn{
+    font-size:10px;
+    width:100px;
+  }
+  .enigmaBackgroundVertRappel{
+    width:350px;
+  }
+  .enigmaBackgroundVertRappel p, strong, li{
+    font-size:10px;
+    margin:0px;
+  }
+  
+  .enigmaChoisirDifficulté p{
+    font-size:13px;
+  }
+  .newItemCaractéristiques input[type="checkbox"], label{
+    font-size:13px;
+  }
+  .enigma{
+    flex-direction: column;
+  }
+
 }
