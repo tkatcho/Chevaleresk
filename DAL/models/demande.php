@@ -16,4 +16,8 @@ class Demande extends Record
     {
         $this->Statue = $statue;
     }
+    public function setIdJoueur($idJoueur)
+    {
+        $this->idJoueur = $idJoueur;
+    }
 }
