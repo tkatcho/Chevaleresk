@@ -44,3 +44,12 @@
 .btnÉvaluerCommenter i {
     font-size: 15px;
 }
+
+.détailsContainerItem p,
+.détailsContainerItem span {
+    font-size: 30px;
+}
+
+.idItem {
+    font-size: 16px !important;
+}
