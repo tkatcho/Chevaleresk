@@ -174,6 +174,7 @@ SELECT count(*) INTO  nb_quetes_reussi_joueur_potions_elements FROM quetes INNER
 
 if( nb_quetes_reussi_joueur_potions_elements >=3) Then
     UPDATE joueurs SET estAlchimiste = 1 WHERE id = id_joueur;
+    UPDATE joueurs SET niveau = 'débutant' WHERE id = id_joueur;
 end if;
 
 END// 

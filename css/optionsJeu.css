@@ -4,9 +4,6 @@
     flex-wrap: nowrap;
 }
 
-.optionsJeu div {
-    line-height: 75px;
-}
 
 .optionsBackgroundGrisProfil {
     background-color: lightgrey;

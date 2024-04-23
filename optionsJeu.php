@@ -18,7 +18,7 @@ if ($isConnected) {
     if($isAlchimiste ==1){
         $niveau = <<<HTML
         <span class="optionsJeuNiveauIcone"><i class="fa-solid fa-hat-wizard"></i></span>
-        <p>$joueur->Niveau</p>
+        <p>Niveau : $joueur->Niveau</p>
 HTML;
     }
     if($isAdmin){
