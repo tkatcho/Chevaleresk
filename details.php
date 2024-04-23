@@ -76,7 +76,7 @@ HTML;
 
             <div class="détailsContainerItem">
                 <div class="containerFlexIdNom">
-                    <span class="idItem">$index</span> 
+                    <!-- <span class="idItem">$index</span> -->
                     <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                     <span>$addToCartBouton</span>
                 </div>
@@ -118,7 +118,7 @@ HTML;
 
                     <div class="détailsContainerItem">
                         <div class="containerFlexIdNom">
-                            <span class="idItem">$index</span> 
+                            <!-- <span class="idItem">$index</span> -->
                             <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                             <span>$addToCartBouton</span>
                         </div>
@@ -161,7 +161,7 @@ HTML;
 
                     <div class="détailsContainerItem">
                         <div class="containerFlexIdNom">
-                            <span class="idItem">$index</span> 
+                            <!-- <span class="idItem">$index</span> -->
                             <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                             <span>$addToCartBouton</span>
                         </div>
@@ -202,7 +202,7 @@ HTML;
 
             <div class="détailsContainerItem">
                 <div class="containerFlexIdNom">
-                    <span class="idItem">$index</span> 
+                    <!-- <span class="idItem">$index</span> -->
                     <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
                     <span>$addToCartBouton</span>
                 </div>

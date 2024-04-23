@@ -26,7 +26,8 @@
 .panierItem p,
 .panierItem span,
 .panierItem button {
-    font-size: 24px;
+    font-family: var(--secondary-font);
+    font-size: 16px;
 }
 
 .panierItem button {
@@ -47,6 +48,11 @@
 .panierItemSupprimer {
     flex-grow: 2;
     text-align: right;
+}
+
+.prix {
+    font-size: 18px;
+    font-family: var(--secondary-font);
 }
 
 
