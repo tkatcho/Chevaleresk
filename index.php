@@ -97,7 +97,7 @@ HTML;
 function addToCartButton($idJoueur, $idItem, $qt)
 {
     return <<<HTML
-        <button onclick="location.href='addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt'">
+        <button class="ajouterPanier" onclick="location.href='addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt'">
             <a class="lienAjouterPanier" title="Ajouter au panier" href="addToCart.php?idJoueur=$idJoueur&idItem=$idItem&qt=$qt"><i class="fa fa-cart-plus"></i></a>
         </button>
 HTML;
