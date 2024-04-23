@@ -124,7 +124,14 @@ HTML;
                 $boutons
             </tr>
 HTML;
+
     }
+
+    $content .= <<<HTML
+        </table>
+        </div>
+HTML;
+
 }
 
 require 'views/master.php';
