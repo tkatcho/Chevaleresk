@@ -34,6 +34,8 @@ if (isset($_POST['submit']))
         $_SESSION['solde'] = $user->Solde;
         $_SESSION['niveau'] = $user->Niveau;
         $_SESSION['estAlchimiste'] = $user->estAlchimiste;
+        $_SESSION['erreur'] = "";
+        $_SESSION['success'] = "";
         redirect('optionsJeu.php');
     }
 
