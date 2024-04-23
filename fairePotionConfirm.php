@@ -14,16 +14,17 @@ $potionId = $_POST['potionId'];
 $peuxConcocter = false;
 //$qtInventaireJoueur = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$temp[0]->Id}")[0]->Quantite ?? '0';
 try{
-    $elem1 = ItemsTable()->selectWhere("nom = '$element1'");
-    $elem2 = ItemsTable()->selectWhere("nom = '$element2'");
-    $inventaire1 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$elem1[0]->Id} ");
-    $inventaire2 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$elem2[0]->Id}");
+    $item1 = ItemsTable()->selectWhere("nom = '$element1'");
+    $item2 = ItemsTable()->selectWhere("nom = '$element2'");
+    $elem1 = ElementsTable()->selectWhere("idItem = {$item1[0]->Id}");
+    $elem2 = ElementsTable()->selectWhere("idItem = {$item2[0]->Id}");
+    $inventaire1 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$item1[0]->Id} ");
+    $inventaire2 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$item2[0]->Id}");
     
     if($inventaire1[0]->Quantite >= $qtRequis1 && $inventaire2[0]->Quantite >= $qtRequis2){
         $peuxConcocter = true;
     }
 
-    
 }catch(Exception $e){
     $_SESSION['erreur'] = "La potion ne peux pas être concocté";
 }
@@ -31,12 +32,17 @@ try{
 if($peuxConcocter){
     $elem1Id = $elem1[0]->Id; 
     $elem2Id = $elem2[0]->Id;
+    print_r($potionId);
+    print_r($_SESSION['id']);
+    print_r($elem1Id);
+    print_r($elem2Id);
+    
     $sql = "CALL ajouterPotion($potionId, $_SESSION[id], $elem1Id, $elem2Id)";
     print("Je peux concoter et j'appelle la procédure stockée.");
     DB()->nonQuerySqlCmd($sql);
     $_SESSION['success'] = "La potion a été concocté !";
     print("potion concocté");
-    //redirect('concocterPotions.php');
+    redirect('concocterPotions.php');
 }
 
 

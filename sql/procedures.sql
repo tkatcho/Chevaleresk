@@ -202,7 +202,8 @@ END //
 
 DELIMITER ;
 
---Changer la quantité de l'inventaire du joueur ainsi qu'ajouter la potion a son inventaire.
+DELIMITER //
+CREATE PROCEDURE ajouterPotion(IN potion_id INT,IN id_joueur int,IN elem1_id int,IN elem2_id int)
 BEGIN
     DECLARE idItem_potion INT;
     DECLARE qt_elem1 INT;
@@ -212,44 +213,45 @@ BEGIN
     DECLARE qt_inventaire1 INT;
     DECLARE qt_inventaire2 INT;
 
-    START TRANSACTION;
-
     SELECT idItem INTO idItem_potion FROM potions WHERE id = potion_id;
     
-    SELECT COUNT(*) INTO qt_elem1 FROM recettes WHERE idPotion = potion_id AND idElement = elem1_id;
+    SELECT qtElements INTO qt_elem1 FROM recettes WHERE idPotion = potion_id AND idElement = elem1_id;
     
-    SELECT COUNT(*) INTO qt_elem2 FROM recettes WHERE idPotion = potion_id AND idElement = elem2_id;
+    SELECT qtElements INTO qt_elem2 FROM recettes WHERE idPotion = potion_id AND idElement = elem2_id;
     
     SELECT idItem INTO id_item1 FROM elements WHERE id = elem1_id;
     
     SELECT idItem INTO id_item2 FROM elements WHERE id = elem2_id;
-    
-    SELECT quantite INTO qt_inventaire1 FROM inventaires WHERE id = id_joueur AND idItem = id_item1;
-    
-    SELECT quantite INTO qt_inventaire2 FROM inventaires WHERE id = id_joueur AND idItem = id_item2;
 
-    IF qt_inventaire1 >= qt_elem1 AND qt_inventaire2 >= qt_elem2 THEN
-        UPDATE inventaires SET quantite = (quantite - qt_elem1) WHERE id = id_joueur AND idItem = id_item1;
-        UPDATE inventaires SET quantite = (quantite - qt_elem2) WHERE id = id_joueur AND idItem = id_item2;
-        
-        INSERT INTO inventaires (idJoueur, idItem, quantite) VALUES (id_joueur, idItem_potion, 1);
+    
+
+    IF(SELECT quantite from inventaires WHERE idJoueur = id_joueur AND idItem = idItem_potion) >= 1 THEN
+        UPDATE inventaires SET quantite = quantite + 1 WHERE idJoueur = id_joueur and idItem = idItem_potion;
         
         INSERT INTO potionsconcoctes (idJoueur, idPotion) VALUES (id_joueur, potion_id);
         
+        UPDATE inventaires SET quantite = (quantite - qt_elem1) WHERE idJoueur = id_joueur AND idItem = id_item1;
         
-        IF (SELECT quantite FROM inventaires WHERE id = id_joueur AND idItem = id_item1) <= 0 THEN
-            DELETE FROM inventaires WHERE id = id_joueur AND idItem = id_item1;
+        UPDATE inventaires SET quantite = (quantite - qt_elem2) WHERE idJoueur = id_joueur AND idItem = id_item2;
+        IF (SELECT quantite FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item1) <= 0 THEN
+            DELETE FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item1;
         END IF;
         
-        IF (SELECT quantite FROM inventaires WHERE id = id_joueur AND idItem = id_item2) <= 0 THEN
-            DELETE FROM inventaires WHERE id = id_joueur AND idItem = id_item2;
+        IF (SELECT quantite FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item2) <= 0 THEN
+            DELETE FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item2;
         END IF;
     ELSE
+        INSERT INTO inventaires (idJoueur, idItem, quantite) VALUES (id_joueur, idItem_potion, 1);
+        INSERT INTO potionsconcoctes (idJoueur, idPotion) VALUES (id_joueur, potion_id);
         
-        ROLLBACK;
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Quantité invalide';
+        IF (SELECT quantite FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item1) <= 0 THEN
+            DELETE FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item1;
+        END IF;
+        
+        IF (SELECT quantite FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item2) <= 0 THEN
+            DELETE FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item2;
+        END IF;
     END IF;
+END  //
 
-    
-    COMMIT;
-END
+DELIMITER ;
