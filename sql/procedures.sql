@@ -237,11 +237,11 @@ BEGIN
         INSERT INTO potionsconcoctes (idJoueur, idPotion) VALUES (id_joueur, potion_id);
         
         
-        IF qt_inventaire1 <= 0 THEN
+        IF (SELECT quantite FROM inventaires WHERE id = id_joueur AND idItem = id_item1) <= 0 THEN
             DELETE FROM inventaires WHERE id = id_joueur AND idItem = id_item1;
         END IF;
         
-        IF qt_inventaire2 <= 0 THEN
+        IF (SELECT quantite FROM inventaires WHERE id = id_joueur AND idItem = id_item2) <= 0 THEN
             DELETE FROM inventaires WHERE id = id_joueur AND idItem = id_item2;
         END IF;
     ELSE
