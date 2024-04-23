@@ -64,10 +64,9 @@ INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel est cet ingrédient
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel est l effet d une potion concoctée à base de plumes de phénix ?', 'Difficile', 'P');
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel ingrédient magique est souvent utilisé pour donner des pouvoirs de guérison aux potions ?', 'Difficile', 'E');
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel est cet édifice imposant, construit pour protéger la ville et sa population des attaques ennemies ?', 'Moyen', 'Z');
-INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel est cet édifice imposant, construit pour protéger la ville et sa population des attaques ennemies ?', 'Moyen', 'Z');
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quelle est l arme traditionnelle utilisée par les chevaliers en combat rapproché ?', 'Facile', 'Z');
-INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel est l animal noble utilisé comme symbole par de nombreux chevaliers ?', 'moyen', 'Z');
-INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Auelle est la résidence fortifiée du seigneur du domaine ?', 'moyen', 'Z');
+INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel est l animal noble utilisé comme symbole par de nombreux chevaliers ?', 'Moyen', 'Z');
+INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quelle est la résidence fortifiée du seigneur du domaine ?', 'Moyen', 'Z');
 
 
 --Réponses
