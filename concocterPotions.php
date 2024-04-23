@@ -76,9 +76,23 @@ if (isset($recette[1]) && isset($recette[0])) {
 
     $textColor0 = $qt1 < $qtRequis1 ? 'color: red;' : '';
     $textColor1 = $qt2 < $qtRequis2 ? 'color: red;' : '';
-
-    $disabled = $qt2 < $qtRequis2 || $qt1 < $qtRequis1 ? 'Disabled' : '';
 }
+
+function créerBouton($qt1,$qtRequis1,$qt2,$qtRequis2){
+
+    if($qt1>= $qtRequis1 && $qt2 >= $qtRequis2){
+        return <<<HTML
+            <input type="submit" value="Faire la potion">
+HTML;
+    }
+    else{
+        return <<<HTML
+            <input disabled style="cursor: not-allowed;" type="submit" value="Faire la potion">
+HTML;
+    }
+}
+
+$bouton = créerBouton($qt1,$qtRequis1,$qt2,$qtRequis2);
 
 $viewTitle = "Concocter des potions";
 $content = <<<HTML
@@ -108,8 +122,7 @@ $content = <<<HTML
             <input type="hidden" name="qtRequis2" value="{$qtRequis2}">
             <input type="hidden" name="potionId" value="{$chosen_item}">
 
-            <input class= "concocterPotionBtn" type="submit" value="Faire la potion" $disabled> 
-            <h1>$messageHtml</h1>
+            $bouton
             </form>
         </div>
     </div>

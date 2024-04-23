@@ -251,3 +251,106 @@ BEGIN
 END//
 
 DELIMITER ;
+
+-- Ajouter une demande pour de l'argent (A: accepté, R: rejeté, W: attente)
+DELIMITER //
+
+CREATE PROCEDURE nouvelleDemande(IN id_joueur INT)
+BEGIN
+
+    DECLARE nb_demandes INT;
+    SELECT COUNT(*) INTO nb_demandes FROM demandes WHERE idJoueur = id_joueur;
+
+    IF (nb_demandes < 3) THEN
+        INSERT INTO demandes (idJoueur, statue) VALUES (id_joueur, 'W');
+    END IF;
+
+END//
+
+DELIMITER ;
+
+-- Accepter une demande
+DELIMITER //
+
+CREATE PROCEDURE accepterDemande(IN id_demande INT)
+BEGIN
+
+    DECLARE id_joueur INT;
+    SELECT idJoueur INTO id_joueur FROM demandes WHERE id = id_demande;
+
+    IF ((SELECT statue FROM demandes WHERE id = id_demande) = 'W') THEN
+        UPDATE demandes SET statue = 'A' WHERE id = id_demande;
+        UPDATE joueurs SET solde = (solde + 200) WHERE id = id_joueur;
+    END IF;
+
+END//
+
+DELIMITER ;
+
+-- Refuser une demande
+DELIMITER //
+
+CREATE PROCEDURE refuserDemande(IN id_demande INT)
+BEGIN
+
+    IF ((SELECT statue FROM demandes WHERE id = id_demande) = 'W') THEN
+        UPDATE demandes SET statue = 'R' WHERE id = id_demande;
+    END IF;
+
+END//
+
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE ajouterPotion(IN potion_id INT,IN id_joueur int,IN elem1_id int,IN elem2_id int)
+BEGIN
+    DECLARE idItem_potion INT;
+    DECLARE qt_elem1 INT;
+    DECLARE qt_elem2 INT;
+    DECLARE id_item1 INT;
+    DECLARE id_item2 INT;
+    DECLARE qt_inventaire1 INT;
+    DECLARE qt_inventaire2 INT;
+
+    SELECT idItem INTO idItem_potion FROM potions WHERE id = potion_id;
+    
+    SELECT qtElements INTO qt_elem1 FROM recettes WHERE idPotion = potion_id AND idElement = elem1_id;
+    
+    SELECT qtElements INTO qt_elem2 FROM recettes WHERE idPotion = potion_id AND idElement = elem2_id;
+    
+    SELECT idItem INTO id_item1 FROM elements WHERE id = elem1_id;
+    
+    SELECT idItem INTO id_item2 FROM elements WHERE id = elem2_id;
+
+    
+
+    IF(SELECT quantite from inventaires WHERE idJoueur = id_joueur AND idItem = idItem_potion) >= 1 THEN
+        UPDATE inventaires SET quantite = quantite + 1 WHERE idJoueur = id_joueur and idItem = idItem_potion;
+        
+        INSERT INTO potionsconcoctes (idJoueur, idPotion) VALUES (id_joueur, potion_id);
+        
+        UPDATE inventaires SET quantite = (quantite - qt_elem1) WHERE idJoueur = id_joueur AND idItem = id_item1;
+        
+        UPDATE inventaires SET quantite = (quantite - qt_elem2) WHERE idJoueur = id_joueur AND idItem = id_item2;
+        IF (SELECT quantite FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item1) <= 0 THEN
+            DELETE FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item1;
+        END IF;
+        
+        IF (SELECT quantite FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item2) <= 0 THEN
+            DELETE FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item2;
+        END IF;
+    ELSE
+        INSERT INTO inventaires (idJoueur, idItem, quantite) VALUES (id_joueur, idItem_potion, 1);
+        INSERT INTO potionsconcoctes (idJoueur, idPotion) VALUES (id_joueur, potion_id);
+        
+        IF (SELECT quantite FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item1) <= 0 THEN
+            DELETE FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item1;
+        END IF;
+        
+        IF (SELECT quantite FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item2) <= 0 THEN
+            DELETE FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item2;
+        END IF;
+    END IF;
+END  //
+
+DELIMITER ;
