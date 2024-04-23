@@ -22,7 +22,6 @@ textarea {
 
 .newItemCaractéristiques input[type="checkbox"],
 label {
-    margin-bottom: 15px;
 
     font-family: var(--secondary-font);
 

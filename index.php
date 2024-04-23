@@ -71,7 +71,7 @@ $content = <<<HTML
     <span>&nbsp</span> <!--filler-->
             <div class="dropdown ms-auto dropdownLayout">
                 <div class="searchContainer">
-                    <p class="textFilter"> Recherche </p>
+                    <label class="textFilter" for="nom">Recherche</label>
                     <form method="post">
                     <input type="text" class="autocomplete" name="nom" id="nom">
                     <script>
