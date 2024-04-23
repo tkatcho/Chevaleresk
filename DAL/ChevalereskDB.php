@@ -19,7 +19,7 @@ include_once 'DAL/ReponsesTable.php';
 
 function DB()
 {
-    return MySQLDataBase::getInstance('chevaleresk');     //TODO: Changer database si pas la bonne
+    return MySQLDataBase::getInstance('dbchevalersk16');     //TODO: Changer database si pas la bonne
 }
 function JoueursTable()
 {

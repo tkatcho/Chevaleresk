@@ -30,6 +30,7 @@ button {
 
 .buttonOnSide button a div {
     display: inline;
+    font-size:16px;
 }
 
 .btnRetour {

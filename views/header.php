@@ -37,7 +37,7 @@ HTML;
 //Si le joueur est connecté
 if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
     $playerAlias = $_SESSION["alias"];
-
+    $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
     $loggedUserMenu = <<<HTML
         $buttonOnSide
 HTML;
@@ -80,7 +80,10 @@ HTML;
             </button>
         </div>
         $buttonOnSide
-        <div class="buttonOnSide">
+HTML;
+        if($joueur->isAlchimiste()){
+            $loggedUserMenu .= <<<HTML
+             <div class="buttonOnSide">
             <button onclick="location.href='concocterPotions.php'">
                 <a href ="concocterPotions.php">     <!--Va à la page de concocter des potions-->
                     <i class="fa fa-flask"></i>
@@ -88,6 +91,8 @@ HTML;
             </button>
         </div>
 HTML;
+        }
+       
     } else if ($viewTitle == "Nouveau item" || $viewTitle == "Gagner plus d'argent" ) {
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">

@@ -82,12 +82,12 @@ function créerBouton($qt1,$qtRequis1,$qt2,$qtRequis2){
 
     if($qt1>= $qtRequis1 && $qt2 >= $qtRequis2){
         return <<<HTML
-            <input type="submit" value="Faire la potion">
+            <input class="concocterPotionBtn"type="submit" value="Faire la potion">
 HTML;
     }
     else{
         return <<<HTML
-            <input disabled style="cursor: not-allowed;" type="submit" value="Faire la potion">
+            <input disabled class="concocterPotionBtn" style="cursor: not-allowed;" type="submit" value="Faire la potion">
 HTML;
     }
 }

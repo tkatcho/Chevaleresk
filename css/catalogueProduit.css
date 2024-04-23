@@ -88,7 +88,7 @@
 }
 
 .idItem {
-  border-radius: 55px;
+  border-radius: 50%;
   background: var(--primary-color);
   padding: 15px;
   width: 70px;

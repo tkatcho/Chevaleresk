@@ -27,8 +27,10 @@ HTML;
 	}
 	if ($isAdmin) {
 		$niveau = <<<HTML
-		<i class= "fa fa-hammer"></i> 
-		<i class= "fa fa-flask"></i> 
+		<div class="optionsJeuNiveauIcone">
+			<i class= "fa fa-hammer"></i> 
+			<i class= "fa fa-flask"></i> 
+		</div>
 HTML;
 		$image =<<<HTML
 		<div style="background-image:url('./images/admin.png')"></div>

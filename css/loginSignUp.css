@@ -21,6 +21,8 @@
 
 .loginForm input[type="submit"] {
     padding: 0;
+    font-size:16px;
+    font-family: var(--primary-font);
 }
 
 .loginForm div {
@@ -71,6 +73,8 @@
 
 .signupForm input[type="submit"] {
     padding: 0;
+    font-size:16px;
+    font-family: var(--primary-font);
 }
 
 .signupForm i {

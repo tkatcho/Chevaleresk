@@ -170,7 +170,7 @@ CREATE PROCEDURE checkEnigmesRésoluEnigmaAlchimiste(IN id_joueur INT)
 begin
 declare nb_quetes_reussi_joueur_potions_elements int;
 
-SELECT count(*) INTO  nb_quetes_reussi_joueur_potions_elements FROM quetes INNER JOIN enigmes ON quetes.idEnigme = enigmes.id WHERE (enigmes.type = 'E' OR enigmes.type='P') AND quetes.reussi=1;
+SELECT count(*) INTO  nb_quetes_reussi_joueur_potions_elements FROM quetes INNER JOIN enigmes ON quetes.idEnigme = enigmes.id WHERE (enigmes.type = 'E' OR enigmes.type='P') AND quetes.reussi=1 AND idJoueur =id_joueur;
 
 if( nb_quetes_reussi_joueur_potions_elements >=3) Then
     UPDATE joueurs SET estAlchimiste = 1 WHERE id = id_joueur;
