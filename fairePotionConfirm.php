@@ -16,12 +16,14 @@ $peuxConcocter = false;
 try{
     $elem1 = ItemsTable()->selectWhere("nom = '$element1'");
     $elem2 = ItemsTable()->selectWhere("nom = '$element2'");
-    $inventaire = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$elem1[0]->Id} OR idItem = {$elem2[0]->Id}");
-    foreach($inventaire as $element){
-        if($element->Quantite >= $qtRequis1){
-            $peuxConcocter = true;
-        }
+    $inventaire1 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$elem1[0]->Id} ");
+    $inventaire2 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$elem2[0]->Id}");
+    
+    if($inventaire1[0]->Quantite >= $qtRequis1 && $inventaire2[0]->Quantite >= $qtRequis2){
+        $peuxConcocter = true;
     }
+
+    
 }catch(Exception $e){
     $_SESSION['erreur'] = "La potion ne peux pas être concocté";
 }
