@@ -9,6 +9,10 @@ header {
     z-index: 1000 !important;
 }
 
+header span {
+    line-height: 20px;
+}
+
 button {
     background-color: var(--primary-color);
     border: none;
