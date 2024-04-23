@@ -45,13 +45,23 @@ foreach (DemandesTable()->selectWhere("idJoueur = $_SESSION[id]") as $demande) {
 HTML;
 }
 
-$content .= <<<HTML
-    </table>
-        <form action="nouvelleDemande.php">
-            <input type="submit" value="Demander 200 écus">
-        <form>
-    </div>
+if (count(DemandesTable()->selectWhere("idJoueur = $_SESSION[id]")) >= 3) {
+    $content .= <<<HTML
+        </table>
+            <form action="nouvelleDemande.php">
+                <input style="cursor:not-allowed;" disabled type="submit" value="Demander 200 écus">
+            <form>
+        </div>
 HTML;
+} else {
+    $content .= <<<HTML
+        </table>
+            <form action="nouvelleDemande.php">
+                <input type="submit" value="Demander 200 écus">
+            <form>
+        </div>
+HTML;
+}
 
 if ($_SESSION['isAdmin'] == 1) {
     $content = <<<HTML
@@ -115,14 +125,6 @@ HTML;
             </tr>
 HTML;
     }
-
-    $content .= <<<HTML
-        </table>
-            <form action="nouvelleDemande.php">
-                <input type="submit" value="Demander 200 écus">
-            <form>
-        </div>
-HTML;
 }
 
 require 'views/master.php';
