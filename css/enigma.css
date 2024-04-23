@@ -17,13 +17,18 @@
 }
 
 .enigmaBackgroundVertRappel strong {
-    font-size: 30px;
+    font-size: 18px;
     font-family: var(--secondary-font);
 }
 
 .enigmaBackgroundVertRappel p {
     margin-top: 20px;
-    font-size: 15px;
+    font-size: 14px;
+    font-family: var(--secondary-font);
+}
+
+.enigmaBackgroundVertRappel ul, li{
+    font-size: 11px;
 }
 
 .enigmaChoisirDifficulté {
@@ -31,11 +36,13 @@
 }
 
 .enigmaChoisirDifficulté p {
-    font-size: 20px;
+    font-size: 16px;
+    font-family: var(--secondary-font);
 }
 
-.enigmaChoisirDifficulté input {
+.enigmaChoisirDifficulté span,input, label {
     margin-right: 10px;
+    font-size: 13px;
 }
 
 .enigmaEnigmeBackground {
@@ -48,7 +55,7 @@
 }
 
 .enigmaEnigmeBackground strong {
-    font-size: 20px;
+    font-size: 18px;
     font-family: var(--secondary-font);
 }
 

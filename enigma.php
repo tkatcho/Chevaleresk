@@ -158,7 +158,7 @@ HTML;
             <p>Répondez aux énigmes pour remporter le plus d'argent!</p>
             <br>
             <p>Chaque énigme a une difficulté</p>
-            <ul>
+            <ul >
                 <li>Difficile : 200 écus</li>
                 <li>Moyen : 100 écus</li>
                 <li>Facile : 50 écus</li>

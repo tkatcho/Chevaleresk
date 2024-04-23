@@ -17,12 +17,19 @@ if ($isConnected) {
     $niveau ="";
     if($isAlchimiste ==1){
         $niveau = <<<HTML
-        <span class="optionsJeuNiveauIcone"><i class="fa-solid fa-hat-wizard"></i>
+        <span class="optionsJeuNiveauIcone"><i class="fa-solid fa-hat-wizard"></i></span>
+        <p>$joueur->Niveau</p>
+HTML;
+    }
+    if($isAdmin){
+        $niveau = <<<HTML
+        <i class= "fa fa-hammer"></i> 
+        <i class= "fa fa-flask"></i> 
 HTML;
     }
     if($isAlchimiste ==0 && !$isAdmin){
         $niveau = <<<HTML
-        <span class="optionsJeuNiveauIcone"><i class='fas fa-user-shield'></i>
+        <span class="optionsJeuNiveauIcone"><i class='fas fa-user-shield'></i></span>
 HTML;
     }
     if ($isAdmin) {
@@ -36,8 +43,7 @@ HTML;
               <div style="background-image:url('./images/chevalier.png')"></div>
           </div>
           <p>$joueur->Alias</p>
-          <i class= "fa fa-hammer"></i> 
-          <i class= "fa fa-flask"></i> 
+          $niveau
 
         
       </div>
