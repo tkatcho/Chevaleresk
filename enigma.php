@@ -34,7 +34,7 @@ if ($isConnected){
             $checkedFacile = "checked";
         $hidden .= <<<HTML
             <input type="hidden" name="filtresDif" value="$_GET[d]">
-        HTML;
+HTML;
     }
 
     if(isset($_GET['t'])) {  //type
@@ -46,7 +46,7 @@ if ($isConnected){
             $checkedAutres = "checked";
         $hidden .= <<<HTML
             <input type="hidden" name="filtresType" value="$_GET[t]">
-        HTML;
+HTML;
     }
 
     //Where difficulté
