@@ -503,8 +503,8 @@ final class MySQLDataBase
     public function __construct($dbName)
     {
         $this->host = 'localhost';
-        $this->username = 'chevalier16';
-        $this->password = 'sqfi6386';
+        $this->username = 'root';
+        $this->password = '';
         $this->dbName = $dbName;
         $this->autoCommit = true;
         $this->conn = null;
