@@ -184,12 +184,12 @@ DELIMITER ;
 DELIMITER //
 
 CREATE TRIGGER augmenteNiveau
-AFTER INSERT ON potionsconcoctes
+AFTER INSERT ON potionsConcoctes
 FOR EACH ROW
 BEGIN
 
 	DECLARE nb_potions INT;
-    SELECT COUNT(*) INTO nb_potions FROM potionsconcoctes WHERE idJoueur = new.idJoueur;
+    SELECT COUNT(*) INTO nb_potions FROM potionsConcoctes WHERE idJoueur = new.idJoueur;
     
     IF (nb_potions >= 3 AND nb_potions < 6) THEN
     	UPDATE joueurs SET niveau = 'débutant' WHERE id = new.idJoueur;
@@ -252,55 +252,8 @@ END//
 
 DELIMITER ;
 
--- Ajouter une demande pour de l'argent (A: accepté, R: rejeté, W: attente)
-DELIMITER //
 
-CREATE PROCEDURE nouvelleDemande(IN id_joueur INT)
-BEGIN
-
-    DECLARE nb_demandes INT;
-    SELECT COUNT(*) INTO nb_demandes FROM demandes WHERE idJoueur = id_joueur;
-
-    IF (nb_demandes < 3) THEN
-        INSERT INTO demandes (idJoueur, statue) VALUES (id_joueur, 'W');
-    END IF;
-
-END//
-
-DELIMITER ;
-
--- Accepter une demande
-DELIMITER //
-
-CREATE PROCEDURE accepterDemande(IN id_demande INT)
-BEGIN
-
-    DECLARE id_joueur INT;
-    SELECT idJoueur INTO id_joueur FROM demandes WHERE id = id_demande;
-
-    IF ((SELECT statue FROM demandes WHERE id = id_demande) = 'W') THEN
-        UPDATE demandes SET statue = 'A' WHERE id = id_demande;
-        UPDATE joueurs SET solde = (solde + 200) WHERE id = id_joueur;
-    END IF;
-
-END//
-
-DELIMITER ;
-
--- Refuser une demande
-DELIMITER //
-
-CREATE PROCEDURE refuserDemande(IN id_demande INT)
-BEGIN
-
-    IF ((SELECT statue FROM demandes WHERE id = id_demande) = 'W') THEN
-        UPDATE demandes SET statue = 'R' WHERE id = id_demande;
-    END IF;
-
-END//
-
-DELIMITER ;
-
+-- Ajouter une potion
 DELIMITER //
 CREATE PROCEDURE ajouterPotion(IN potion_id INT,IN id_joueur int,IN elem1_id int,IN elem2_id int)
 BEGIN
