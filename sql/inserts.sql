@@ -133,13 +133,13 @@ INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('15', 'Château', 1);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('15', 'Moulin', 0);
 
 --recettes
-INSERT INTO recettes (idPotion, idElement, qtElements) VALUES ('1', '1', '3');
-INSERT INTO recettes (idPotion, idElement, qtElements) VALUES ('1', '2', '2');
-INSERT INTO recettes (idPotion, idElement, qtElements) VALUES ('2', '3', '2');
-INSERT INTO recettes (idPotion, idElement, qtElements) VALUES ('2', '2', '4');
-INSERT INTO recettes (idPotion, idElement, qtElements) VALUES ('3', '5', '1');
-INSERT INTO recettes (idPotion, idElement, qtElements) VALUES ('3', '1', '2');
-INSERT INTO recettes (idPotion, idElement, qtElements) VALUES ('4', '4', '3');
-INSERT INTO recettes (idPotion, idElement, qtElements) VALUES ('4', '5', '1');
-INSERT INTO recettes (idPotion, idElement, qtElements) VALUES ('5', '1', '1');
-INSERT INTO recettes (idPotion, idElement, qtElements) VALUES ('5', '3', '2');
+INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('1', '1', '3');
+INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('1', '2', '2');
+INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('2', '3', '2');
+INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('2', '2', '4');
+INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('3', '5', '1');
+INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('3', '1', '2');
+INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('4', '4', '3');
+INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('4', '5', '1');
+INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('5', '1', '1');
+INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('5', '3', '2');
