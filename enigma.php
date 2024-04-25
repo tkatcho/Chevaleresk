@@ -26,11 +26,11 @@ if ($isConnected){
     $checkedAutres = "";
 
     if(isset($_GET['d'])) {   //difficulté
-        if (str_contains($_GET['d'], "difficile"))
+        if (strpos($_GET['d'], "difficile") !== false)
             $checkedDifficile = "checked";
-        if (str_contains($_GET['d'], "moyen"))
+        if (strpos($_GET['d'], "moyen") !== false)
             $checkedMoyen = "checked";
-        if (str_contains($_GET['d'], "facile"))
+        if (strpos($_GET['d'], "facile") !== false)
             $checkedFacile = "checked";
         $hidden .= <<<HTML
             <input type="hidden" name="filtresDif" value="$_GET[d]">
@@ -38,11 +38,11 @@ HTML;
     }
 
     if(isset($_GET['t'])) {  //type
-        if (str_contains($_GET['t'], "P"))
+        if (strpos($_GET['t'], "P") !== false)
             $checkedPotions = "checked";
-        if (str_contains($_GET['t'], "E"))
+        if (strpos($_GET['t'], "E") !== false)
             $checkedElements = "checked";
-        if (str_contains($_GET['t'], "Z"))
+        if (strpos($_GET['t'], "Z") !== false)
             $checkedAutres = "checked";
         $hidden .= <<<HTML
             <input type="hidden" name="filtresType" value="$_GET[t]">
