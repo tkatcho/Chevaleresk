@@ -34,10 +34,23 @@ $buttonOnSide = <<<HTML
     </div>
 HTML;
 
-//Si le joueur est connecté
+function buttonRetour($location){
+    return <<<HTML
+       <div class="btnRetour">
+            <button onclick="location.href='optionsJeu.php'">
+                <a href="optionsJeu.php">     <!--Retourne au options de jeu-->
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+        </div>
+HTML;
+}
+
+//Joueur connecté
 if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
     $playerAlias = $_SESSION["alias"];
     $joueur = JoueursTable()->selectById($_SESSION['id'])[0];
+
     $loggedUserMenu = <<<HTML
         $buttonOnSide
 HTML;
@@ -45,13 +58,13 @@ HTML;
     if ($viewTitle == "Catalogue de produit"  ) {
         $loggedUserMenu = <<<HTML
         <div class="btnRetour">
-                <button onclick="location.href='optionsJeu.php'">
-                    <a href="optionsJeu.php">     <!--Retourne au options de jeu-->
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                </button>
-            </div>
-            $buttonOnSide
+            <button onclick="location.href='optionsJeu.php'">
+                <a href="optionsJeu.php">     <!--Retourne au options de jeu-->
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+        </div>
+        $buttonOnSide
 HTML;
     } else if ($viewTitle == "Panier d'achat"  || $viewTitle == "Détails de l'item") {
         $loggedUserMenu = <<<HTML

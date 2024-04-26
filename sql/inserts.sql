@@ -1,4 +1,4 @@
--- Inserts for the Items table
+-- ITEMS
 INSERT INTO items (nom, type, quantiteStock, prix, photo) VALUES ('Sword of Might', 'W', 5, 150, 'images/items/épée.png');
 INSERT INTO items (nom, type, quantiteStock, prix, photo) VALUES ('Axe of Fury', 'W', 7, 120, 'images/items/épée.png');
 INSERT INTO items (nom, type, quantiteStock, prix, photo) VALUES ('Dagger', 'W', 5, 150, 'images/items/dagger.png');
@@ -20,14 +20,14 @@ INSERT INTO items (nom, type, quantiteStock, prix, photo) VALUES ('Leaf', 'E', 1
 INSERT INTO items (nom, type, quantiteStock, prix, photo) VALUES ('Fangs', 'E', 10, 60, 'images/items/fangs.png');
 INSERT INTO items (nom, type, quantiteStock, prix, photo) VALUES ('Flower', 'E', 10, 30, 'images/items/flower.png');
 
--- Corresponding inserts for the Armes (Weapons) table, assuming Items.id = 1 for the first weapon, and so on
+-- Corresponding inserts for the ARMES (Weapons) table, assuming Items.id = 1 for the first weapon, and so on
 INSERT INTO armes (idItem, efficacite, genre, description) VALUES ((SELECT id FROM items WHERE nom = 'Sword of Might'), 'High', 'Sword', 'A mighty sword that can split mountains.');
 INSERT INTO armes (idItem, efficacite, genre, description) VALUES ((SELECT id FROM items WHERE nom = 'Axe of Fury'), 'Medium', 'Axe', 'An axe that enrages its wielder to fight fiercely.');
 INSERT INTO armes (idItem, efficacite, genre, description) VALUES ((SELECT id FROM items WHERE nom = 'Dagger'), 'High', 'Sword', 'A dagger can kill.');
 INSERT INTO armes (idItem, efficacite, genre, description) VALUES ((SELECT id FROM items WHERE nom = 'Bow'), 'Medium', 'Bow', 'A pretty bow');
 INSERT INTO armes (idItem, efficacite, genre, description) VALUES ((SELECT id FROM items WHERE nom = 'Axe'), 'High', 'Axe', 'This axe is cool');
 
--- Corresponding inserts for the Armures (Armor) table, assuming Items.id = 3 for the first armor, and so on
+-- Corresponding inserts for the ARMURES (Armor) table, assuming Items.id = 3 for the first armor, and so on
 INSERT INTO armures (idItem, matiere, taille) VALUES ((SELECT id FROM items WHERE nom = 'Plate Armor'), 'Steel', 'L');
 INSERT INTO armures (idItem, matiere, taille) VALUES ((SELECT id FROM items WHERE nom = 'Chainmail'), 'Iron', 'M');
 INSERT INTO armures (idItem, matiere, taille) VALUES ((SELECT id FROM items WHERE nom = 'Helmet'), 'Steel', 'S');
@@ -35,14 +35,14 @@ INSERT INTO armures (idItem, matiere, taille) VALUES ((SELECT id FROM items WHER
 INSERT INTO armures (idItem, matiere, taille) VALUES ((SELECT id FROM items WHERE nom = 'Big armor'), 'Iron', 'L');
 
 
--- Corresponding inserts for the Potions table, assuming Items.id = 5 for the first potion, and so on
+-- Corresponding inserts for the POTIONS table, assuming Items.id = 5 for the first potion, and so on
 INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of Healing'), 'Restore Health', '30', 0);
 INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of Strength'), 'Increase Strength', '20', 0);
 INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of Poison'), 'Hurt Ennemies', '10', 1);
 INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of High vision'), 'Increase Vision', '60', 0);
 INSERT INTO potions (idItem, effet, duree, estAttaque) VALUES ((SELECT id FROM items WHERE nom = 'Potion of Gold'), 'Increase Strength', '20', 0);
 
--- Corresponding inserts for the Elements table, assuming Items.id = 7 for the first element, and so on
+-- Corresponding inserts for the ÉLÉMENTS table, assuming Items.id = 7 for the first element, and so on
 INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM items WHERE nom = 'Fire Essence'), 'Fire', 'Common', 'Low');
 INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM items WHERE nom = 'Ice Shard'), 'Ice', 'Uncommon', 'Medium');
 INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM items WHERE nom = 'Leaf'), 'Earth', 'Common', 'Low');
@@ -50,7 +50,7 @@ INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM
 INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM items WHERE nom = 'Flower'), 'Earth', 'Common', 'Low');
 
 
--- Enigmes
+-- ÉNIGMES
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel matériau est traditionnellement utilisé pour fabriquer des armures ?', 'Facile', 'Z');
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel type d armure était porté par les chevaliers médiévaux pour protéger leur corps ?', 'Moyen', 'Z');
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel ingrédient est souvent utilisé dans les potions de guérison magique ?', 'Difficile', 'E');
@@ -68,7 +68,7 @@ INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel est l animal noble 
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quelle est la résidence fortifiée du seigneur du domaine ?', 'Moyen', 'Z');
 
 
--- Réponses
+-- RÉPONSES
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Acier', 1);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Cuir', 0);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Argent', 0);
@@ -130,7 +130,7 @@ INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('15', 'Auberge', 0);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('15', 'Château', 1);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('15', 'Moulin', 0);
 
--- recettes
+-- RECETTES
 INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('1', '1', '3');
 INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('1', '2', '2');
 INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('2', '3', '2');
