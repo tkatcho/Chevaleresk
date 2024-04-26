@@ -6,7 +6,7 @@ include_once 'php/utils.php';
 userAccess();
 
 #region variables
-$chosen_item = $_GET['chosenItem'] ?? '';
+$chosen_item = $_GET['chosenItem'] ?? '1';
 
 $message_concoction = 'Veuillez choisir une potion a concocter';
 $messageHtml = '';
@@ -23,14 +23,14 @@ $items = ItemsTable()->selectAll();
 $potions = PotionsTable()->selectAll();
 $potion = '';
 
-$elem1 = "Unavailable";
-$elem2 = "Unavailable";
+$elem1 = "";
+$elem2 = "";
 
-$qt1 = 0;
-$qt2 = 0;
+$qt1 = '';
+$qt2 = '';
 
-$qtRequis1 = 1;
-$qtRequis2 = 1;
+$qtRequis1 = '';
+$qtRequis2 = '';
 
 $textColor0 = 'color: red;';
 $textColor1 = 'color: red;';
@@ -38,6 +38,8 @@ $textColor1 = 'color: red;';
 $recette = RecettesTable()->selectWhere("idPotion = $chosen_item");
 
 $disabled = "Disabled";
+$hidden = "hidden";
+
 #endregion
 
 $itemsDisplay = "";
@@ -73,30 +75,25 @@ if (isset($recette[1]) && isset($recette[0])) {
     $qt2 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$temp[0]->Id}")[0]->Quantite ?? '0';
 
 
-    $qtRequis1 = $recette[0]->qtElement;
-    $qtRequis2 = $recette[1]->qtElement;
+    $qtRequis1 = $recette[0]->qtElements;
+    $qtRequis2 = $recette[1]->qtElements;
+
 
     $textColor0 = $qt1 < $qtRequis1 ? 'color: red;' : '';
     $textColor1 = $qt2 < $qtRequis2 ? 'color: red;' : '';
 
+
+
     $message_concoction = "Pour la potion, il faut:";
-}
+    $hidden = '';
+    $disabled = '';
 
-function créerBouton($qt1, $qtRequis1, $qt2, $qtRequis2)
-{
-
-    if ($qt1 >= $qtRequis1 && $qt2 >= $qtRequis2) {
-        return <<<HTML
-            <input class="concocterPotionBtn"type="submit" value="Faire la potion">
-HTML;
-    } else {
-        return <<<HTML
-            <input disabled class="concocterPotionBtn" style="cursor: not-allowed;" type="submit" value="Faire la potion">
-HTML;
+    if (strlen($textColor0) == 0 || strlen($textColor1) == 0) {
+        $disabled = 'Disabled';
     }
 }
 
-$bouton = créerBouton($qt1, $qtRequis1, $qt2, $qtRequis2);
+
 
 $viewTitle = "Concocter des potions";
 $content = <<<HTML
@@ -112,7 +109,7 @@ $content = <<<HTML
             <p>$message_concoction</p>
 
             <!--La liste des ingrédients-->
-            <ul>
+            <ul $hidden>
                 <li style="{$textColor0}">$elem1 $qt1/$qtRequis1</li>
                 <li style="{$textColor1}">$elem2 $qt2/$qtRequis2</li>
             </ul>
@@ -126,7 +123,9 @@ $content = <<<HTML
             <input type="hidden" name="qtRequis2" value="{$qtRequis2}">
             <input type="hidden" name="potionId" value="{$chosen_item}">
 
-            $bouton
+            <input class="concocterPotionBtn" type="submit" value="Faire la potion" $disabled> 
+            <h1>$messageHtml</h1>
+            
             </form>
         </div>
     </div>
