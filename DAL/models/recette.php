@@ -6,12 +6,12 @@ class Recette extends Record
 {
     public $idPotion;
     public $idElement;
-    public $qtElements;
+    public $qtElement;
     public function __construct($recordData = null)
     {
         $this->idPotion = 0;
         $this->idElement = 0;
-        $this->qtElements = 0;
+        $this->qtElement = 0;
         parent::__construct($recordData);
     }
     public function setIdPotion($idPotion)
@@ -22,8 +22,8 @@ class Recette extends Record
     {
         $this->idElement = $idElement;
     }
-    public function setQtElement($qtElements)
+    public function setQtElement($qtElement)
     {
-        $this->qtElements = $qtElements;
+        $this->qtElement = $qtElement;
     }
 }
