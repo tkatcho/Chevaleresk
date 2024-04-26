@@ -32,10 +32,10 @@ try{
 if($peuxConcocter){
     $elem1Id = $elem1[0]->Id; 
     $elem2Id = $elem2[0]->Id;
-    print_r($potionId);
-    print_r($_SESSION['id']);
-    print_r($elem1Id);
-    print_r($elem2Id);
+    // print_r($potionId);
+    // print_r($_SESSION['id']);
+    // print_r($elem1Id);
+    // print_r($elem2Id);
     
     $sql = "CALL ajouterPotion($potionId, $_SESSION[id], $elem1Id, $elem2Id)";
     print("Je peux concoter et j'appelle la procédure stockée.");
