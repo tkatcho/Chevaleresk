@@ -50,13 +50,12 @@ INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM
 INSERT INTO elements (idItem, type, rarete, dangerosite) VALUES ((SELECT id FROM items WHERE nom = 'Flower'), 'Earth', 'Common', 'Low');
 
 
---Enigmes
+-- Enigmes
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel matériau est traditionnellement utilisé pour fabriquer des armures ?', 'Facile', 'Z');
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel type d armure était porté par les chevaliers médiévaux pour protéger leur corps ?', 'Moyen', 'Z');
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel ingrédient est souvent utilisé dans les potions de guérison magique ?', 'Difficile', 'E');
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel effet a la potion Amortentia dans l univers de Harry Potter ?', 'Moyen', 'P');
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quelle est l utilité principale de la potion d Invisibilité ?', 'Facile', 'P');
-
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quelle est cette arme portée par les chevaliers, utilisée pour transpercer leurs ennemis ?', 'Facile', 'Z');
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Qui est le souverain régnant sur un royaume médiéval ?', 'Facile', 'Z');
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quelle couleur est associée à une potion qui confère de la force et de la vigueur ?', 'Moyen', 'P');
@@ -69,7 +68,7 @@ INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quel est l animal noble 
 INSERT INTO enigmes (enigme, difficulte, type) VALUES ('Quelle est la résidence fortifiée du seigneur du domaine ?', 'Moyen', 'Z');
 
 
---Réponses
+-- Réponses
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Acier', 1);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Cuir', 0);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('1', 'Argent', 0);
@@ -90,7 +89,6 @@ INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Se téléporter
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Guérir les blessures', 0);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Voler', 0);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('5', 'Devenir invisible', 1);
-
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('6', 'Arc', 0);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('6', 'Épée', 0);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('6', 'Hache', 0);
@@ -132,7 +130,7 @@ INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('15', 'Auberge', 0);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('15', 'Château', 1);
 INSERT INTO reponses (idEnigme, reponse, estBonne) VALUES ('15', 'Moulin', 0);
 
---recettes
+-- recettes
 INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('1', '1', '3');
 INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('1', '2', '2');
 INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('2', '3', '2');
