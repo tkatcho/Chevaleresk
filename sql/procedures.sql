@@ -276,7 +276,6 @@ BEGIN
     SELECT idItem INTO id_item2 FROM elements WHERE id = elem2_id;
 
     
-
     IF(SELECT quantite from inventaires WHERE idJoueur = id_joueur AND idItem = idItem_potion) >= 1 THEN
         UPDATE inventaires SET quantite = quantite + 1 WHERE idJoueur = id_joueur and idItem = idItem_potion;
         
