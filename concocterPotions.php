@@ -93,21 +93,7 @@ if (isset($recette[1]) && isset($recette[0])) {
     }
 }
 
-// function créerBouton($qt1, $qtRequis1, $qt2, $qtRequis2)
-// {
 
-//     if ($qt1 >= $qtRequis1 && $qt2 >= $qtRequis2) {
-//         return <<<HTML
-//             <input class="concocterPotionBtn"type="submit" value="Faire la potion">
-// HTML;
-//     } else {
-//         return <<<HTML
-//             <input disabled class="concocterPotionBtn" style="cursor: not-allowed;" type="submit" value="Faire la potion">
-// HTML;
-//     }
-// }
-
-//$bouton = créerBouton($qt1, $qtRequis1, $qt2, $qtRequis2);
 
 $viewTitle = "Concocter des potions";
 $content = <<<HTML
