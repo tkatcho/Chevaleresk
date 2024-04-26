@@ -266,9 +266,9 @@ BEGIN
 
     SELECT idItem INTO idItem_potion FROM potions WHERE id = potion_id;
     
-    SELECT qtElements INTO qt_elem1 FROM recettes WHERE idPotion = potion_id AND idElement = elem1_id;
+    SELECT qtElement INTO qt_elem1 FROM recettes WHERE idPotion = potion_id AND idElement = elem1_id;
     
-    SELECT qtElements INTO qt_elem2 FROM recettes WHERE idPotion = potion_id AND idElement = elem2_id;
+    SELECT qtElement INTO qt_elem2 FROM recettes WHERE idPotion = potion_id AND idElement = elem2_id;
     
     SELECT idItem INTO id_item1 FROM elements WHERE id = elem1_id;
     
