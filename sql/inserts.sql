@@ -141,3 +141,63 @@ INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('4', '4', '3');
 INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('4', '5', '1');
 INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('5', '1', '1');
 INSERT INTO recettes (idPotion, idElement, qtElement) VALUES ('5', '3', '2');
+
+------------------------------------------------------------------------------------------------
+--JOUEURS (tous les mots de passe sont : 1234)
+--joueurs normaux
+INSERT INTO joueurs( alias, nom, prenom, motDePasse, solde, niveau, estAlchimiste, estAdmin) VALUES ('PlayerOne','PlayerOne','PlayerOne','$2y$10$4u8e9bYoQV4A8U0FptzbVOO6bZBnf8f5EzMITRChYurmdvR8ftJ3i',1000,'aucun',0,0);
+INSERT INTO joueurs( alias, nom, prenom, motDePasse, solde, niveau, estAlchimiste, estAdmin) VALUES ('PlayerTwo','PlayerTwo','PlayerTwo','$2y$10$4u8e9bYoQV4A8U0FptzbVOO6bZBnf8f5EzMITRChYurmdvR8ftJ3i',1000,'aucun',0,0);
+INSERT INTO joueurs( alias, nom, prenom, motDePasse, solde, niveau, estAlchimiste, estAdmin) VALUES ('PlayerThree','PlayerThree','PlayerThree','$2y$10$4u8e9bYoQV4A8U0FptzbVOO6bZBnf8f5EzMITRChYurmdvR8ftJ3i',1000,'aucun',0,0);
+INSERT INTO joueurs( alias, nom, prenom, motDePasse, solde, niveau, estAlchimiste, estAdmin) VALUES ('PlayerFour','PlayerFour','PlayerFour','$2y$10$4u8e9bYoQV4A8U0FptzbVOO6bZBnf8f5EzMITRChYurmdvR8ftJ3i',1000,'aucun',0,0);
+--joueurs alichimstes
+--idJoueur: 5
+INSERT INTO joueurs( alias, nom, prenom, motDePasse, solde, niveau, estAlchimiste, estAdmin) VALUES ('PlayerOneAlchimiste','PlayerOneAlchimiste','PlayerOneAlchimiste','$2y$10$4u8e9bYoQV4A8U0FptzbVOO6bZBnf8f5EzMITRChYurmdvR8ftJ3i',1000,'débutant',1,0);
+--idJoueur: 6
+INSERT INTO joueurs( alias, nom, prenom, motDePasse, solde, niveau, estAlchimiste, estAdmin) VALUES ('PlayerTwoAlchimiste','PlayerTwoAlchimiste','PlayerTwoAlchimiste','$2y$10$4u8e9bYoQV4A8U0FptzbVOO6bZBnf8f5EzMITRChYurmdvR8ftJ3i',1000,'débutant',1,0);
+--idJoueur: 7
+INSERT INTO joueurs( alias, nom, prenom, motDePasse, solde, niveau, estAlchimiste, estAdmin) VALUES ('PlayerThreeAlchimiste','PlayerThreeAlchimiste','PlayerThreeAlchimiste','$2y$10$4u8e9bYoQV4A8U0FptzbVOO6bZBnf8f5EzMITRChYurmdvR8ftJ3i',1000,'intermédiaire',1,0);
+--idJoueur: 8
+INSERT INTO joueurs( alias, nom, prenom, motDePasse, solde, niveau, estAlchimiste, estAdmin) VALUES ('PlayerFourAlchimiste','PlayerFourAlchimiste','PlayerFourAlchimiste','$2y$10$4u8e9bYoQV4A8U0FptzbVOO6bZBnf8f5EzMITRChYurmdvR8ftJ3i',1000,'intermédiaire',1,0);
+--idJoueur: 9
+INSERT INTO joueurs( alias, nom, prenom, motDePasse, solde, niveau, estAlchimiste, estAdmin) VALUES ('PlayerFiveAlchimiste','PlayerFiveAlchimiste','PlayerFiveAlchimiste','$2y$10$4u8e9bYoQV4A8U0FptzbVOO6bZBnf8f5EzMITRChYurmdvR8ftJ3i',1000,'expert',1,0);
+--idJoueur: 10
+INSERT INTO joueurs( alias, nom, prenom, motDePasse, solde, niveau, estAlchimiste, estAdmin) VALUES ('PlayerSixAlchimiste','PlayerSixAlchimiste','PlayerSixAlchimiste','$2y$10$4u8e9bYoQV4A8U0FptzbVOO6bZBnf8f5EzMITRChYurmdvR8ftJ3i',1000,'expert',1,0);
+
+--Changer les id des joueurs alchimiste (PlayerOne =5 , etc)
+--inventaire des joueurs (mettre des éléments dans l'inventaire des alchimistes)
+--idJoueur 5
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('5','16','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('5','17','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('5','18','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('5','19','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('5','20','2');
+--idJoueur 6
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('6','16','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('6','17','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('6','18','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('6','19','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('6','20','2');
+--idJoueur 7
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('7','16','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('7','17','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('7','18','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('7','19','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('7','20','2');
+--idJoueur 8
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('8','16','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('8','17','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('8','18','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('8','19','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('8','20','2');
+--idJoueur 9
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('9','16','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('9','17','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('9','18','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('9','19','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('9','20','2');
+--idJoueur 10
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('10','16','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('10','17','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('10','18','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('10','19','8');
+INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('10','20','2');
