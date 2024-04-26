@@ -1,4 +1,3 @@
-
 -- Changer la quantité d'item dans un panier
 DELIMITER //
 
@@ -97,7 +96,7 @@ END//
 
 DELIMITER ;
 
---S'assurer du prix des potions et éléments
+-- S'assurer du prix des potions et éléments
 DELIMITER |;
 CREATE TRIGGER checkPrixItem
 before insert ON items
@@ -133,7 +132,7 @@ END //
 DELIMITER ;
 
 
---Changer le solde du joueur lorsqu'il résout une énigme dépendamment de la difficulté de l'énigme
+-- Changer le solde du joueur lorsqu'il résout une énigme dépendamment de la difficulté de l'énigme
 DELIMITER //
 
 CREATE PROCEDURE repondreEnigme(IN id_enigme INT, IN id_joueur INT, IN id_reponse INT)
@@ -164,7 +163,7 @@ END//
 
 DELIMITER ;
 
---Le joueur devient alchimiste s'il résout 3 énigmes de potions ou éléments
+-- Le joueur devient alchimiste s'il résout 3 énigmes de potions ou éléments
 DELIMITER //
 CREATE PROCEDURE checkEnigmesRésoluEnigmaAlchimiste(IN id_joueur INT)
 begin
@@ -267,9 +266,9 @@ BEGIN
 
     SELECT idItem INTO idItem_potion FROM potions WHERE id = potion_id;
     
-    SELECT qtElements INTO qt_elem1 FROM recettes WHERE idPotion = potion_id AND idElement = elem1_id;
+    SELECT qtElement INTO qt_elem1 FROM recettes WHERE idPotion = potion_id AND idElement = elem1_id;
     
-    SELECT qtElements INTO qt_elem2 FROM recettes WHERE idPotion = potion_id AND idElement = elem2_id;
+    SELECT qtElement INTO qt_elem2 FROM recettes WHERE idPotion = potion_id AND idElement = elem2_id;
     
     SELECT idItem INTO id_item1 FROM elements WHERE id = elem1_id;
     

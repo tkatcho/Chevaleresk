@@ -71,8 +71,8 @@ if (isset($recette[1]) && isset($recette[0])) {
     $qt2 = InventairesTable()->selectWhere("idJoueur = $_SESSION[id] AND idItem = {$temp[0]->Id}")[0]->Quantite ?? '0';
 
 
-    $qtRequis1 = $recette[0]->qtElements;
-    $qtRequis2 = $recette[1]->qtElements;
+    $qtRequis1 = $recette[0]->qtElement;
+    $qtRequis2 = $recette[1]->qtElement;
 
     $textColor0 = $qt1 < $qtRequis1 ? 'color: red;' : '';
     $textColor1 = $qt2 < $qtRequis2 ? 'color: red;' : '';
