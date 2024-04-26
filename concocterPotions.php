@@ -7,6 +7,8 @@ userAccess();
 
 #region variables
 $chosen_item = $_GET['chosenItem'] ?? '';
+
+$message_concoction = 'Veuillez choisir une potion a concocter';
 $messageHtml = '';
 
 if (isset($_SESSION['success'])) {
@@ -76,23 +78,25 @@ if (isset($recette[1]) && isset($recette[0])) {
 
     $textColor0 = $qt1 < $qtRequis1 ? 'color: red;' : '';
     $textColor1 = $qt2 < $qtRequis2 ? 'color: red;' : '';
+
+    $message_concoction = "Pour la potion, il faut:";
 }
 
-function créerBouton($qt1,$qtRequis1,$qt2,$qtRequis2){
+function créerBouton($qt1, $qtRequis1, $qt2, $qtRequis2)
+{
 
-    if($qt1>= $qtRequis1 && $qt2 >= $qtRequis2){
+    if ($qt1 >= $qtRequis1 && $qt2 >= $qtRequis2) {
         return <<<HTML
             <input class="concocterPotionBtn"type="submit" value="Faire la potion">
 HTML;
-    }
-    else{
+    } else {
         return <<<HTML
             <input disabled class="concocterPotionBtn" style="cursor: not-allowed;" type="submit" value="Faire la potion">
 HTML;
     }
 }
 
-$bouton = créerBouton($qt1,$qtRequis1,$qt2,$qtRequis2);
+$bouton = créerBouton($qt1, $qtRequis1, $qt2, $qtRequis2);
 
 $viewTitle = "Concocter des potions";
 $content = <<<HTML
@@ -105,7 +109,7 @@ $content = <<<HTML
         <div class="concocterPotionsRecettes">
             <strong class="concocterPotionsIngredient">Ingrédients</strong>
             <hr>
-            <p>Pour la potion, il faut:</p>
+            <p>$message_concoction</p>
 
             <!--La liste des ingrédients-->
             <ul>
