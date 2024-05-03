@@ -36,9 +36,19 @@ function évaluerEtCommenter($idJoueur, $idItem)
         <button class="btnÉvaluerCommenter">
             <a href="evaluerCommenter.php?idJoueur=$idJoueur&idItem=$idItem">Évaluer et commenter <i class="fa fa-comments"></i></a>
         </button>
+        <br>
+        <button class="btnÉvaluerCommenter">
+            <a href="voirEvaluation.php?idItem=$idItem">Voir évaluations <i class="fa fa-comments"></i></a>
+        </button>
+HTML;
+    }else {
+        return <<<HTML
+        <button class="btnÉvaluerCommenter">
+            <a href="voirEvaluation.php?idItem=$idItem">Voir évaluations <i class="fa fa-comments"></i></a>
+        </button>
 HTML;
     }
-    return "";
+    
    
 }
 

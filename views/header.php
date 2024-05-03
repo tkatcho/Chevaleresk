@@ -141,6 +141,33 @@ HTML;
                 $logoutButton
             </div>
 HTML;
+    }else if($viewTitle == "Les évaluations"){
+        if (isset($_GET["idItem"])) {
+            $id = $_GET["idItem"];
+            $item = ItemsTable()->get($id);
+        }
+        $buttonRetour= <<<HTML
+        <script>
+            function linked(id){
+                window.location.href = "details.php?idItem=" + id;
+            }
+        </script>
+        <div class="btnRetour">
+            <button onclick="linked($item->Id)">
+                <a href="details.php?idItem=$item->Id">     
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </button>
+        </div>
+HTML;
+        $loggedUserMenu = <<<HTML
+            $buttonRetour
+            <div class="buttonOnSide">
+                $logoutButton
+            </div>
+
+HTML;
+    
     }
 //JOUEUR PAS CONNECTÉ
 } else {  
@@ -177,3 +204,5 @@ $viewHead = <<<HTML
         <h1>$viewTitle<span>$loggedUserMenu</span></h1>
     </span>
 HTML;
+
+
