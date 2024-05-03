@@ -306,4 +306,11 @@ END  //
 
 DELIMITER ;
 
-
+--moyenne des évaluations
+DELIMITER |
+CREATE FUNCTION moyenneEvaluation() returns integer
+BEGIN
+    DECLARE moyenne integer;
+    SELECT AVG(etoile) INTO moyenne FROM evaluations;
+    RETURN moyenne;
+END|

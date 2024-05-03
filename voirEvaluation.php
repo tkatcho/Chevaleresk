@@ -12,13 +12,11 @@ if (isset($_GET["idItem"])) {
 } else {
     redirect('details.php');
 }
-$isConnected = isset($_SESSION['validUser']) && $_SESSION['validUser'];
 
 $viewTitle = "Les évaluations";
 $viewMenu = "";
 
-
-//Est le container de l'item & évaluations
+//Le container de l'item & évaluations
 $itemsDisplay = <<<HTML
     <div class="évaluationsContainer">
 HTML;
@@ -27,23 +25,25 @@ HTML;
 $évaluations_nbÉtoiles=<<<HTML
 HTML;
 
+//Nb évaluations au total
+
+$toutesévaluations = EvaluationsTable()->selectall();
+$nbÉvaluationsTotales =count($toutesévaluations);
+
+
 //Pourcentage 
-function pourcentage($nbÉtoiles)
+function pourcentage($nbÉtoiles, $nbÉvaluationsTotales)
 {
-    $toutesévaluations = EvaluationsTable()->selectall();
     $évaluations = EvaluationsTable()->selectWhere("Etoile = $nbÉtoiles");
     $pourcentage=0;
-    $nbÉvaluationsTotales=0;
     foreach($évaluations as $eval){
         $pourcentage ++;
     }
-    foreach($toutesévaluations as $eval){
-        $nbÉvaluationsTotales ++;
-    }
     return (int) (($pourcentage / $nbÉvaluationsTotales) * 100);
 }
+
 for($x=5; $x>=1; $x--){  //Pour chaque nb étoiles : nb étoile | progress-bar | pourcentage %
-    $pourcentage = pourcentage($x);
+    $pourcentage = pourcentage($x, $nbÉvaluationsTotales );
 
     $évaluations_nbÉtoiles .=<<<HTML
     <div class="évaluationsRow">
@@ -63,6 +63,9 @@ for($x=5; $x>=1; $x--){  //Pour chaque nb étoiles : nb étoile | progress-bar |
 
 HTML;
 }
+
+
+ 
 
 //COMMENTAIRES
 //Avatar des joueurs + commentaires
@@ -117,6 +120,10 @@ HTML;
     }
 }
 	
+//$moyenne =DB()->querySqlCmd("SELECT moyenneEvaluation();")[0];
+
+$moyenne = EvaluationsTable()->getAvg('etoile')[0];
+echo sanitizeString($moyenne);
 
 if ($item != null) {
         $itemsDisplay .= <<<HTML
@@ -137,9 +144,9 @@ if ($item != null) {
                         <span class="fa fa-star "></span>
                         <span class="fa fa-star "></span>
                     </div>
-                    <span> 3 / 5 </span>
+                    <span> $moyenne / 5 </span>
                 </div>
-                <p style="margin-top:10px;">30 évaluations au total</p>
+                <p style="margin-top:10px;">$nbÉvaluationsTotales évaluations au total</p>
                 <hr>
                 
                 <!--Nb étoiles & progress-bar-->
