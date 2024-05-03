@@ -27,8 +27,24 @@ HTML;
 $évaluations_nbÉtoiles=<<<HTML
 HTML;
 
+//Pourcentage 
+function pourcentage($nbÉtoiles)
+{
+    $toutesévaluations = EvaluationsTable()->selectall();
+    $évaluations = EvaluationsTable()->selectWhere("Etoile = $nbÉtoiles");
+    $pourcentage=0;
+    $nbÉvaluationsTotales=0;
+    foreach($évaluations as $eval){
+        $pourcentage ++;
+    }
+    foreach($toutesévaluations as $eval){
+        $nbÉvaluationsTotales ++;
+    }
+    return $pourcentage / $nbÉvaluationsTotales;
+}
 for($x=5; $x>=1; $x--){  //Pour chaque nb étoiles : nb étoile | progress-bar | pourcentage %
-    
+    $pourcentage = pourcentage($x);
+
     $évaluations_nbÉtoiles .=<<<HTML
     <div class="évaluationsRow">
     <div class="évalutionsNbÉtoiles">
@@ -36,11 +52,11 @@ for($x=5; $x>=1; $x--){  //Pour chaque nb étoiles : nb étoile | progress-bar |
     </div>
     <div class="évaluationsProgress-bar">
         <div class="bar-container">  
-            <div class="bar-$x"></div> <!--La progress-bar (voir évaluations.css ligne 86)-->
+            <div style="width: $pourcentage%; height: 18px; background-color: #04AA6D; " ></div> <!--La progress-bar (voir évaluations.css ligne 86)-->
         </div> 
     </div>
     <div class="évalutionsNbÉtoiles évaluationsPourcentage ">
-        <div>84 %</div>   <!--TODO: aller mettre dans le width de la bar le pourcentage-->
+        <div>$pourcentage %</div>   <!--TODO: aller mettre dans le width de la bar le pourcentage-->
     </div>
     <br>
     </div>
@@ -55,39 +71,45 @@ $évaluations = EvaluationsTable()->selectAll();
 $avatarJoueurEtCommentaire =<<<HTML
 HTML;
 $commentairesHTML = <<<HTML
+ 
 HTML;
 
-//Pour chaque évaluations
-foreach($évaluations as $eval){
-    if($eval->Commentaire !=null){
 
-        $joueur = JoueursTable()->selectById($eval->idJoueur)[0];
-        $isAdmin = $joueur->estAdmin;
-	    $isAlchimiste = $joueur->estAlchimiste;
+//Pour chaque évaluations
+foreach($évaluations as $eval){ 
+  
+    if($eval->Commentaire !=null){
+        $joueur = JoueursTable()->selectWhere("id = $eval->IdJoueur")[0];
+        $isAdmin = $joueur->isAdmin();
+	    $isAlchimiste = $joueur->isAlchimiste();
+        $commentaire = $eval->Commentaire;
         
         if($isAdmin){
             $avatarJoueurEtCommentaire =<<<HTML
                 <div class="chip">
                     <img src="./images/admin.png" alt="$joueur->Alias" width="96" height="96">
                     $joueur->Alias :        <!--Avatar selon admin/alchimiste/normal -->
-                    $eval -> Commentaire    <!--Commentaire-->
+                    $commentaire            <!--Commentaire-->
                 </div>
+                <br>
 HTML;
         }else if ($isAlchimiste){
             $avatarJoueurEtCommentaire =<<<HTML
                 <div class="chip">
                     <img src="./images/alchimiste.png" alt="$joueur->Alias" width="96" height="96">
                     $joueur->Alias :        <!--Avatar selon admin/alchimiste/normal -->
-                    $eval -> Commentaire    <!--Commentaire-->
+                    $commentaire            <!--Commentaire-->
                 </div>
+            <br>
 HTML;
         } else{
             $avatarJoueurEtCommentaire =<<<HTML
             <div class="chip">
                 <img src="./images/chevalier.png" alt="$joueur->Alias" width="96" height="96">
                 $joueur->Alias :           <!--Avatar selon admin/alchimiste/normal -->
-                $eval -> Commentaire       <!--Commentaire-->
+                $commentaire              <!--Commentaire-->
             </div>
+            <br>
 HTML;
         }
 

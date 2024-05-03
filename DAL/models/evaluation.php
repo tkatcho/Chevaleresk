@@ -10,7 +10,7 @@ class Evaluation extends Record
     public $Commentaire;
     public function __construct($recordData = null)
     {
-        $this->idJoueur = 0;
+        $this->IdJoueur = 0;
         $this->idItem = 0;
         $this->Etoile = 0;
         $this->Commentaire = "";
@@ -22,6 +22,10 @@ class Evaluation extends Record
         {
             $this->Etoile = $etoile;   
         }
+    }
+    public function setIdJoueur($idJoueur)
+    {
+        $this->IdJoueur = $idJoueur;
     }
     public function setCommentaire($commentaire)
     {

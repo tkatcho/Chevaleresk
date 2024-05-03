@@ -41,12 +41,6 @@ function évaluerEtCommenter($idJoueur, $idItem)
             <a href="voirEvaluation.php?idItem=$idItem">Voir évaluations <i class="fa fa-comments"></i></a>
         </button>
 HTML;
-    }else {
-        return <<<HTML
-        <button class="btnÉvaluerCommenter">
-            <a href="voirEvaluation.php?idItem=$idItem">Voir évaluations <i class="fa fa-comments"></i></a>
-        </button>
-HTML;
     }
     
    
@@ -67,6 +61,8 @@ HTML;
             $addToCartBouton = addToCartButton($_SESSION['id'], $id, 1);
             $buttonÉvaluerCommentaire = évaluerEtCommenter($_SESSION['id'], $id);
         }
+       
+    
            
           
         if ($item->Type == 'P')
