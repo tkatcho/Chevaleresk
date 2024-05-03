@@ -40,7 +40,7 @@ function pourcentage($nbÉtoiles)
     foreach($toutesévaluations as $eval){
         $nbÉvaluationsTotales ++;
     }
-    return $pourcentage / $nbÉvaluationsTotales;
+    return (int) (($pourcentage / $nbÉvaluationsTotales) * 100);
 }
 for($x=5; $x>=1; $x--){  //Pour chaque nb étoiles : nb étoile | progress-bar | pourcentage %
     $pourcentage = pourcentage($x);
@@ -52,7 +52,7 @@ for($x=5; $x>=1; $x--){  //Pour chaque nb étoiles : nb étoile | progress-bar |
     </div>
     <div class="évaluationsProgress-bar">
         <div class="bar-container">  
-            <div style="width: $pourcentage%; height: 18px; background-color: #04AA6D; " ></div> <!--La progress-bar (voir évaluations.css ligne 86)-->
+            <div style="width: $pourcentage%; height: 18px; background-color: #04AA6D; " ></div> <!--La progress-bar -->
         </div> 
     </div>
     <div class="évalutionsNbÉtoiles évaluationsPourcentage ">
