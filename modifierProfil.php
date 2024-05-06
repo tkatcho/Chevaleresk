@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
     $joueur;
     if ($_POST['confirmPassword'] != $_POST['motDePasse']) {
         $validUser = false;
-        redirect('signupForm.php?error=confirmPasswordFailed');
+        redirect('modifierProfilForm.php?error=confirmPasswordFailed');
     }
 
     if (!JoueursTable()->aliasExist($_POST['alias']) || JoueursTable()->aliasExist($_POST['alias']) == $_SESSION['alias']) {
@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
         JoueursTable()->update($joueur);
         //ajouter min max requirements on html
 
-        //redirect('loginForm.php');
+        redirect('loginForm.php');
     }
 
     //redirect('loginForm.php');
