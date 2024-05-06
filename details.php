@@ -36,12 +36,20 @@ HTML;
 
 function évaluerEtCommenter($idJoueur, $idItem)
 {
-    if(InventairesTable()->selectWhere("idJoueur = $idJoueur AND idItem = $idItem")){
-        return <<<HTML
-        <button class="btnÉvaluerCommenter">
-            <a>Évaluer et commenter <i class="fa fa-comments"></i></a>
-        </button>
+    if (InventairesTable()->selectWhere("idJoueur = $idJoueur AND idItem = $idItem")){
+        if (EvaluationsTable()->selectWhere("idJoueur = $idJoueur AND idItem = $idItem") == null) {
+            return <<<HTML
+                <button class="btnÉvaluerCommenter">
+                    <a>Évaluer et commenter <i class="fa fa-comments"></i></a>
+                </button>
 HTML;
+        } else {
+            return <<<HTML
+                <button class="btnDejaEvaluer">
+                    <a href="" title="Aller à votre commentaire">Vous avez déja commenté</a>
+                </button>
+HTML;
+        }
     }
     return "";
    
