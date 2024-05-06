@@ -45,8 +45,8 @@ function évaluerEtCommenter($idJoueur, $idItem)
 HTML;
         } else {
             return <<<HTML
-                <button class="btnDejaEvaluer">
-                    <a href="" title="Aller à votre commentaire">Vous avez déja commenté</a>
+                <button class="btnÉvaluerCommenter btnDejaEvaluer" disabled>
+                    <a>Vous avez déja commenté</a>
                 </button>
 HTML;
         }

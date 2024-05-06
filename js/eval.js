@@ -35,7 +35,9 @@ $(() => {
                         },
                         success: (response) => {
                             Swal.fire("Évaluation publié", response.message, "success");
-                            partialRefresh.refresh();
+                            $('.btnÉvaluerCommenter').addClass('btnDejaEvaluer');
+                            $('.btnÉvaluerCommenter').prop('disabled', true);
+                            $('.btnÉvaluerCommenter a').text('Vous avez déja commenté');
                         },
                         error: (xhr, status, error) => {
                             Swal.fire("Erreur", `Évaluation non-publié: ${error}`, "error");
