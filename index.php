@@ -54,19 +54,6 @@ $viewMenu = '
 
 
 $content = <<<HTML
-    <script>
-        // A venir, on devrait remplacer les lien pour des fonctions AJAX et afficher des popups d'erreur ou de succès
-        //
-        // $('.lienAjouterPanier').on("click", function() {
-        //     Swal.fire({
-        //         position: "top-end",
-        //         icon: "success",
-        //         title: "L'item a été ajouter au panier",
-        //         showConfirmButton: true,
-        //         timer: 1000
-        //     });
-        // });
-    </script>
     <div class="headerMenusContainer">
     <span>&nbsp</span> <!--filler-->
             <div class="dropdown ms-auto dropdownLayout">

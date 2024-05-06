@@ -54,3 +54,11 @@
 .idItem {
     font-size: 16px !important;
 }
+
+.btnÉvaluerCommenter {
+    color: white;
+}
+
+#commentForm {
+    height: 200px;
+}

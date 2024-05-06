@@ -16,6 +16,12 @@ class Evaluation extends Record
         $this->Commentaire = "";
         parent::__construct($recordData);
     }
+    public function setIdItem($idItem) {
+        $this->idItem = $idItem;
+    }
+    public function setIdJoueur($idJoueur) {
+        $this->idJoueur = $idJoueur;
+    }
     public function setEtoile($etoile)
     {
         if ($etoile >= 0 && $etoile <= 5)

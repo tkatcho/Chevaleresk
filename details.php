@@ -3,6 +3,11 @@ require_once 'DAL/ChevalereskDB.php';
 require 'php/sessionManager.php';
 require_once 'php/config.php';
 
+$scripts = <<<HTML
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/eval.js"></script>
+HTML;
+
 if (isset($_GET["idItem"])) {
     $id = $_GET["idItem"];
     $item = ItemsTable()->get($id);
@@ -34,7 +39,7 @@ function évaluerEtCommenter($idJoueur, $idItem)
     if(InventairesTable()->selectWhere("idJoueur = $idJoueur AND idItem = $idItem")){
         return <<<HTML
         <button class="btnÉvaluerCommenter">
-            <a href="evaluerCommenter.php?idJoueur=$idJoueur&idItem=$idItem">Évaluer et commenter <i class="fa fa-comments"></i></a>
+            <a>Évaluer et commenter <i class="fa fa-comments"></i></a>
         </button>
 HTML;
     }
