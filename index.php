@@ -41,7 +41,7 @@ $viewMenu = '
     <p> <input id="arme" type="checkbox" name="filtre[]" value="arme" ' . (isset($checkedValues['arme']) ? 'checked' : '') . '> <i class="fa-solid fa-staff-snake"></i></i> <label for="arme">Armes</label> </p>
     <p> <input id="potion" type="checkbox" name="filtre[]" value="potion" ' . (isset($checkedValues['potion']) ? 'checked' : '') . '> <i class="fa-solid fa-flask-vial"></i></i> <label for="potion">Potions</label> </p>
     <p> <input id="element" type="checkbox" name="filtre[]" value="element" ' . (isset($checkedValues['element']) ? 'checked' : '') . '> <i class="fa-solid fa-wand-sparkles"></i></i> <label for="element">Éléments</label> </p>
-    <p> <input id="etoile" type="number" name="filtre[]" value="etoile" ' . (isset($checkedValues['etoile']) ? 'checked' : '') . '> <i class="fa-solid fa fa-star"></i></i> <label for="element">Étoiles</label> </p>
+    <p> <input id="etoile" type="number" name="filtre[]" value="etoile" ' . (isset($checkedValues['etoile']) ? 'checked' : '') . '> <i class="fa-solid fa fa-star"></i></i> <label for="etoile">Étoiles</label> </p>
     <input type="hidden" name="nom" value="' . htmlspecialchars($recherche) . '"> <!-- Hidden field for search term -->
 </form>
 
@@ -50,24 +50,13 @@ $viewMenu = '
 
     form.addEventListener("change", function() {
         this.submit();
+        window.location.href = "index.php?etoile=" + this.getAttribute(document.getElementById("etoile").value);
     });
 </script>';
 
 
 $content = <<<HTML
-    <script>
-        // A venir, on devrait remplacer les lien pour des fonctions AJAX et afficher des popups d'erreur ou de succès
-        //
-        // $('.lienAjouterPanier').on("click", function() {
-        //     Swal.fire({
-        //         position: "top-end",
-        //         icon: "success",
-        //         title: "L'item a été ajouter au panier",
-        //         showConfirmButton: true,
-        //         timer: 1000
-        //     });
-        // });
-    </script>
+ 
     <div class="headerMenusContainer">
     <span>&nbsp</span> <!--filler-->
             <div class="dropdown ms-auto dropdownLayout">
@@ -88,12 +77,33 @@ $content = <<<HTML
                     </div>
                     <div class="dropdown-menu noselect">
                         $viewMenu
+                    
                     </div>
                 </div>
                 
             </div>
     <hr>
+    <script>
+        const formm = document.getElementById("formFiltre");
+
+        formm.addEventListener("change", function() {
+        this.submit();
+        window.location.href = "index.php?etoile=" + this.getAttribute(document.getElementById("etoile").value);
+        });
+        // A venir, on devrait remplacer les lien pour des fonctions AJAX et afficher des popups d'erreur ou de succès
+        //
+        // $('.lienAjouterPanier').on("click", function() {
+        //     Swal.fire({
+        //         position: "top-end",
+        //         icon: "success",
+        //         title: "L'item a été ajouter au panier",
+        //         showConfirmButton: true,
+        //         timer: 1000
+        //     });
+        // });
+    </script>
 HTML;
+
 
 function addToCartButton($idJoueur, $idItem, $qt)
 {
@@ -120,28 +130,31 @@ if ($recherche !== '') {
 
 if ($items != null) {
 
-    $nb_étoiles_filtre= in_array("etoile", $sortType);
-    $évaluations_avec_filtre = EvaluationsTable()->selectWhere("etoile = $nb_étoiles_filtre");
-    
+    $nb_étoiles_filtre = in_array("etoile", $sortType);
+    //$évaluations_avec_filtre = EvaluationsTable()->selectWhere("etoile = $nb_étoiles_filtre");
+
     if (!in_array("all", $sortType)) {
         usort($items, function ($a, $b) {
             return $a->Prix - $b->Prix;
         });
     }
-   
-   // $évaluations_avec_filtre = EvaluationsTable()->selectWhere("etoile = $nb_étoiles_filtre");
 
-    foreach ($items as $item) { 
+    // $évaluations_avec_filtre = EvaluationsTable()->selectWhere("etoile = $nb_étoiles_filtre");
+
+    foreach ($items as $item) {
         $addToCartBouton = "";
         if ($isConnected)
             $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
 
-        if($nb_étoiles_filtre && !in_array($item->id,$évaluations_avec_fitlre)){
+        $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
+        $moyenne = $moyenne[0];
+
+        if ($nb_étoiles_filtre && $_GET["etoile"] != $moyenne) {
             break;
         }
-        
+
         if ($item->Type == 'P') { // Potions
-            if (in_array("potion", $sortType) || in_array("all", $sortType) ) {
+            if (in_array("potion", $sortType) || in_array("all", $sortType)) {
                 $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
                 $type = "Défence";
                 if ($potion->estAttaque)
