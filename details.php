@@ -31,6 +31,7 @@ HTML;
 
 function évaluerEtCommenter($idJoueur, $idItem)
 {
+   
     if(InventairesTable()->selectWhere("idJoueur = $idJoueur AND idItem = $idItem")){
         return <<<HTML
         <button class="btnÉvaluerCommenter">

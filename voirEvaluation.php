@@ -21,36 +21,42 @@ $itemsDisplay = <<<HTML
     <div class="évaluationsContainer">
 HTML;
 
-//MOYENNE & AFFICHER LES ÉTOILES
-$moyenne =DB()->querySqlCmd("SELECT moyenneEvaluation();")[0];  
+//Nb évaluations au total
+$toutesévaluationsItem = EvaluationsTable()->selectWhere("idItem = $id");
+$nbÉvaluationsTotales =count($toutesévaluationsItem);
 
+//MOYENNE & AFFICHER LES ÉTOILES
 $étoilesCochées=<<<HTML
 HTML;
-for($x=0;$x< 5; $x++){
-    if($x < $moyenne[0]){
-        $étoilesCochées.=<<<HTML
-        <span class="fa fa-star étoileChecked"></span>
-HTML;
-    }else{
-        $étoilesCochées.=<<<HTML
-        <span class="fa fa-star"></span>
-HTML;
-    }
-}
-$moyenne= sanitizeString($moyenne[0]);
 
-//Nb évaluations au total
-$toutesévaluations = EvaluationsTable()->selectall();
-$nbÉvaluationsTotales =count($toutesévaluations);
+$moyenne =DB()->querySqlCmd("SELECT moyenneEvaluation($id);")[0]; 
+
+
+    for($x=0;$x< 5; $x++){
+        if($x < $moyenne[0]){
+            $étoilesCochées.=<<<HTML
+            <span class="fa fa-star étoileChecked"></span>
+    HTML;
+        }else{
+            $étoilesCochées.=<<<HTML
+            <span class="fa fa-star"></span>
+    HTML;
+        }
+    }
+    
+$moyenne= sanitizeString($moyenne[0]);
+if($nbÉvaluationsTotales ==0)
+    $moyenne=0;
 
 //ÉTOILES : PROGRESS-BAR
 $évaluations_nbÉtoiles=<<<HTML
 HTML;
 
 //Pourcentage 
-function pourcentage($nbÉtoiles, $nbÉvaluationsTotales)
+
+function pourcentage($nbÉtoiles, $nbÉvaluationsTotales, $id)
 {
-    $évaluations = EvaluationsTable()->selectWhere("Etoile = $nbÉtoiles");
+    $évaluations = EvaluationsTable()->selectWhere("Etoile = $nbÉtoiles and idItem = $id");
     $pourcentage=0;
     foreach($évaluations as $eval){
         $pourcentage ++;
@@ -58,33 +64,32 @@ function pourcentage($nbÉtoiles, $nbÉvaluationsTotales)
     return (int) (($pourcentage / $nbÉvaluationsTotales) * 100);
 }
 
-for($x=5; $x>=1; $x--){  //Pour chaque nb étoiles : nb étoile | progress-bar | pourcentage %
-    $pourcentage = pourcentage($x, $nbÉvaluationsTotales );
-
-    $évaluations_nbÉtoiles .=<<<HTML
-    <div class="évaluationsRow">
-    <div class="évalutionsNbÉtoiles">
-        <div>$x  <i class="fa fa-star étoileChecked "></i></div>
-    </div>
-    <div class="évaluationsProgress-bar">
-        <div class="bar-container">  
-            <div style="width: $pourcentage%; height: 18px; background-color: #04AA6D; " ></div> <!--La progress-bar -->
-        </div> 
-    </div>
-    <div class="évalutionsNbÉtoiles évaluationsPourcentage ">
-        <div>$pourcentage %</div>  
-    </div>
-    <br>
-    </div>
-
+if($nbÉvaluationsTotales !=0){
+    for($x=5; $x>=1; $x--){  //Pour chaque nb étoiles : nb étoile | progress-bar | pourcentage %
+        $pourcentage = pourcentage($x, $nbÉvaluationsTotales, $id );
+    
+        $évaluations_nbÉtoiles .=<<<HTML
+        <div class="évaluationsRow">
+        <div class="évalutionsNbÉtoiles">
+            <div>$x  <i class="fa fa-star étoileChecked "></i></div>
+        </div>
+        <div class="évaluationsProgress-bar">
+            <div class="bar-container">  
+                <div style="width: $pourcentage%; height: 18px; background-color: #04AA6D; " ></div> <!--La progress-bar -->
+            </div> 
+        </div>
+        <div class="évalutionsNbÉtoiles évaluationsPourcentage ">
+            <div>$pourcentage %</div>  
+        </div>
+        <br>
+        </div>
+    
 HTML;
+    }
 }
-
-
 
 //COMMENTAIRES
 //Avatar des joueurs + commentaires
-$évaluations = EvaluationsTable()->selectAll();
 
 $avatarJoueurEtCommentaire =<<<HTML
 HTML;
@@ -92,33 +97,36 @@ $commentairesHTML = <<<HTML
 HTML;
 
 //Pour chaque évaluations: alias + commentaire
-foreach($évaluations as $eval){ 
+if($nbÉvaluationsTotales !=0){
+    foreach($toutesévaluationsItem as $eval){ 
   
-    if($eval->Commentaire !=null){
-        $joueur = JoueursTable()->selectWhere("id = $eval->IdJoueur")[0];
-        $isAdmin = $joueur->isAdmin();
-	    $isAlchimiste = $joueur->isAlchimiste();
-        $commentaire = $eval->Commentaire;
-
-        //avatar
-        $avatar="./images/chevalier.png";
-        if($isAdmin){
-            $avatar= "./images/admin.png";
-        }else if ($isAlchimiste){
-            $avatar= "./images/alchimiste.png";
-        } 
-
-        $avatarJoueurEtCommentaire =<<<HTML
-        <div class="chip">
-            <img src=$avatar alt="$joueur->Alias" width="96" height="96">
-            $joueur->Alias :        <!--Avatar selon admin/alchimiste/normal -->
-            $commentaire            <!--Commentaire-->
-        </div>
-        <br>
-HTML;
-        $commentairesHTML .= $avatarJoueurEtCommentaire;
+        if($eval->Commentaire !=null){
+            $joueur = JoueursTable()->selectWhere("id = $eval->IdJoueur")[0];
+            $isAdmin = $joueur->isAdmin();
+            $isAlchimiste = $joueur->isAlchimiste();
+            $commentaire = $eval->Commentaire;
+    
+            //avatar
+            $avatar="./images/chevalier.png";
+            if($isAdmin){
+                $avatar= "./images/admin.png";
+            }else if ($isAlchimiste){
+                $avatar= "./images/alchimiste.png";
+            } 
+    
+            $avatarJoueurEtCommentaire =<<<HTML
+            <div class="chip">
+                <img src=$avatar alt="$joueur->Alias" width="96" height="96">
+                $joueur->Alias :        <!--Avatar selon admin/alchimiste/normal -->
+                $commentaire            <!--Commentaire-->
+            </div>
+            <br>
+    HTML;
+            $commentairesHTML .= $avatarJoueurEtCommentaire;
+        }
     }
 }
+
 
 
 if ($item != null) {

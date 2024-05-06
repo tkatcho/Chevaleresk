@@ -308,9 +308,9 @@ DELIMITER ;
 
 --moyenne des évaluations
 DELIMITER |
-CREATE FUNCTION moyenneEvaluation(In idItem INT) returns integer
+CREATE FUNCTION moyenneEvaluation(id INT) returns integer
 BEGIN
     DECLARE moyenne integer;
-    SELECT AVG(etoile) INTO moyenne FROM evaluations WHERE idItem = id;
+    SELECT AVG(etoile) INTO moyenne FROM evaluations WHERE idItem= id;
     RETURN moyenne;
 END|

@@ -11,6 +11,7 @@ class Item extends Record
     public $Photo;
     public function __construct($recordData = null)
     {
+     
         $this->Nom = "";
         $this->Type = "";
         $this->QuantiteStock = 0;
@@ -18,6 +19,7 @@ class Item extends Record
         $this->Photo = "";
         parent::__construct($recordData);
     }
+   
     public function setNom($nom)
     {
         $this->Nom = $nom;
