@@ -21,15 +21,31 @@ $itemsDisplay = <<<HTML
     <div class="évaluationsContainer">
 HTML;
 
-//ÉTOILES : PROGRESS-BAR
-$évaluations_nbÉtoiles=<<<HTML
+//MOYENNE & AFFICHER LES ÉTOILES
+$moyenne =DB()->querySqlCmd("SELECT moyenneEvaluation();")[0];  
+
+$étoilesCochées=<<<HTML
 HTML;
+for($x=0;$x< 5; $x++){
+    if($x < $moyenne[0]){
+        $étoilesCochées.=<<<HTML
+        <span class="fa fa-star étoileChecked"></span>
+HTML;
+    }else{
+        $étoilesCochées.=<<<HTML
+        <span class="fa fa-star"></span>
+HTML;
+    }
+}
+$moyenne= sanitizeString($moyenne[0]);
 
 //Nb évaluations au total
-
 $toutesévaluations = EvaluationsTable()->selectall();
 $nbÉvaluationsTotales =count($toutesévaluations);
 
+//ÉTOILES : PROGRESS-BAR
+$évaluations_nbÉtoiles=<<<HTML
+HTML;
 
 //Pourcentage 
 function pourcentage($nbÉtoiles, $nbÉvaluationsTotales)
@@ -65,22 +81,7 @@ HTML;
 }
 
 
-//Moyenne
-$moyenne =DB()->querySqlCmd("SELECT moyenneEvaluation();")[0];
 
-
-$étoilesCochées=<<<HTML
-HTML;
-for($x=0;$x< $moyenne[0]; $x++){
-    $étoilesCochées.=<<<HTML
-    <span class="fa fa-star étoileChecked"></span>
-HTML;
-}
-for($x=$moyenne[0];$x< 5; $x++){
-    $étoilesCochées.=<<<HTML
-    <span class="fa fa-star"></span>
-HTML;
-}
 //COMMENTAIRES
 //Avatar des joueurs + commentaires
 $évaluations = EvaluationsTable()->selectAll();
@@ -88,11 +89,9 @@ $évaluations = EvaluationsTable()->selectAll();
 $avatarJoueurEtCommentaire =<<<HTML
 HTML;
 $commentairesHTML = <<<HTML
- 
 HTML;
 
-
-//Pour chaque évaluations
+//Pour chaque évaluations: alias + commentaire
 foreach($évaluations as $eval){ 
   
     if($eval->Commentaire !=null){
@@ -100,41 +99,27 @@ foreach($évaluations as $eval){
         $isAdmin = $joueur->isAdmin();
 	    $isAlchimiste = $joueur->isAlchimiste();
         $commentaire = $eval->Commentaire;
-        
-        if($isAdmin){
-            $avatarJoueurEtCommentaire =<<<HTML
-                <div class="chip">
-                    <img src="./images/admin.png" alt="$joueur->Alias" width="96" height="96">
-                    $joueur->Alias :        <!--Avatar selon admin/alchimiste/normal -->
-                    $commentaire            <!--Commentaire-->
-                </div>
-                <br>
-HTML;
-        }else if ($isAlchimiste){
-            $avatarJoueurEtCommentaire =<<<HTML
-                <div class="chip">
-                    <img src="./images/alchimiste.png" alt="$joueur->Alias" width="96" height="96">
-                    $joueur->Alias :        <!--Avatar selon admin/alchimiste/normal -->
-                    $commentaire            <!--Commentaire-->
-                </div>
-            <br>
-HTML;
-        } else{
-            $avatarJoueurEtCommentaire =<<<HTML
-            <div class="chip">
-                <img src="./images/chevalier.png" alt="$joueur->Alias" width="96" height="96">
-                $joueur->Alias :           <!--Avatar selon admin/alchimiste/normal -->
-                $commentaire              <!--Commentaire-->
-            </div>
-            <br>
-HTML;
-        }
 
+        //avatar
+        $avatar="./images/chevalier.png";
+        if($isAdmin){
+            $avatar= "./images/admin.png";
+        }else if ($isAlchimiste){
+            $avatar= "./images/alchimiste.png";
+        } 
+
+        $avatarJoueurEtCommentaire =<<<HTML
+        <div class="chip">
+            <img src=$avatar alt="$joueur->Alias" width="96" height="96">
+            $joueur->Alias :        <!--Avatar selon admin/alchimiste/normal -->
+            $commentaire            <!--Commentaire-->
+        </div>
+        <br>
+HTML;
         $commentairesHTML .= $avatarJoueurEtCommentaire;
     }
 }
 
-$moyenne= sanitizeString($moyenne[0]);
 
 if ($item != null) {
         $itemsDisplay .= <<<HTML
