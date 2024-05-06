@@ -56,7 +56,7 @@ for($x=5; $x>=1; $x--){  //Pour chaque nb étoiles : nb étoile | progress-bar |
         </div> 
     </div>
     <div class="évalutionsNbÉtoiles évaluationsPourcentage ">
-        <div>$pourcentage %</div>   <!--TODO: aller mettre dans le width de la bar le pourcentage-->
+        <div>$pourcentage %</div>  
     </div>
     <br>
     </div>
@@ -65,8 +65,22 @@ HTML;
 }
 
 
- 
+//Moyenne
+$moyenne =DB()->querySqlCmd("SELECT moyenneEvaluation();")[0];
 
+
+$étoilesCochées=<<<HTML
+HTML;
+for($x=0;$x< $moyenne[0]; $x++){
+    $étoilesCochées.=<<<HTML
+    <span class="fa fa-star étoileChecked"></span>
+HTML;
+}
+for($x=$moyenne[0];$x< 5; $x++){
+    $étoilesCochées.=<<<HTML
+    <span class="fa fa-star"></span>
+HTML;
+}
 //COMMENTAIRES
 //Avatar des joueurs + commentaires
 $évaluations = EvaluationsTable()->selectAll();
@@ -119,13 +133,8 @@ HTML;
         $commentairesHTML .= $avatarJoueurEtCommentaire;
     }
 }
-	
-//TODO: Appeler fonction pour la moyenne correctement 
-$moyenne =DB()->querySqlCmd("SELECT moyenneEvaluation();")[0];
-//$moyenne = EvaluationsTable()->getAvg('etoile')[0];
-print_r($moyenne);
-//echo sanitizeString($moyenne);
-$moyenne=0;
+
+$moyenne= sanitizeString($moyenne[0]);
 
 if ($item != null) {
         $itemsDisplay .= <<<HTML
@@ -140,11 +149,7 @@ if ($item != null) {
                 <hr>
                 <div class="étoilesContainer">
                     <div class="étoilesContainerItem">
-                        <span class="fa fa-star étoileChecked"></span>
-                        <span class="fa fa-star étoileChecked"></span>
-                        <span class="fa fa-star étoileChecked"></span>
-                        <span class="fa fa-star "></span>
-                        <span class="fa fa-star "></span>
+                        $étoilesCochées
                     </div>
                     <span> $moyenne / 5 </span>
                 </div>
