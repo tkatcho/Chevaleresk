@@ -120,10 +120,12 @@ HTML;
     }
 }
 	
-//$moyenne =DB()->querySqlCmd("SELECT moyenneEvaluation();")[0];
-
-$moyenne = EvaluationsTable()->getAvg('etoile')[0];
-echo sanitizeString($moyenne);
+//TODO: Appeler fonction pour la moyenne correctement 
+$moyenne =DB()->querySqlCmd("SELECT moyenneEvaluation();")[0];
+//$moyenne = EvaluationsTable()->getAvg('etoile')[0];
+print_r($moyenne);
+//echo sanitizeString($moyenne);
+$moyenne=0;
 
 if ($item != null) {
         $itemsDisplay .= <<<HTML
