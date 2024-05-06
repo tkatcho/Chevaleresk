@@ -41,6 +41,7 @@ $viewMenu = '
     <p> <input id="arme" type="checkbox" name="filtre[]" value="arme" ' . (isset($checkedValues['arme']) ? 'checked' : '') . '> <i class="fa-solid fa-staff-snake"></i></i> <label for="arme">Armes</label> </p>
     <p> <input id="potion" type="checkbox" name="filtre[]" value="potion" ' . (isset($checkedValues['potion']) ? 'checked' : '') . '> <i class="fa-solid fa-flask-vial"></i></i> <label for="potion">Potions</label> </p>
     <p> <input id="element" type="checkbox" name="filtre[]" value="element" ' . (isset($checkedValues['element']) ? 'checked' : '') . '> <i class="fa-solid fa-wand-sparkles"></i></i> <label for="element">Éléments</label> </p>
+    <p> <input id="etoile" type="number" name="filtre[]" value="etoile" ' . (isset($checkedValues['etoile']) ? 'checked' : '') . '> <i class="fa-solid fa fa-star"></i></i> <label for="element">Étoiles</label> </p>
     <input type="hidden" name="nom" value="' . htmlspecialchars($recherche) . '"> <!-- Hidden field for search term -->
 </form>
 
@@ -119,20 +120,28 @@ if ($recherche !== '') {
 
 if ($items != null) {
 
+    $nb_étoiles_filtre= in_array("etoile", $sortType);
+    $évaluations_avec_filtre = EvaluationsTable()->selectWhere("etoile = $nb_étoiles_filtre");
+    
     if (!in_array("all", $sortType)) {
         usort($items, function ($a, $b) {
             return $a->Prix - $b->Prix;
         });
     }
+   
+   // $évaluations_avec_filtre = EvaluationsTable()->selectWhere("etoile = $nb_étoiles_filtre");
 
-    foreach ($items as $item) {
-
+    foreach ($items as $item) { 
         $addToCartBouton = "";
         if ($isConnected)
             $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
 
+        if($nb_étoiles_filtre && !in_array($item->id,$évaluations_avec_fitlre)){
+            break;
+        }
+        
         if ($item->Type == 'P') { // Potions
-            if (in_array("potion", $sortType) || in_array("all", $sortType)) {
+            if (in_array("potion", $sortType) || in_array("all", $sortType) ) {
                 $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
                 $type = "Défence";
                 if ($potion->estAttaque)
