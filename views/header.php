@@ -141,6 +141,14 @@ HTML;
                 $logoutButton
             </div>
 HTML;
+    }else if(  $viewTitle == "Modifier votre profil"){
+        $buttonRetour = buttonRetour('optionsJeu.php');
+        $loggedUserMenu = <<<HTML
+            $buttonRetour
+            <div class="buttonOnSide">
+                $logoutButton
+            </div>
+HTML;
     }
 //JOUEUR PAS CONNECTÉ
 } else {  
