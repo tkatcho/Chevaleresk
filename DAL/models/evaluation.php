@@ -29,10 +29,6 @@ class Evaluation extends Record
             $this->Etoile = $etoile;   
         }
     }
-    public function setIdJoueur($idJoueur)
-    {
-        $this->IdJoueur = $idJoueur;
-    }
     public function setCommentaire($commentaire)
     {
         $this->Commentaire = $commentaire;
