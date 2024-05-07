@@ -51,7 +51,7 @@ HTML;
 HTML;
         }
     }
-    
+    return "";
    
 }
 
@@ -70,8 +70,6 @@ HTML;
             $addToCartBouton = addToCartButton($_SESSION['id'], $id, 1);
             $buttonÉvaluerCommentaire = évaluerEtCommenter($_SESSION['id'], $id);
         }
-       
-    
            
           
         if ($item->Type == 'P')
