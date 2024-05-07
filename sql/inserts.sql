@@ -201,3 +201,9 @@ INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('10','17','8');
 INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('10','18','8');
 INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('10','19','8');
 INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('10','20','2');
+
+
+--Évaluations
+INSERT INTO evaluations(idItem, idJoueur, etoile, commentaire) VALUES ( '5', '1', '3', 'Wow trop cool');
+INSERT INTO evaluations(idItem, idJoueur, etoile, commentaire) VALUES ( '5', '3', '2', 'Oh lala. Trop wow');
+INSERT INTO evaluations(idItem, idJoueur, etoile, commentaire) VALUES ( '5', '8', '5', 'Damnnnnnnnnnnnnnnnnnn');
