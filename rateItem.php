@@ -10,7 +10,7 @@ $comment = $_POST['comment'];
 
 if ($stars >= 1 && $stars <= 5 && EvaluationsTable()->selectWhere("idJoueur = $userId AND idItem = $itemId") == null) {
     $eval = new Evaluation();
-    $eval->setIdItem($itemId);
+    $eval->idItem = $itemId;
     $eval->idJoueur = $userId;
     $eval->Etoile = $stars;
     $eval->Commentaire = $comment;

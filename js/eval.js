@@ -3,7 +3,7 @@ $(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const itemId = urlParams.get('idItem');
 
-    $('.btnÉvaluerCommenter').click(function() {
+    $('.btnÉvaluerCommenter:nth-of-type(1)').click(function() {
         Swal.fire({
             title: "Évaluation",
             html: `
@@ -35,9 +35,9 @@ $(() => {
                         },
                         success: (response) => {
                             Swal.fire("Évaluation publié", response.message, "success");
-                            $('.btnÉvaluerCommenter').addClass('btnDejaEvaluer');
-                            $('.btnÉvaluerCommenter').prop('disabled', true);
-                            $('.btnÉvaluerCommenter a').text('Vous avez déja commenté');
+                            $('.btnÉvaluerCommenter:nth-of-type(1)').addClass('btnDejaEvaluer');
+                            $('.btnÉvaluerCommenter:nth-of-type(1)').prop('disabled', true);
+                            $('.btnÉvaluerCommenter:nth-of-type(1) a').text('Vous avez déja commenté');
                         },
                         error: (xhr, status, error) => {
                             Swal.fire("Erreur", `Évaluation non-publié: ${error}`, "error");
