@@ -130,15 +130,22 @@ if ($recherche !== '') {
 }
 
 if ($items != null) {
-
-    //$évaluations_avec_filtre = EvaluationsTable()->selectWhere("etoile = $nb_étoiles_filtre");
-
+    $itemsMoyenne=0;
     if (!in_array("all", $sortType)) {
         usort($items, function ($a, $b) {
             return $a->Prix - $b->Prix;
         });
     }
-   
+    
+    if(in_array("3", $sortType)){
+        $nb=3;
+        $itemsMoyenne = DB()->nonQuerySqlCmd("CALL itemsNbÉtoiles($nb);");   
+        echo $itemsMoyenne;
+       
+    }
+
+        
+    
     /*if(in_array("1", $sortType)){
         echo "1";
         $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
@@ -184,14 +191,27 @@ if ($items != null) {
            break;
         }
     }*/
-    // $évaluations_avec_filtre = EvaluationsTable()->selectWhere("etoile = $nb_étoiles_filtre");
     
+   /* if($itemsMoyenne!=0 ){
+        $newItems=[];
+        foreach ($items as $item) {
+            if($itemsMoyenne ==$item->Id){
+                array_push($newItems, $item);
+            }
+        }
+        $items=[];
+        
+        foreach($newItems as $newItem){
+            array_push($items,ItemsTable()->selectById($newItem));
+        }
+       
+    }*/
     foreach ($items as $item) {
         $addToCartBouton = "";
         if ($isConnected)
             $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
 
-        
+       
         /*echo $_GET["etoile"];
         if ($nb_étoiles_filtre && $_GET["etoile"] != $moyenne) {
             break;

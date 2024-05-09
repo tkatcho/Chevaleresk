@@ -314,3 +314,17 @@ BEGIN
     SELECT AVG(etoile) INTO moyenne FROM evaluations WHERE idItem= id;
     RETURN moyenne;
 END|
+
+-- Chercher tous les items qui ont un certain nb d'étoiles
+DELIMITER //
+
+CREATE PROCEDURE itemsNbÉtoiles(IN nb_étoiles INT)
+BEGIN
+    SELECT items.id
+    FROM items 
+    INNER JOIN evaluations ON items.id = evaluations.idItem 
+    GROUP BY items.id 
+    HAVING CAST(AVG(evaluations.etoile) AS UNSIGNED) = nb_etoiles;
+END//
+
+DELIMITER ;
