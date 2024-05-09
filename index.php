@@ -41,14 +41,7 @@ $viewMenu = '
     <p> <input id="arme" type="checkbox" name="filtre[]" value="arme" ' . (isset($checkedValues['arme']) ? 'checked' : '') . '> <i class="fa-solid fa-staff-snake"></i></i> <label for="arme">Armes</label> </p>
     <p> <input id="potion" type="checkbox" name="filtre[]" value="potion" ' . (isset($checkedValues['potion']) ? 'checked' : '') . '> <i class="fa-solid fa-flask-vial"></i></i> <label for="potion">Potions</label> </p>
     <p> <input id="element" type="checkbox" name="filtre[]" value="element" ' . (isset($checkedValues['element']) ? 'checked' : '') . '> <i class="fa-solid fa-wand-sparkles"></i></i> <label for="element">Éléments</label> </p>
-    <hr>
-    <p><i class="fa-solid fa fa-star"></i>Étoiles</p>
-    <p> <input id="etoile1" type="checkbox" name="filtre[]" value="1" ' . (isset($checkedValues['1']) ? 'checked' : '') . '> <i class="fa-solid fa fa-star"></i></i> <label for="etoile1">1 étoile ou plus</label> </p>
-    <p> <input id="etoile2" type="checkbox" name="filtre[]" value="2" ' . (isset($checkedValues['2']) ? 'checked' : '') . '> <i class="fa-solid fa fa-star"></i></i> <label for="etoile2">2 étoiles ou plus</label> </p>
-    <p> <input id="etoile3" type="checkbox" name="filtre[]" value="3" ' . (isset($checkedValues['3']) ? 'checked' : '') . '> <i class="fa-solid fa fa-star"></i></i> <label for="etoile3">3 étoiles ou plus</label> </p>
-    <p> <input id="etoile4" type="checkbox" name="filtre[]" value="4" ' . (isset($checkedValues['4']) ? 'checked' : '') . '> <i class="fa-solid fa fa-star"></i></i> <label for="etoile4">4 étoiles ou plus</label> </p>
-    <p> <input id="etoile5" type="checkbox" name="filtre[]" value="5" ' . (isset($checkedValues['5']) ? 'checked' : '') . '> <i class="fa-solid fa fa-star"></i></i> <label for="etoile5">5 étoiles</label> </p>
-
+    
     <input type="hidden" name="nom" value="' . htmlspecialchars($recherche) . '"> <!-- Hidden field for search term -->
 </form>';
 
@@ -81,22 +74,7 @@ $content = <<<HTML
             </div>
     <hr>
     <script>
-       // const formm = document.getElementById("formFiltre");
-
-        /*formm.addEventListener("change", function() {
-        try{
-            
-            document.getElementById("etoile2").addEventListener("change", function() {
-            console.log("etoile" +document.getElementById("etoile2").value);
-            window.location.href = "index.php?etoile=" + document.getElementById("etoile2").value;
-            //this.submit();
-        })
-        }catch(error){
-            console.error("error:");
-        }
-
-        
-        });*/
+       
         // A venir, on devrait remplacer les lien pour des fonctions AJAX et afficher des popups d'erreur ou de succès
         //
         // $('.lienAjouterPanier').on("click", function() {
@@ -137,8 +115,6 @@ if ($recherche !== '') {
 
 if ($items != null) {
 
-  //  $nb_étoiles_filtre = in_array("etoile", $sortType);
-
     if (!in_array("all", $sortType)) {
         usort($items, function ($a, $b) {
             return $a->Prix - $b->Prix;
@@ -151,12 +127,7 @@ if ($items != null) {
         if ($isConnected)
             $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
 
-        /*$moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
-        $moyenne = $moyenne[0];
-    
-        if ($nb_étoiles_filtre && $_GET["etoile"] != $moyenne) {
-            break;
-        }*/
+       
 
         if ($item->Type == 'P') { // Potions
             if (in_array("potion", $sortType) || in_array("all", $sortType)) {
