@@ -30,7 +30,7 @@ if ($_POST && isset($_POST['filtre'])) {
     foreach ($_POST['filtre'] as $value) {
         $checkedValues[$value] = 'checked';
     }
-    echo  $checkedValues[0];
+    
 }
 $recherche = trim($_POST['nom'] ?? '');
 
@@ -42,9 +42,17 @@ $viewMenu = '
     <p> <input id="arme" type="checkbox" name="filtre[]" value="arme" ' . (isset($checkedValues['arme']) ? 'checked' : '') . '> <i class="fa-solid fa-staff-snake"></i></i> <label for="arme">Armes</label> </p>
     <p> <input id="potion" type="checkbox" name="filtre[]" value="potion" ' . (isset($checkedValues['potion']) ? 'checked' : '') . '> <i class="fa-solid fa-flask-vial"></i></i> <label for="potion">Potions</label> </p>
     <p> <input id="element" type="checkbox" name="filtre[]" value="element" ' . (isset($checkedValues['element']) ? 'checked' : '') . '> <i class="fa-solid fa-wand-sparkles"></i></i> <label for="element">Éléments</label> </p>
-    <p> <input id="etoile" type="number" name="filtre[]" ><i class="fa-solid fa fa-star"></i><label for="etoile">Étoiles</label> </p>
+    <hr>
+    <p><i class="fa-solid fa fa-star"></i>Étoiles</p>
+    <p> <input id="etoile" type="checkbox" name="filtre[]" value="1" ' . (isset($checkedValues['1']) ? 'checked' : '') . '> <i class="fa-solid fa-wand-sparkles"></i></i> <label for="etoile1">1 étoile ou plus</label> </p>
+    <p> <input id="etoile" type="checkbox" name="filtre[]" value="2" ' . (isset($checkedValues['2']) ? 'checked' : '') . '> <i class="fa-solid fa-wand-sparkles"></i></i> <label for="etoile2">2 étoiles ou plus</label> </p>
+    <p> <input id="etoile" type="checkbox" name="filtre[]" value="3" ' . (isset($checkedValues['3']) ? 'checked' : '') . '> <i class="fa-solid fa-wand-sparkles"></i></i> <label for="etoile3">3 étoiles ou plus</label> </p>
+    <p> <input id="etoile" type="checkbox" name="filtre[]" value="4" ' . (isset($checkedValues['4']) ? 'checked' : '') . '> <i class="fa-solid fa-wand-sparkles"></i></i> <label for="etoile2">4 étoiles ou plus</label> </p>
+    <p> <input id="etoile" type="checkbox" name="filtre[]" value="5" ' . (isset($checkedValues['5']) ? 'checked' : '') . '> <i class="fa-solid fa-wand-sparkles"></i></i> <label for="etoile2">5 étoiles</label> </p>
     <input type="hidden" "name="nom" value="' . htmlspecialchars($recherche) . '"> <!-- Hidden field for search term -->
 </form>';
+
+
 
 
 $content = <<<HTML
@@ -144,11 +152,9 @@ if ($items != null) {
 
         $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
         $moyenne = $moyenne[0];
-        
-        echo $_GET["etoile"];
-
+        echo($moyenne);
         if ($item->Type == 'P') { // Potions
-            if ((in_array("potion", $sortType) || in_array("all", $sortType)) || (in_array("etoile", $sortType) && $_GET["etoile"] === $moyenne)) {
+            if ((in_array("potion", $sortType) || in_array("all", $sortType)) || (in_array("etoile", $sortType) && $_GET["etoile"] == $moyenne)) {
                 $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
                 $type = "Défence";
                 if ($potion->estAttaque)
