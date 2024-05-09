@@ -30,6 +30,7 @@ if ($_POST && isset($_POST['filtre'])) {
     foreach ($_POST['filtre'] as $value) {
         $checkedValues[$value] = 'checked';
     }
+    echo  $checkedValues[0];
 }
 $recherche = trim($_POST['nom'] ?? '');
 
@@ -41,8 +42,8 @@ $viewMenu = '
     <p> <input id="arme" type="checkbox" name="filtre[]" value="arme" ' . (isset($checkedValues['arme']) ? 'checked' : '') . '> <i class="fa-solid fa-staff-snake"></i></i> <label for="arme">Armes</label> </p>
     <p> <input id="potion" type="checkbox" name="filtre[]" value="potion" ' . (isset($checkedValues['potion']) ? 'checked' : '') . '> <i class="fa-solid fa-flask-vial"></i></i> <label for="potion">Potions</label> </p>
     <p> <input id="element" type="checkbox" name="filtre[]" value="element" ' . (isset($checkedValues['element']) ? 'checked' : '') . '> <i class="fa-solid fa-wand-sparkles"></i></i> <label for="element">Éléments</label> </p>
-    <p> <input id="etoile" type="number" name="filtre[]" > <i class="fa-solid fa fa-star"></i><label for="etoile">Étoiles</label> </p>
-    <input type="hidden" name="nom" value="' . htmlspecialchars($recherche) . '"> <!-- Hidden field for search term -->
+    <p> <input id="etoile" type="number" name="filtre[]" ><i class="fa-solid fa fa-star"></i><label for="etoile">Étoiles</label> </p>
+    <input type="hidden" "name="nom" value="' . htmlspecialchars($recherche) . '"> <!-- Hidden field for search term -->
 </form>';
 
 
@@ -77,14 +78,17 @@ $content = <<<HTML
     <script>
         const formm = document.getElementById("formFiltre");
 
-        formm.addEventListener("change", function() {
-        //window.location.href = "index.php?etoile=" + document.getElementById("etoile").value;
-        window.location.href = 'login.php';
-        //this.submit();
-        console.log("etoile" +document.getElementById("etoile").value);
+        try{
+            document.getElementById("etoile").addEventListener("change", function() {
+            console.log("etoile" +document.getElementById("etoile").value);
+            window.location.href = "index.php?etoile=" + document.getElementById("etoile").value;
+            //this.submit();
+        })
+        }catch(error){
+            console.error("error:");
+        }
         
         
-        });
         // A venir, on devrait remplacer les lien pour des fonctions AJAX et afficher des popups d'erreur ou de succès
         //
         // $('.lienAjouterPanier').on("click", function() {
@@ -125,16 +129,13 @@ if ($recherche !== '') {
 
 if ($items != null) {
 
-    $nb_étoiles_filtre = in_array("etoile", $sortType);
-    //$évaluations_avec_filtre = EvaluationsTable()->selectWhere("etoile = $nb_étoiles_filtre");
-
+   
     if (!in_array("all", $sortType)) {
         usort($items, function ($a, $b) {
             return $a->Prix - $b->Prix;
         });
     }
 
-    // $évaluations_avec_filtre = EvaluationsTable()->selectWhere("etoile = $nb_étoiles_filtre");
     
     foreach ($items as $item) {
         $addToCartBouton = "";
@@ -144,12 +145,10 @@ if ($items != null) {
         $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
         $moyenne = $moyenne[0];
         
-        if ($nb_étoiles_filtre && $_GET["etoile"] != $moyenne) {
-            break;
-        }
+        echo $_GET["etoile"];
 
         if ($item->Type == 'P') { // Potions
-            if (in_array("potion", $sortType) || in_array("all", $sortType)) {
+            if ((in_array("potion", $sortType) || in_array("all", $sortType)) || (in_array("etoile", $sortType) && $_GET["etoile"] === $moyenne)) {
                 $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
                 $type = "Défence";
                 if ($potion->estAttaque)
@@ -185,7 +184,7 @@ HTML;
         }
 
         if ($item->Type == 'W') { // Armes
-            if (in_array("arme", $sortType) || in_array("all", $sortType)) {
+            if ((in_array("arme", $sortType) || in_array("all", $sortType)) || (in_array("etoile", $sortType) && $_GET["etoile"] === $moyenne)) {
                 $arme = ArmesTable()->selectWhere("idItem = $item->Id")[0];
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
@@ -217,7 +216,7 @@ HTML;
         }
 
         if ($item->Type == 'A') { // Armures
-            if (in_array("armure", $sortType) || in_array("all", $sortType)) {
+            if ((in_array("armure", $sortType) || in_array("all", $sortType)) || (in_array("etoile", $sortType) && $_GET["etoile"] === $moyenne)) {
                 $armure = ArmuresTable()->selectWhere("idItem = $item->Id")[0];
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
@@ -251,7 +250,7 @@ HTML;
         if ($item->Type == 'E') { // Éléments
             if ($isConnected) {
                 if (JoueursTable()->selectById($_SESSION['id'])[0]->estAlchimiste == 1) {
-                    if (in_array("element", $sortType) || in_array("all", $sortType)) {
+                    if ((in_array("element", $sortType) || in_array("all", $sortType)) || (in_array("etoile", $sortType)&& $_GET["etoile"] === $moyenne)) {
                         $element = ElementsTable()->selectWhere("idItem = $item->Id");
                         $itemsDisplay .= <<<HTML
                             <div class="containerItem" onclick="linked($item->Id)">
