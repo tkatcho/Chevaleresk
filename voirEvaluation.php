@@ -95,7 +95,7 @@ $avatarJoueurEtCommentaire = <<<HTML
 HTML;
 $commentairesHTML = <<<HTML
 HTML;
-$cpt = 0;
+
 //Pour chaque évaluations: alias + commentaire
 if ($nbÉvaluationsTotales != 0) {
     foreach ($toutesévaluationsItem as $eval) {
@@ -113,9 +113,9 @@ if ($nbÉvaluationsTotales != 0) {
                 $avatar = "./images/alchimiste.png";
             }
 
-            if ($eval->idJoueur == $_SESSION['id']) {
+            if ($eval->idJoueur == $_SESSION['id'] || $_SESSION['isAdmin'] == 1) {
                 $avatarJoueurEtCommentaire = <<<HTML
-                                    <div class="chip data-chip-id='$cpt' interactive">
+                                    <div class="chip interactive data-eval-id='$eval->Id'">
                                         <img src=$avatar alt="$joueur->Alias" width="96" height="96">
                                             $joueur->Alias :
                                             <span class="comment-text">$commentaire</span>         
@@ -123,10 +123,9 @@ if ($nbÉvaluationsTotales != 0) {
                                     </div>
                             <br>
                 HTML;
-                $cpt++;
             } else {
                 $avatarJoueurEtCommentaire = <<<HTML
-                    <div class="chip data-chip-id='$cpt'">
+                    <div class="chip data-eval-id='$eval->Id'">
                         <img src=$avatar alt="$joueur->Alias" width="96" height="96">
                             $joueur->Alias :        
                             $commentaire           
@@ -134,7 +133,6 @@ if ($nbÉvaluationsTotales != 0) {
             <br>
             
 HTML;
-                $cpt++;
             }
             $commentairesHTML .= $avatarJoueurEtCommentaire;
         }
@@ -187,18 +185,34 @@ $scripts =
 
   deleteButtons.forEach(button => {
     button.addEventListener('click', function(event) {
-      const chipId = this.getAttribute('data-chip-id');
+      const chipId = this.getAttribute('data-eval-id');
       const confirmDeletion = confirm('Voulez-vous supprimer ce commentaire?'); 
 
       if (confirmDeletion) {
-        deleteChip(chipId);
+        deleteChip(this,chipId);
       }
     });
   });
     });
 
-    function deleteChip(chipId) {
-
+    function deleteChip(element,chipId) {
+    const evalId = element.parentElement.querySelector('img');
+    const altValue = evalId.getAttribute('alt');
+$.ajax( {
+    url: './delete-comment.php',
+    method: 'POST',
+    data: {
+        alias: altValue,
+        itemId: chipId, 
+    },
+    success: (response) => 
+    {                    
+        console.log(response);
+    },
+    error: (xhr, status, error) => {
+        alert('Erreur survenu, commentaire pas modifier');
+    }
+  });
     }
     </script>
 
@@ -222,13 +236,24 @@ $scripts =
     });
 
    function updateComment(element) {
+    const evalId = element.parentElement.querySelector('img');
+    const altValue = evalId.getAttribute('alt');
+
   const updatedText = element.textContent;
   $.ajax( {
     url: './update-comment.php',
     method: 'POST',
     data: {
+        alias: altValue,
         itemId: $id, 
         comment: updatedText 
+    },
+    success: (response) => 
+    {                    
+        console.log(response);
+    },
+    error: (xhr, status, error) => {
+        alert('Erreur survenu, commentaire pas modifier');
     }
   });
     }//check if fine
