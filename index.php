@@ -77,9 +77,10 @@ $content = <<<HTML
         const formm = document.getElementById("formFiltre");
 
         formm.addEventListener("change", function() {
-        //window.location.href = "index.php?etoile=" + document.getElementById("etoile").value;
-        window.location.href = 'login.php';
-        //this.submit();
+        if(document.getElementById("etoile").value !="" && document.getElementById("etoile").value !=undefined ){
+            console.log("jetoile pas null");
+        }
+        this.submit();
         console.log("etoile" +document.getElementById("etoile").value);
         
         
@@ -142,7 +143,8 @@ if ($items != null) {
 
         $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
         $moyenne = $moyenne[0];
-        
+    
+        echo $_GET["etoile"];
         if ($nb_étoiles_filtre && $_GET["etoile"] != $moyenne) {
             break;
         }
