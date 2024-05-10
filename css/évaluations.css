@@ -60,6 +60,7 @@
 .évalutionsNbÉtoiles div {
     font-family: var(--secondary-font);
     font-size: 10px;
+    width:60px;
 }
 
 
