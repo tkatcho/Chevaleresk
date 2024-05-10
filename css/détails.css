@@ -56,3 +56,18 @@
 .idItem {
     font-size: 16px !important;
 }
+
+.btnÉvaluerCommenter {
+    color: white;
+}
+
+.btnDejaEvaluer {
+    cursor: not-allowed !important;
+    background-color: white;
+    color: black;
+    border: 3px solid var(--primary-color);
+}
+
+#commentForm {
+    height: 200px;
+}

@@ -328,3 +328,56 @@ BEGIN
 END//
 
 DELIMITER ;
+
+--moyenne des évaluations
+DELIMITER |
+CREATE FUNCTION moyenneEvaluation(id INT) returns integer
+BEGIN
+    DECLARE moyenne integer;
+    SELECT AVG(etoile) INTO moyenne FROM evaluations WHERE idItem= id;
+    RETURN moyenne;
+END|
+
+
+-- Modifier alias
+DELIMITER //
+
+CREATE PROCEDURE modifierAlias(IN id_joueur INT, IN nouv_alias VARCHAR(32))
+BEGIN
+    UPDATE joueurs SET alias = nouv_alias WHERE id = id_joueur;
+END  //
+
+DELIMITER ;
+
+
+-- Modifier Prénom
+DELIMITER //
+
+CREATE PROCEDURE modifierPrenom(IN id_joueur INT, IN nouv_prenom VARCHAR(32))
+BEGIN
+    UPDATE joueurs SET prenom = nouv_prenom WHERE id = id_joueur;
+END //
+
+DELIMITER ;
+
+
+-- Modifier Nom
+DELIMITER //
+
+CREATE PROCEDURE modifierNom(IN id_joueur INT, IN nouv_nom VARCHAR(32))
+BEGIN
+    UPDATE joueurs SET nom = nouv_nom WHERE id = id_joueur;
+END //
+
+DELIMITER ;
+
+
+-- Modifier Mot de passe
+DELIMITER //
+
+CREATE PROCEDURE modifierPassword(IN id_joueur INT, IN nouv_mdp VARCHAR(256))
+BEGIN
+    UPDATE joueurs SET motDePasse = nouv_mdp WHERE id = id_joueur;
+END //
+
+DELIMITER ;

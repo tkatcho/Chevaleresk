@@ -125,7 +125,7 @@ HTML;
         $réponsesAffichées ="";
         foreach($reponses as $reponse){
             $réponsesAffichées.=<<<HTML
-            <input type="radio" id='reponse_$reponse->Id' name='reponse' value='$reponse->Id' ><label for="reponse_$reponse->Id">$reponse->Reponse</label>
+            <input required type="radio" id='reponse_$reponse->Id' name='reponse' value='$reponse->Id' ><label for="reponse_$reponse->Id">$reponse->Reponse</label>
             <br>
 HTML;
         }

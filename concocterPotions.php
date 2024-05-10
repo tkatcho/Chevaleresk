@@ -20,7 +20,6 @@ if (isset($_SESSION['success'])) {
 }
 $items = ItemsTable()->selectAll();
 
-$potions = PotionsTable()->selectAll();
 $potion = '';
 
 $elem1 = "";
@@ -88,7 +87,7 @@ if (isset($recette[1]) && isset($recette[0])) {
     $hidden = '';
     $disabled = '';
 
-    if (strlen($textColor0) == 0 || strlen($textColor1) == 0) {
+    if (strlen($textColor0) !== 0 || strlen($textColor1) !== 0) {
         $disabled = 'Disabled';
     }
 }

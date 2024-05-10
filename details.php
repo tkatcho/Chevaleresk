@@ -3,6 +3,11 @@ require_once 'DAL/ChevalereskDB.php';
 require 'php/sessionManager.php';
 require_once 'php/config.php';
 
+$scripts = <<<HTML
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/eval.js"></script>
+HTML;
+
 if (isset($_GET["idItem"])) {
     $id = $_GET["idItem"];
     $item = ItemsTable()->get($id);
@@ -31,19 +36,30 @@ HTML;
 
 function évaluerEtCommenter($idJoueur, $idItem)
 {
-   
-    if(InventairesTable()->selectWhere("idJoueur = $idJoueur AND idItem = $idItem")){
-        return <<<HTML
-        <button class="btnÉvaluerCommenter">
-            <a href="evaluerCommenter.php?idJoueur=$idJoueur&idItem=$idItem">Évaluer et commenter <i class="fa fa-comments"></i></a>
-        </button>
-        <br>
-        <button class="btnÉvaluerCommenter">
-            <a href="voirEvaluation.php?idItem=$idItem">Voir évaluations <i class="fa fa-comments"></i></a>
-        </button>
+    if (InventairesTable()->selectWhere("idJoueur = $idJoueur AND idItem = $idItem")){
+        if (EvaluationsTable()->selectWhere("idJoueur = $idJoueur AND idItem = $idItem") == null) {
+            return <<<HTML
+                <button class="btnÉvaluerCommenter">
+                    <a>Évaluer et commenter <i class="fa fa-comments"></i></a>
+                </button>
+                <br>
+                <button class="btnÉvaluerCommenter">
+                    <a href="voirEvaluation.php?idItem=$idItem">Voir évaluations <i class="fa fa-comments"></i></a>
+                </button>
 HTML;
+        } else {
+            return <<<HTML
+                <button class="btnÉvaluerCommenter btnDejaEvaluer" disabled>
+                    <a>Vous avez déja commenté</a>
+                </button>
+                <br>
+                <button class="btnÉvaluerCommenter">
+                    <a href="voirEvaluation.php?idItem=$idItem">Voir évaluations <i class="fa fa-comments"></i></a>
+                </button>
+HTML;
+        }
     }
-    
+    return "";
    
 }
 
@@ -62,8 +78,6 @@ HTML;
             $addToCartBouton = addToCartButton($_SESSION['id'], $id, 1);
             $buttonÉvaluerCommentaire = évaluerEtCommenter($_SESSION['id'], $id);
         }
-       
-    
            
           
         if ($item->Type == 'P')

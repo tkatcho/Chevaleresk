@@ -101,7 +101,7 @@ if($nbÉvaluationsTotales !=0){
     foreach($toutesévaluationsItem as $eval){ 
   
         if($eval->Commentaire !=null){
-            $joueur = JoueursTable()->selectWhere("id = $eval->IdJoueur")[0];
+            $joueur = JoueursTable()->selectWhere("id = $eval->idJoueur")[0];
             $isAdmin = $joueur->isAdmin();
             $isAlchimiste = $joueur->isAlchimiste();
             $commentaire = $eval->Commentaire;
