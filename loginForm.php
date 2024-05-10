@@ -1,15 +1,20 @@
 <?php
-    
-    $viewTitle = "Connexion";
-    $errorMessage = "";
-    if (isset($_GET['error'])) {
-        $error = $_GET['error'];
-        if ($error == "passwordFailed")
-            $errorMessage = "Le mot de passe n'est pas correct";
-        if ($error == "usernameNotExists")
-            $errorMessage = "L'alias n'est pas correct";
-    }
-    $content= <<<HTML
+
+$viewTitle = "Connexion";
+$sucessModifProfil = "";
+$errorMessage = "";
+if (isset($_GET['sucess'])) {
+    $sucessModifProfil = "Vous avez bien modifier votre profile";
+    unset($_GET['sucess']);
+}
+if (isset($_GET['error'])) {
+    $error = $_GET['error'];
+    if ($error == "passwordFailed")
+        $errorMessage = "Le mot de passe n'est pas correct";
+    if ($error == "usernameNotExists")
+        $errorMessage = "L'alias n'est pas correct";
+}
+$content = <<<HTML
     
     <form method='post' action='login.php'>
         <div class="loginForm">
@@ -37,9 +42,11 @@
                 <br>
                 <input type='submit' name='submit' value="Connexion" class="loginFormBtn" >
                 <p class="text-danger errorMessage">$errorMessage</p>
+                <p class="text errorMessage">$sucessModifProfil</p>
+
             </div>
         </div>
     </form>
 HTML;
 
-    include "views/master.php";
+include "views/master.php";

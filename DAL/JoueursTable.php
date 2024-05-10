@@ -28,8 +28,8 @@ final class JoueursTable extends MySQLTable
     public function update($joueur)
     {
         $joueurToUpdate = $this->get($joueur->Id);
-        if ($joueur->Password == "")
-            $joueur->Password = $joueurToUpdate->Password;
+        if ($joueur->MotDePasse == "" || $joueur->MotDePasse == null)
+            $joueur->MotDePasse = $joueurToUpdate->MotDePasse;
         if ($joueurToUpdate != null) {
             parent::update($joueur);
         }

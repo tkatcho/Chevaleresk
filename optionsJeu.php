@@ -32,7 +32,7 @@ HTML;
 			<i class= "fa fa-flask"></i> 
 		</div>
 HTML;
-		$image =<<<HTML
+		$image = <<<HTML
 		<div style="background-image:url('./images/admin.png')"></div>
 HTML;
 	}
@@ -81,8 +81,8 @@ HTML;
 				Modération des commentaires <i class="fa-solid fa-comment"></i>
 				</a>
 			</button>
-			<button onclick="location.href='modifierProfil.php'">
-				<a class="optionsBtnIcon" href ="modifierProfil.php">
+			<button onclick="location.href='modifierProfilForm.php'">
+				<a class="optionsBtnIcon" href ="modifierProfilForm.php">
 				Modifier Profil <i class="fa fa-user"></i>
 				</a>
 			</button>
@@ -129,8 +129,8 @@ HTML;
 				Inventaire <i class="fa fa-id-card-o"></i>
 				</a>
 			</button>
-			<button onclick="location.href='modifierProfil.php'">
-				<a class="optionsBtnIcon" href ="modifierProfil.php">
+			<button onclick="location.href='modifierProfilForm.php'">
+				<a class="optionsBtnIcon" href ="modifierProfilForm.php">
 				Modifier Profil <i class="fa fa-user"></i>
 				</a>
 			</button>
