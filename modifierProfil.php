@@ -12,8 +12,9 @@ if (isset($_POST['submit'])) {
         redirect('modifierProfilForm.php?error=missingField');
     }
 
-    if (!JoueursTable()->aliasExist($_POST['alias']) || JoueursTable()->aliasExist($_POST['alias']) == $_SESSION['alias']) {
+    if (!JoueursTable()->aliasExist($_POST['alias']) || $_POST['alias'] == $_SESSION['alias']) {
         $joueur = JoueursTable()->findByAlias($_SESSION['alias']);
+
         $joueur->Alias = $_POST['alias'] ?? 0;
         $joueur->Nom = $_POST['nom'] ?? 0;
         $joueur->Prenom = $_POST['prenom'] ?? 0;
@@ -29,7 +30,10 @@ if (isset($_POST['submit'])) {
         }
 
         JoueursTable()->update($joueur);
+
         redirect('modifierProfilForm.php?sucess="Reussi"');
+    } else {
+        redirect('modifierProfilForm.php?error=usernameExists');
     }
 }
 
