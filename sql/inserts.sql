@@ -207,3 +207,5 @@ INSERT INTO inventaires( idJoueur, idItem, quantite) VALUES ('10','20','2');
 INSERT INTO evaluations(idItem, idJoueur, etoile, commentaire) VALUES ( '5', '1', '3', 'Wow trop cool');
 INSERT INTO evaluations(idItem, idJoueur, etoile, commentaire) VALUES ( '5', '3', '2', 'Oh lala. Trop wow');
 INSERT INTO evaluations(idItem, idJoueur, etoile, commentaire) VALUES ( '5', '8', '5', 'Damnnnnnnnnnnnnnnnnnn');
+INSERT INTO `evaluations` (`id`, `idItem`, `idJoueur`, `etoile`, `commentaire`) VALUES (NULL, '2', '1', '3', 'wow');
+INSERT INTO `evaluations` (`id`, `idItem`, `idJoueur`, `etoile`, `commentaire`) VALUES (NULL, '10', '1', '4', 'ouuuuuuhhhhhhh');

@@ -318,13 +318,13 @@ END|
 -- Chercher tous les items qui ont un certain nb d'étoiles
 DELIMITER //
 
-CREATE PROCEDURE itemsNbÉtoiles(IN nb_étoiles INT)
+CREATE PROCEDURE itemsNbÉtoiles(IN nb_étoiles INT) 
 BEGIN
     SELECT items.id
     FROM items 
     INNER JOIN evaluations ON items.id = evaluations.idItem 
     GROUP BY items.id 
-    HAVING CAST(AVG(evaluations.etoile) AS UNSIGNED) = nb_etoiles;
+    HAVING CAST(AVG(evaluations.etoile) AS UNSIGNED) = nb_étoiles;
 END//
 
 DELIMITER ;

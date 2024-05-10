@@ -128,97 +128,83 @@ if ($recherche !== '') {
 } else {
     $items = ItemsTable()->selectAll();
 }
-
+$itemsMoyenne=0;
 if ($items != null) {
-    $itemsMoyenne=0;
+   
     if (!in_array("all", $sortType)) {
         usort($items, function ($a, $b) {
             return $a->Prix - $b->Prix;
         });
     }
-    
-    if(in_array("3", $sortType)){
-        $nb=3;
-        $itemsMoyenne = DB()->nonQuerySqlCmd("CALL itemsNbÉtoiles($nb);");   
-        echo $itemsMoyenne;
-       
-    }
+    $newItems= [];
 
-        
-    
-    /*if(in_array("1", $sortType)){
-        echo "1";
-        $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
-        $moyenne = $moyenne[0];
-        if($moyenne <1){
-            
-           break;
+    // 1 étoiles
+    if(in_array("1", $sortType)){
+       
+        foreach($items as $item){
+            $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
+            $moyenne=$moyenne[0];
+            if($moyenne >=1){
+                $newItems[] = $item->Id;
+            }
         }
     }
+    // 2 étoiles
     if(in_array("2", $sortType)){
-        echo "2";
-        $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
-        $moyenne = $moyenne[0];
-        if($moyenne <2){
-           break;
-        }
-    }
-    if(in_array("3", $sortType)){
-        $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
-        $moyenne = $moyenne[0];
-        if($moyenne!=null){
-            if(!$moyenne >=3){
-               break;
-            }
-            echo $item;
-        }
        
-        
-    }
-    if(in_array("4", $sortType)){
-        echo "4";
-        $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
-        $moyenne = $moyenne[0];
-        if($moyenne <4){
-           break;
+        foreach($items as $item){
+            $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
+            $moyenne=$moyenne[0];
+            if($moyenne >=2){
+                $newItems[] = $item->Id;
+            }
         }
     }
-    if(in_array("5", $sortType)){
-        echo "5";
-        $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
-        $moyenne = $moyenne[0];
-        if($moyenne <5){
-           break;
-        }
-    }*/
     
-   /* if($itemsMoyenne!=0 ){
-        $newItems=[];
-        foreach ($items as $item) {
-            if($itemsMoyenne ==$item->Id){
-                array_push($newItems, $item);
+    // 3 étoiles
+    if(in_array("3", $sortType)){
+       
+        foreach($items as $item){
+            $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
+            $moyenne=$moyenne[0];
+            if($moyenne >=3){
+                $newItems[] = $item->Id;
             }
         }
-        $items=[];
-        
-        foreach($newItems as $newItem){
-            array_push($items,ItemsTable()->selectById($newItem));
-        }
+    }
+    // 4 étoiles
+    if(in_array("4", $sortType)){
        
-    }*/
+        foreach($items as $item){
+            $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
+            $moyenne=$moyenne[0];
+            if($moyenne >=4){
+                $newItems[] = $item->Id;
+            }
+        }
+    }
+    // 5 étoiles
+    if(in_array("5", $sortType)){
+       
+        foreach($items as $item){
+            $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
+            $moyenne=$moyenne[0];
+            if($moyenne >=5){
+                $newItems[] = $item->Id;
+            }
+        }
+    }
+    
     foreach ($items as $item) {
+        if($newItems !=null && !in_array($item->Id, $newItems)){
+            continue;
+        }
         $addToCartBouton = "";
         if ($isConnected)
             $addToCartBouton = addToCartButton($_SESSION['id'], $item->Id, 1);
 
-       
-        /*echo $_GET["etoile"];
-        if ($nb_étoiles_filtre && $_GET["etoile"] != $moyenne) {
-            break;
-        }*/
-        
         if ($item->Type == 'P') { // Potions
-            if (in_array("potion", $sortType) || in_array("all", $sortType)) {
+            if (in_array("potion", $sortType) || in_array("all", $sortType) || $newItems!=null) {
                 $potion = PotionsTable()->selectWhere("idItem = $item->Id")[0];
                 $type = "Défence";
                 if ($potion->estAttaque)
@@ -254,7 +240,9 @@ HTML;
         }
 
         if ($item->Type == 'W') { // Armes
-            if (in_array("arme", $sortType) || in_array("all", $sortType)) {
+            echo "hello";
+            if (in_array("arme", $sortType) || in_array("all", $sortType) || $newItems!=null) {
+
                 $arme = ArmesTable()->selectWhere("idItem = $item->Id")[0];
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
@@ -286,7 +274,7 @@ HTML;
         }
 
         if ($item->Type == 'A') { // Armures
-            if (in_array("armure", $sortType) || in_array("all", $sortType) ) {
+            if (in_array("armure", $sortType) || in_array("all", $sortType) || $newItems!=null) {
                 $armure = ArmuresTable()->selectWhere("idItem = $item->Id")[0];
                 $itemsDisplay .= <<<HTML
                 <div class="containerItem" onclick="linked($item->Id)">
@@ -320,7 +308,7 @@ HTML;
         if ($item->Type == 'E') { // Éléments
             if ($isConnected) {
                 if (JoueursTable()->selectById($_SESSION['id'])[0]->estAlchimiste == 1) {
-                    if (in_array("element", $sortType) || in_array("all", $sortType) ) { 
+                    if (in_array("element", $sortType) || in_array("all", $sortType) || $newItems!=null ) { 
                         $element = ElementsTable()->selectWhere("idItem = $item->Id");
                         $itemsDisplay .= <<<HTML
                             <div class="containerItem" onclick="linked($item->Id)">
