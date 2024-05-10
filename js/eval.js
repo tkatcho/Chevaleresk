@@ -29,7 +29,7 @@ $(() => {
                 const comment = Swal.getPopup().querySelector('#commentForm').value;
                 const stars = Swal.getPopup().querySelector('#starsForm').value;
 
-                if (!comment || stars == 0) {
+                if (!comment || stars == 0 || stars > 5) {
                     Swal.showValidationMessage('Veuillez entrer un commentaire et un nombre d\'étoiles');
                 } else {
                     return $.ajax({
