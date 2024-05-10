@@ -47,7 +47,7 @@ HTML;
 	if ($isAdmin) {
 		$content = <<<HTML
 	<!---------------------------Options pour admin-------------------------------->
-	<!--Le profil à droite-->
+	<!--Le profil à gauche-->
 	<div class="optionsJeu">
 	  <div class="optionsBackgroundGrisProfil">
 		  <strong>Profil</strong>
@@ -56,11 +56,9 @@ HTML;
 		  </div>
 		  <p>$joueur->Alias</p>
 		  $niveau
-
-		
 	  </div>
 	  
-	  <!--Les options à gauche-->
+	  <!--Les options à droite-->
 	  <div class="optionsBtn" >
 		  <button onclick="location.href='index.php'">
 			  <a class="optionsBtnIcon" href ="index.php">
@@ -76,6 +74,11 @@ HTML;
 			<button onclick="location.href='newItem.php'">
 				<a class="optionsBtnIcon" href ="newItem.php">
 				Nouveau item <i class="fa fa-money"></i>
+				</a>
+			</button>
+			<button onclick="location.href='moderationCommentaires.php'">
+				<a class="optionsBtnIcon" href ="moderationCommentaires.php">
+				Modération des commentaires <i class="fa-solid fa-comment"></i>
 				</a>
 			</button>
 			<button onclick="location.href='modifierProfilForm.php'">
