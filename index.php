@@ -240,7 +240,7 @@ HTML;
         }
 
         if ($item->Type == 'W') { // Armes
-            echo "hello";
+            
             if (in_array("arme", $sortType) || in_array("all", $sortType) || $newItems!=null) {
 
                 $arme = ArmesTable()->selectWhere("idItem = $item->Id")[0];
