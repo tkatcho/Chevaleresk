@@ -35,7 +35,8 @@ $buttonOnSide = <<<HTML
     </div>
 HTML;
 
-function buttonRetour($location){
+function buttonRetour($location)
+{
     return <<<HTML
        <div class="btnRetour">
             <button onclick="location.href='$location'">
@@ -57,7 +58,7 @@ if (isset($_SESSION['validUser']) && $_SESSION['validUser']) {
         $buttonOnSide
 HTML;
 
-    if ($viewTitle == "Catalogue de produit"  ) {
+    if ($viewTitle == "Catalogue de produit") {
         $buttonRetour = buttonRetour('optionsJeu.php');
         $loggedUserMenu = <<<HTML
             $buttonRetour
@@ -74,13 +75,13 @@ HTML;
     } else if ($viewTitle == "Bienvenue à Chevaleresk") {
         $loggedUserMenu = <<<HTML
 HTML;
-    }else if ($viewTitle=="Inventaire"){
+    } else if ($viewTitle == "Inventaire") {
         $buttonRetour = buttonRetour('optionsJeu.php');
         $loggedUserMenu = <<<HTML
             $buttonRetour 
             $buttonOnSide
 HTML;
-        if($joueur->isAlchimiste()){
+        if ($joueur->isAlchimiste()) {
             $loggedUserMenu .= <<<HTML
              <div class="buttonOnSide">
             <button onclick="location.href='concocterPotions.php'">
@@ -91,8 +92,7 @@ HTML;
         </div>
 HTML;
         }
-       
-    } else if ($viewTitle == "Nouveau item" || $viewTitle == "Gagner plus d'argent" ) {
+    } else if ($viewTitle == "Nouveau item" || $viewTitle == "Gagner plus d'argent") {
         $buttonRetour = buttonRetour('optionsJeu.php');
         $loggedUserMenu = <<<HTML
             $buttonRetour
@@ -100,7 +100,7 @@ HTML;
                 $logoutButton
             </div>
 HTML;
-    }else if($viewTitle=="Enigma"){
+    } else if ($viewTitle == "Enigma") {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
                 <button class="enigmaColor">
@@ -119,7 +119,7 @@ HTML;
                 
             </div>
 HTML;
-    }else if($viewTitle=="Demande d'argent"){
+    } else if ($viewTitle == "Demande d'argent") {
         $buttonRetour = buttonRetour('optionsGagnerArgent.php');
         $loggedUserMenu = <<<HTML
             $buttonRetour
@@ -133,7 +133,7 @@ HTML;
                 
             </div>
     HTML;
-    }else if(  $viewTitle == "Concocter des potions"){
+    } else if ($viewTitle == "Concocter des potions") {
         $buttonRetour = buttonRetour('inventaire.php');
         $loggedUserMenu = <<<HTML
             $buttonRetour
@@ -141,12 +141,20 @@ HTML;
                 $logoutButton
             </div>
 HTML;
+    } else if ($viewTitle == "Modifier Profil") {
+        $buttonRetour = buttonRetour('optionsJeu.php');
+        $loggedUserMenu = <<<HTML
+            $buttonRetour
+            <div class="buttonOnSide">
+                $logoutButton
+            </div>
+HTML;
     }
-//JOUEUR PAS CONNECTÉ
-} else {  
+    //JOUEUR PAS CONNECTÉ
+} else {
 
     if ($viewTitle == "Catalogue de produit") {
-        
+
         $loggedUserMenu = <<<HTML
             <div class="buttonOnSide">
                 <button onclick="location.href='loginForm.php'">

@@ -3,13 +3,21 @@
 include 'DAL/ChevalereskDB.php';
 include 'php/sessionManager.php';
 
+$sucessMessage = "";
 $errorMessage = "";
+
+if (isset($_GET['sucess'])) {
+    $sucessMessage = "Modification du profil a reussi!";
+}
+
 if (isset($_GET['error'])) {
     $error = $_GET['error'];
     if ($error == "confirmPasswordFailed")
         $errorMessage = "Vos mots de passe ne correspondent pas";
     if ($error == "usernameExists")
         $errorMessage = "Cette alias est déjà utilisé";
+    if ($error == "missingField")
+        $errorMessage = "Il vous manque des donnees";
 }
 $viewTitle = "Modifier Profil";
 
@@ -37,6 +45,8 @@ $content = <<<HTML
                 <input type='password' name='confirmPassword' placeholder='Confirmer le mot de passe' RequireMessage = 'Veuillez confirmer votre mot de passe' InvalidMessage = 'Confirmation du mot de passe invalide' >
             </div>
             <p class="text-danger errorMessage">$errorMessage</p>
+            <p class="text sucessMessage">$sucessMessage</p>
+
             <input type='submit' name='submit' value="Modification" class="signupFormBtn" >
         </form>
     </div>
