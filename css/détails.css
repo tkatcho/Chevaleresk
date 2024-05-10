@@ -71,3 +71,19 @@
 #commentForm {
     height: 200px;
 }
+
+.starsContainer {
+    margin-bottom: 20px;
+    cursor: default;
+}
+
+.etoile {
+    background-color: transparent;
+    padding: 0;
+    height: 20px;
+    cursor: pointer;
+}
+
+.etoileSel {
+    color: orange;
+}
