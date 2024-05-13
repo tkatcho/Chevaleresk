@@ -115,7 +115,7 @@ if ($nbÉvaluationsTotales != 0) {
 
             if ($eval->idJoueur == $_SESSION['id'] || $_SESSION['isAdmin'] == 1) {
                 $avatarJoueurEtCommentaire = <<<HTML
-                                    <div class="chip interactive data-eval-id='$eval->Id'">
+                                    <div class="chip interactive data-eval-id='$eval->Id'" value="$eval->Id">
                                         <img src=$avatar alt="$joueur->Alias" width="96" height="96">
                                             $joueur->Alias :
                                             <span maxlength="22"class="comment-text">$commentaire</span>         
@@ -185,25 +185,32 @@ $scripts =
 
   deleteButtons.forEach(button => {
     button.addEventListener('click', function(event) {
-      const chipId = this.getAttribute('data-eval-id');
+      const chipId = this.parentElement;
       const confirmDeletion = confirm('Voulez-vous supprimer ce commentaire?'); 
 
+      let id = chipId.getAttribute('value')
+
+      const comment = chipId.querySelector('.comment-text').textContent;
+      const image = chipId.querySelector('img');
+
+
+
       if (confirmDeletion) {
-        deleteChip(this,chipId);
+        deleteChip(image,comment,id);
       }
     });
   });
     });
 
-    function deleteChip(element,chipId) {
-    const evalId = element.parentElement.querySelector('img');
-    const altValue = evalId.getAttribute('alt');
-$.ajax( {
+    function deleteChip(element,comment,id) {
+    const altValue = element.getAttribute('alt');
+
+    $.ajax( {
     url: './delete-comment.php',
     method: 'POST',
     data: {
         alias: altValue,
-        itemId: chipId, 
+        idComment: id,
     },
     success: (response) => 
     {                    
@@ -252,7 +259,7 @@ $.ajax( {
     },
     success: (response) => 
     {                    
-        console.log(response);
+        //console.log(response);
     },
     error: (xhr, status, error) => {
         alert('Erreur survenu, commentaire pas modifier');
