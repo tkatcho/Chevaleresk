@@ -331,7 +331,5 @@ $itemsDisplay .= <<<HTML
     </script>
 HTML;
 
-
 $content .= $itemsDisplay;
-
 include 'views/master.php';
