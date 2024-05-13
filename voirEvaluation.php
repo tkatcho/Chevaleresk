@@ -180,93 +180,14 @@ $content = $itemsDisplay;
 
 $scripts =
     <<<HTML
-        <script>document.addEventListener('DOMContentLoaded', function() {
-            const deleteButtons = document.querySelectorAll('.delete');
+        <script>
+            document.addEventListener('DOMContentLoaded',function(){const deleteButtons=document.querySelectorAll('.delete');deleteButtons.forEach(button=>{button.addEventListener('click',function(event){const chipId=this.parentElement;const confirmDeletion=confirm('Voulez-vous supprimer ce commentaire?');let id=chipId.getAttribute('value')
+            const comment=chipId.querySelector('.comment-text').textContent;const image=chipId.querySelector('img');if(confirmDeletion){deleteChip(image,comment,id)}})})});function deleteChip(element,comment,id){const altValue=element.getAttribute('alt');$.ajax({url:'./delete-comment.php',method:'POST',data:{alias:altValue,idComment:id,},success:(response)=>{console.log(response)},error:(xhr,status,error)=>{alert('Erreur survenu, commentaire pas modifier')}})}
+        </script>
 
-  deleteButtons.forEach(button => {
-    button.addEventListener('click', function(event) {
-      const chipId = this.parentElement;
-      const confirmDeletion = confirm('Voulez-vous supprimer ce commentaire?'); 
-
-      let id = chipId.getAttribute('value')
-
-      const comment = chipId.querySelector('.comment-text').textContent;
-      const image = chipId.querySelector('img');
-
-
-
-      if (confirmDeletion) {
-        deleteChip(image,comment,id);
-      }
-    });
-  });
-    });
-
-    function deleteChip(element,comment,id) {
-    const altValue = element.getAttribute('alt');
-
-    $.ajax( {
-    url: './delete-comment.php',
-    method: 'POST',
-    data: {
-        alias: altValue,
-        idComment: id,
-    },
-    success: (response) => 
-    {                    
-        console.log(response);
-    },
-    error: (xhr, status, error) => {
-        alert('Erreur survenu, commentaire pas modifier');
-    }
-  });
-    }
-    </script>
-
-    <script>document.addEventListener('DOMContentLoaded', function() {
-  const commentTexts = document.querySelectorAll('.comment-text'); 
-
-  commentTexts.forEach(text => {
-    text.addEventListener('click', function(event) {
-      this.setAttribute('contenteditable', 'true'); 
-      this.focus();
-    });
-
-    text.addEventListener('keypress', function(event) {
-      if (event.key === 'Enter') {
-        event.preventDefault(); 
-        this.setAttribute('contenteditable', 'false'); 
-        var newstr = $(this).text().substring(0,22);
-        $(this).text(newstr);
-        updateComment(this); 
-      }
-    });
-  });
-    });
-
-   function updateComment(element) {
-    const evalId = element.parentElement.querySelector('img');
-    const altValue = evalId.getAttribute('alt');
-
-  const updatedText = element.textContent;
-  $.ajax( {
-    url: './update-comment.php',
-    method: 'POST',
-    data: {
-        alias: altValue,
-        itemId: $id, 
-        comment: updatedText 
-    },
-    success: (response) => 
-    {                    
-        //console.log(response);
-    },
-    error: (xhr, status, error) => {
-        alert('Erreur survenu, commentaire pas modifier');
-    }
-  });
-    }//check if fine
-    </script>
+        <script>
+            document.addEventListener('DOMContentLoaded',function(){const commentTexts=document.querySelectorAll('.comment-text');commentTexts.forEach(text=>{text.addEventListener('click',function(event){this.setAttribute('contenteditable','true');this.focus()});text.addEventListener('keypress',function(event){if(event.key==='Enter'){event.preventDefault();this.setAttribute('contenteditable','false');var newstr=$(this).text().substring(0,22);$(this).text(newstr);updateComment(this)}})})});function updateComment(element){const evalId=element.parentElement.querySelector('img');const altValue=evalId.getAttribute('alt');const updatedText=element.textContent;$.ajax({url:'./update-comment.php',method:'POST',data:{alias:altValue,itemId:$id,comment:updatedText},success:(response)=>{},error:(xhr,status,error)=>{alert('Erreur survenu, commentaire pas modifier')}})}
+        </script>
 HTML;
 $content .= $scripts;
 
