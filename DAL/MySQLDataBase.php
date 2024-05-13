@@ -302,7 +302,8 @@ abstract class MySQLTable
         $data = $this->_DB->querySqlCmd($sql);
         return $data[0][0];
     }
-    public function getAvg ($row){
+    public function getAvg($row)
+    {
         $tableName = $this->tableName();
         $sql = "SELECT AVG($row) FROM $tableName ";
         $data = $this->_DB->querySqlCmd($sql);
