@@ -23,33 +23,33 @@ HTML;
 
 //Nb évaluations au total
 $toutesévaluationsItem = EvaluationsTable()->selectWhere("idItem = $id");
-$nbÉvaluationsTotales =count($toutesévaluationsItem);
+$nbÉvaluationsTotales = count($toutesévaluationsItem);
 
 //MOYENNE & AFFICHER LES ÉTOILES
-$étoilesCochées=<<<HTML
+$étoilesCochées = <<<HTML
 HTML;
 
-$moyenne =DB()->querySqlCmd("SELECT moyenneEvaluation($id);")[0]; 
+$moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($id);")[0];
 
 
-    for($x=0;$x< 5; $x++){
-        if($x < $moyenne[0]){
-            $étoilesCochées.=<<<HTML
+for ($x = 0; $x < 5; $x++) {
+    if ($x < $moyenne[0]) {
+        $étoilesCochées .= <<<HTML
             <span class="fa fa-star étoileChecked"></span>
     HTML;
-        }else{
-            $étoilesCochées.=<<<HTML
+    } else {
+        $étoilesCochées .= <<<HTML
             <span class="fa fa-star"></span>
     HTML;
-        }
     }
-    
-$moyenne= sanitizeString($moyenne[0]);
-if($nbÉvaluationsTotales ==0)
-    $moyenne=0;
+}
+
+$moyenne = sanitizeString($moyenne[0]);
+if ($nbÉvaluationsTotales == 0)
+    $moyenne = 0;
 
 //ÉTOILES : PROGRESS-BAR
-$évaluations_nbÉtoiles=<<<HTML
+$évaluations_nbÉtoiles = <<<HTML
 HTML;
 
 //Pourcentage 
@@ -57,18 +57,18 @@ HTML;
 function pourcentage($nbÉtoiles, $nbÉvaluationsTotales, $id)
 {
     $évaluations = EvaluationsTable()->selectWhere("Etoile = $nbÉtoiles and idItem = $id");
-    $pourcentage=0;
-    foreach($évaluations as $eval){
-        $pourcentage ++;
+    $pourcentage = 0;
+    foreach ($évaluations as $eval) {
+        $pourcentage++;
     }
     return (int) (($pourcentage / $nbÉvaluationsTotales) * 100);
 }
 
-if($nbÉvaluationsTotales !=0){
-    for($x=5; $x>=1; $x--){  //Pour chaque nb étoiles : nb étoile | progress-bar | pourcentage %
-        $pourcentage = pourcentage($x, $nbÉvaluationsTotales, $id );
-    
-        $évaluations_nbÉtoiles .=<<<HTML
+if ($nbÉvaluationsTotales != 0) {
+    for ($x = 5; $x >= 1; $x--) {  //Pour chaque nb étoiles : nb étoile | progress-bar | pourcentage %
+        $pourcentage = pourcentage($x, $nbÉvaluationsTotales, $id);
+
+        $évaluations_nbÉtoiles .= <<<HTML
         <div class="évaluationsRow">
         <div class="évalutionsNbÉtoiles">
             <div>$x  <i class="fa fa-star étoileChecked "></i></div>
@@ -91,37 +91,49 @@ HTML;
 //COMMENTAIRES
 //Avatar des joueurs + commentaires
 
-$avatarJoueurEtCommentaire =<<<HTML
+$avatarJoueurEtCommentaire = <<<HTML
 HTML;
 $commentairesHTML = <<<HTML
 HTML;
 
 //Pour chaque évaluations: alias + commentaire
-if($nbÉvaluationsTotales !=0){
-    foreach($toutesévaluationsItem as $eval){ 
-  
-        if($eval->Commentaire !=null){
+if ($nbÉvaluationsTotales != 0) {
+    foreach ($toutesévaluationsItem as $eval) {
+
+        if ($eval->Commentaire != null) {
             $joueur = JoueursTable()->selectWhere("id = $eval->idJoueur")[0];
             $isAdmin = $joueur->isAdmin();
             $isAlchimiste = $joueur->isAlchimiste();
             $commentaire = $eval->Commentaire;
-    
             //avatar
-            $avatar="./images/chevalier.png";
-            if($isAdmin){
-                $avatar= "./images/admin.png";
-            }else if ($isAlchimiste){
-                $avatar= "./images/alchimiste.png";
-            } 
-    
-            $avatarJoueurEtCommentaire =<<<HTML
-            <div class="chip">
-                <img src=$avatar alt="$joueur->Alias" width="96" height="96">
-                $joueur->Alias :        <!--Avatar selon admin/alchimiste/normal -->
-                $commentaire            <!--Commentaire-->
-            </div>
+            $avatar = "./images/chevalier.png";
+            if ($isAdmin) {
+                $avatar = "./images/admin.png";
+            } else if ($isAlchimiste) {
+                $avatar = "./images/alchimiste.png";
+            }
+
+            if ($eval->idJoueur == $_SESSION['id'] || $_SESSION['isAdmin'] == 1) {
+                $avatarJoueurEtCommentaire = <<<HTML
+                                    <div class="chip interactive data-eval-id='$eval->Id'">
+                                        <img src=$avatar alt="$joueur->Alias" width="96" height="96">
+                                            $joueur->Alias :
+                                            <span maxlength="22"class="comment-text">$commentaire</span>         
+                                            <span class="delete">&#10006;</span>
+                                    </div>
+                            <br>
+                HTML;
+            } else {
+                $avatarJoueurEtCommentaire = <<<HTML
+                    <div class="chip data-eval-id='$eval->Id'">
+                        <img src=$avatar alt="$joueur->Alias" width="96" height="96">
+                            $joueur->Alias :        
+                            <span class="comment-text" maxlength="22">$commentaire</span>      
+                    </div>
             <br>
-    HTML;
+            
+HTML;
+            }
             $commentairesHTML .= $avatarJoueurEtCommentaire;
         }
     }
@@ -130,7 +142,7 @@ if($nbÉvaluationsTotales !=0){
 
 
 if ($item != null) {
-        $itemsDisplay .= <<<HTML
+    $itemsDisplay .= <<<HTML
             <div class="évaluationsContainerItem">
                 <div class="évaluationsImg">
                     <div style="background-image:url('$item->Photo')"></div>
@@ -162,8 +174,93 @@ if ($item != null) {
             </div> 
         </div>
 HTML;
-    }
+}
 
 $content = $itemsDisplay;
+
+$scripts =
+    <<<HTML
+        <script>document.addEventListener('DOMContentLoaded', function() {
+            const deleteButtons = document.querySelectorAll('.delete');
+
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', function(event) {
+      const chipId = this.getAttribute('data-eval-id');
+      const confirmDeletion = confirm('Voulez-vous supprimer ce commentaire?'); 
+
+      if (confirmDeletion) {
+        deleteChip(this,chipId);
+      }
+    });
+  });
+    });
+
+    function deleteChip(element,chipId) {
+    const evalId = element.parentElement.querySelector('img');
+    const altValue = evalId.getAttribute('alt');
+$.ajax( {
+    url: './delete-comment.php',
+    method: 'POST',
+    data: {
+        alias: altValue,
+        itemId: chipId, 
+    },
+    success: (response) => 
+    {                    
+        console.log(response);
+    },
+    error: (xhr, status, error) => {
+        alert('Erreur survenu, commentaire pas modifier');
+    }
+  });
+    }
+    </script>
+
+    <script>document.addEventListener('DOMContentLoaded', function() {
+  const commentTexts = document.querySelectorAll('.comment-text'); 
+
+  commentTexts.forEach(text => {
+    text.addEventListener('click', function(event) {
+      this.setAttribute('contenteditable', 'true'); 
+      this.focus();
+    });
+
+    text.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault(); 
+        this.setAttribute('contenteditable', 'false'); 
+        var newstr = $(this).text().substring(0,22);
+        $(this).text(newstr);
+        updateComment(this); 
+      }
+    });
+  });
+    });
+
+   function updateComment(element) {
+    const evalId = element.parentElement.querySelector('img');
+    const altValue = evalId.getAttribute('alt');
+
+  const updatedText = element.textContent;
+  $.ajax( {
+    url: './update-comment.php',
+    method: 'POST',
+    data: {
+        alias: altValue,
+        itemId: $id, 
+        comment: updatedText 
+    },
+    success: (response) => 
+    {                    
+        console.log(response);
+    },
+    error: (xhr, status, error) => {
+        alert('Erreur survenu, commentaire pas modifier');
+    }
+  });
+    }//check if fine
+    </script>
+HTML;
+$content .= $scripts;
 
 include 'views/master.php';
