@@ -133,11 +133,15 @@
 
 .chip.interactive:hover .modify,
 .chip.interactive:hover .delete {
-  display: block;
+  display: inline-block;
 }
 
 .comment-text[contenteditable="true"] {
   border: 1px solid #ccc;
   padding: 4px;
-  min-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 5ch;
 }
+

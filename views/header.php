@@ -141,6 +141,14 @@ HTML;
                 $logoutButton
             </div>
 HTML;
+    } else if ($viewTitle == "Modérer les commentaires") {
+        $buttonRetour = buttonRetour('optionsJeu.php');
+        $loggedUserMenu = <<<HTML
+            $buttonRetour
+            <div class="buttonOnSide">
+                $logoutButton
+            </div>
+HTML;
     } else if ($viewTitle == "Modifier Profil") {
         $buttonRetour = buttonRetour('optionsJeu.php');
         $loggedUserMenu = <<<HTML
