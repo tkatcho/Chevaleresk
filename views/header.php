@@ -100,7 +100,7 @@ HTML;
                 $logoutButton
             </div>
 HTML;
-    } else if ($viewTitle == "Enigma") {
+    } else if ($viewTitle == "Enigma" || $viewTitle == "Statistiques") {
         $loggedUserMenu = <<<HTML
             <div class="btnRetour">
                 <button class="enigmaColor">
