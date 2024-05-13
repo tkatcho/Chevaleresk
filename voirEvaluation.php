@@ -118,7 +118,7 @@ if ($nbÉvaluationsTotales != 0) {
                                     <div class="chip interactive data-eval-id='$eval->Id'">
                                         <img src=$avatar alt="$joueur->Alias" width="96" height="96">
                                             $joueur->Alias :
-                                            <span class="comment-text">$commentaire</span>         
+                                            <span maxlength="22"class="comment-text">$commentaire</span>         
                                             <span class="delete">&#10006;</span>
                                     </div>
                             <br>
@@ -128,7 +128,7 @@ if ($nbÉvaluationsTotales != 0) {
                     <div class="chip data-eval-id='$eval->Id'">
                         <img src=$avatar alt="$joueur->Alias" width="96" height="96">
                             $joueur->Alias :        
-                            $commentaire           
+                            <span class="comment-text" maxlength="22">$commentaire</span>      
                     </div>
             <br>
             
@@ -229,6 +229,8 @@ $.ajax( {
       if (event.key === 'Enter') {
         event.preventDefault(); 
         this.setAttribute('contenteditable', 'false'); 
+        var newstr = $(this).text().substring(0,22);
+        $(this).text(newstr);
         updateComment(this); 
       }
     });
