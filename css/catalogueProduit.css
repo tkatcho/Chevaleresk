@@ -3,7 +3,6 @@
 /*La recherche d'item*/
 .searchContainer {
   max-width: 412px;
-
   display: grid;
   grid-template-columns: 200px auto 50px;
   align-items: center;
@@ -152,22 +151,27 @@
   border: 3px solid var(--secondary-color);
 }
 
-@media screen and (max-width: 400px) {
+
+
+@media screen and (max-width: 422px) {
+  .searchContainer{
+    grid-template-columns:none;
+  }
   .containerTousItems {
-    grid-template-columns: auto auto;
+    grid-template-columns: auto ;
+    align-items: "center";
     gap: 20px;
   }
 
   .containerItem {
-    max-width: 150px;
-  }
-
-  .itemImage div {
-    margin-left: 3px;
+    max-width: 200px;
   }
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 422px) {
+  .searchContainer{
+    grid-template-columns:none;
+  }
   .containerTousItems {
     grid-template-columns: auto auto;
     gap: 20px;
@@ -176,26 +180,16 @@
   .containerItem {
     max-width: 200px;
   }
-
-  
-}
-
-@media screen and (min-width: 560px) {
-  .containerTousItems {
-    grid-template-columns: auto auto;
-    gap: 20px;
-  }
-  .containerItem {
-    max-width: 250px;
-  }
 }
 
 @media screen and (min-width: 680px) {
+  .searchContainer {
+    grid-template-columns: 200px auto 50px;
+  }
   .containerTousItems {
     grid-template-columns: auto auto auto;
     gap: 10px;
   }
-
   .containerItem {
     max-width: 250px;
   }

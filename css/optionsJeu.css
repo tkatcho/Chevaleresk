@@ -13,7 +13,7 @@
 }
 
 .optionsBackgroundGrisProfil strong {
-  font-size: 40px;
+  font-size: 30px;
   font-family: var(--secondary-font);
 }
 
@@ -75,4 +75,21 @@ span {
   width: 300px;
   color: green;
   margin: 20px auto 0;
+}
+
+@media screen and (max-width: 500px) {
+  .optionsJeu{
+    display:inline;
+  }
+  .optionsBackgroundGrisProfil{
+    width:auto;
+  }
+  .optionsBtn{
+    padding-left:0px;
+    border-left:none;
+    margin-left:0px;
+  }
+  .optionsBtnIcon i{
+    font-size:25px;
+  }
 }
