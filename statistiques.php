@@ -13,6 +13,7 @@ userAccess();
 $content = "";
 $image = "";
 $items_display = <<<HTML
+<div style="overflow-x:auto;">
     <table>
         <tr class="categories">
             <th>Avatar</th>
@@ -57,7 +58,7 @@ if ($isConnected){
         else{
             $image = <<<HTML
                 <td>
-		            <div class="avatar" style="background-image:url('./images/chevalier.png')"></div>
+		            <div class="avatar"style="background-image:url('./images/chevalier.png')"></div>
                 </td>
 HTML;
         } 
@@ -85,6 +86,7 @@ HTML;
 
     $items_display .= <<<HTML
     </table>
+</div>
 HTML;
 
     $content .= $items_display;
