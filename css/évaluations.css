@@ -145,3 +145,12 @@
   max-width: 5ch;
 }
 
+@media screen and (max-width: 430px) {
+  .évaluationsContainer{
+    display:inline;
+  }
+  .chip{
+    height:auto;
+  }
+}
+

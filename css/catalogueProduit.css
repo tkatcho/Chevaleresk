@@ -151,8 +151,6 @@
   border: 3px solid var(--secondary-color);
 }
 
-
-
 @media screen and (max-width: 429px) {
   .searchContainer{
     grid-template-columns:none;
