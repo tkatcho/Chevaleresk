@@ -1,4 +1,4 @@
--- Changer la quantité d'item dans un panier
+--   Changer la quantité d'item dans un panier
 DELIMITER //
 
 CREATE PROCEDURE changePanierQt(IN id_panier INT, IN qt INT)
@@ -25,7 +25,7 @@ END//
 DELIMITER ;
 
 
--- Ajouter un item au panier
+--    Ajouter un item au panier
 DELIMITER //
 
 CREATE PROCEDURE addPanier(IN id_joueur INT, IN id_item INT, IN qt INT)
@@ -56,7 +56,7 @@ END//
 DELIMITER ;
 
 
--- Acheter le panier
+--    Acheter le panier
 DELIMITER //
 
 CREATE PROCEDURE buyPanier(IN id_joueur INT)
@@ -96,7 +96,7 @@ END//
 
 DELIMITER ;
 
--- S'assurer du prix des potions et éléments
+--    S'assurer du prix des potions et éléments
 DELIMITER |;
 CREATE TRIGGER checkPrixItem
 before insert ON items
@@ -106,13 +106,13 @@ declare minPrix int;
 declare maxPrix int;
 SELECT MAX(prix) INTO minPrix FROM items WHERE type = 'E';
 SELECT MIN(prix) INTO maxPrix FROM items WHERE type = 'P';
--- on garantit le prix potion>=100
+--    on garantit le prix potion>=100
 if(new.type='P') Then
     if(new.prix < minPrix) then
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Le prix est trop bas';
     end if; 
 end if;
--- on garantit que le prix element <100
+--    on garantit que le prix element <100
 if(new.type='E') Then
     if(new.prix >= maxPrix) then
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Le prix est trop élevé';
@@ -132,7 +132,7 @@ END //
 DELIMITER ;
 
 
--- Changer le solde du joueur lorsqu'il résout une énigme dépendamment de la difficulté de l'énigme
+--    Changer le solde du joueur lorsqu'il résout une énigme dépendamment de la difficulté de l'énigme
 DELIMITER //
 
 CREATE PROCEDURE repondreEnigme(IN id_enigme INT, IN id_joueur INT, IN id_reponse INT)
@@ -163,7 +163,7 @@ END//
 
 DELIMITER ;
 
--- Le joueur devient alchimiste s'il résout 3 énigmes de potions ou éléments
+--   Le joueur devient alchimiste s'il résout 3 énigmes de potions ou éléments
 DELIMITER //
 CREATE PROCEDURE checkEnigmesRésoluEnigmaAlchimiste(IN id_joueur INT)
 begin
@@ -179,7 +179,7 @@ end if;
 END// 
 DELIMITER ;
 
--- Augmente le niveau d'un joueur lorsqu'il concocte des potions
+--   Augmente le niveau d'un joueur lorsqu'il concocte des potions
 DELIMITER //
 
 CREATE TRIGGER augmenteNiveau
@@ -202,7 +202,7 @@ END //
 
 DELIMITER ;
 
--- Ajouter une demande pour de l'argent (A: accepté, R: rejeté, W: attente)
+--   Ajouter une demande pour de l'argent (A: accepté, R: rejeté, W: attente)
 DELIMITER //
 
 CREATE PROCEDURE nouvelleDemande(IN id_joueur INT)
@@ -219,7 +219,7 @@ END//
 
 DELIMITER ;
 
--- Accepter une demande
+--   Accepter une demande
 DELIMITER //
 
 CREATE PROCEDURE accepterDemande(IN id_demande INT)
@@ -237,7 +237,7 @@ END//
 
 DELIMITER ;
 
--- Refuser une demande
+--   Refuser une demande
 DELIMITER //
 
 CREATE PROCEDURE refuserDemande(IN id_demande INT)
@@ -252,7 +252,7 @@ END//
 DELIMITER ;
 
 
--- Ajouter une potion
+--   Ajouter une potion
 DELIMITER //
 CREATE PROCEDURE ajouterPotion(IN potion_id INT,IN id_joueur int,IN elem1_id int,IN elem2_id int)
 BEGIN
@@ -292,7 +292,12 @@ BEGIN
         END IF;
     ELSE
         INSERT INTO inventaires (idJoueur, idItem, quantite) VALUES (id_joueur, idItem_potion, 1);
+        
         INSERT INTO potionsConcoctes (idJoueur, idPotion) VALUES (id_joueur, potion_id);
+
+        UPDATE inventaires SET quantite = (quantite - qt_elem1) WHERE idJoueur = id_joueur AND idItem = id_item1;
+        
+        UPDATE inventaires SET quantite = (quantite - qt_elem2) WHERE idJoueur = id_joueur AND idItem = id_item2;
         
         IF (SELECT quantite FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item1) <= 0 THEN
             DELETE FROM inventaires WHERE idJoueur = id_joueur AND idItem = id_item1;
@@ -306,7 +311,8 @@ END  //
 
 DELIMITER ;
 
---moyenne des évaluations
+
+--  moyenne des évaluations
 DELIMITER |
 CREATE FUNCTION moyenneEvaluation(id INT) returns integer
 BEGIN
@@ -316,7 +322,7 @@ BEGIN
 END|
 
 
--- Modifier alias
+--   Modifier alias
 DELIMITER //
 
 CREATE PROCEDURE modifierAlias(IN id_joueur INT, IN nouv_alias VARCHAR(32))
@@ -327,7 +333,7 @@ END  //
 DELIMITER ;
 
 
--- Modifier Prénom
+--   Modifier Prénom
 DELIMITER //
 
 CREATE PROCEDURE modifierPrenom(IN id_joueur INT, IN nouv_prenom VARCHAR(32))
@@ -338,7 +344,7 @@ END //
 DELIMITER ;
 
 
--- Modifier Nom
+--   Modifier Nom
 DELIMITER //
 
 CREATE PROCEDURE modifierNom(IN id_joueur INT, IN nouv_nom VARCHAR(32))
@@ -349,7 +355,7 @@ END //
 DELIMITER ;
 
 
--- Modifier Mot de passe
+--   Modifier Mot de passe
 DELIMITER //
 
 CREATE PROCEDURE modifierPassword(IN id_joueur INT, IN nouv_mdp VARCHAR(256))

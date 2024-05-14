@@ -25,43 +25,41 @@ $items_display = <<<HTML
         </tr>
 HTML;
 
-if ($isConnected){
+if ($isConnected) {
     $joueurs = JoueursTable()->selectAll();
-    usort($joueurs, function($a, $b) {
+    usort($joueurs, function ($a, $b) {
         $bonnesReponsesA = count(QuetesTable()->selectWhere("idJoueur = $a->Id AND reussi = 1"));
         $bonnesReponsesB = count(QuetesTable()->selectWhere("idJoueur = $b->Id AND reussi = 1"));
-    
+
         return $bonnesReponsesB <=> $bonnesReponsesA;
     });
-    foreach($joueurs as $joueur){
+    foreach ($joueurs as $joueur) {
         $quetesReussi = QuetesTable()->selectWhere("idJoueur = $joueur->Id AND reussi = 1");
         $reussi = count($quetesReussi);
         $quetesÉchoué = QuetesTable()->selectWhere("idJoueur = $joueur->Id AND reussi = 0");
         $échoué = count($quetesÉchoué);
-        if($joueur->estAlchimiste == 1 || $joueur->estAdmin == 1 ){
-            if($joueur->estAlchimiste == 1){
+        if ($joueur->estAlchimiste == 1 || $joueur->estAdmin == 1) {
+            if ($joueur->estAlchimiste == 1) {
                 $image = <<<HTML
                     <td>
                         <div class="avatar" style="background-image:url('./images/alchimiste.png')"></div>
                     </td>
-    HTML;
+HTML;
             }
-            if($joueur->estAdmin == 1 ){
+            if ($joueur->estAdmin == 1) {
                 $image = <<<HTML
                     <td>
                         <div class="avatar" style="background-image:url('./images/admin.png')"></div>
                     </td>
-    HTML;       
+HTML;
             }
-
-        }
-        else{
+        } else {
             $image = <<<HTML
                 <td>
 		            <div class="avatar"style="background-image:url('./images/chevalier.png')"></div>
                 </td>
 HTML;
-        } 
+        }
         $items_display .= <<<HTML
         <tr>
             $image

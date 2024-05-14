@@ -132,7 +132,7 @@ HTML;
                 $logoutButton
                 
             </div>
-    HTML;
+HTML;
     } else if ($viewTitle == "Concocter des potions") {
         $buttonRetour = buttonRetour('inventaire.php');
         $loggedUserMenu = <<<HTML
@@ -157,12 +157,12 @@ HTML;
                 $logoutButton
             </div>
 HTML;
-    }else if($viewTitle == "Les évaluations"){
+    } else if ($viewTitle == "Les évaluations") {
         if (isset($_GET["idItem"])) {
             $id = $_GET["idItem"];
             $item = ItemsTable()->get($id);
         }
-        $buttonRetour= <<<HTML
+        $buttonRetour = <<<HTML
         <script>
             function linked(id){
                 window.location.href = "details.php?idItem=" + id;
@@ -183,7 +183,6 @@ HTML;
             </div>
 
 HTML;
-    
     }
     //JOUEUR PAS CONNECTÉ
 } else {
@@ -220,5 +219,3 @@ $viewHead = <<<HTML
         <h1>$viewTitle<span>$loggedUserMenu</span></h1>
     </span>
 HTML;
-
-

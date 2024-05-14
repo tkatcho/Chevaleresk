@@ -36,11 +36,11 @@ for ($x = 0; $x < 5; $x++) {
     if ($x < $moyenne[0]) {
         $étoilesCochées .= <<<HTML
             <span class="fa fa-star étoileChecked"></span>
-    HTML;
+HTML;
     } else {
         $étoilesCochées .= <<<HTML
             <span class="fa fa-star"></span>
-    HTML;
+HTML;
     }
 }
 
@@ -122,7 +122,7 @@ if ($nbÉvaluationsTotales != 0) {
                                             <span class="delete">&#10006;</span>
                                     </div>
                             <br>
-                HTML;
+HTML;
             } else {
                 $avatarJoueurEtCommentaire = <<<HTML
                     <div class="chip data-eval-id='$eval->Id'">
