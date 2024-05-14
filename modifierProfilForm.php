@@ -18,6 +18,14 @@ if (isset($_GET['error'])) {
         $errorMessage = "Cette alias est déjà utilisé";
     if ($error == "missingField")
         $errorMessage = "Il vous manque des donnees";
+    if ($error == "aliasInvalid")
+        $errorMessage = "L'Alias est trop grand";
+    if ($error == "nameInvalid")
+        $errorMessage = "Le nom est trop grand";
+    if ($error == "firstNameInvalid")
+        $errorMessage = "Le prenom est trop grand";
+    if ($error == "passwordInvalid")
+        $errorMessage = "Le mot de passe est trop grand";
 }
 $viewTitle = "Modifier Profil";
 

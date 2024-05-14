@@ -19,22 +19,43 @@ if (isset($_POST['submit'])) {
         $joueur->Nom = $_POST['nom'] ?? 0;
         $joueur->Prenom = $_POST['prenom'] ?? 0;
 
-        $_SESSION["alias"] = $joueur->Alias;
-        $_SESSION["nom"] = $joueur->Nom;
-        $_SESSION["prenom"] = $joueur->Prenom;
-
         if (strlen($_POST['motDePasse']) != 0) {
             $joueur->MotDePasse = password_hash($_POST['motDePasse'], PASSWORD_DEFAULT);
         } else {
             $joueur->MotDePasse = "";
         }
 
-        JoueursTable()->update($joueur);
 
-        redirect('modifierProfilForm.php?sucess="Reussi"');
+        if (PlayerVerif($joueur)) {
+            JoueursTable()->update($joueur);
+            $_SESSION["alias"] = $joueur->Alias;
+            $_SESSION["nom"] = $joueur->Nom;
+            $_SESSION["prenom"] = $joueur->Prenom;
+            redirect('modifierProfilForm.php?sucess="Reussi"');
+        }
     } else {
         redirect('modifierProfilForm.php?error=usernameExists');
     }
 }
 
+function PlayerVerif($joueur)
+{
+    if (strlen($joueur->Alias) >= 20) {
+        redirect('modifierProfilForm.php?error=aliasInvalid');
+        return false;
+    }
+    if (strlen($joueur->Nom) >= 20) {
+        redirect('modifierProfilForm.php?error=nameInvalid');
+        return false;
+    }
+    if (strlen($joueur->Prenom) >= 20) {
+        redirect('modifierProfilForm.php?error=firstNameInvalid');
+        return false;
+    }
+    if (strlen($joueur->MotDePasse) >= 20) {
+        redirect('modifierProfilForm.php?error=passwordInvalid');
+        return false;
+    }
+    return true;
+}
 //redirect('options.php');
