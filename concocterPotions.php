@@ -129,30 +129,9 @@ $content = <<<HTML
         </div>
     </div>
     <script>
-    var buttons = document.getElementsByClassName("concocterPotionsItem");
-
-    for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function() {
-        for (var j = 0; j < buttons.length; j++) {
-            buttons[j].classList.remove("chosen_item");
-        }
-
-        window.location.href = "concocterPotions.php?chosenItem=" + this.getAttribute('data-id');
-        localStorage.setItem('chosenItemId', this.getAttribute('data-id'));
-    });
-    
-}
-    document.addEventListener('DOMContentLoaded', function() {
-        var chosenItemId = localStorage.getItem('chosenItemId');
-
-        if (chosenItemId) {
-            var item = document.querySelector('[data-id="' + chosenItemId + '"]');
-            if (item) {
-                item.scrollIntoView();
-                item.classList.add("chosen_item");
-            }
-        }
-    });
+    var buttons=document.getElementsByClassName("concocterPotionsItem");for(var i=0;i<buttons.length;i++){buttons[i].addEventListener("click",function(){for(var j=0;j<buttons.length;j++){buttons[j].classList.remove("chosen_item")}
+    window.location.href="concocterPotions.php?chosenItem="+this.getAttribute('data-id');localStorage.setItem('chosenItemId',this.getAttribute('data-id'))})}
+    document.addEventListener('DOMContentLoaded',function(){var chosenItemId=localStorage.getItem('chosenItemId');if(chosenItemId){var item=document.querySelector('[data-id="'+chosenItemId+'"]');if(item){item.scrollIntoView();item.classList.add("chosen_item")}}})
 </script>
 HTML;
 

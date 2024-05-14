@@ -98,7 +98,7 @@ HTML;
             <div class="détailsContainerItem">
                 <div class="containerFlexIdNom">
                     <!-- <span class="idItem">$index</span> -->
-                    <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                    <span style="flex-grow:2;  margin-left:4px; font-size:20px;">$item->Nom</span> 
                     <span>$addToCartBouton</span>
                 </div>
                     <hr>
@@ -140,7 +140,7 @@ HTML;
                     <div class="détailsContainerItem">
                         <div class="containerFlexIdNom">
                             <!-- <span class="idItem">$index</span> -->
-                            <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                            <span style="flex-grow:2;  margin-left:4px;font-size:20px;">$item->Nom</span> 
                             <span>$addToCartBouton</span>
                         </div>
                             <hr>
@@ -183,7 +183,7 @@ HTML;
                     <div class="détailsContainerItem">
                         <div class="containerFlexIdNom">
                             <!-- <span class="idItem">$index</span> -->
-                            <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                            <span style="flex-grow:2;  margin-left:4px; font-size:20px;">$item->Nom</span> 
                             <span>$addToCartBouton</span>
                         </div>
                             <hr>
@@ -224,7 +224,7 @@ HTML;
             <div class="détailsContainerItem">
                 <div class="containerFlexIdNom">
                     <!-- <span class="idItem">$index</span> -->
-                    <span style="flex-grow:2;  margin-left:4px;">$item->Nom</span> 
+                    <span style="flex-grow:2;  margin-left:4px; font-size:20px;">$item->Nom</span> 
                     <span>$addToCartBouton</span>
                 </div>
                     <hr>

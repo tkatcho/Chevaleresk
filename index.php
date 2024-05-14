@@ -114,6 +114,16 @@ function addToCartButton($idJoueur, $idItem, $qt)
         </button>
 HTML;
 }
+function nbÉtoiles($items, $nbÉtoiles, $newItems){
+    foreach($items as $item){
+        $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
+        $moyenne=$moyenne[0];
+        if($moyenne >=$nbÉtoiles){
+            $newItems[] = $item->Id;
+        }
+    }
+    return $newItems;
+}
 
 $itemsDisplay = <<<HTML
     <div class="containerTousItems">
@@ -140,59 +150,24 @@ if ($items != null) {
 
     // 1 étoiles
     if(in_array("1", $sortType)){
-       
-        foreach($items as $item){
-            $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
-            $moyenne=$moyenne[0];
-            if($moyenne >=1){
-                $newItems[] = $item->Id;
-            }
-        }
+       $newItems =nbÉtoiles($items, 1, $newItems );
     }
     // 2 étoiles
     if(in_array("2", $sortType)){
-       
-        foreach($items as $item){
-            $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
-            $moyenne=$moyenne[0];
-            if($moyenne >=2){
-                $newItems[] = $item->Id;
-            }
-        }
+        $newItems =nbÉtoiles($items, 2, $newItems );
     }
     
     // 3 étoiles
     if(in_array("3", $sortType)){
-       
-        foreach($items as $item){
-            $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
-            $moyenne=$moyenne[0];
-            if($moyenne >=3){
-                $newItems[] = $item->Id;
-            }
-        }
+        $newItems =nbÉtoiles($items, 3, $newItems );
     }
     // 4 étoiles
     if(in_array("4", $sortType)){
-       
-        foreach($items as $item){
-            $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
-            $moyenne=$moyenne[0];
-            if($moyenne >=4){
-                $newItems[] = $item->Id;
-            }
-        }
+        $newItems =nbÉtoiles($items, 4, $newItems );
     }
     // 5 étoiles
     if(in_array("5", $sortType)){
-       
-        foreach($items as $item){
-            $moyenne = DB()->querySqlCmd("SELECT moyenneEvaluation($item->Id);")[0];
-            $moyenne=$moyenne[0];
-            if($moyenne >=5){
-                $newItems[] = $item->Id;
-            }
-        }
+        $newItems =nbÉtoiles($items, 5, $newItems );
     }
     
     foreach ($items as $item) {
@@ -356,7 +331,5 @@ $itemsDisplay .= <<<HTML
     </script>
 HTML;
 
-
 $content .= $itemsDisplay;
-
 include 'views/master.php';
